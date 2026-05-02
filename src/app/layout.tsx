@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { jsonLdSafe } from '@/lib/jsonLd';
+
+const GA_MEASUREMENT_ID = 'G-TVTZYGQ64H';
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -55,6 +58,9 @@ export const metadata: Metadata = {
     images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
   },
   category: 'technology',
+  verification: {
+    google: 'kLUaXtbZGowIehnC7I7VLaj3uSNTbIBsm1uwZhBpK7Q',
+  },
 };
 
 const personSchema = {
@@ -161,6 +167,16 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');`}
+        </Script>
       </body>
     </html>
   );

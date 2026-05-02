@@ -1,0 +1,39 @@
+{
+  "name": "keremgezergun-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sungur Kerem Gezergün - Kişisel SEO portfolyo ve blog sitesi (Next.js 16, App Router).",
+  "homepage": "https://keremgezergun.com",
+  "author": "Sungur Kerem Gezergün",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "portfolio",
+    "next.js",
+    "personal-site",
+    "ecommerce-seo"
+  ],
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.4",
+    "typescript": "^5"
+  }
+}

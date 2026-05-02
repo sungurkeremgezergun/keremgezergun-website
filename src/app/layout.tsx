@@ -149,19 +149,27 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${inter.variable} ${playfair.variable}`}>
       <head>
-        <meta httpEquiv="Content-Language" content="tr" />
+        {/*
+          The "<!-- Google tag (gtag.js) -->" HTML comment is injected
+          into the rendered HTML by scripts/inject-gtag-comment.mjs as a
+          postbuild step (JSX cannot emit raw HTML comments).
+        */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          src="https://www.googletagmanager.com/gtag/js?id=G-TVTZYGQ64H"
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_MEASUREMENT_ID}');`,
+            __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TVTZYGQ64H');
+`,
           }}
         />
+        <meta httpEquiv="Content-Language" content="tr" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdSafe(personSchema) }}

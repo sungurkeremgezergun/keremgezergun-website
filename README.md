@@ -3,7 +3,7 @@
 Sungur Kerem Gezergün'ün kişisel SEO portfolyo ve blog sitesi.
 E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri içerikleri sunar.
 
-**Production:** [keremgezergun.com](https://keremgezergun.com)
+**Production:** [www.keremgezergun.com](https://www.keremgezergun.com)
 
 ## Teknoloji
 

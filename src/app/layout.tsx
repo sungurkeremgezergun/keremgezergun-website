@@ -20,7 +20,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://keremgezergun.com'),
+  metadataBase: new URL('https://www.keremgezergun.com'),
   title: {
     default: 'Kerem Gezergün | SEO Uzmanı',
     template: '%s | Kerem Gezergün',
@@ -33,11 +33,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Kerem Gezergün | SEO Uzmanı',
     description: 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı',
-    url: 'https://keremgezergun.com/',
+    url: 'https://www.keremgezergun.com/',
     siteName: 'Kerem Gezergün',
     images: [
       {
-        url: 'https://keremgezergun.com/images/kerem-gezergun.jpg',
+        url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
         width: 1200,
         height: 630,
         alt: 'Kerem Gezergün - SEO Uzmanı',
@@ -56,17 +56,17 @@ export const metadata: Metadata = {
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  '@id': 'https://keremgezergun.com/#person',
+  '@id': 'https://www.keremgezergun.com/#person',
   name: 'Sungur Kerem Gezergün',
   alternateName: 'Kerem Gezergün',
-  url: 'https://keremgezergun.com',
-  image: 'https://keremgezergun.com/images/kerem-gezergun.jpg',
+  url: 'https://www.keremgezergun.com',
+  image: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
   jobTitle: 'Senior SEO Specialist',
   description:
     'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards Finalisti.',
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://keremgezergun.com',
+    '@id': 'https://www.keremgezergun.com',
   },
   worksFor: {
     '@type': 'Organization',

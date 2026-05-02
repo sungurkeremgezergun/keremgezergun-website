@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://keremgezergun.com';
+  const baseUrl = 'https://www.keremgezergun.com';
   const lastModified = new Date('2026-05-01');
 
   return [

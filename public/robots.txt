@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://keremgezergun.com/sitemap.xml
+Sitemap: https://www.keremgezergun.com/sitemap.xml

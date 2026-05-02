@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     'Sungur Kerem Gezergün - E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards Finalisti.',
   alternates: {
-    canonical: 'https://keremgezergun.com/',
+    canonical: 'https://www.keremgezergun.com/',
   },
   openGraph: {
     title: 'Kerem Gezergün | SEO Uzmanı',
     description: 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı',
-    url: 'https://keremgezergun.com/',
-    images: ['https://keremgezergun.com/images/kerem-gezergun.jpg'],
+    url: 'https://www.keremgezergun.com/',
+    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
     type: 'website',
   },
 };

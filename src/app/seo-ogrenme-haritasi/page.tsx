@@ -8,13 +8,13 @@ const breadcrumbSchema = {
       '@type': 'ListItem',
       position: 1,
       name: 'Ana Sayfa',
-      item: 'https://keremgezergun.com/',
+      item: 'https://www.keremgezergun.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'SEO Rehberi',
-      item: 'https://keremgezergun.com/seo-ogrenme-haritasi',
+      item: 'https://www.keremgezergun.com/seo-ogrenme-haritasi',
     },
   ],
 };

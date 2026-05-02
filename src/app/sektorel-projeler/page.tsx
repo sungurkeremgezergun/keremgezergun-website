@@ -7,13 +7,13 @@ export const metadata: Metadata = {
     'Kerem Gezergün - Sektörel Projeler. Üniversite konuşmaları, dernek etkinlikleri ve podcast çalışmaları.',
   keywords: ['SEO Uzmanı', 'Konuşmacı', 'Podcast', 'Dijital Pazarlama'],
   alternates: {
-    canonical: 'https://keremgezergun.com/sektorel-projeler',
+    canonical: 'https://www.keremgezergun.com/sektorel-projeler',
   },
   openGraph: {
     title: 'Sektörel Projeler | Kerem Gezergün',
     description: 'Üniversite konuşmaları, dernek etkinlikleri ve podcast çalışmaları.',
-    url: 'https://keremgezergun.com/sektorel-projeler',
-    images: ['https://keremgezergun.com/images/kerem-gezergun.jpg'],
+    url: 'https://www.keremgezergun.com/sektorel-projeler',
+    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
     locale: 'tr_TR',
     type: 'website',
   },
@@ -27,13 +27,13 @@ const breadcrumbSchema = {
       '@type': 'ListItem',
       position: 1,
       name: 'Ana Sayfa',
-      item: 'https://keremgezergun.com/',
+      item: 'https://www.keremgezergun.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'Sektörel Projeler',
-      item: 'https://keremgezergun.com/sektorel-projeler',
+      item: 'https://www.keremgezergun.com/sektorel-projeler',
     },
   ],
 };

@@ -7,13 +7,13 @@ export const metadata: Metadata = {
     'Kerem Gezergün - SEO Blog. Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
   keywords: ['SEO Rehberi', 'Teknik SEO', 'GEO', 'Backlink', 'Site İçi SEO'],
   alternates: {
-    canonical: 'https://keremgezergun.com/blog',
+    canonical: 'https://www.keremgezergun.com/blog',
   },
   openGraph: {
     title: 'Blog | Kerem Gezergün',
     description: 'SEO Blog. Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
-    url: 'https://keremgezergun.com/blog',
-    images: ['https://keremgezergun.com/images/kerem-gezergun.jpg'],
+    url: 'https://www.keremgezergun.com/blog',
+    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
     locale: 'tr_TR',
     type: 'website',
   },
@@ -27,13 +27,13 @@ const breadcrumbSchema = {
       '@type': 'ListItem',
       position: 1,
       name: 'Ana Sayfa',
-      item: 'https://keremgezergun.com/',
+      item: 'https://www.keremgezergun.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'Blog',
-      item: 'https://keremgezergun.com/blog',
+      item: 'https://www.keremgezergun.com/blog',
     },
   ],
 };
@@ -43,10 +43,10 @@ const collectionPageSchema = {
   '@type': 'CollectionPage',
   name: 'SEO Blog - Kerem Gezergün',
   description: 'Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
-  url: 'https://keremgezergun.com/blog',
+  url: 'https://www.keremgezergun.com/blog',
   author: {
     '@type': 'Person',
-    '@id': 'https://keremgezergun.com/#person',
+    '@id': 'https://www.keremgezergun.com/#person',
     name: 'Sungur Kerem Gezergün',
   },
   mainEntity: {

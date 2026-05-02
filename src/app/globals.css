@@ -155,50 +155,33 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     height: 72px;
 }
 
-/* Logo Mark — KG. Monogram */
+/* Logo Mark — Kerem Gezergün */
 .logo-mark {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none !important;
-    line-height: 1;
-    gap: 2px;
+    line-height: 0;
 }
 
-.logo-monogram {
-    font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
-    font-weight: 700;
-    font-size: 26px;
-    color: var(--primary);
-    letter-spacing: -0.5px;
+.logo-mark img {
+    display: block;
+    height: auto;
+    width: 180px;
+    max-width: 100%;
 }
 
-.logo-dot {
-    color: var(--accent);
+.logo-mark--footer img {
+    width: 220px;
+    border-radius: 6px;
 }
 
-.logo-name {
-    font-family: var(--font-inter, 'Inter'), sans-serif;
-    font-weight: 500;
-    font-size: 10px;
-    color: var(--text-secondary);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.logo-mark--footer .logo-monogram {
-    color: var(--accent);
-    font-size: 32px;
-}
-
-.logo-mark--footer .logo-dot {
-    color: #F8F6F0;
-}
-
-.logo-mark--footer .logo-name {
-    color: rgba(248, 246, 240, 0.7);
-    font-size: 11px;
-    letter-spacing: 2.5px;
+@media (max-width: 768px) {
+    .logo-mark img {
+        width: 140px;
+    }
+    .logo-mark--footer img {
+        width: 180px;
+    }
 }
 
 .nav-menu {

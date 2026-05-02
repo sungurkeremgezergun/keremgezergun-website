@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { jsonLdSafe } from '@/lib/jsonLd';
 
 export const metadata: Metadata = {
-  title: 'Blog | Kerem Gezergün',
+  title: 'Blog',
   description:
     'Kerem Gezergün - SEO Blog. Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
   keywords: ['SEO Rehberi', 'Teknik SEO', 'GEO', 'Backlink', 'Site İçi SEO'],
@@ -11,11 +11,27 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Blog | Kerem Gezergün',
-    description: 'SEO Blog. Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
+    description: 'SEO Blog - Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
     url: 'https://www.keremgezergun.com/blog',
-    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
+    siteName: 'Kerem Gezergün',
+    images: [
+      {
+        url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Kerem Gezergün SEO Blog',
+      },
+    ],
     locale: 'tr_TR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog | Kerem Gezergün',
+    description: 'SEO Blog - Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
+    creator: '@keremgezergun',
+    site: '@keremgezergun',
+    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
   },
 };
 

@@ -50,7 +50,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Kerem Gezergün | SEO Uzmanı',
     description: 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı',
+    creator: '@keremgezergun',
+    site: '@keremgezergun',
+    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
   },
+  category: 'technology',
 };
 
 const personSchema = {
@@ -59,19 +63,26 @@ const personSchema = {
   '@id': 'https://www.keremgezergun.com/#person',
   name: 'Sungur Kerem Gezergün',
   alternateName: 'Kerem Gezergün',
-  url: 'https://www.keremgezergun.com',
-  image: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
+  url: 'https://www.keremgezergun.com/',
+  image: {
+    '@type': 'ImageObject',
+    url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
+    width: 1200,
+    height: 630,
+    caption: 'Kerem Gezergün - SEO Uzmanı',
+  },
   jobTitle: 'Senior SEO Specialist',
   description:
-    'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards Finalisti.',
+    'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards 2024 Finalisti.',
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://www.keremgezergun.com',
+    '@id': 'https://www.keremgezergun.com/',
   },
   worksFor: {
     '@type': 'Organization',
+    '@id': 'https://businessup.com.tr/#organization',
     name: 'BusinessUp!',
-    url: 'https://businessup.com.tr',
+    url: 'https://businessup.com.tr/',
   },
   knowsAbout: [
     'SEO',
@@ -80,17 +91,20 @@ const personSchema = {
     'Organik Büyüme Stratejileri',
     'Arama Motoru Optimizasyonu',
     'Dijital Pazarlama',
+    'Generative Engine Optimization',
   ],
+  knowsLanguage: ['tr', 'en'],
   alumniOf: {
     '@type': 'CollegeOrUniversity',
     name: 'Ahi Evran Üniversitesi',
     sameAs: 'https://www.ahievran.edu.tr',
   },
-  award: ['MENA Search A24 - Best Use of Search (Finance) Finalist'],
+  award: ['MENA Search Awards 2024 - Best Use of Search (Finance) Finalist'],
   sameAs: [
     'https://www.linkedin.com/in/sungur-kerem-gezergun/',
     'https://twitter.com/keremgezergun',
     'https://www.youtube.com/@keremgezergun',
+    'https://www.instagram.com/keremgzr02/',
   ],
   hasOccupation: {
     '@type': 'Occupation',
@@ -109,6 +123,19 @@ const personSchema = {
   },
 };
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://www.keremgezergun.com/#website',
+  url: 'https://www.keremgezergun.com/',
+  name: 'Kerem Gezergün',
+  alternateName: 'Sungur Kerem Gezergün',
+  description:
+    'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı Kerem Gezergün\'ün kişisel web sitesi.',
+  publisher: { '@id': 'https://www.keremgezergun.com/#person' },
+  inLanguage: 'tr-TR',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -121,6 +148,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdSafe(personSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdSafe(websiteSchema) }}
         />
       </head>
       <body>

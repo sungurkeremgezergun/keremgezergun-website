@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'SEO Rehberi | Kerem Gezergün',
+  title: 'SEO Rehberi',
   description:
     'SEO Rehberi - Temellerden ileri seviyeye SEO öğrenmek için kapsamlı kaynak rehberi. 520+ kaliteli kaynak, 50 ana kategori ve 128 alt konu ile SEO uzmanı olun.',
   keywords: ['SEO Öğrenme', 'SEO Rehberi', 'SEO Kaynakları', 'Teknik SEO', 'On-Page SEO', 'Link Building', 'SEO Stratejisi', 'Semantic SEO', 'Programmatic SEO', 'Local SEO'],
@@ -12,9 +12,25 @@ export const metadata: Metadata = {
     title: 'SEO Rehberi | Kerem Gezergün',
     description: 'Temellerden ileri seviyeye SEO öğrenmek için 520+ kaynak içeren kapsamlı rehber.',
     url: 'https://www.keremgezergun.com/seo-ogrenme-haritasi',
-    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
+    siteName: 'Kerem Gezergün',
+    images: [
+      {
+        url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Kerem Gezergün SEO Rehberi',
+      },
+    ],
     locale: 'tr_TR',
-    type: 'website',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SEO Rehberi | Kerem Gezergün',
+    description: 'Temellerden ileri seviyeye SEO öğrenmek için 520+ kaynak içeren kapsamlı rehber.',
+    creator: '@keremgezergun',
+    site: '@keremgezergun',
+    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
   },
 };
 

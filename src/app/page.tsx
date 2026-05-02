@@ -5,16 +5,33 @@ import { jsonLdSafe } from '@/lib/jsonLd';
 
 export const metadata: Metadata = {
   description:
-    'Sungur Kerem Gezergün - E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards Finalisti.',
+    'Sungur Kerem Gezergün - E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards 2024 Finalisti.',
   alternates: {
     canonical: 'https://www.keremgezergun.com/',
   },
   openGraph: {
     title: 'Kerem Gezergün | SEO Uzmanı',
-    description: 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı',
+    description: 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı.',
     url: 'https://www.keremgezergun.com/',
-    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
+    siteName: 'Kerem Gezergün',
+    images: [
+      {
+        url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Kerem Gezergün - Senior SEO Specialist',
+      },
+    ],
+    locale: 'tr_TR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kerem Gezergün | SEO Uzmanı',
+    description: 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı.',
+    creator: '@keremgezergun',
+    site: '@keremgezergun',
+    images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
   },
 };
 

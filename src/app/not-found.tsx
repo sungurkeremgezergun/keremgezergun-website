@@ -8,6 +8,21 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  openGraph: {
+    title: '404 – Sayfa Bulunamadı | Kerem Gezergün',
+    description: 'Aradığınız sayfa bulunamadı.',
+    url: 'https://www.keremgezergun.com/',
+    siteName: 'Kerem Gezergün',
+    locale: 'tr_TR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: '404 – Sayfa Bulunamadı',
+    description: 'Aradığınız sayfa bulunamadı.',
+    creator: '@keremgezergun',
+    site: '@keremgezergun',
+  },
 };
 
 export default function NotFound() {

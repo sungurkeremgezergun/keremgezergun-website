@@ -1,0 +1,36 @@
+name: Deploy to VPS
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: SSH deploy to VPS
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 104.247.166.4
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          command_timeout: 8m
+          script: |
+            set -euo pipefail
+            cd /var/www/keremgezergun-website
+            git fetch origin main
+            git reset --hard origin/main
+            npm ci --no-audit --no-fund
+            npm run build
+            pm2 reload keremgezergun-website 2>/dev/null || pm2 restart all
+            pm2 save

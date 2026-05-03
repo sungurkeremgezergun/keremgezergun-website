@@ -21,6 +21,7 @@ Thumbs.db
 
 # debug captures
 *.har
+*.docx
 
 # debug
 npm-debug.log*

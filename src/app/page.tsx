@@ -5,13 +5,14 @@ import { jsonLdSafe } from '@/lib/jsonLd';
 
 export const metadata: Metadata = {
   description:
-    'Sungur Kerem Gezergün - E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards 2024 Finalisti.',
+    'Sungur Kerem Gezergün — Senior E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
   alternates: {
     canonical: 'https://www.keremgezergun.com/',
   },
   openGraph: {
-    title: 'Kerem Gezergün | SEO Uzmanı',
-    description: 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı.',
+    title: 'Kerem Gezergün | Senior E-Ticaret SEO Danışmanı',
+    description:
+      'E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle büyütüyorum. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim.',
     url: 'https://www.keremgezergun.com/',
     siteName: 'Kerem Gezergün',
     images: [
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
         url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kerem Gezergün - Senior SEO Specialist',
+        alt: 'Kerem Gezergün - Senior E-Ticaret SEO Danışmanı',
       },
     ],
     locale: 'tr_TR',
@@ -27,83 +28,300 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kerem Gezergün | SEO Uzmanı',
-    description: 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı.',
+    title: 'Kerem Gezergün | Senior E-Ticaret SEO Danışmanı',
+    description:
+      'E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle büyütüyorum. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim.',
     creator: '@keremgezergun',
     site: '@keremgezergun',
     images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
   },
 };
 
+type FaqEntry = { q: string; a: React.ReactNode; plain: string };
+
+const faqs: FaqEntry[] = [
+  {
+    q: 'SEO uzmanı nedir?',
+    a: (
+      <p>
+        SEO uzmanı, web sitelerinin Arama Motoru Optimizasyonu süreçlerini yöneten ve
+        Google gibi arama motorlarında daha üst sıralarda yer almasını sağlayan kişidir.
+        Teknik SEO, içerik optimizasyonu ve backlink stratejileri gibi alanlarda çalışır.
+      </p>
+    ),
+    plain:
+      'SEO uzmanı, web sitelerinin Arama Motoru Optimizasyonu süreçlerini yöneten ve Google gibi arama motorlarında daha üst sıralarda yer almasını sağlayan kişidir. Teknik SEO, içerik optimizasyonu ve backlink stratejileri gibi alanlarda çalışır.',
+  },
+  {
+    q: 'SEO danışmanı nedir?',
+    a: (
+      <p>
+        SEO danışmanı, bir markanın veya web sitesinin SEO stratejisini analiz eden ve
+        yönlendiren kişidir. SEO uzmanından farklı olarak daha çok strateji, planlama ve
+        yönlendirme tarafında yer alır.
+      </p>
+    ),
+    plain:
+      'SEO danışmanı, bir markanın veya web sitesinin SEO stratejisini analiz eden ve yönlendiren kişidir. SEO uzmanından farklı olarak daha çok strateji, planlama ve yönlendirme tarafında yer alır.',
+  },
+  {
+    q: 'SEO uzmanı ile SEO danışmanı arasındaki fark nedir?',
+    a: (
+      <p>
+        SEO uzmanı uygulama tarafında aktif rol alırken, SEO danışmanı daha çok yol haritası
+        çizer. Küçük projelerde bu iki rol genellikle aynı kişi tarafından yürütülür.
+      </p>
+    ),
+    plain:
+      'SEO uzmanı uygulama tarafında aktif rol alırken, SEO danışmanı daha çok yol haritası çizer. Küçük projelerde bu iki rol genellikle aynı kişi tarafından yürütülür.',
+  },
+  {
+    q: 'SEO danışmanı ne iş yapar?',
+    a: (
+      <>
+        <p>Bir SEO danışmanı:</p>
+        <ul>
+          <li>Site analizi yapar</li>
+          <li>Rakip analizi gerçekleştirir</li>
+          <li>Anahtar kelime stratejisi oluşturur</li>
+          <li>Teknik SEO sorunlarını tespit eder</li>
+          <li>İçerik ve backlink stratejisi geliştirir</li>
+        </ul>
+      </>
+    ),
+    plain:
+      'Bir SEO danışmanı; site analizi yapar, rakip analizi gerçekleştirir, anahtar kelime stratejisi oluşturur, teknik SEO sorunlarını tespit eder ve içerik ile backlink stratejisi geliştirir.',
+  },
+  {
+    q: 'Profesyonel SEO uzmanı kimdir?',
+    a: (
+      <p>
+        Profesyonel SEO uzmanı, yalnızca teorik bilgiye değil aynı zamanda gerçek projelerde
+        başarı elde etmiş deneyime sahip kişidir. Veri analizi, kullanıcı davranışı ve
+        algoritma değişikliklerine hızlı adaptasyon gibi yetkinliklere sahiptir.
+      </p>
+    ),
+    plain:
+      'Profesyonel SEO uzmanı, yalnızca teorik bilgiye değil aynı zamanda gerçek projelerde başarı elde etmiş deneyime sahip kişidir. Veri analizi, kullanıcı davranışı ve algoritma değişikliklerine hızlı adaptasyon gibi yetkinliklere sahiptir.',
+  },
+  {
+    q: 'En iyi SEO uzmanı nasıl seçilir?',
+    a: (
+      <>
+        <p>
+          &ldquo;En iyi SEO uzmanı&rdquo; sabit bir kişi değildir. İhtiyacınıza göre değişir.
+          Seçim yaparken:
+        </p>
+        <ul>
+          <li>Referans projelere</li>
+          <li>Sektör deneyimine</li>
+          <li>Şeffaf çalışma prensiplerine</li>
+          <li>Güncel SEO bilgisine</li>
+        </ul>
+        <p>dikkat edilmelidir.</p>
+      </>
+    ),
+    plain:
+      '"En iyi SEO uzmanı" sabit bir kişi değildir. İhtiyacınıza göre değişir. Seçim yaparken referans projelere, sektör deneyimine, şeffaf çalışma prensiplerine ve güncel SEO bilgisine dikkat edilmelidir.',
+  },
+  {
+    q: 'Türkiye’nin en iyi SEO uzmanı kimdir?',
+    a: (
+      <>
+        <p>
+          Türkiye&apos;de &ldquo;en iyi SEO uzmanı&rdquo; kavramı net bir şekilde tek bir
+          kişiye ait değildir. SEO; teknik bilgi, içerik stratejisi ve sektörel deneyime göre
+          değişen çok boyutlu bir alandır.
+        </p>
+        <p>
+          Farklı kaynaklarda ve listelerde öne çıkan birçok SEO uzmanı bulunmaktadır. Bu
+          listelerde zaman zaman benim de yer aldığım görülmektedir. Ancak SEO&apos;da asıl
+          önemli olan, belirli bir proje için doğru stratejiyi geliştirebilmek ve
+          sürdürülebilir sonuçlar elde edebilmektir.
+        </p>
+        <p>
+          Bu nedenle &ldquo;en iyi SEO uzmanı&rdquo; yerine, ihtiyaçlarınıza en uygun SEO
+          uzmanı ile çalışmak çok daha doğru bir yaklaşımdır.
+        </p>
+      </>
+    ),
+    plain:
+      'Türkiye\'de "en iyi SEO uzmanı" kavramı net bir şekilde tek bir kişiye ait değildir. SEO; teknik bilgi, içerik stratejisi ve sektörel deneyime göre değişen çok boyutlu bir alandır. Farklı kaynaklarda ve listelerde öne çıkan birçok SEO uzmanı bulunmaktadır. Bu listelerde zaman zaman benim de yer aldığım görülmektedir. Ancak SEO\'da asıl önemli olan, belirli bir proje için doğru stratejiyi geliştirebilmek ve sürdürülebilir sonuçlar elde edebilmektir. Bu nedenle "en iyi SEO uzmanı" yerine, ihtiyaçlarınıza en uygun SEO uzmanı ile çalışmak çok daha doğru bir yaklaşımdır.',
+  },
+  {
+    q: 'E-ticaret SEO uzmanı ne yapar?',
+    a: (
+      <>
+        <p>
+          E-ticaret SEO uzmanı, özellikle ürün sayfaları, kategori yapıları ve dönüşüm odaklı
+          optimizasyonlar üzerine çalışır.
+        </p>
+        <ul>
+          <li>Ürün açıklamaları</li>
+          <li>Filtreleme yapıları</li>
+          <li>Teknik altyapı</li>
+          <li>Site hızı ve UX</li>
+        </ul>
+        <p>gibi konular ön plandadır.</p>
+      </>
+    ),
+    plain:
+      'E-ticaret SEO uzmanı, özellikle ürün sayfaları, kategori yapıları ve dönüşüm odaklı optimizasyonlar üzerine çalışır. Ürün açıklamaları, filtreleme yapıları, teknik altyapı, site hızı ve UX gibi konular ön plandadır.',
+  },
+  {
+    q: 'E-ticaret SEO danışmanı gerekli mi?',
+    a: (
+      <p>
+        E-ticaret sitelerinde rekabet yüksek olduğu için SEO danışmanı büyük avantaj sağlar.
+        Doğru kategori yapısı ve içerik stratejisi satışları doğrudan etkileyebilir.
+      </p>
+    ),
+    plain:
+      'E-ticaret sitelerinde rekabet yüksek olduğu için SEO danışmanı büyük avantaj sağlar. Doğru kategori yapısı ve içerik stratejisi satışları doğrudan etkileyebilir.',
+  },
+  {
+    q: 'Freelance SEO uzmanı olarak hizmet veriyor musunuz?',
+    a: (
+      <p>
+        Hayır, şu anda freelance SEO uzmanı veya SEO danışmanı olarak aktif hizmet vermiyorum.
+        Ancak SEO, içerik ve dijital strateji üzerine çalışmalarımı ve bilgi paylaşımımı
+        sürdürmeye devam ediyorum.
+      </p>
+    ),
+    plain:
+      'Hayır, şu anda freelance SEO uzmanı veya SEO danışmanı olarak aktif hizmet vermiyorum. Ancak SEO, içerik ve dijital strateji üzerine çalışmalarımı ve bilgi paylaşımımı sürdürmeye devam ediyorum.',
+  },
+  {
+    q: 'Neden freelance SEO danışmanı olarak çalışmıyorsunuz?',
+    a: (
+      <p>
+        Şu an odağımı farklı projelere, içerik üretimine ve uzun vadeli stratejik çalışmalara
+        yönlendirmiş durumdayım. Bu nedenle bireysel danışmanlık hizmeti sunmuyorum.
+      </p>
+    ),
+    plain:
+      'Şu an odağımı farklı projelere, içerik üretimine ve uzun vadeli stratejik çalışmalara yönlendirmiş durumdayım. Bu nedenle bireysel danışmanlık hizmeti sunmuyorum.',
+  },
+  {
+    q: 'Gelecekte profesyonel SEO danışmanı olarak hizmet verecek misiniz?',
+    a: (
+      <p>
+        Bu tamamen proje ve zaman planlamasına bağlı. İlerleyen dönemde sınırlı sayıda projeye
+        özel olarak çalışma ihtimali olabilir.
+      </p>
+    ),
+    plain:
+      'Bu tamamen proje ve zaman planlamasına bağlı. İlerleyen dönemde sınırlı sayıda projeye özel olarak çalışma ihtimali olabilir.',
+  },
+  {
+    q: 'Sizin SEO yaklaşımınız nedir?',
+    a: (
+      <>
+        <p>Benim yaklaşımım:</p>
+        <ul>
+          <li>Sadece Google odaklı değil, kullanıcı odaklı</li>
+          <li>Veri ve analiz temelli</li>
+          <li>Uzun vadeli büyüme odaklı</li>
+        </ul>
+        <p>
+          SEO&apos;nun yalnızca teknik değil aynı zamanda içerik ve marka stratejisi olduğuna
+          inanıyorum.
+        </p>
+      </>
+    ),
+    plain:
+      'Benim yaklaşımım: sadece Google odaklı değil, kullanıcı odaklı; veri ve analiz temelli; uzun vadeli büyüme odaklı. SEO\'nun yalnızca teknik değil aynı zamanda içerik ve marka stratejisi olduğuna inanıyorum.',
+  },
+  {
+    q: 'SEO’daki uzmanlığınız nedir?',
+    a: (
+      <p>
+        Özellikle E-Ticaret SEO çalışmalarında aktif rol almaktayım. B2B, Eğitim gibi
+        sektörlerde de danışmanlık vermeme rağmen odağım e-ticaret SEO çalışmalarıdır.
+      </p>
+    ),
+    plain:
+      'Özellikle E-Ticaret SEO çalışmalarında aktif rol almaktayım. B2B, Eğitim gibi sektörlerde de danışmanlık vermeme rağmen odağım e-ticaret SEO çalışmalarıdır.',
+  },
+  {
+    q: 'SEO uzmanı AI (yapay zeka) çağında hala gerekli mi?',
+    a: (
+      <p>
+        Evet, hatta daha önemli hale gelmiştir. Yapay Zeka destekli aramalar arttıkça, doğru
+        yapılandırılmış içerik ve otorite sinyalleri daha kritik hale gelir.
+      </p>
+    ),
+    plain:
+      'Evet, hatta daha önemli hale gelmiştir. Yapay Zeka destekli aramalar arttıkça, doğru yapılandırılmış içerik ve otorite sinyalleri daha kritik hale gelir.',
+  },
+  {
+    q: 'AI Overview sonuçlarında çıkmak için SEO yeterli mi?',
+    a: (
+      <>
+        <p>Hayır. Klasik SEO artık tek başına yeterli değil.</p>
+        <ul>
+          <li>İçerik otoritesi</li>
+          <li>Marka güveni</li>
+          <li>Net ve yapılandırılmış bilgi</li>
+        </ul>
+        <p>LLM sistemleri için daha önemli hale gelmiştir.</p>
+      </>
+    ),
+    plain:
+      'Hayır. Klasik SEO artık tek başına yeterli değil. İçerik otoritesi, marka güveni, net ve yapılandırılmış bilgi LLM sistemleri için daha önemli hale gelmiştir.',
+  },
+  {
+    q: 'ChatGPT ve benzeri sistemler SEO’yu bitirir mi?',
+    a: (
+      <p>
+        Hayır, SEO dönüşür. Arama motorları değişse bile insanların bilgi arama ihtiyacı devam
+        eder. SEO uzmanlarının rolü daha stratejik ve içerik odaklı hale gelir.
+      </p>
+    ),
+    plain:
+      'Hayır, SEO dönüşür. Arama motorları değişse bile insanların bilgi arama ihtiyacı devam eder. SEO uzmanlarının rolü daha stratejik ve içerik odaklı hale gelir.',
+  },
+  {
+    q: 'SEO uzmanı mı yoksa içerik stratejisti mi daha önemli?',
+    a: (
+      <p>
+        Artık bu iki rol iç içe geçmiş durumda. Başarılı bir SEO uzmanı aynı zamanda güçlü bir
+        içerik stratejisti olmalıdır.
+      </p>
+    ),
+    plain:
+      'Artık bu iki rol iç içe geçmiş durumda. Başarılı bir SEO uzmanı aynı zamanda güçlü bir içerik stratejisti olmalıdır.',
+  },
+  {
+    q: 'SEO öğrenmek isteyen biri nereden başlamalı?',
+    a: (
+      <>
+        <p>Başlangıç için:</p>
+        <ul>
+          <li>Anahtar kelime araştırması</li>
+          <li>Teknik SEO temelleri</li>
+          <li>İçerik optimizasyonu</li>
+          <li>Google algoritma mantığı</li>
+        </ul>
+        <p>öğrenilmelidir.</p>
+      </>
+    ),
+    plain:
+      'Başlangıç için anahtar kelime araştırması, teknik SEO temelleri, içerik optimizasyonu ve Google algoritma mantığı öğrenilmelidir.',
+  },
+];
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'SEO nedir ve neden önemlidir?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'SEO (Search Engine Optimization), web sitenizin arama motorlarında daha üst sıralarda yer almasını sağlayan optimizasyon sürecidir. Organik arama trafiği, dijital pazarlamanın en sürdürülebilir ve maliyet-etkin kanalıdır.',
-      },
+  mainEntity: faqs.map(({ q, plain }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: plain,
     },
-    {
-      '@type': 'Question',
-      name: 'SEO çalışmaları ne kadar sürede sonuç verir?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Teknik düzeltmeler birkaç hafta içinde etki gösterebilirken, organik sıralama iyileştirmeleri genellikle 3-6 ay arasında belirginleşmeye başlar. Rekabetçi sektörlerde bu süre 6-12 aya uzayabilir.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Teknik SEO denetimi neleri kapsar?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Site hızı ve Core Web Vitals analizi, crawlability ve indexability kontrolü, URL yapısı ve site mimarisi incelemesi, canonical ve hreflang etiketleri denetimi, schema markup doğrulaması, mobil uyumluluk testi, robots.txt ve sitemap kontrolü gibi kritik bileşenleri kapsar.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'E-ticaret siteleri için SEO neden kritik?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'E-ticaret sitelerinde binlerce ürün ve kategori sayfası bulunur. Doğru SEO stratejisi olmadan bu sayfaların büyük çoğunluğu arama motorlarında görünmez kalır. Ürün sayfası optimizasyonu, kategori mimarisi ve internal linking stratejisi ile organik trafiğinizi ve satışlarınızı artırabilirsiniz.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'SEO danışmanlığı süreci nasıl işler?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Süreç; mevcut durum analizi (teknik denetim, rakip analizi, anahtar kelime araştırması), strateji ve yol haritası oluşturma, uygulama ve düzenli raporlama adımlarıyla ilerler.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Organik trafik ile ücretli trafik arasındaki fark nedir?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Organik trafik, arama motorlarında doğal sıralama sonucu gelen ziyaretçilerdir ve sürdürülebilirdir. Ücretli trafik ise anında sonuç verir ancak bütçe kesildiğinde trafik de durur.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Google algoritma güncellemeleri sitemi nasıl etkiler?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Google yılda birçok kez büyük algoritma güncellemesi yapar. Kaliteli içerik üreten, teknik altyapısı sağlam ve kullanıcı deneyimini ön planda tutan siteler genellikle bu güncellemelerden olumlu etkilenir.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'GEO (Generative Engine Optimization) nedir?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'GEO, yapay zeka destekli arama motorlarında (ChatGPT, Perplexity, Google AI Overviews vb.) markanızın görünürlüğünü artırmaya yönelik yeni nesil bir optimizasyon disiplinidir.',
-      },
-    },
-  ],
+  })),
 };
 
 export default function HomePage() {
@@ -120,17 +338,18 @@ export default function HomePage() {
             <div className="hero-text">
               <div className="hero-badge">
                 <span className="badge-icon" aria-hidden="true">&#127942;</span>
-                <span>MENA Search Awards Finalisti</span>
+                <span>Best Low Budget Campaign (SEO) Finalisti</span>
               </div>
               <h1>
                 Merhaba, ben{' '}
                 <span className="highlight">Kerem Gezergün</span>
               </h1>
-              <p className="hero-title">Senior SEO Specialist &amp; Team Lead</p>
+              <p className="hero-title">Senior E-Ticaret SEO Danışmanı</p>
               <p className="hero-description">
-                E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri alanında{' '}
-                <strong>30+ marka</strong> ile çalıştım. Veri odaklı yaklaşımlarla
-                markaların dijital görünürlüğünü artırıyorum.
+                E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle
+                büyütüyorum. Bugüne kadar <strong>30&apos;dan fazla e-ticaret markasının</strong>{' '}
+                organik gelirlerini ölçeklemesine yardımcı oldum. Veri odaklı SEO yaklaşımlarıyla
+                sepet dönüşümlerinizi ve organik pazar payınızı artırıyorum.
               </p>
               <ul className="hero-stats" aria-label="İstatistikler">
                 <li className="stat">
@@ -160,7 +379,7 @@ export default function HomePage() {
               <div className="image-wrapper">
                 <Image
                   src="/images/kerem-gezergun.jpg"
-                  alt="Kerem Gezergün - SEO Uzmanı, profesyonel portre fotoğrafı"
+                  alt="Kerem Gezergün - Senior E-Ticaret SEO Danışmanı, profesyonel portre fotoğrafı"
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px"
                   priority
@@ -269,7 +488,6 @@ export default function HomePage() {
                 oluşturuyorum. Rakip analizi, pazar araştırması ve önceliklendirme ile
                 sürdürülebilir büyüme planı sunuyorum.
               </p>
-              <span className="service-output">Çıktı: Strateji dokümanı, yol haritası, aylık raporlama</span>
             </li>
             <li className="service-card">
               <div className="service-icon" aria-hidden="true">
@@ -286,7 +504,6 @@ export default function HomePage() {
                 Site hızı, crawlability, indexability, canonical yapısı, schema markup
                 ve Core Web Vitals odaklı kapsamlı teknik analiz gerçekleştiriyorum.
               </p>
-              <span className="service-output">Çıktı: Detaylı denetim raporu, öncelikli aksiyon listesi</span>
             </li>
             <li className="service-card">
               <div className="service-icon" aria-hidden="true">
@@ -301,7 +518,6 @@ export default function HomePage() {
                 Ürün ve kategori sayfası optimizasyonu, site mimarisi, internal linking,
                 faceted navigation yönetimi ve dönüşüm odaklı SEO çalışmaları yürütüyorum.
               </p>
-              <span className="service-output">Çıktı: Organik trafik artışı, dönüşüm oranı iyileştirmesi</span>
             </li>
             <li className="service-card">
               <div className="service-icon" aria-hidden="true">
@@ -315,7 +531,6 @@ export default function HomePage() {
                 Anahtar kelime araştırması, içerik gap analizi, topical authority
                 haritası ve kullanıcı niyetine uygun içerik planlaması yapıyorum.
               </p>
-              <span className="service-output">Çıktı: İçerik takvimi, brief dokümanları, performans takibi</span>
             </li>
             <li className="service-card">
               <div className="service-icon" aria-hidden="true">
@@ -329,7 +544,6 @@ export default function HomePage() {
                 Kurumsal ekiplere ve bireylere özel SEO eğitimleri, üniversitelerde
                 seminerler ve sektörel etkinliklerde workshop&apos;lar düzenliyorum.
               </p>
-              <span className="service-output">Çıktı: Uygulamalı eğitim, sunum materyalleri, sertifika</span>
             </li>
             <li className="service-card">
               <div className="service-icon" aria-hidden="true">
@@ -344,7 +558,6 @@ export default function HomePage() {
                 Python ve AI tabanlı otomasyon çözümleri, özelleştirilmiş SEO raporlama
                 dashboardları ve veri analizi araçları geliştiriyorum.
               </p>
-              <span className="service-output">Çıktı: Otomasyon scriptleri, özel raporlama paneli</span>
             </li>
           </ul>
         </div>
@@ -367,77 +580,12 @@ export default function HomePage() {
                 kapsayan bütünsel bir süreç olarak ele alıyorum.
               </p>
               <p>
-                Halihazırda <strong>BusinessUp!</strong> ajansında Senior SEO Specialist ve
-                SEO Team Lead olarak görev yapıyorum. Aynı zamanda sektördeki bilgi birikimimi
-                paylaşmak amacıyla kurduğum <strong>&ldquo;Sepetteki SEO&rdquo;</strong>{' '}
-                podcast serisinin kurucusu ve sunucusuyum.
+                Halihazırda <strong>BusinessUp!</strong> ajansında Senior E-Ticaret SEO Danışmanı
+                olarak görev yapıyorum. Aynı zamanda sektördeki bilgi birikimimi paylaşmak amacıyla
+                kurduğum <strong>&ldquo;Sepetteki SEO&rdquo;</strong> podcast serisinin kurucusu
+                ve sunucusuyum.
               </p>
             </aside>
-            <ul className="expertise-grid" aria-label="Uzmanlık alanları">
-              <li className="expertise-card">
-                <div className="expertise-icon" aria-hidden="true">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                  </svg>
-                </div>
-                <h3>Teknik SEO</h3>
-                <p>Site hızı optimizasyonu, canonical etiketleri, meta veri optimizasyonu</p>
-              </li>
-              <li className="expertise-card">
-                <div className="expertise-icon" aria-hidden="true">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden="true"
-                  >
-                    <path d="M3 3h18v18H3zM21 9H3M9 21V9" />
-                  </svg>
-                </div>
-                <h3>E-ticaret SEO</h3>
-                <p>Ürün sayfası optimizasyonu, kategori yapılandırması, dönüşüm odaklı SEO</p>
-              </li>
-              <li className="expertise-card">
-                <div className="expertise-icon" aria-hidden="true">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden="true"
-                  >
-                    <path d="M23 6l-9.5 9.5-5-5L1 18" />
-                    <path d="M17 6h6v6" />
-                  </svg>
-                </div>
-                <h3>Organik Büyüme</h3>
-                <p>Veri odaklı strateji, sürdürülebilir trafik artışı, marka görünürlüğü</p>
-              </li>
-              <li className="expertise-card">
-                <div className="expertise-icon" aria-hidden="true">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden="true"
-                  >
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                    <line x1="8" y1="21" x2="16" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
-                </div>
-                <h3>Otomasyon</h3>
-                <p>Python ve AI tabanlı otomasyonlarla iş süreçlerini hızlandırma</p>
-              </li>
-            </ul>
           </div>
         </div>
       </section>
@@ -459,11 +607,6 @@ export default function HomePage() {
               <span className="result-number">5+</span>
               <span className="result-label">Yıl SEO Deneyimi</span>
               <p>E-ticaret, finans, sağlık ve eğitim sektörlerinde kapsamlı SEO deneyimi edindim.</p>
-            </li>
-            <li className="result-card">
-              <span className="result-number">800+</span>
-              <span className="result-label">Etkinlik Katılımcısı</span>
-              <p>Düzenlediğim dijital pazarlama zirvelerinde 800&apos;den fazla katılımcıya ulaştım.</p>
             </li>
             <li className="result-card">
               <span className="result-number">65+</span>
@@ -489,46 +632,12 @@ export default function HomePage() {
                   <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                 </svg>
               </div>
-              <h3>MENA Search Awards 2024</h3>
-              <p>Best Use of Search (Finance) kategorisinde finalist oldum.</p>
-              <span className="award-year">2024</span>
-            </li>
-            <li className="award-card">
-              <div className="award-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </div>
-              <h3>SEO Team Lead</h3>
-              <p>BusinessUp! ajansında SEO ekibini yönetiyor, strateji ve operasyonu koordine ediyorum.</p>
-              <span className="award-year">Aktif</span>
-            </li>
-            <li className="award-card">
-              <div className="award-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                  <line x1="12" y1="19" x2="12" y2="23" />
-                  <line x1="8" y1="23" x2="16" y2="23" />
-                </svg>
-              </div>
-              <h3>Sepetteki SEO Podcast</h3>
-              <p>E-ticaret SEO ve AI konularını ele aldığımız podcast serisinin kurucusu ve sunucusuyum.</p>
-              <span className="award-year">Aktif</span>
-            </li>
-            <li className="award-card">
-              <div className="award-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                  <path d="M6 12v5c3 3 6 3 6 3s3 0 6-3v-5" />
-                </svg>
-              </div>
-              <h3>Üniversite Zirve Organizatörü</h3>
-              <p>Ahi Evran Üniversitesi ile 2 dijital pazarlama zirvesi düzenledim.</p>
-              <span className="award-year">Organizatör</span>
+              <h3>Best Low Budget Campaign (SEO)</h3>
+              <p>
+                Ekibim ile birlikte <strong>&ldquo;Best Low Budget Campaign (SEO)&rdquo;</strong>{' '}
+                kategorisinde finale kaldık.
+              </p>
+              <span className="award-year">Finalist</span>
             </li>
           </ul>
         </div>
@@ -711,69 +820,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section id="blog" className="blog-section" aria-labelledby="blog-heading">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-tag">Blog</span>
-            <h2 id="blog-heading">SEO Rehberleri</h2>
-          </div>
-          <ul className="blog-grid" aria-label="Blog yazıları listesi">
-            <li className="blog-card">
-              <div className="blog-image placeholder">
-                <span className="coming-soon-badge">Yakında</span>
-              </div>
-              <div className="blog-content">
-                <span className="blog-category">Teknik SEO</span>
-                <h3>Teknik SEO Rehberi</h3>
-                <p>
-                  Site hızı, crawlability, indexability ve teknik optimizasyon konularında
-                  kapsamlı rehber.
-                </p>
-              </div>
-            </li>
-            <li className="blog-card">
-              <div className="blog-image placeholder">
-                <span className="coming-soon-badge">Yakında</span>
-              </div>
-              <div className="blog-content">
-                <span className="blog-category">GEO</span>
-                <h3>GEO Rehberi</h3>
-                <p>
-                  Generative Engine Optimization - Yapay zeka arama motorları için optimizasyon
-                  rehberi.
-                </p>
-              </div>
-            </li>
-            <li className="blog-card">
-              <div className="blog-image placeholder">
-                <span className="coming-soon-badge">Yakında</span>
-              </div>
-              <div className="blog-content">
-                <span className="blog-category">On-Page SEO</span>
-                <h3>Site İçi SEO Rehberi</h3>
-                <p>
-                  İçerik optimizasyonu, meta etiketler, başlık yapısı ve site içi SEO
-                  stratejileri.
-                </p>
-              </div>
-            </li>
-            <li className="blog-card">
-              <div className="blog-image placeholder">
-                <span className="coming-soon-badge">Yakında</span>
-              </div>
-              <div className="blog-content">
-                <span className="blog-category">Off-Page SEO</span>
-                <h3>Backlink Rehberi</h3>
-                <p>
-                  Kaliteli backlink stratejileri, link building teknikleri ve off-page SEO.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section id="sss" className="faq-section" aria-labelledby="faq-heading">
         <div className="container">
@@ -782,127 +828,15 @@ export default function HomePage() {
             <h2 id="faq-heading">Sıkça Sorulan Sorular</h2>
           </div>
           <div className="faq-list">
-            <details className="faq-item">
-              <summary className="faq-question">
-                <span>SEO nedir ve neden önemlidir?</span>
-                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-              </summary>
-              <div className="faq-answer">
-                <p>
-                  SEO (Search Engine Optimization), web sitenizin arama motorlarında daha üst
-                  sıralarda yer almasını sağlayan optimizasyon sürecidir. Organik arama trafiği,
-                  dijital pazarlamanın en sürdürülebilir ve maliyet-etkin kanalıdır. Doğru bir
-                  SEO stratejisi ile markanızın görünürlüğünü artırabilir, hedef kitlenize
-                  ulaşabilir ve dönüşüm oranlarınızı yükseltebilirsiniz.
-                </p>
-              </div>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-question">
-                <span>SEO çalışmaları ne kadar sürede sonuç verir?</span>
-                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-              </summary>
-              <div className="faq-answer">
-                <p>
-                  SEO uzun vadeli bir yatırımdır. Teknik düzeltmeler birkaç hafta içinde etki
-                  gösterebilirken, organik sıralama iyileştirmeleri genellikle 3-6 ay arasında
-                  belirginleşmeye başlar. Rekabetçi sektörlerde bu süre 6-12 aya uzayabilir.
-                  Önemli olan tutarlı ve stratejik bir yaklaşım benimsemektir.
-                </p>
-              </div>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-question">
-                <span>Teknik SEO denetimi neleri kapsar?</span>
-                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-              </summary>
-              <div className="faq-answer">
-                <p>
-                  Teknik SEO denetimi; site hızı ve Core Web Vitals analizi, crawlability ve
-                  indexability kontrolü, URL yapısı ve site mimarisi incelemesi, canonical ve
-                  hreflang etiketleri denetimi, schema markup doğrulaması, mobil uyumluluk
-                  testi, robots.txt ve sitemap kontrolü gibi birçok kritik bileşeni kapsar.
-                  Sonuç olarak önceliklendirilmiş bir aksiyon listesi sunulur.
-                </p>
-              </div>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-question">
-                <span>E-ticaret siteleri için SEO neden kritik?</span>
-                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-              </summary>
-              <div className="faq-answer">
-                <p>
-                  E-ticaret sitelerinde binlerce ürün ve kategori sayfası bulunur. Doğru SEO
-                  stratejisi olmadan bu sayfaların büyük çoğunluğu arama motorlarında görünmez
-                  kalır. Ürün sayfası optimizasyonu, kategori mimarisi, faceted navigation
-                  yönetimi, duplicate content önleme ve internal linking stratejisi ile organik
-                  trafiğinizi ve satışlarınızı önemli ölçüde artırabilirsiniz.
-                </p>
-              </div>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-question">
-                <span>SEO danışmanlığı süreci nasıl işler?</span>
-                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-              </summary>
-              <div className="faq-answer">
-                <p>
-                  Süreç genellikle şu adımlarla ilerler: İlk olarak mevcut durumunuzu analiz
-                  ederim (teknik denetim, rakip analizi, anahtar kelime araştırması). Ardından
-                  hedeflerinize uygun bir strateji ve yol haritası oluştururum. Uygulama
-                  aşamasında ekibinizle birlikte çalışarak optimizasyonları hayata geçiririz.
-                  Son olarak düzenli raporlamalarla ilerlemeyi takip eder ve stratejiyi
-                  güncelleriz.
-                </p>
-              </div>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-question">
-                <span>Organik trafik ile ücretli trafik arasındaki fark nedir?</span>
-                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-              </summary>
-              <div className="faq-answer">
-                <p>
-                  Organik trafik, arama motorlarında doğal sıralama sonucu gelen ziyaretçilerdir
-                  ve sürdürülebilirdir &mdash; reklam bütçesi bittiğinde durmaz. Ücretli trafik
-                  (Google Ads vb.) ise anında sonuç verir ancak bütçe kesildiğinde trafik de
-                  durur. İdeal strateji, her iki kanalı birlikte kullanarak kısa vadede ücretli,
-                  uzun vadede organik trafikle büyümektir.
-                </p>
-              </div>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-question">
-                <span>Google algoritma güncellemeleri sitemi nasıl etkiler?</span>
-                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-              </summary>
-              <div className="faq-answer">
-                <p>
-                  Google yılda birçok kez büyük algoritma güncellemesi yapar (Core Updates,
-                  Helpful Content Update, Spam Update vb.). Bu güncellemeler sıralamaları
-                  önemli ölçüde değiştirebilir. Kaliteli içerik üreten, teknik altyapısı
-                  sağlam ve kullanıcı deneyimini ön planda tutan siteler genellikle bu
-                  güncellemelerden olumlu etkilenir. Proaktif bir SEO stratejisi, algoritma
-                  değişikliklerine karşı en iyi savunmadır.
-                </p>
-              </div>
-            </details>
-            <details className="faq-item">
-              <summary className="faq-question">
-                <span>GEO (Generative Engine Optimization) nedir?</span>
-                <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-              </summary>
-              <div className="faq-answer">
-                <p>
-                  GEO, yapay zeka destekli arama motorlarında (ChatGPT, Perplexity, Google AI
-                  Overviews vb.) markanızın görünürlüğünü artırmaya yönelik yeni nesil bir
-                  optimizasyon disiplinidir. Geleneksel SEO&apos;nun ötesinde, AI
-                  sistemlerinin içeriğinizi kaynak olarak kullanmasını ve referans göstermesini
-                  hedefler. Bu alanda da aktif olarak çalışmalar yürütüyorum.
-                </p>
-              </div>
-            </details>
+            {faqs.map(({ q, a }) => (
+              <details key={q} className="faq-item">
+                <summary className="faq-question">
+                  <span>{q}</span>
+                  <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+                </summary>
+                <div className="faq-answer">{a}</div>
+              </details>
+            ))}
           </div>
         </div>
       </section>

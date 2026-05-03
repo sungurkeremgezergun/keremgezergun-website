@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: '%s | Kerem Gezergün',
   },
   description:
-    'Sungur Kerem Gezergün - E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards Finalisti.',
+    'Sungur Kerem Gezergün — Senior E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
   keywords: ['SEO Uzmanı', 'E-ticaret SEO', 'Teknik SEO', 'Organik Büyüme', 'İstanbul SEO'],
   authors: [{ name: 'Sungur Kerem Gezergün' }],
   referrer: 'strict-origin-when-cross-origin',
@@ -72,11 +72,11 @@ const personSchema = {
     url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
     width: 1200,
     height: 630,
-    caption: 'Kerem Gezergün - SEO Uzmanı',
+    caption: 'Kerem Gezergün - Senior E-Ticaret SEO Danışmanı',
   },
-  jobTitle: 'Senior SEO Specialist',
+  jobTitle: 'Senior E-Ticaret SEO Danışmanı',
   description:
-    'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri Uzmanı. MENA Search Awards 2024 Finalisti.',
+    'Senior E-Ticaret SEO Danışmanı. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim. Best Low Budget Campaign (SEO) Finalisti.',
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': 'https://www.keremgezergun.com/',
@@ -102,7 +102,7 @@ const personSchema = {
     name: 'Ahi Evran Üniversitesi',
     sameAs: 'https://www.ahievran.edu.tr',
   },
-  award: ['MENA Search Awards 2024 - Best Use of Search (Finance) Finalist'],
+  award: ['Best Low Budget Campaign (SEO) - Finalist'],
   sameAs: [
     'https://www.linkedin.com/in/sungur-kerem-gezergun/',
     'https://twitter.com/keremgezergun',

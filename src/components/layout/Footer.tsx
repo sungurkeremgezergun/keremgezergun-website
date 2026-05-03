@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-content">
           <div className="footer-brand">
             <Logo variant="footer" />
-            <p>Senior SEO Specialist &amp; Team Lead</p>
+            <p>Senior E-Ticaret SEO Danışmanı</p>
             <p className="footer-description">
               E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri alanında
               uzmanlaşmış dijital pazarlama profesyoneli.

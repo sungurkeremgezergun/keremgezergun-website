@@ -19,6 +19,9 @@ Thumbs.db
 .idea/
 .vscode/
 
+# debug captures
+*.har
+
 # debug
 npm-debug.log*
 yarn-debug.log*

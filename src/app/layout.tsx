@@ -5,8 +5,6 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { jsonLdSafe } from '@/lib/jsonLd';
 
-const GA_MEASUREMENT_ID = 'G-TVTZYGQ64H';
-
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   weight: ['300', '400', '500', '600', '700'],
@@ -150,9 +148,12 @@ export default function RootLayout({
     <html lang="tr" className={`${inter.variable} ${playfair.variable}`}>
       <head>
         {/*
-          The "<!-- Google tag (gtag.js) -->" HTML comment is injected
-          into the rendered HTML by scripts/inject-gtag-comment.mjs as a
-          postbuild step (JSX cannot emit raw HTML comments).
+          Google tag (gtag.js) — the matching "<!-- Google tag (gtag.js) -->"
+          HTML comment is injected into the rendered HTML by
+          scripts/inject-gtag-comment.mjs as a postbuild step (JSX cannot
+          emit raw HTML comments). The same script also moves the inline
+          init <script> back next to the loader, so the live HTML matches
+          Google's pasted snippet byte for byte.
         */}
         <script
           async

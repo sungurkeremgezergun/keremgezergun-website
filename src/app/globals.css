@@ -2240,7 +2240,12 @@ textarea:disabled {
 }
 
 .subsection {
+    padding: 0;
     margin-top: 20px;
+}
+
+.subsection:first-child {
+    margin-top: 0;
 }
 
 .subsection-title {

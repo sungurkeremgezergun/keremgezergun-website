@@ -1611,11 +1611,31 @@ section {
     }
 
     .tools-grid {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
         gap: 24px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x proximity;
+        -webkit-overflow-scrolling: touch;
+        padding: 8px 16px 16px;
+        margin: 0 -16px;
+        scrollbar-width: thin;
+    }
+
+    .tools-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .tools-grid::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 2px;
     }
 
     .tool-item {
-        width: 80px;
+        flex: 0 0 auto;
+        width: 100px;
+        scroll-snap-align: start;
     }
 
     .expertise-grid {
@@ -1632,6 +1652,45 @@ section {
 
     .ongoing-grid {
         grid-template-columns: 1fr;
+    }
+
+    .footer {
+        padding: 48px 0 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+        padding-bottom: 32px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-brand .footer-description {
+        max-width: 100%;
+    }
+
+    .footer-column {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column a:hover {
+        padding-left: 0;
+    }
+
+    .footer-social-icons {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        text-align: center;
     }
 
     /* Page styles 768px */

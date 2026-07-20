@@ -95,6 +95,8 @@ const personSchema = {
     'Arama Motoru Optimizasyonu',
     'Dijital Pazarlama',
     'Generative Engine Optimization',
+    'SaaS Geliştirme',
+    'AI Destekli Ürün Keşfi',
   ],
   knowsLanguage: ['tr', 'en'],
   alumniOf: {

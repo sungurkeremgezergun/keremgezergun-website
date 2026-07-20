@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import knotvoShot from '../../public/knotvo/overview.png';
 
 export const metadata: Metadata = {
   description:
@@ -689,6 +690,18 @@ export default function HomePage() {
                 <li>AI</li>
               </ul>
             </li>
+            <li className="project-card">
+              <span className="project-badge-secondary">SaaS Ürünü</span>
+              <h3>Blog-Ürün Embed</h3>
+              <p>
+                Blog yazılarınızı ürün satışına çeviren AI destekli akıllı widget. Yazınıza embed ekleyin, semantik eşleşmeyle alakalı ürünleri okuyucularınıza öneren bir keşif deneyimi sunun.
+              </p>
+              <ul className="project-tags" aria-label="Etiketler">
+                <li>SaaS</li>
+                <li>AI/ML</li>
+                <li>E-ticaret</li>
+              </ul>
+            </li>
           </ul>
         </div>
       </section>
@@ -755,6 +768,50 @@ export default function HomePage() {
               <p>E-ticaret SEO ve AI odaklı podcast kanalı.</p>
             </li>
           </ul>
+        </div>
+      </section>
+
+      {/* Knotvo Product Section */}
+      <section className="knotvo" aria-labelledby="knotvo-home-heading">
+        <div className="knotvo-section alt">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">Yeni Ürün · Mac</span>
+              <h2 id="knotvo-home-heading">Knotvo — Site Hızı Analiz Aracı</h2>
+            </div>
+            <div className="k-feature" style={{ marginTop: 8 }}>
+              <div className="k-txt">
+                <p>
+                  Geliştirdiğim <strong>Knotvo</strong>, tarayıcının ağ kaydını (HAR) ve canlı
+                  ölçümü tek ekranda toplayıp sitenin neden yavaş olduğunu sade bir yapılacaklar
+                  listesine çeviren, Mac için tasarlanmış bir site hızı analiz aracı. Karmaşık
+                  skorlar değil, ne yapman gerektiği.
+                </p>
+                <ul className="k-flist">
+                  <li>HAR analizi tamamen yerel — hiçbir şey buluta gitmez</li>
+                  <li>Lab (Lighthouse) ve saha (CrUX) verisi yan yana</li>
+                  <li>Hesap yok, kuyruk yok, abonelik yok</li>
+                  <li>Müşteriye gönderilebilir PDF rapor</li>
+                </ul>
+                <Link
+                  href="/knotvo"
+                  className="btn btn-primary btn-large"
+                  style={{ marginTop: 20 }}
+                  aria-label="Knotvo detay sayfasına git"
+                >
+                  Knotvo&apos;yu Keşfet
+                </Link>
+              </div>
+              <div className="k-shot">
+                <Image
+                  src={knotvoShot}
+                  alt="Knotvo genel bakış ekranı: performans skoru ve öncelikli darboğazlar"
+                  placeholder="blur"
+                  sizes="(max-width: 820px) 100vw, 520px"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -146,6 +146,16 @@ export default function Header() {
               </Link>
             </li>
             <li>
+              <Link
+                href="/knotvo"
+                className={isActive('/knotvo') ? 'active' : undefined}
+                aria-current={isActive('/knotvo') ? 'page' : undefined}
+                onClick={closeMenu}
+              >
+                Knotvo
+              </Link>
+            </li>
+            <li>
               <a
                 href="https://businessup.com.tr/iletisim/"
                 target="_blank"

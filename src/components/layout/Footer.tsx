@@ -21,6 +21,7 @@ export default function Footer() {
             <Link href="/sektorel-projeler">Sektörel Projeler</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/seo-ogrenme-haritasi">SEO Rehberi</Link>
+            <Link href="/knotvo">Knotvo</Link>
             <a
               href="https://businessup.com.tr/iletisim/"
               target="_blank"

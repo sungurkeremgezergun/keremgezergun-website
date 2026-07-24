@@ -83,7 +83,7 @@ export default function KnotvoGizlilikPage() {
           <strong>Canlı URL ölçümü</strong> özelliğini kullandığınızda Knotvo, girdiğiniz URL&apos;i
           Google&apos;ın <strong>PageSpeed Insights API</strong>&apos;sine gönderir; böylece Google o
           sayfayı ölçebilir. Bu durumda URL (ve varsa API anahtarınız) Google&apos;a iletilir ve{' '}
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" aria-label="Google Gizlilik Politikası (yeni sekmede açılır)">
             Google&apos;ın Gizlilik Politikası
           </a>
           &apos;na tabidir. Bu yolla yalnızca herkese açık URL&apos;ler ölçülebilir. HAR dosyası
@@ -161,7 +161,7 @@ export default function KnotvoGizlilikPage() {
           enter to Google&apos;s <strong>PageSpeed Insights API</strong> so Google can measure that
           page. In this case the URL (and your API key, if set) is transmitted to Google and is
           subject to{' '}
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" aria-label="Google Privacy Policy (opens in a new tab)">
             Google&apos;s Privacy Policy
           </a>
           . Only public URLs can be measured this way. HAR-file analysis does not use the network at

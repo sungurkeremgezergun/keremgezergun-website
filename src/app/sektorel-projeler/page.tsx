@@ -315,7 +315,7 @@ export default function SektorelProjelerPage() {
                     rel="nofollow noopener noreferrer"
                     className="btn btn-primary"
                     style={{ marginTop: 20 }}
-                    aria-label="Sepetteki SEO Podcast'i YouTube'da İzle"
+                    aria-label="Sepetteki SEO Podcast'i YouTube'da izle (yeni sekmede açılır)"
                   >
                     YouTube&apos;da İzle
                   </a>
@@ -323,93 +323,6 @@ export default function SektorelProjelerPage() {
               </article>
             </li>
 
-            {/* Blog-Ürün Embed */}
-            <li>
-              <article className="project-detail-card">
-                <span className="project-detail-badge">SaaS Ürünü · Beta</span>
-                <div className="project-detail-content">
-                  <h3>Blog-Ürün Embed</h3>
-                  <p>
-                    Blog yazısı içeriğine göre OpenAI embedding ile ürün eşleştiren, JavaScript
-                    snippet ile çalışan ve Shadow DOM izolasyonu sayesinde mevcut blog tasarımına
-                    dokunmayan akıllı bir widget. Ortalama %3+ CTR hedefiyle blog trafiğini gelire
-                    dönüştüren bir köprü kurar.
-                  </p>
-                  <p>
-                    Shopify, WooCommerce, İkas, Ticimax, Magento ve custom platformlardaki
-                    e-ticaret markalarına yönelik. Yazar ve blogger ekosistemiyle organik ürün
-                    keşfini birleştiren; pazarlamacının değil, okuyucunun deneyimini önceleyen
-                    bir araç.
-                  </p>
-                  <ul className="project-meta" aria-label="Proje detayları">
-                    <li className="meta-item">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        width="18"
-                        height="18"
-                        aria-hidden="true"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                      </svg>
-                      Beta Sürüm
-                    </li>
-                    <li className="meta-item">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        width="18"
-                        height="18"
-                        aria-hidden="true"
-                      >
-                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                        <path d="M2 17l10 5 10-5" />
-                        <path d="M2 12l10 5 10-5" />
-                      </svg>
-                      AI Destekli Eşleşme
-                    </li>
-                    <li className="meta-item">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        width="18"
-                        height="18"
-                        aria-hidden="true"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="2" y1="12" x2="22" y2="12" />
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                      </svg>
-                      Türkçe Dil Desteği
-                    </li>
-                  </ul>
-                  <ul className="project-tags" aria-label="Etiketler">
-                    <li>SaaS</li>
-                    <li>AI/ML</li>
-                    <li>E-ticaret</li>
-                    <li>JavaScript SDK</li>
-                    <li>Embed Widget</li>
-                  </ul>
-                  <a
-                    href="https://embed.keremgezergun.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary"
-                    style={{ marginTop: 20 }}
-                    aria-label="Blog-Ürün Embed paneline git"
-                  >
-                    Paneli Aç
-                  </a>
-                </div>
-              </article>
-            </li>
           </ul>
         </div>
       </section>
@@ -429,7 +342,7 @@ export default function SektorelProjelerPage() {
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="İletişim sayfasına git"
+            aria-label="İletişim sayfasına git (yeni sekmede açılır)"
           >
             İletişime Geçin
           </a>

@@ -30,6 +30,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/nirengi`,
+      lastModified: new Date('2026-07-24'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/nirengi-iletisim`,
+      lastModified: new Date('2026-07-24'),
+      changeFrequency: 'yearly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/nirengi-gizlilik-politikasi`,
+      lastModified: new Date('2026-07-24'),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
       url: `${baseUrl}/knotvo`,
       lastModified,
       changeFrequency: 'monthly',

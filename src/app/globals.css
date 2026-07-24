@@ -201,6 +201,74 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     text-decoration: none;
 }
 
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown > button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nav-dropdown > button:hover,
+.nav-dropdown > button.active,
+.nav-dropdown > button:focus-visible {
+    color: var(--primary);
+}
+
+.nav-chevron {
+    font-size: 17px;
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown.open .nav-chevron {
+    transform: rotate(180deg);
+}
+
+.nav-submenu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    min-width: 170px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.nav-dropdown.open .nav-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+.nav-submenu a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.nav-submenu a:hover,
+.nav-submenu a:focus-visible,
+.nav-submenu a[aria-current="page"] {
+    background: var(--bg-secondary);
+}
+
 .nav-menu a.btn-primary {
     color: white;
     padding: 10px 20px;
@@ -406,7 +474,7 @@ section {
     padding: 6px 16px;
     background: var(--primary);
     color: white;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -534,7 +602,7 @@ section {
     padding: 6px 12px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     margin-bottom: 16px;
 }
@@ -559,7 +627,7 @@ section {
     padding: 4px 12px;
     background: rgba(0, 0, 0, 0.05);
     border-radius: 50px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -611,7 +679,7 @@ section {
     padding: 4px 10px;
     background: rgba(201, 168, 76, 0.12);
     border-radius: 50px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--accent-text);
     margin-bottom: 12px;
@@ -683,7 +751,7 @@ section {
     padding: 4px 12px;
     background: rgba(201, 168, 76, 0.25);
     border-radius: 50px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--accent);
     margin-bottom: 12px;
@@ -707,7 +775,7 @@ section {
     background: var(--primary);
     color: white;
     border-radius: 50px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     margin-bottom: 12px;
 }
@@ -718,7 +786,7 @@ section {
     background: var(--primary);
     color: white;
     border-radius: 50px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -909,7 +977,7 @@ section {
     background: var(--primary);
     color: white;
     border-radius: 50px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     margin-bottom: 16px;
     width: fit-content;
@@ -994,7 +1062,7 @@ section {
 }
 
 .blog-meta .meta-item {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-light);
 }
 
@@ -1058,7 +1126,7 @@ section {
 }
 
 .service-output {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--accent-text);
     padding-top: 16px;
@@ -1201,7 +1269,7 @@ section {
     background: rgba(201, 168, 76, 0.15);
     color: var(--accent-text);
     border-radius: 50px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -1780,7 +1848,7 @@ section {
 /* ===========================================
    2. Global Focus Styles - WCAG 2.4.7
    =========================================== */
-*:focus {
+*:focus:not(:focus-visible) {
     outline: none;
 }
 
@@ -1950,6 +2018,28 @@ select:focus-visible {
     .expertise-card,
     .contact-card {
         border: 2px solid #000000;
+    }
+}
+
+@media (forced-colors: active) {
+    *:focus-visible {
+        outline: 3px solid Highlight;
+    }
+
+    .btn,
+    .nav-submenu,
+    .project-card,
+    .blog-card,
+    .expertise-card,
+    .nirengi-grid article,
+    .nirengi-table-wrap,
+    .nirengi-policy {
+        border: 2px solid CanvasText;
+    }
+
+    .btn-primary {
+        background: Highlight;
+        color: HighlightText;
     }
 }
 
@@ -2281,7 +2371,7 @@ textarea:disabled {
 }
 
 .resource-type {
-    font-size: 0.7rem;
+    font-size: 0.875rem;
     font-weight: 600;
     padding: 2px 8px;
     border-radius: 4px;
@@ -2379,7 +2469,7 @@ textarea:disabled {
     background: var(--k-gold-soft); color: var(--accent-text); border: 1px solid #E7D9A8;
 }
 .knotvo .k-eyebrow {
-    font-size: 0.78rem; font-weight: 700; letter-spacing: .08em;
+    font-size: 0.875rem; font-weight: 700; letter-spacing: .08em;
     text-transform: uppercase; color: var(--accent-text);
     font-family: var(--font-inter, 'Inter'), sans-serif;
 }
@@ -2509,3 +2599,136 @@ textarea:disabled {
 .knotvo-legal hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
 .knotvo-legal .q { font-weight: 600; margin-top: 20px; color: var(--text-primary); }
 .knotvo-legal address { line-height: 1.9; }
+
+/* Nirengi product and legal pages */
+.nirengi {
+    --nirengi-green: #15785f;
+    --nirengi-green-soft: #e1f1eb;
+}
+
+.nirengi-hero {
+    padding: 150px 0 88px;
+    background: linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
+}
+
+.nirengi-hero-grid {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    align-items: center;
+    gap: 64px;
+}
+
+.nirengi-eyebrow {
+    margin-bottom: 12px;
+    color: var(--accent-text);
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.nirengi-hero h1 span { color: var(--accent-text); }
+
+.nirengi-lead,
+.nirengi-intro {
+    max-width: 760px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.nirengi-lead { font-size: 1.25rem; }
+.nirengi-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+.nirengi-window {
+    overflow: hidden;
+    border: 1px solid #253c58;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(145deg, #132a44, #091625);
+    box-shadow: var(--shadow-lg);
+    color: #fff;
+}
+
+.nirengi-windowbar { display: flex; gap: 7px; padding: 16px 20px; border-bottom: 1px solid #253c58; }
+.nirengi-windowbar i { width: 11px; height: 11px; border-radius: 50%; background: #ed6a5e; }
+.nirengi-windowbar i:nth-child(2) { background: #f4bf4f; }
+.nirengi-windowbar i:nth-child(3) { background: #61c554; }
+.nirengi-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 24px; }
+.nirengi-metrics div { padding: 18px; border: 1px solid #29415d; border-radius: 14px; background: rgb(255 255 255 / 0.04); }
+.nirengi-metrics strong { display: block; color: #fff; font-size: 1.65rem; }
+.nirengi-metrics span { color: #b9c7d8; font-size: 0.82rem; }
+
+.nirengi-section { padding: 88px 0; }
+.nirengi-section.nirengi-alt { background: var(--bg-secondary); }
+.nirengi-section h2 { max-width: 780px; margin-bottom: 14px; }
+.nirengi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; }
+.nirengi-grid article { padding: 26px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-sm); }
+.nirengi-grid h3 { margin-bottom: 10px; font-size: 1.2rem; }
+.nirengi-grid p { color: var(--text-secondary); }
+
+.nirengi-table-wrap { overflow-x: auto; margin-top: 28px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #fff; }
+.nirengi-table-wrap:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.nirengi-table-wrap table { width: 100%; min-width: 680px; border-collapse: collapse; }
+.nirengi-table-wrap th, .nirengi-table-wrap td { padding: 15px 17px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.nirengi-table-wrap thead th { background: var(--primary); color: #fff; font-size: 0.85rem; }
+.nirengi-table-wrap tbody th { color: var(--text-primary); }
+.nirengi-table-wrap td { color: var(--text-secondary); }
+.nirengi-table-wrap tr:last-child th, .nirengi-table-wrap tr:last-child td { border-bottom: 0; }
+
+.nirengi-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; list-style: none; counter-reset: step; }
+.nirengi-steps li { padding: 24px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #fff; counter-increment: step; }
+.nirengi-steps li::before { content: counter(step); display: grid; width: 34px; height: 34px; margin-bottom: 16px; place-items: center; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; }
+.nirengi-steps h3 { margin-bottom: 8px; font-size: 1.12rem; }
+.nirengi-steps p { color: var(--text-secondary); }
+
+.nirengi-bench { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+.nirengi-bench div { padding-left: 16px; border-left: 3px solid var(--accent); }
+.nirengi-bench dt { color: var(--text-secondary); font-size: 0.85rem; }
+.nirengi-bench dd { margin: 0; color: var(--text-primary); font-size: 1.65rem; font-weight: 800; }
+.nirengi-narrow { max-width: 900px; }
+.nirengi-faq details { padding: 4px 0; border-bottom: 1px solid var(--border); }
+.nirengi-faq summary { padding: 18px 0; cursor: pointer; color: var(--text-primary); font-weight: 700; }
+.nirengi-faq details p { padding-bottom: 18px; color: var(--text-secondary); }
+
+.nirengi-legal { min-height: 70vh; padding: 140px 0 90px; }
+.nirengi-legal h1 { margin-bottom: 14px; }
+.nirengi-legal h2 { margin: 30px 0 8px; font-size: 1.35rem; }
+.nirengi-legal p, .nirengi-legal address { color: var(--text-secondary); }
+.nirengi-updated { margin-bottom: 30px; font-size: 0.9rem; }
+.nirengi-summary, .nirengi-note { margin: 32px 0; padding: 22px; border: 1px solid #b9d8cd; border-radius: var(--radius-lg); background: var(--nirengi-green-soft, #e1f1eb); }
+.nirengi-policy { padding: 8px 30px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #fff; }
+.nirengi-policy section { padding: 6px 0 24px; border-bottom: 1px solid var(--border); }
+.nirengi-policy section:last-child { border-bottom: 0; }
+.nirengi-policy a, .nirengi-back { color: var(--accent-text); text-decoration: underline; }
+.nirengi-back { display: inline-block; margin-top: 32px; font-weight: 700; }
+.nirengi-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 36px 0 52px; }
+.nirengi-contact-grid a { padding: 24px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #fff; }
+.nirengi-contact-grid a:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.nirengi-contact-grid span { display: block; margin-bottom: 7px; color: var(--accent-text); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; }
+.nirengi-contact-grid strong { overflow-wrap: anywhere; }
+
+@media (max-width: 1024px) {
+    .nav-menu { gap: 20px; }
+    .nirengi-hero-grid { grid-template-columns: 1fr; }
+    .nirengi-window { max-width: 620px; }
+    .nirengi-grid { grid-template-columns: repeat(2, 1fr); }
+    .nirengi-steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .nav-dropdown { width: 100%; }
+    .nav-dropdown > button { width: 100%; justify-content: center; padding: 12px 20px; }
+    .nav-submenu { position: static; display: none; width: min(280px, 100%); margin: 0 auto; padding: 4px; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+    .nav-dropdown.open .nav-submenu { display: block; transform: none; }
+    .nav-submenu a { text-align: center; }
+    .nirengi-hero { padding: 120px 0 70px; }
+    .nirengi-section { padding: 68px 0; }
+    .nirengi-grid { grid-template-columns: 1fr; }
+    .nirengi-bench { grid-template-columns: repeat(2, 1fr); }
+    .nirengi-contact-grid { grid-template-columns: 1fr; }
+    .nirengi-policy { padding: 6px 20px; }
+}
+
+@media (max-width: 520px) {
+    .nirengi-metrics, .nirengi-steps, .nirengi-bench { grid-template-columns: 1fr; }
+    .nirengi-metrics { padding: 16px; }
+}

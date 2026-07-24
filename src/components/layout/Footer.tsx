@@ -21,6 +21,7 @@ export default function Footer() {
             <Link href="/sektorel-projeler">Sektörel Projeler</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/seo-ogrenme-haritasi">SEO Rehberi</Link>
+            <Link href="/nirengi">Nirengi</Link>
             <Link href="/knotvo">Knotvo</Link>
             <a
               href="https://businessup.com.tr/iletisim/"
@@ -28,6 +29,7 @@ export default function Footer() {
               rel="nofollow noopener noreferrer"
             >
               İletişim
+              <span className="sr-only"> (yeni sekmede açılır)</span>
             </a>
           </nav>
 
@@ -46,7 +48,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/sungur-kerem-gezergun/"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                aria-label="LinkedIn profilini ziyaret et"
+                aria-label="LinkedIn profilini ziyaret et (yeni sekmede açılır)"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -62,7 +64,7 @@ export default function Footer() {
                 href="https://www.youtube.com/@keremgezergun"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                aria-label="YouTube kanalını ziyaret et"
+                aria-label="YouTube kanalını ziyaret et (yeni sekmede açılır)"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -78,7 +80,7 @@ export default function Footer() {
                 href="https://www.instagram.com/keremgzr02/"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                aria-label="Instagram profilini ziyaret et"
+                aria-label="Instagram profilini ziyaret et (yeni sekmede açılır)"
               >
                 <svg
                   viewBox="0 0 24 24"

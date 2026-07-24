@@ -7,12 +7,15 @@ import Logo from '@/components/ui/Logo';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
   const pathname = usePathname();
   const navMenuRef = useRef<HTMLUListElement>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const toolsButtonRef = useRef<HTMLButtonElement>(null);
 
   const closeMenu = useCallback(() => {
     setMenuOpen(false);
+    setToolsOpen(false);
   }, []);
 
   // Close menu when the route changes (browser back/forward, programmatic nav).
@@ -28,11 +31,14 @@ export default function Header() {
       if (e.key === 'Escape' && menuOpen) {
         closeMenu();
         hamburgerRef.current?.focus();
+      } else if (e.key === 'Escape' && toolsOpen) {
+        setToolsOpen(false);
+        toolsButtonRef.current?.focus();
       }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [menuOpen, closeMenu]);
+  }, [menuOpen, toolsOpen, closeMenu]);
 
   // Focus trap inside nav when open on mobile
   useEffect(() => {
@@ -145,15 +151,37 @@ export default function Header() {
                 SEO Rehberi
               </Link>
             </li>
-            <li>
-              <Link
-                href="/knotvo"
-                className={isActive('/knotvo') ? 'active' : undefined}
-                aria-current={isActive('/knotvo') ? 'page' : undefined}
-                onClick={closeMenu}
+            <li className={`nav-dropdown${toolsOpen ? ' open' : ''}`}>
+              <button
+                type="button"
+                ref={toolsButtonRef}
+                className={isActive('/nirengi') || isActive('/knotvo') ? 'active' : undefined}
+                aria-expanded={toolsOpen}
+                aria-controls="tools-menu"
+                onClick={() => setToolsOpen((open) => !open)}
               >
-                Knotvo
-              </Link>
+                Araçlar <span aria-hidden="true" className="nav-chevron">⌄</span>
+              </button>
+              <ul id="tools-menu" className="nav-submenu" aria-label="Araçlar">
+                <li>
+                  <Link
+                    href="/nirengi"
+                    aria-current={isActive('/nirengi') ? 'page' : undefined}
+                    onClick={closeMenu}
+                  >
+                    Nirengi
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/knotvo"
+                    aria-current={isActive('/knotvo') ? 'page' : undefined}
+                    onClick={closeMenu}
+                  >
+                    Knotvo
+                  </Link>
+                </li>
+              </ul>
             </li>
             <li>
               <a
@@ -164,6 +192,7 @@ export default function Header() {
                 onClick={closeMenu}
               >
                 İletişim
+                <span className="sr-only"> (yeni sekmede açılır)</span>
               </a>
             </li>
           </ul>

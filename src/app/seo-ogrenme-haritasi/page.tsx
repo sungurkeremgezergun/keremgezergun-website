@@ -72,6 +72,7 @@ function ResourceItem({ href, type, typeClass, title, author }: ResourceItemProp
         target="_blank"
         rel="nofollow noopener noreferrer"
         className="resource-item"
+        aria-label={`${title}, ${author} (yeni sekmede açılır)`}
       >
         <span className={`resource-type ${typeClass}`}>{type}</span>
         <span className="resource-title">{title}</span>
@@ -1371,7 +1372,7 @@ export default function SeoOgrenmeHaritasiPage() {
               target="_blank"
               rel="nofollow noopener noreferrer"
               className="btn btn-primary btn-large"
-              aria-label="BusinessUp web sitesini ziyaret et"
+              aria-label="BusinessUp web sitesini ziyaret et (yeni sekmede açılır)"
             >
               BusinessUp&apos;ı Ziyaret Edin
             </a>

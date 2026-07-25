@@ -1,10 +1,14 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
 
 export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) {
-  const isEnglish = language === 'en';
+  const pathname = usePathname();
+  const isEnglish = pathname === '/en' || pathname.startsWith('/en/') || (!pathname && language === 'en');
   return (
-    <footer className="footer" role="contentinfo" aria-label="Site alt bilgisi">
+    <footer className="footer" role="contentinfo" aria-label={isEnglish ? 'Site footer' : 'Site alt bilgisi'}>
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
@@ -15,7 +19,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             </p>
           </div>
 
-          <nav className="footer-column" aria-label="Site sayfaları">
+          <nav className="footer-column" aria-label={isEnglish ? 'Site pages' : 'Site sayfaları'}>
             <h4>{isEnglish ? 'Pages' : 'Sayfalar'}</h4>
             <Link href={isEnglish ? '/en' : '/'}>{isEnglish ? 'Home' : 'Ana Sayfa'}</Link>
             <Link href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}>{isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}</Link>
@@ -40,7 +44,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
               sungurkeremgezergun@gmail.com
             </a>
             <a href="tel:+905526902782">0552 690 27 82</a>
-            <p className="footer-location">Istanbul, Türkiye</p>
+            <p className="footer-location">{isEnglish ? 'Istanbul, Türkiye' : 'İstanbul, Türkiye'}</p>
             <nav
               className="footer-social-icons"
               aria-label={isEnglish ? 'Social media links' : 'Sosyal medya bağlantıları'}
@@ -49,7 +53,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                 href="https://www.linkedin.com/in/sungur-kerem-gezergun/"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                aria-label="LinkedIn profilini ziyaret et (yeni sekmede açılır)"
+                aria-label={isEnglish ? 'Visit LinkedIn profile (opens in a new tab)' : 'LinkedIn profilini ziyaret et (yeni sekmede açılır)'}
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -65,7 +69,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                 href="https://www.youtube.com/@keremgezergun"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                aria-label="YouTube kanalını ziyaret et (yeni sekmede açılır)"
+                aria-label={isEnglish ? 'Visit YouTube channel (opens in a new tab)' : 'YouTube kanalını ziyaret et (yeni sekmede açılır)'}
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -81,7 +85,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                 href="https://www.instagram.com/keremgzr02/"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                aria-label="Instagram profilini ziyaret et (yeni sekmede açılır)"
+                aria-label={isEnglish ? 'Visit Instagram profile (opens in a new tab)' : 'Instagram profilini ziyaret et (yeni sekmede açılır)'}
               >
                 <svg
                   viewBox="0 0 24 24"

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { absoluteUrl, englishAlternateMetadata } from '@/lib/i18n';
@@ -203,10 +204,67 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
   };
 }
 
+function EnglishHome() {
+  const services = [
+    ['SEO Strategy & Consulting', 'Data-led SEO strategies aligned with commercial goals, market demand and sustainable organic growth.'],
+    ['Technical SEO Audits', 'Crawlability, indexation, canonicals, structured data, Core Web Vitals and JavaScript rendering.'],
+    ['E-commerce SEO', 'Category and product optimization, site architecture, internal links, faceted navigation and conversion-led search.'],
+    ['Content Strategy & SEO', 'Keyword research, content gaps, topical authority and useful content mapped to real search intent.'],
+    ['SEO Training & Workshops', 'Practical training for in-house teams, university students and industry events.'],
+    ['SEO Automation & Reporting', 'Python and AI-supported workflows, custom dashboards and decision-ready search reporting.'],
+  ];
+  const faqs = [
+    ['What does an SEO consultant do?', 'An SEO consultant analyzes search demand, competitors, content and technical infrastructure, then turns the findings into a prioritized growth strategy.'],
+    ['What is different about e-commerce SEO?', 'E-commerce SEO connects category architecture, product discovery, filters, internal linking and technical scale with conversion and revenue goals.'],
+    ['Do you currently offer freelance SEO consulting?', 'I am not actively offering standard freelance packages. I focus on selected strategic projects, product development and knowledge sharing.'],
+    ['Is SEO still necessary in the AI search era?', 'Yes. Clear information architecture, trustworthy content, technical accessibility and brand authority are also foundational signals for AI-powered discovery.'],
+  ];
+
+  return (
+    <main id="main-content" role="main" lang="en">
+      <section className="hero" aria-label="Introduction">
+        <div className="container"><div className="hero-content">
+          <div className="hero-text">
+            <div className="hero-badge"><span className="badge-icon" aria-hidden="true">&#127942;</span><span>Best Low Budget Campaign (SEO) Finalist</span></div>
+            <h1>Hello, I&apos;m <span className="highlight">Kerem Gezergün</span></h1>
+            <p className="hero-title">Senior E-commerce SEO Consultant</p>
+            <p className="hero-description">I grow e-commerce websites with strategies that turn organic visibility into revenue. I have helped <strong>more than 30 e-commerce brands</strong> scale organic performance through technical SEO, content systems and data-led prioritization.</p>
+            <ul className="hero-stats" aria-label="Key figures"><li className="stat"><span className="stat-number">30+</span><span className="stat-label">Brands</span></li><li className="stat"><span className="stat-number">5+</span><span className="stat-label">Years of experience</span></li></ul>
+            <div className="hero-cta"><a href="https://businessup.com.tr/iletisim/" target="_blank" rel="nofollow noopener noreferrer" className="btn btn-primary btn-large">Work with me<span className="sr-only"> (opens in a new tab)</span></a><Link href="/en/#projects" className="btn btn-outline btn-large">Explore projects</Link></div>
+          </div>
+          <figure className="hero-image"><div className="image-wrapper"><Image src="/images/kerem-gezergun.jpg" alt="Kerem Gezergün, Senior E-commerce SEO Consultant" fill sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px" priority /><div className="image-decoration" aria-hidden="true" /></div></figure>
+        </div></div>
+      </section>
+
+      <section className="tools-section" aria-labelledby="en-tools-title"><div className="container"><p className="tools-title" id="en-tools-title">Tools I use</p><ul className="tools-grid" aria-label="SEO tools">
+        <li className="tool-item"><Image src="/images/tools/ahrefs.png" alt="Ahrefs" width={100} height={40} /></li>
+        <li className="tool-item"><Image src="https://www.gstatic.com/images/branding/product/2x/search_console_64dp.png" alt="Google Search Console" width={100} height={40} /></li>
+        <li className="tool-item"><Image src="https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg" alt="Google Analytics" width={100} height={40} unoptimized /></li>
+        <li className="tool-item"><Image src="/images/tools/semrush.png" alt="Semrush" width={100} height={40} /></li>
+        <li className="tool-item"><Image src="/images/tools/screaming-frog.png" alt="Screaming Frog" width={100} height={40} /></li>
+        <li className="tool-item"><Image src="/images/tools/gtmetrix.png" alt="GTmetrix" width={100} height={40} /></li>
+      </ul></div></section>
+
+      <section id="services" className="services-section" aria-labelledby="en-services-heading"><div className="container"><div className="section-header"><span className="section-tag">Services</span><h2 id="en-services-heading">What I do</h2></div><ul className="services-grid" aria-label="Services">{services.map(([title, text]) => <li className="service-card" key={title}><h3>{title}</h3><p>{text}</p></li>)}</ul></div></section>
+
+      <section id="about" className="about-section" aria-labelledby="en-about-heading"><div className="container"><div className="section-header"><span className="section-tag">About</span><h2 id="en-about-heading">I approach SEO as a complete growth system</h2></div><div className="about-content"><aside className="about-text"><p>I treat SEO as more than rankings. It is a connected system of <strong>search intent, information architecture, technical accessibility and brand visibility</strong>.</p><p>I work as a Senior E-commerce SEO Consultant at <strong>BusinessUp!</strong> and share industry knowledge through the <strong>Sepetteki SEO</strong> podcast.</p></aside></div></div></section>
+
+      <section className="results-section" aria-labelledby="en-results-heading"><div className="container"><div className="section-header"><span className="section-tag">Results</span><h2 id="en-results-heading">Experience in numbers</h2></div><ul className="results-grid"><li className="result-card"><span className="result-number">30+</span><span className="result-label">Brands</span><p>SEO strategy and consulting across multiple industries.</p></li><li className="result-card"><span className="result-number">5+</span><span className="result-label">Years in SEO</span><p>Hands-on experience in e-commerce, finance, health and education.</p></li><li className="result-card"><span className="result-number">65+</span><span className="result-label">Training hours</span><p>Free e-commerce and SEO education delivered to new professionals.</p></li></ul></div></section>
+
+      <section id="projects" className="projects-section" aria-labelledby="en-projects-heading"><div className="container"><div className="section-header"><span className="section-tag">Industry Projects</span><h2 id="en-projects-heading">Speaking and knowledge-sharing projects</h2></div><ul className="projects-grid"><li className="project-card featured"><span className="project-badge">Speaker</span><h3>Üsküdar University</h3><p>A session on SEO, digital marketing and career development.</p></li><li className="project-card"><span className="project-badge-secondary">Speaker</span><h3>Turkish Psychological Association</h3><p>Digital visibility and ethical search strategy for professionals.</p></li><li className="project-card"><span className="project-badge-secondary">Podcast</span><h3>Sepetteki SEO</h3><p>Conversations about e-commerce SEO, technical search and artificial intelligence.</p></li></ul><div className="section-cta"><Link className="btn btn-outline" href="/en/industry-projects">View all industry projects</Link></div></div></section>
+
+      <section className="ongoing-section" aria-labelledby="en-products-heading"><div className="container"><div className="section-header"><span className="section-tag">SEO Tools</span><h2 id="en-products-heading">Products I am building</h2></div><ul className="ongoing-grid"><li className="ongoing-card"><span className="ongoing-status">macOS</span><h3>Nirengi</h3><p>Private, on-device SEO server log analysis with 41 decision-ready reports.</p><Link href="/en/nirengi-log-analyzer">Explore Nirengi</Link></li><li className="ongoing-card"><span className="ongoing-status">macOS</span><h3>Knotvo</h3><p>HAR and live site-speed analysis translated into a prioritized action plan.</p><Link href="/en/knotvo-site-speed-analyzer">Explore Knotvo</Link></li><li className="ongoing-card"><span className="ongoing-status">Free resource</span><h3>SEO Learning Roadmap</h3><p>A structured path from search fundamentals to advanced technical SEO and AI search.</p><Link href="/en/seo-learning-roadmap">Open the roadmap</Link></li></ul></div></section>
+
+      <section className="faq-section" aria-labelledby="en-faq-heading"><div className="container"><div className="section-header"><span className="section-tag">FAQ</span><h2 id="en-faq-heading">Frequently asked questions</h2></div><div className="faq-list">{faqs.map(([question, answer]) => <details className="faq-item" key={question}><summary>{question}</summary><div className="faq-answer"><p>{answer}</p></div></details>)}</div></div></section>
+    </main>
+  );
+}
+
 export default async function EnglishPage({ params }: { params: Promise<{ slug?: string[] }> }) {
   const { slug = [] } = await params;
   const page = pages[slug.join('/')];
   if (!page) notFound();
+  if (slug.length === 0) return <EnglishHome />;
   const schema = { '@context': 'https://schema.org', '@type': 'WebPage', name: page.title, description: page.description, url: absoluteUrl(page.enPath), inLanguage: 'en', isPartOf: { '@id': 'https://www.keremgezergun.com/#website' } };
   return (
     <main id="main-content" className="english-page" lang="en" role="main">

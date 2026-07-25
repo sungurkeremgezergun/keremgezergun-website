@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import { alternateMetadata } from '@/lib/i18n';
 
 import overviewShot from '../../../public/knotvo/overview.png';
 import insightShot from '../../../public/knotvo/insight.png';
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     'web performansı',
     'Knotvo',
   ],
-  alternates: { canonical: PAGE_URL },
+  alternates: alternateMetadata('/knotvo', '/en/knotvo-site-speed-analyzer'),
   openGraph: {
     title: 'Knotvo — Mac için Site Hızı Analiz Aracı',
     description:

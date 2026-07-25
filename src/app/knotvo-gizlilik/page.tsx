@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import { alternateMetadata } from '@/lib/i18n';
 
 const PAGE_URL = 'https://www.keremgezergun.com/knotvo-gizlilik';
 
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Knotvo — Gizlilik Politikası',
   description:
     'Knotvo gizlilik politikası. Knotvo yerel bir macOS uygulamasıdır; hesap, telemetri veya sunucu yoktur. HAR analizi tamamen cihazınızda yapılır.',
-  alternates: { canonical: PAGE_URL },
+  alternates: alternateMetadata('/knotvo-gizlilik', '/en/knotvo-privacy-policy'),
   openGraph: {
     title: 'Knotvo — Gizlilik Politikası',
     description:

@@ -5,15 +5,15 @@ const HEADER_WIDTH = 180;
 const FOOTER_WIDTH = 220;
 const ASPECT_RATIO = 960 / 316;
 
-export default function Logo({ variant = 'header' }: { variant?: 'header' | 'footer' }) {
+export default function Logo({ variant = 'header', href = '/' }: { variant?: 'header' | 'footer'; href?: string }) {
   const width = variant === 'footer' ? FOOTER_WIDTH : HEADER_WIDTH;
   const height = Math.round(width / ASPECT_RATIO);
 
   return (
     <Link
-      href="/"
+      href={href}
       className={`logo-mark logo-mark--${variant}`}
-      aria-label="Kerem Gezergün — Ana Sayfa"
+      aria-label={`Kerem Gezergün — ${href.startsWith('/en') ? 'Home' : 'Ana Sayfa'}`}
     >
       <Image
         src="/images/logo/kerem-gezergun-logo.png"

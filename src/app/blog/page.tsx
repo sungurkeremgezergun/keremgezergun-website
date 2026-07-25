@@ -1,14 +1,13 @@
 import type { Metadata } from 'next';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import { alternateMetadata } from '@/lib/i18n';
 
 export const metadata: Metadata = {
   title: 'Blog',
   description:
     'Kerem Gezergün - SEO Blog. Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
   keywords: ['SEO Rehberi', 'Teknik SEO', 'GEO', 'Backlink', 'Site İçi SEO'],
-  alternates: {
-    canonical: 'https://www.keremgezergun.com/blog',
-  },
+  alternates: alternateMetadata('/blog', '/en/seo-blog'),
   openGraph: {
     title: 'Blog | Kerem Gezergün',
     description: 'SEO Blog - Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',

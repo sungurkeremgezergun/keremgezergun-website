@@ -1,0 +1,38 @@
+# Kerem Gezergün
+
+> Sungur Kerem Gezergün is a Senior E-commerce SEO Consultant based in Istanbul,
+> Türkiye. He works at BusinessUp!, has scaled organic revenue for more than 30
+> e-commerce brands, hosts the Turkish-language "Sepetteki SEO" podcast, and
+> builds two macOS tools for technical SEO teams: Nirengi and Knotvo.
+
+The site is bilingual. Turkish pages live at the site root; the English
+equivalents live under /en and are linked with hreflang.
+
+## Profile
+
+- [Home (Turkish)](https://www.keremgezergun.com/): SEO services, experience, awards and a 19-question FAQ about SEO consulting.
+- [Home (English)](https://www.keremgezergun.com/en): The English equivalent of the home page.
+- [Industry projects (Turkish)](https://www.keremgezergun.com/sektorel-projeler): Speaking engagements, university summits, free e-commerce training and the Sepetteki SEO podcast.
+- [Industry projects (English)](https://www.keremgezergun.com/en/industry-projects)
+
+## Learning resources
+
+- [SEO Rehberi (Turkish)](https://www.keremgezergun.com/seo-ogrenme-haritasi): A curated SEO learning roadmap — 50 categories, 139 subtopics and 590 vetted external resources, from HTML fundamentals through technical SEO, E-E-A-T, Core Web Vitals, programmatic SEO and generative engine optimization.
+- [SEO Learning Roadmap (English)](https://www.keremgezergun.com/en/seo-learning-roadmap): The same roadmap, fully written in English.
+- [SEO blog (Turkish)](https://www.keremgezergun.com/blog) / [English](https://www.keremgezergun.com/en/seo-blog): Guides on technical SEO, GEO, on-page SEO and backlinks.
+
+## Products
+
+- [Nirengi (Turkish)](https://www.keremgezergun.com/nirengi) / [English](https://www.keremgezergun.com/en/nirengi-log-analyzer): A native macOS server log analyzer for SEO. 41 reports covering Googlebot and AI crawlers, crawl budget, technical errors, index coverage and freshness. Log files are processed entirely on device and never uploaded. Version 1.0 is free.
+- [Knotvo (Turkish)](https://www.keremgezergun.com/knotvo) / [English](https://www.keremgezergun.com/en/knotvo-site-speed-analyzer): A native macOS site speed analyzer. Turns HAR files and live PageSpeed Insights measurements into a prioritized to-do list, combining Lighthouse lab data with CrUX field data. HAR analysis is fully local. Coming to the Mac App Store.
+
+## Policies and support
+
+- [Nirengi privacy policy](https://www.keremgezergun.com/en/nirengi-privacy-policy) · [Nirengi support](https://www.keremgezergun.com/en/nirengi-support) · [Nirengi accessibility](https://www.keremgezergun.com/en/nirengi-accessibility)
+- [Knotvo privacy policy](https://www.keremgezergun.com/en/knotvo-privacy-policy) · [Knotvo support](https://www.keremgezergun.com/en/knotvo-support)
+
+## Contact
+
+- Email: iletisim@keremgezergun.com
+- Phone: +90 552 690 27 82
+- Location: Üsküdar, Istanbul, Türkiye

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
+import { contact } from '@/lib/contact';
 
 export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) {
   const pathname = usePathname();
@@ -40,10 +41,8 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
 
           <address className="footer-column">
             <h4>{isEnglish ? 'Contact' : 'İletişim'}</h4>
-            <a href="mailto:sungurkeremgezergun@gmail.com">
-              sungurkeremgezergun@gmail.com
-            </a>
-            <a href="tel:+905526902782">0552 690 27 82</a>
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <a href={contact.phoneHref}>{contact.phone}</a>
             <p className="footer-location">{isEnglish ? 'Istanbul, Türkiye' : 'İstanbul, Türkiye'}</p>
             <nav
               className="footer-social-icons"

@@ -14,6 +14,14 @@ export const metadata: Metadata = {
     description: 'macOS için gizlilik odaklı, cihaz üzerinde çalışan sunucu log analiz aracı.',
     url: PAGE_URL,
     siteName: 'Kerem Gezergün',
+    images: [
+      {
+        url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Nirengi — macOS için SEO log analiz aracı',
+      },
+    ],
     locale: 'tr_TR',
     type: 'website',
   },

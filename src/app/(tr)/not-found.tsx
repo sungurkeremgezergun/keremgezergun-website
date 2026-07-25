@@ -31,14 +31,8 @@ export default function NotFound() {
       <section className="page-header" style={{ minHeight: '50vh', display: 'flex', alignItems: 'center' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <h1>404</h1>
-          <p style={{ marginTop: '16px' }}>
-            Aradığınız sayfa bulunamadı.
-          </p>
-          <Link
-            href="/"
-            className="btn btn-primary btn-large"
-            style={{ marginTop: '32px' }}
-          >
+          <p style={{ marginTop: '16px' }}>Aradığınız sayfa bulunamadı.</p>
+          <Link href="/" className="btn btn-primary btn-large" style={{ marginTop: '32px' }}>
             Ana Sayfaya Dön
           </Link>
         </div>

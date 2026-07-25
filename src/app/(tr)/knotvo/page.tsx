@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
 
-import overviewShot from '../../../public/knotvo/overview.png';
-import insightShot from '../../../public/knotvo/insight.png';
-import waterfallShot from '../../../public/knotvo/waterfall.png';
-import requestsShot from '../../../public/knotvo/requests.png';
-import reportsShot from '../../../public/knotvo/reports.png';
+import overviewShot from '../../../../public/knotvo/overview.png';
+import insightShot from '../../../../public/knotvo/insight.png';
+import waterfallShot from '../../../../public/knotvo/waterfall.png';
+import requestsShot from '../../../../public/knotvo/requests.png';
+import reportsShot from '../../../../public/knotvo/reports.png';
 
 const PAGE_URL = 'https://www.keremgezergun.com/knotvo';
 const NOTIFY_MAILTO =

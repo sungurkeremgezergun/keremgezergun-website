@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
 import { routePair } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -197,14 +198,14 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             </li>
             <li>
               <a
-                href="https://businessup.com.tr/iletisim/"
+                href={contact.whatsapp}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="btn btn-primary"
                 onClick={closeMenu}
               >
                 {isEnglish ? 'Contact' : 'İletişim'}
-                <span className="sr-only"> {isEnglish ? '(opens in a new tab)' : '(yeni sekmede açılır)'}</span>
+                <span className="sr-only"> {isEnglish ? '— message me on WhatsApp (opens in a new tab)' : '— WhatsApp’tan mesaj gönder (yeni sekmede açılır)'}</span>
               </a>
             </li>
           </ul>

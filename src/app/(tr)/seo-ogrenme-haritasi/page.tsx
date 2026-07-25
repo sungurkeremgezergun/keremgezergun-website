@@ -1,5 +1,6 @@
 import { jsonLdSafe } from '@/lib/jsonLd';
 import type { Language } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 import {
   resourceTypeLabels,
   roadmapSections,
@@ -33,10 +34,10 @@ const chrome = {
     en: 'Get in touch for professional SEO strategy and consulting support.',
   },
   ctaLabel: {
-    tr: 'BusinessUp web sitesini ziyaret et (yeni sekmede açılır)',
-    en: 'Visit the BusinessUp website (opens in a new tab)',
+    tr: 'WhatsApp’tan mesaj gönder (yeni sekmede açılır)',
+    en: 'Message me on WhatsApp (opens in a new tab)',
   },
-  ctaButton: { tr: 'BusinessUp’ı Ziyaret Edin', en: 'Visit BusinessUp' },
+  ctaButton: { tr: 'WhatsApp’tan Yazın', en: 'Message me on WhatsApp' },
 } as const;
 
 const breadcrumbSchema = (language: Language) => ({
@@ -190,7 +191,7 @@ export default function SeoOgrenmeHaritasiPage({ language = 'tr' }: { language?:
             <h2 id="cta-heading">{chrome.ctaHeading[language]}</h2>
             <p>{chrome.ctaText[language]}</p>
             <a
-              href="https://businessup.com.tr/"
+              href={contact.whatsapp}
               target="_blank"
               rel="nofollow noopener noreferrer"
               className="btn btn-primary btn-large"

@@ -9,6 +9,8 @@ export const contact = {
   /** E.164-style display format. Do not switch to the local `0552 …` form. */
   phone: '+90 552 690 27 82',
   phoneHref: 'tel:+905526902782',
+  /** Every contact CTA on the site points here. No prefilled text by design. */
+  whatsapp: 'https://wa.me/905526902782',
   address: {
     tr: 'Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / İstanbul, Türkiye',
     en: 'Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / Istanbul, Türkiye',

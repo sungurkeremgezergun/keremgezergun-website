@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 export const metadata: Metadata = {
   title: 'Sektörel Projeler',
@@ -337,13 +338,13 @@ export default function SektorelProjelerPage() {
             mutluluk duyarım.
           </p>
           <a
-            href="https://businessup.com.tr/iletisim/"
+            href={contact.whatsapp}
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="İletişim sayfasına git (yeni sekmede açılır)"
+            aria-label="WhatsApp’tan mesaj gönder (yeni sekmede açılır)"
           >
-            İletişime Geçin
+            WhatsApp’tan Yazın
           </a>
         </div>
       </section>

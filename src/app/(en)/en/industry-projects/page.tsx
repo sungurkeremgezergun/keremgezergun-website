@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/industry-projects';
 
@@ -255,13 +256,13 @@ export default function EnglishIndustryProjectsPage() {
             e-commerce.
           </p>
           <a
-            href="https://businessup.com.tr/iletisim/"
+            href={contact.whatsapp}
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="Go to the contact page (opens in a new tab)"
+            aria-label="Message me on WhatsApp (opens in a new tab)"
           >
-            Get in touch
+            Message me on WhatsApp
           </a>
         </div>
       </section>

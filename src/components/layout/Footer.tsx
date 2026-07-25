@@ -30,12 +30,12 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             <Link href={isEnglish ? '/en/nirengi-accessibility' : '/nirengi-erisilebirlik'}>{isEnglish ? 'Nirengi Accessibility' : 'Nirengi Erişilebilirlik'}</Link>
             <Link href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}>Knotvo</Link>
             <a
-              href="https://businessup.com.tr/iletisim/"
+              href={contact.whatsapp}
               target="_blank"
               rel="nofollow noopener noreferrer"
             >
               {isEnglish ? 'Contact' : 'İletişim'}
-              <span className="sr-only"> {isEnglish ? '(opens in a new tab)' : '(yeni sekmede açılır)'}</span>
+              <span className="sr-only"> {isEnglish ? '— message me on WhatsApp (opens in a new tab)' : '— WhatsApp’tan mesaj gönder (yeni sekmede açılır)'}</span>
             </a>
           </nav>
 

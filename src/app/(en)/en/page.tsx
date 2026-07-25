@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 import knotvoShot from '../../../../public/knotvo/overview.png';
 
@@ -458,13 +459,13 @@ export default function EnglishHomePage() {
               </ul>
               <div className="hero-cta">
                 <a
-                  href="https://businessup.com.tr/iletisim/"
+                  href={contact.whatsapp}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   className="btn btn-primary btn-large"
                 >
                   Work with me
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  <span className="sr-only"> — message me on WhatsApp (opens in a new tab)</span>
                 </a>
                 <Link href="/en/#projects" className="btn btn-outline btn-large">
                   Explore projects
@@ -874,13 +875,13 @@ export default function EnglishHomePage() {
             Get in touch to strengthen your SEO strategy or grow your digital visibility.
           </p>
           <a
-            href="https://businessup.com.tr/"
+            href={contact.whatsapp}
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="Visit the BusinessUp website (opens in a new tab)"
+            aria-label="Message me on WhatsApp (opens in a new tab)"
           >
-            Visit BusinessUp
+            Message me on WhatsApp
           </a>
         </div>
       </section>

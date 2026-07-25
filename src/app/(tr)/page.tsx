@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 import knotvoShot from '../../../public/knotvo/overview.png';
 
 export const metadata: Metadata = {
@@ -363,13 +364,13 @@ export default function HomePage() {
               </ul>
               <div className="hero-cta">
                 <a
-                  href="https://businessup.com.tr/"
+                  href={contact.whatsapp}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   className="btn btn-primary btn-large"
                 >
                   Benimle Çalışın
-                  <span className="sr-only"> (yeni sekmede açılır)</span>
+                  <span className="sr-only"> — WhatsApp’tan mesaj gönder (yeni sekmede açılır)</span>
                 </a>
                 <Link href="/#projeler" className="btn btn-outline btn-large">
                   Projeleri İncele
@@ -896,13 +897,13 @@ export default function HomePage() {
             iletişime geçin.
           </p>
           <a
-            href="https://businessup.com.tr/"
+            href={contact.whatsapp}
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="BusinessUp web sitesini ziyaret et (yeni sekmede açılır)"
+            aria-label="WhatsApp’tan mesaj gönder (yeni sekmede açılır)"
           >
-            BusinessUp&apos;ı Ziyaret Edin
+            WhatsApp’tan Yazın
           </a>
         </div>
       </section>

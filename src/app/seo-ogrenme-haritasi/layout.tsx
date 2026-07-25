@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
+import { alternateMetadata } from '@/lib/i18n';
 
 export const metadata: Metadata = {
   title: 'SEO Rehberi',
   description:
     'SEO Rehberi - Temellerden ileri seviyeye SEO öğrenmek için kapsamlı kaynak rehberi. 520+ kaliteli kaynak, 50 ana kategori ve 128 alt konu ile SEO uzmanı olun.',
   keywords: ['SEO Öğrenme', 'SEO Rehberi', 'SEO Kaynakları', 'Teknik SEO', 'On-Page SEO', 'Link Building', 'SEO Stratejisi', 'Semantic SEO', 'Programmatic SEO', 'Local SEO'],
-  alternates: {
-    canonical: 'https://www.keremgezergun.com/seo-ogrenme-haritasi',
-  },
+  alternates: alternateMetadata('/seo-ogrenme-haritasi', '/en/seo-learning-roadmap'),
   openGraph: {
     title: 'SEO Rehberi | Kerem Gezergün',
     description: 'Temellerden ileri seviyeye SEO öğrenmek için 520+ kaynak içeren kapsamlı rehber.',

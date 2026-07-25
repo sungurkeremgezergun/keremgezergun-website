@@ -4,11 +4,15 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
+import { routePair } from '@/lib/i18n';
 
-export default function Header() {
+export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const pathname = usePathname();
+  const isEnglish = language === 'en';
+  const pair = routePair(pathname);
+  const languageHref = isEnglish ? (pair?.tr ?? '/') : (pair?.en ?? '/en');
   const navMenuRef = useRef<HTMLUListElement>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const toolsButtonRef = useRef<HTMLButtonElement>(null);
@@ -95,7 +99,7 @@ export default function Header() {
     <header className="header" role="banner" aria-label="Site başlığı">
       <div className="container">
         <nav className="nav" role="navigation" aria-label="Ana menü">
-          <Logo variant="header" />
+          <Logo variant="header" href={isEnglish ? '/en' : '/'} />
 
           <ul
             className={`nav-menu${menuOpen ? ' active' : ''}`}
@@ -105,68 +109,68 @@ export default function Header() {
           >
             <li>
               <Link
-                href="/#hizmetler"
-                className={isActive('/#hizmetler') ? 'active' : undefined}
+                href={isEnglish ? '/en/#services' : '/#hizmetler'}
+                className={isActive(isEnglish ? '/en/#services' : '/#hizmetler') ? 'active' : undefined}
                 onClick={closeMenu}
               >
-                Hizmetler
+                {isEnglish ? 'Services' : 'Hizmetler'}
               </Link>
             </li>
             <li>
               <Link
-                href="/#hakkimda"
-                className={isActive('/#hakkimda') ? 'active' : undefined}
+                href={isEnglish ? '/en/#about' : '/#hakkimda'}
+                className={isActive(isEnglish ? '/en/#about' : '/#hakkimda') ? 'active' : undefined}
                 onClick={closeMenu}
               >
-                Hakkımda
+                {isEnglish ? 'About' : 'Hakkımda'}
               </Link>
             </li>
             <li>
               <Link
-                href="/sektorel-projeler"
-                className={isActive('/sektorel-projeler') ? 'active' : undefined}
-                aria-current={isActive('/sektorel-projeler') ? 'page' : undefined}
+                href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}
+                className={isActive(isEnglish ? '/en/industry-projects' : '/sektorel-projeler') ? 'active' : undefined}
+                aria-current={isActive(isEnglish ? '/en/industry-projects' : '/sektorel-projeler') ? 'page' : undefined}
                 onClick={closeMenu}
               >
-                Sektörel Projeler
+                {isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}
               </Link>
             </li>
             <li>
               <Link
-                href="/blog"
-                className={isActive('/blog') ? 'active' : undefined}
-                aria-current={isActive('/blog') ? 'page' : undefined}
+                href={isEnglish ? '/en/seo-blog' : '/blog'}
+                className={isActive(isEnglish ? '/en/seo-blog' : '/blog') ? 'active' : undefined}
+                aria-current={isActive(isEnglish ? '/en/seo-blog' : '/blog') ? 'page' : undefined}
                 onClick={closeMenu}
               >
-                Blog
+                {isEnglish ? 'SEO Blog' : 'Blog'}
               </Link>
             </li>
             <li>
               <Link
-                href="/seo-ogrenme-haritasi"
-                className={isActive('/seo-ogrenme-haritasi') ? 'active' : undefined}
-                aria-current={isActive('/seo-ogrenme-haritasi') ? 'page' : undefined}
+                href={isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi'}
+                className={isActive(isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi') ? 'active' : undefined}
+                aria-current={isActive(isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi') ? 'page' : undefined}
                 onClick={closeMenu}
               >
-                SEO Rehberi
+                {isEnglish ? 'SEO Roadmap' : 'SEO Rehberi'}
               </Link>
             </li>
             <li className={`nav-dropdown${toolsOpen ? ' open' : ''}`}>
               <button
                 type="button"
                 ref={toolsButtonRef}
-                className={isActive('/nirengi') || isActive('/knotvo') ? 'active' : undefined}
+                className={isActive(isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi') || isActive(isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo') ? 'active' : undefined}
                 aria-expanded={toolsOpen}
                 aria-controls="tools-menu"
                 onClick={() => setToolsOpen((open) => !open)}
               >
-                Araçlar <span aria-hidden="true" className="nav-chevron">⌄</span>
+                {isEnglish ? 'Tools' : 'Araçlar'} <span aria-hidden="true" className="nav-chevron">⌄</span>
               </button>
-              <ul id="tools-menu" className="nav-submenu" aria-label="Araçlar">
+              <ul id="tools-menu" className="nav-submenu" aria-label={isEnglish ? 'Tools' : 'Araçlar'}>
                 <li>
                   <Link
-                    href="/nirengi"
-                    aria-current={isActive('/nirengi') ? 'page' : undefined}
+                    href={isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi'}
+                    aria-current={isActive(isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi') ? 'page' : undefined}
                     onClick={closeMenu}
                   >
                     Nirengi
@@ -174,14 +178,20 @@ export default function Header() {
                 </li>
                 <li>
                   <Link
-                    href="/knotvo"
-                    aria-current={isActive('/knotvo') ? 'page' : undefined}
+                    href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}
+                    aria-current={isActive(isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo') ? 'page' : undefined}
                     onClick={closeMenu}
                   >
                     Knotvo
                   </Link>
                 </li>
               </ul>
+            </li>
+            <li>
+              <Link href={languageHref} className="language-switch" hrefLang={isEnglish ? 'tr' : 'en'} onClick={closeMenu}>
+                {isEnglish ? 'TR' : 'EN'}
+                <span className="sr-only"> — {isEnglish ? 'Türkçe sürüme geç' : 'switch to English'}</span>
+              </Link>
             </li>
             <li>
               <a
@@ -191,8 +201,8 @@ export default function Header() {
                 className="btn btn-primary"
                 onClick={closeMenu}
               >
-                İletişim
-                <span className="sr-only"> (yeni sekmede açılır)</span>
+                {isEnglish ? 'Contact' : 'İletişim'}
+                <span className="sr-only"> {isEnglish ? '(opens in a new tab)' : '(yeni sekmede açılır)'}</span>
               </a>
             </li>
           </ul>
@@ -200,7 +210,7 @@ export default function Header() {
           <button
             className={`hamburger${menuOpen ? ' active' : ''}`}
             ref={hamburgerRef}
-            aria-label={menuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
+            aria-label={menuOpen ? (isEnglish ? 'Close menu' : 'Menüyü kapat') : (isEnglish ? 'Open menu' : 'Menüyü aç')}
             aria-expanded={menuOpen}
             aria-controls="nav-menu"
             onClick={() => setMenuOpen((prev) => !prev)}

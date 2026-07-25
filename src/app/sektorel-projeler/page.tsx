@@ -1,14 +1,13 @@
 import type { Metadata } from 'next';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import { alternateMetadata } from '@/lib/i18n';
 
 export const metadata: Metadata = {
   title: 'Sektörel Projeler',
   description:
     'Kerem Gezergün - Sektörel Projeler. Üniversite konuşmaları, dernek etkinlikleri ve podcast çalışmaları.',
   keywords: ['SEO Uzmanı', 'Konuşmacı', 'Podcast', 'Dijital Pazarlama'],
-  alternates: {
-    canonical: 'https://www.keremgezergun.com/sektorel-projeler',
-  },
+  alternates: alternateMetadata('/sektorel-projeler', '/en/industry-projects'),
   openGraph: {
     title: 'Sektörel Projeler | Kerem Gezergün',
     description: 'Üniversite konuşmaları, dernek etkinlikleri ve podcast çalışmaları.',

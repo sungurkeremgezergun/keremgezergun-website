@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import { alternateMetadata } from '@/lib/i18n';
 
 const PAGE_URL = 'https://www.keremgezergun.com/nirengi';
 
 export const metadata: Metadata = {
   title: 'Nirengi — macOS için SEO Log Analiz Aracı',
   description: 'Sunucu loglarını cihazınızda analiz edin; Googlebot ve AI tarayıcılarını karşılaştırın, tarama israfını, teknik hataları ve indeks kapsamı açıklarını bulun.',
-  alternates: { canonical: PAGE_URL },
+  alternates: alternateMetadata('/nirengi', '/en/nirengi-log-analyzer'),
   openGraph: {
     title: 'Nirengi — SEO Log Analiz Aracı',
     description: 'macOS için gizlilik odaklı, cihaz üzerinde çalışan sunucu log analiz aracı.',
@@ -64,7 +65,7 @@ export default function NirengiPage() {
             <p className="nirengi-lead">Ham sunucu loglarını Googlebot, AI tarayıcıları, tarama bütçesi ve teknik SEO için kullanılabilir içgörülere dönüştürün. Dosyalarınız cihazınızda işlenir ve hiçbir yere yüklenmez.</p>
             <div className="nirengi-actions">
               <a className="btn btn-primary btn-large" href="#ozellikler">Özellikleri keşfet</a>
-              <Link className="btn btn-outline btn-large" href="/nirengi-gizlilik-politikasi">Gizlilik politikası</Link>
+              <Link className="btn btn-outline btn-large" href="/nirengi-erisilebirlik">Erişilebilirlik</Link>
             </div>
           </div>
           <div className="nirengi-window" role="img" aria-label="Nirengi analizinden dört örnek ölçüm">
@@ -143,7 +144,7 @@ export default function NirengiPage() {
             <details><summary>Sonuçları paylaşabilir miyim?</summary><p>Evet. Tabloları CSV, tüm raporu ise bulut hesabı gerektirmeyen tek dosyalı HTML olarak aktarabilirsiniz.</p></details>
             <details><summary>Nirengi ücretsiz mi?</summary><p>1.0 sürümü tamamen ücretsizdir; abonelik veya uygulama içi satın alma içermez.</p></details>
           </div>
-          <div className="nirengi-actions"><Link className="btn btn-primary" href="/nirengi-iletisim">Destek ve iletişim</Link><Link className="btn btn-outline" href="/nirengi-gizlilik-politikasi">Gizlilik politikası</Link></div>
+          <div className="nirengi-actions"><Link className="btn btn-primary" href="/nirengi-iletisim">Destek ve iletişim</Link><Link className="btn btn-outline" href="/nirengi-gizlilik-politikasi">Gizlilik politikası</Link><Link className="btn btn-outline" href="/nirengi-erisilebirlik">Erişilebilirlik</Link></div>
         </div>
       </section>
     </main>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import { alternateMetadata } from '@/lib/i18n';
 
 const PAGE_URL = 'https://www.keremgezergun.com/knotvo-destek';
 
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Knotvo — Destek',
   description:
     'Knotvo destek ve sık sorulan sorular. HAR dosyası nasıl alınır, canlı ölçüm nasıl çalışır, veriler nasıl sıfırlanır ve Knotvo ile ilgili yardım.',
-  alternates: { canonical: PAGE_URL },
+  alternates: alternateMetadata('/knotvo-destek', '/en/knotvo-support'),
   openGraph: {
     title: 'Knotvo — Destek',
     description:

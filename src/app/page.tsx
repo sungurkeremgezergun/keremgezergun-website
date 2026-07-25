@@ -2,14 +2,13 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import { alternateMetadata } from '@/lib/i18n';
 import knotvoShot from '../../public/knotvo/overview.png';
 
 export const metadata: Metadata = {
   description:
     'Sungur Kerem Gezergün — Senior E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
-  alternates: {
-    canonical: 'https://www.keremgezergun.com/',
-  },
+  alternates: alternateMetadata('/', '/en'),
   openGraph: {
     title: 'Kerem Gezergün | Senior E-Ticaret SEO Danışmanı',
     description:

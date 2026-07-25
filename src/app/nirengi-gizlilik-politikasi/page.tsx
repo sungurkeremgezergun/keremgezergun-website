@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { alternateMetadata } from '@/lib/i18n';
 
 export const metadata: Metadata = {
   title: 'Nirengi Gizlilik Politikası',
   description: 'Nirengi’nin yerel macOS işlemesi, isteğe bağlı ağ istekleri ve destek iletişiminde verileri nasıl koruduğunu okuyun.',
-  alternates: { canonical: 'https://www.keremgezergun.com/nirengi-gizlilik-politikasi' },
+  alternates: alternateMetadata('/nirengi-gizlilik-politikasi', '/en/nirengi-privacy-policy'),
 };
 
 export default function NirengiPrivacyPage() {

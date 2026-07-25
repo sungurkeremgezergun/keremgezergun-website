@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
+import { headers } from 'next/headers';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -141,13 +142,15 @@ const websiteSchema = {
   inLanguage: 'tr-TR',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const language = (await headers()).get('x-site-language') === 'en' ? 'en' : 'tr';
+
   return (
-    <html lang="tr" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang={language} className={`${inter.variable} ${playfair.variable}`}>
       <head>
         {/*
           Google tag (gtag.js) — the matching "<!-- Google tag (gtag.js) -->"
@@ -172,7 +175,7 @@ export default function RootLayout({
 `,
           }}
         />
-        <meta httpEquiv="Content-Language" content="tr" />
+        <meta httpEquiv="Content-Language" content={language} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdSafe(personSchema) }}
@@ -184,11 +187,11 @@ export default function RootLayout({
       </head>
       <body>
         <a href="#main-content" className="skip-link">
-          Ana içeriğe geç
+          {language === 'en' ? 'Skip to main content' : 'Ana içeriğe geç'}
         </a>
-        <Header />
+        <Header language={language} />
         {children}
-        <Footer />
+        <Footer language={language} />
       </body>
     </html>
   );

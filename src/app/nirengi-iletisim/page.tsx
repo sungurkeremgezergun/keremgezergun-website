@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { alternateMetadata } from '@/lib/i18n';
 
 export const metadata: Metadata = {
   title: 'Nirengi Destek ve İletişim',
   description: 'Nirengi macOS SEO log analiz aracı için format, rapor, dışa aktarım, gizlilik ve performans desteği alın.',
-  alternates: { canonical: 'https://www.keremgezergun.com/nirengi-iletisim' },
+  alternates: alternateMetadata('/nirengi-iletisim', '/en/nirengi-support'),
 };
 
 const supportRows = [

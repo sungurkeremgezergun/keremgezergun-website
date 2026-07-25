@@ -1,48 +1,49 @@
 import Link from 'next/link';
 import Logo from '@/components/ui/Logo';
 
-export default function Footer() {
+export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) {
+  const isEnglish = language === 'en';
   return (
     <footer className="footer" role="contentinfo" aria-label="Site alt bilgisi">
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
-            <Logo variant="footer" />
-            <p>Senior E-Ticaret SEO Danışmanı</p>
+            <Logo variant="footer" href={isEnglish ? '/en' : '/'} />
+            <p>{isEnglish ? 'Senior E-commerce SEO Consultant' : 'Senior E-Ticaret SEO Danışmanı'}</p>
             <p className="footer-description">
-              E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri alanında
-              uzmanlaşmış dijital pazarlama profesyoneli.
+              {isEnglish ? 'Digital marketing professional specializing in e-commerce SEO, technical SEO and organic growth strategy.' : 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri alanında uzmanlaşmış dijital pazarlama profesyoneli.'}
             </p>
           </div>
 
           <nav className="footer-column" aria-label="Site sayfaları">
-            <h4>Sayfalar</h4>
-            <Link href="/">Ana Sayfa</Link>
-            <Link href="/sektorel-projeler">Sektörel Projeler</Link>
-            <Link href="/blog">Blog</Link>
-            <Link href="/seo-ogrenme-haritasi">SEO Rehberi</Link>
-            <Link href="/nirengi">Nirengi</Link>
-            <Link href="/knotvo">Knotvo</Link>
+            <h4>{isEnglish ? 'Pages' : 'Sayfalar'}</h4>
+            <Link href={isEnglish ? '/en' : '/'}>{isEnglish ? 'Home' : 'Ana Sayfa'}</Link>
+            <Link href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}>{isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}</Link>
+            <Link href={isEnglish ? '/en/seo-blog' : '/blog'}>{isEnglish ? 'SEO Blog' : 'Blog'}</Link>
+            <Link href={isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi'}>{isEnglish ? 'SEO Roadmap' : 'SEO Rehberi'}</Link>
+            <Link href={isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi'}>Nirengi</Link>
+            <Link href={isEnglish ? '/en/nirengi-accessibility' : '/nirengi-erisilebirlik'}>{isEnglish ? 'Nirengi Accessibility' : 'Nirengi Erişilebilirlik'}</Link>
+            <Link href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}>Knotvo</Link>
             <a
               href="https://businessup.com.tr/iletisim/"
               target="_blank"
               rel="nofollow noopener noreferrer"
             >
-              İletişim
-              <span className="sr-only"> (yeni sekmede açılır)</span>
+              {isEnglish ? 'Contact' : 'İletişim'}
+              <span className="sr-only"> {isEnglish ? '(opens in a new tab)' : '(yeni sekmede açılır)'}</span>
             </a>
           </nav>
 
           <address className="footer-column">
-            <h4>İletişim</h4>
+            <h4>{isEnglish ? 'Contact' : 'İletişim'}</h4>
             <a href="mailto:sungurkeremgezergun@gmail.com">
               sungurkeremgezergun@gmail.com
             </a>
             <a href="tel:+905526902782">0552 690 27 82</a>
-            <p className="footer-location">İstanbul, Türkiye</p>
+            <p className="footer-location">Istanbul, Türkiye</p>
             <nav
               className="footer-social-icons"
-              aria-label="Sosyal medya bağlantıları"
+              aria-label={isEnglish ? 'Social media links' : 'Sosyal medya bağlantıları'}
             >
               <a
                 href="https://www.linkedin.com/in/sungur-kerem-gezergun/"
@@ -97,7 +98,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Kerem Gezergün. Tüm hakları saklıdır.</p>
+          <p>&copy; {new Date().getFullYear()} Kerem Gezergün. {isEnglish ? 'All rights reserved.' : 'Tüm hakları saklıdır.'}</p>
         </div>
       </div>
     </footer>

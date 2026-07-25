@@ -10,7 +10,9 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
   const [menuOpen, setMenuOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const pathname = usePathname();
-  const isEnglish = language === 'en';
+  // The pathname is the source of truth. Reverse proxies and container
+  // platforms may strip request headers injected by Next's proxy layer.
+  const isEnglish = pathname === '/en' || pathname.startsWith('/en/') || (!pathname && language === 'en');
   const pair = routePair(pathname);
   const languageHref = isEnglish ? (pair?.tr ?? '/') : (pair?.en ?? '/en');
   const navMenuRef = useRef<HTMLUListElement>(null);
@@ -96,9 +98,9 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
   };
 
   return (
-    <header className="header" role="banner" aria-label="Site başlığı">
+    <header className="header" role="banner" aria-label={isEnglish ? 'Site header' : 'Site başlığı'}>
       <div className="container">
-        <nav className="nav" role="navigation" aria-label="Ana menü">
+        <nav className="nav" role="navigation" aria-label={isEnglish ? 'Main navigation' : 'Ana menü'}>
           <Logo variant="header" href={isEnglish ? '/en' : '/'} />
 
           <ul

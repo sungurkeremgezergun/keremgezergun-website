@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 const PAGE_URL = 'https://www.keremgezergun.com/knotvo-destek';
 
@@ -16,8 +17,23 @@ export const metadata: Metadata = {
       'Knotvo destek ve sık sorulan sorular: HAR dosyası, canlı ölçüm, güvenli paylaşım ve daha fazlası.',
     url: PAGE_URL,
     siteName: 'Kerem Gezergün',
+    images: [
+      {
+        url: 'https://www.keremgezergun.com/knotvo/overview.png',
+        width: 1500,
+        height: 834,
+        alt: 'Knotvo destek',
+      },
+    ],
     locale: 'tr_TR',
     type: 'article',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Knotvo — Destek',
+    description: 'Knotvo destek ve sık sorulan sorular: HAR dosyası, canlı ölçüm ve güvenli paylaşım.',
+    creator: '@keremgezergun',
+    site: '@keremgezergun',
   },
 };
 
@@ -154,84 +170,18 @@ export default function KnotvoDestekPage() {
 
         <h2>İletişim</h2>
         <address>
-          Sungur Kerem Gezergün
+          {contact.name}
           <br />
-          E-posta: <a href="mailto:iletisim@keremgezergun.com">iletisim@keremgezergun.com</a>
+          E-posta: <a href={`mailto:${contact.email}`}>{contact.email}</a>
           <br />
-          Telefon: <a href="tel:+905526902782">0552 690 27 82</a>
+          Telefon: <a href={contact.phoneHref}>{contact.phone}</a>
           <br />
-          Adres: Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / İstanbul
+          Adres: {contact.address.tr}
           <br />
-          Web: <a href="https://keremgezergun.com">keremgezergun.com</a>
+          Web: <a href={contact.website}>{contact.websiteLabel}</a>
         </address>
       </section>
 
-      <hr />
-
-      <section lang="en">
-        <h2 style={{ fontSize: '1.8rem', marginTop: 0 }}>Knotvo — Support</h2>
-        <p>
-          Need help with Knotvo? Email{' '}
-          <a href="mailto:iletisim@keremgezergun.com">iletisim@keremgezergun.com</a> and we&apos;ll
-          get back to you.
-        </p>
-
-        <h2>Frequently asked questions</h2>
-
-        <p className="q">What is a HAR file?</p>
-        <p>
-          A HAR (HTTP Archive) file is a log of a web page&apos;s network requests. In
-          Chrome/Edge/Safari DevTools, open the <em>Network</em> tab, reload the page, then
-          right-click → <em>Save all as HAR</em>. Open that file in Knotvo to analyze it.
-        </p>
-
-        <p className="q">Does my data leave my Mac?</p>
-        <p>
-          HAR analysis is 100% local — nothing is uploaded. The optional <em>live URL measurement</em>{' '}
-          feature sends only the URL you enter to Google PageSpeed Insights. See our{' '}
-          <Link href="/knotvo-gizlilik">Privacy Policy</Link>.
-        </p>
-
-        <p className="q">Live measurement says &quot;quota exceeded&quot; or asks for a key.</p>
-        <p>
-          Live measurement uses Google&apos;s free PageSpeed Insights API. Create a free API key (no
-          credit card, 25,000 queries/day) in the Google Cloud Console, then add it in{' '}
-          <em>Settings → PageSpeed Insights API Key</em>.
-        </p>
-
-        <p className="q">Can I test a localhost / staging / password-protected page?</p>
-        <p>
-          Live measurement only works on public URLs (Google must be able to reach the page). For
-          private or internal pages, capture a HAR in your browser and open it in Knotvo instead.
-        </p>
-
-        <p className="q">How do I safely share a HAR that contains secrets?</p>
-        <p>
-          Use <em>Sanitize → Share-Safe Copy</em>. Knotvo removes cookies, Authorization headers,
-          tokens, and body secrets, and produces a clean copy locally — your original file is never
-          changed.
-        </p>
-
-        <p className="q">How do I reset everything?</p>
-        <p>
-          <em>Settings → Reset all data</em> permanently deletes all brands, sites, scans, your API
-          key, and preferences.
-        </p>
-
-        <h2>Contact</h2>
-        <address>
-          Sungur Kerem Gezergün
-          <br />
-          Email: <a href="mailto:iletisim@keremgezergun.com">iletisim@keremgezergun.com</a>
-          <br />
-          Phone: <a href="tel:+905526902782">+90 552 690 27 82</a>
-          <br />
-          Address: Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / İstanbul,
-          Türkiye
-          <br />
-          Web: <a href="https://keremgezergun.com">keremgezergun.com</a>
-        </address>
-      </section>
     </main>
   );
 }

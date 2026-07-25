@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
-import knotvoShot from '../../public/knotvo/overview.png';
+import knotvoShot from '../../../public/knotvo/overview.png';
 
 export const metadata: Metadata = {
   description:

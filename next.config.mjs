@@ -29,6 +29,13 @@ const securityHeaders = [
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  experimental: {
+    // Required for src/app/global-not-found.tsx. With two root layouts
+    // ((tr)/(en)) neither group's not-found.tsx can own unmatched URLs, so the
+    // global convention supplies the full document instead of Next's bare
+    // built-in fallback.
+    globalNotFound: true,
+  },
   images: {
     remotePatterns: [
       {

@@ -10,7 +10,11 @@ E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri içerikleri sunar.
 - **Framework:** Next.js 16 (App Router, React 19)
 - **Dil:** TypeScript (strict)
 - **Stil:** Saf CSS (`src/app/globals.css`)
-- **Statik içerik:** Tüm sayfalar build sırasında prerender edilir
+- **Statik içerik:** Tüm sayfalar build sırasında prerender edilir. Hiçbir
+  layout veya sayfa `headers()`/`cookies()` kullanmaz — bunlardan biri
+  eklenirse tüm site dinamik render'a düşer.
+- **Çok dillilik:** İki root layout, iki route group. `src/app/(tr)` Türkçe,
+  `src/app/(en)` İngilizce sayfaları barındırır; `<html lang>` URL'den gelir.
 - **Lint:** ESLint 9 + `next/core-web-vitals`
 
 ## Kurulum
@@ -36,18 +40,26 @@ npm run dev        # http://localhost:3000
 ```
 src/
 ├── app/
-│   ├── layout.tsx              # Kök layout, metadata, JSON-LD Person schema
-│   ├── page.tsx                # Ana sayfa
-│   ├── not-found.tsx           # 404
-│   ├── sitemap.ts              # XML sitemap
-│   ├── globals.css             # Tüm stiller
-│   ├── blog/page.tsx
-│   ├── sektorel-projeler/page.tsx
-│   └── seo-ogrenme-haritasi/page.tsx
+│   ├── (tr)/                   # Türkçe root layout + sayfalar
+│   │   ├── layout.tsx          # <html lang="tr">, TR metadata
+│   │   ├── page.tsx            # Ana sayfa
+│   │   ├── not-found.tsx       # TR 404
+│   │   ├── blog/, sektorel-projeler/, seo-ogrenme-haritasi/
+│   │   ├── nirengi*/ , knotvo*/
+│   ├── (en)/                   # İngilizce root layout + sayfalar
+│   │   ├── layout.tsx          # <html lang="en">, EN metadata
+│   │   ├── not-found.tsx       # EN 404
+│   │   └── en/[[...slug]]/page.tsx
+│   ├── global-not-found.tsx    # Hiçbir route'a uymayan URL'ler (iki dilli)
+│   ├── sitemap.ts              # XML sitemap (hreflang alternates ile)
+│   └── globals.css             # Tüm stiller
 ├── components/
-│   ├── layout/{Header,Footer}.tsx
+│   ├── layout/{Document,Header,Footer}.tsx
 │   └── ui/Logo.tsx
 └── lib/
+    ├── fonts.ts                # Her iki layout'un paylaştığı font tanımı
+    ├── i18n.ts                 # TR↔EN route eşleşmeleri, hreflang üretimi
+    ├── siteSchema.ts           # Dile göre Person + WebSite JSON-LD
     └── jsonLd.ts               # XSS-safe JSON-LD serializer
 ```
 
@@ -61,8 +73,12 @@ src/
 
 ## Deploy
 
-Vercel ile uyumlu (özel yapılandırmaya gerek yok). Push to main → otomatik
-deploy. Self-hosted çalıştırma için `npm run build && npm run start`.
+`main` dalına push → GitHub Actions **CI** (typecheck + lint + build) →
+başarılıysa **Deploy to VPS** workflow'u SSH ile sunucuya bağlanır, `npm ci`
+ve `npm run build` çalıştırıp pm2 üzerinden `keremgezergun-website` sürecini
+yeniden yükler. Bkz. `.github/workflows/{ci,deploy}.yml`.
+
+Yerelde production çalıştırma: `npm run build && npm run start`.
 
 ## Lisans
 

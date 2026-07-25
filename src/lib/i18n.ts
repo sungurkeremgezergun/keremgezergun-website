@@ -1,5 +1,10 @@
 const BASE_URL = 'https://www.keremgezergun.com';
 
+export type Language = 'tr' | 'en';
+
+/** A string that exists in both site languages. Pick with `text[language]`. */
+export type Localized = { tr: string; en: string };
+
 export const localeRoutes = [
   { tr: '/', en: '/en' },
   { tr: '/blog', en: '/en/seo-blog' },

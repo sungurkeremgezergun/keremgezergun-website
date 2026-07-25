@@ -15,6 +15,14 @@ export const metadata: Metadata = {
     description: 'Nirengi’nin macOS erişilebilirlik özellikleri, klavye iş akışları ve destek bilgileri.',
     url: PAGE_URL,
     siteName: 'Kerem Gezergün',
+    images: [
+      {
+        url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Nirengi erişilebilirlik desteği',
+      },
+    ],
     locale: 'tr_TR',
     type: 'website',
   },
@@ -22,6 +30,8 @@ export const metadata: Metadata = {
     card: 'summary',
     title: 'Nirengi Erişilebilirlik Desteği',
     description: 'Nirengi’nin macOS erişilebilirlik özellikleri ve destek bilgileri.',
+    creator: '@keremgezergun',
+    site: '@keremgezergun',
   },
 };
 

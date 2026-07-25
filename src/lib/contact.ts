@@ -1,0 +1,24 @@
+/**
+ * Single source of truth for name, address and phone. Local/entity SEO needs one
+ * canonical NAP; before this existed the footer, the Knotvo pages and the
+ * Nirengi pages each carried a slightly different email, phone format or domain.
+ */
+export const contact = {
+  name: 'Sungur Kerem Gezergün',
+  email: 'iletisim@keremgezergun.com',
+  /** E.164-style display format. Do not switch to the local `0552 …` form. */
+  phone: '+90 552 690 27 82',
+  phoneHref: 'tel:+905526902782',
+  address: {
+    tr: 'Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / İstanbul, Türkiye',
+    en: 'Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / Istanbul, Türkiye',
+  },
+  website: 'https://www.keremgezergun.com',
+  websiteLabel: 'www.keremgezergun.com',
+} as const;
+
+/** Policy effective dates, kept identical across both language versions. */
+export const policyDates = {
+  nirengi: { iso: '2026-07-24', tr: '24 Temmuz 2026', en: '24 July 2026' },
+  knotvo: { iso: '2026-07-20', tr: '20 Temmuz 2026', en: '20 July 2026' },
+} as const;

@@ -469,6 +469,13 @@ section {
     margin-bottom: 60px;
 }
 
+/* Trailing "see all" link under a section grid (e.g. the home page projects). */
+.section-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
 .section-tag {
     display: inline-block;
     padding: 6px 16px;

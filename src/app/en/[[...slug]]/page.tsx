@@ -260,29 +260,60 @@ function EnglishHome() {
   );
 }
 
+function EnglishInnerPage({ page }: { page: EnglishPage }) {
+  const slug = page.enPath.split('/').pop();
+  const isNirengi = slug?.startsWith('nirengi');
+  const isKnotvo = slug?.startsWith('knotvo');
+  const isLegal = slug?.includes('privacy') || slug?.includes('support');
+
+  if (slug === 'seo-blog') {
+    const posts = page.sections[0].items ?? [];
+    return <main id="main-content" role="main" lang="en"><section className="page-header"><div className="container"><span className="section-tag">SEO Blog</span><h1>SEO Guides</h1><p>{page.lead}</p></div></section><section className="page-content"><div className="container"><ul className="blog-page-grid" aria-label="SEO guides">{posts.map((post, index) => <li key={post.title}><article className="blog-card-large"><div className="blog-image placeholder"><span className="coming-soon-badge">Coming soon</span></div><div className="blog-content"><span className="blog-category">{index === 2 ? 'AI Search & GEO' : post.title}</span><h2>{post.title}</h2><p>{post.text}</p><ul className="blog-meta"><li className="meta-item">In-depth guide</li><li className="meta-item">Publishing soon</li></ul></div></article></li>)}</ul></div></section></main>;
+  }
+
+  if (slug === 'industry-projects') {
+    const projects = [
+      ['Summit Organizer', 'Ahi Evran University Digital Marketing Summits', 'I organized two digital marketing summits with Ahi Evran University. Leading professionals joined as speakers and the events reached more than 800 participants.', '800+ participants · Kırşehir'],
+      ['Education Program', 'Free E-commerce Training', 'A comprehensive 65+ hour program covering e-commerce fundamentals, product selection, pricing, marketplaces and SEO for young professionals.', '65+ training hours'],
+      ['Speaker', 'Üsküdar University', 'I shared practical e-commerce SEO strategy, technical SEO foundations and career guidance with university students.', 'Istanbul · Education'],
+      ['Speaker', 'Turkish Psychological Association', 'A professional session about digital visibility, ethical search strategy and strengthening online discoverability.', 'Professional association event'],
+      ['Podcast', 'Sepetteki SEO', 'A podcast co-hosted with Simay Özpilavcı about e-commerce SEO, artificial intelligence, technical debates and developments in search.', 'E-commerce SEO · AI'],
+    ];
+    return <main id="main-content" role="main" lang="en"><section className="page-header"><div className="container"><span className="section-tag">Industry Projects</span><h1>Speaking &amp; Project Work</h1><p>{page.lead}</p></div></section><section className="page-content"><div className="container"><ul className="projects-list" aria-label="Industry projects">{projects.map(([badge, title, text, meta], index) => <li key={title}><article className={`project-detail-card${index === 0 || index === 4 ? ' featured' : ''}`}><span className="project-detail-badge">{badge}</span><div className="project-detail-content"><h2>{title}</h2><p>{text}</p><ul className="project-meta"><li className="meta-item">{meta}</li></ul></div></article></li>)}</ul></div></section>{page.cta && <section className="cta-section"><div className="container"><h2>{page.cta.title}</h2><p>{page.cta.text}</p><a className="btn btn-primary btn-large" href={page.cta.href}>{page.cta.label}</a></div></section>}</main>;
+  }
+
+  if (slug === 'seo-learning-roadmap') {
+    return <main id="main-content" role="main" lang="en"><section className="page-header"><div className="container"><span className="section-tag">SEO Learning Roadmap</span><h1>Learn SEO in the Right Order</h1><p>{page.lead}</p></div></section><section className="page-content"><div className="container"><div className="roadmap-intro"><ul className="roadmap-stats"><li className="roadmap-stat"><span className="number">7</span><span className="label">Learning stages</span></li><li className="roadmap-stat"><span className="number">20+</span><span className="label">Core subjects</span></li><li className="roadmap-stat"><span className="number">1</span><span className="label">Structured path</span></li></ul></div>{page.sections.map((section, index) => <details className="section-accordion" open={index === 0} key={section.title}><summary className="section-accordion-header"><span className="title">{section.title}<span className="desc">{section.intro ?? 'Skills and concepts to master at this stage'}</span></span></summary><div className="section-accordion-body"><section className="subsection"><h2 className="subsection-title">Learning outcomes</h2><ul className="resource-list">{section.bullets?.map((item) => <li className="resource-item" key={item}><span className="resource-title">{item}</span><span className="resource-author">Practical SEO curriculum</span></li>)}</ul></section></div></details>)}</div></section></main>;
+  }
+
+  if (isNirengi && !isLegal && slug !== 'nirengi-accessibility') {
+    const features = page.sections[0].items ?? [];
+    return <main id="main-content" className="nirengi" role="main" lang="en"><section className="nirengi-hero"><div className="container nirengi-hero-grid"><div><p className="nirengi-eyebrow">Native macOS SEO analysis</p><h1>Your logs. Your Mac. <span>Your insights.</span></h1><p className="nirengi-lead">{page.lead}</p><div className="nirengi-actions"><a className="btn btn-primary btn-large" href="#features">Explore features</a><Link className="btn btn-outline btn-large" href="/en/nirengi-accessibility">Accessibility</Link></div></div><div className="nirengi-window" role="img" aria-label="Four example Nirengi metrics"><div className="nirengi-windowbar"><i /><i /><i /></div><div className="nirengi-metrics"><div><strong>2.4M</strong><span>Requests analyzed</span></div><div><strong>41</strong><span>Reports</span></div><div><strong>100%</strong><span>On device</span></div><div><strong>0</strong><span>Logs uploaded</span></div></div></div></div></section><section id="features" className="nirengi-section"><div className="container"><p className="nirengi-eyebrow">SEO server log analysis</p><h2>See what crawlers actually do.</h2><p className="nirengi-intro">Nirengi turns sensitive infrastructure data into evidence without sending it to the cloud.</p><div className="nirengi-grid">{features.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div></section>{page.sections.slice(1).map((section, index) => <section className={`nirengi-section${index % 2 === 0 ? ' nirengi-alt' : ''}`} key={section.title}><div className="container"><p className="nirengi-eyebrow">Nirengi capabilities</p><h2>{section.title}</h2>{section.paragraphs?.map((text) => <p className="nirengi-intro" key={text}>{text}</p>)}{section.bullets && <ul className="nirengi-steps">{section.bullets.map((text) => <li key={text}><p>{text}</p></li>)}</ul>}</div></section>)}<section className="nirengi-section nirengi-alt"><div className="container nirengi-narrow"><div className="nirengi-actions"><Link className="btn btn-primary" href="/en/nirengi-support">Support</Link><Link className="btn btn-outline" href="/en/nirengi-privacy-policy">Privacy policy</Link><Link className="btn btn-outline" href="/en/nirengi-accessibility">Accessibility</Link></div></div></section></main>;
+  }
+
+  if (isKnotvo && !isLegal) {
+    return <main id="main-content" className="knotvo" role="main" lang="en"><section className="knotvo-hero"><div className="container"><span className="k-badge">Designed for Mac</span><h1>Understand what slows a page down—and <span className="k-hl">what to fix first</span></h1><p className="k-lead">{page.lead}</p><div className="k-cta-row"><a className="btn btn-primary btn-large" href="mailto:iletisim@keremgezergun.com?subject=Notify%20me%20about%20Knotvo">Notify me</a><a className="btn btn-outline btn-large" href="#features">Explore features</a></div><p className="k-macnote">🍎 Coming to the Mac App Store · macOS 14+ · Apple Silicon and Intel</p></div></section>{page.sections.map((section, index) => <section id={index === 0 ? 'features' : undefined} className={`knotvo-section${index % 2 ? ' alt' : ''}`} key={section.title}><div className="container"><div className="k-eyebrow">Site-speed workflow</div><h2>{section.title}</h2>{section.intro && <p className="k-lead">{section.intro}</p>}{section.paragraphs?.map((text) => <p className="k-lead" key={text}>{text}</p>)}{section.items && <div className="k-grid">{section.items.map((item) => <div className="k-card" key={item.title}><h3>{item.title}</h3><p>{item.text}</p></div>)}</div>}{section.bullets && <div className="k-benefits">{section.bullets.map((text) => <div className="k-benefit" key={text}><span className="chk">✓</span><span>{text}</span></div>)}</div>}</div></section>)}</main>;
+  }
+
+  if (slug === 'nirengi-accessibility') {
+    return <main id="main-content" className="nirengi-accessibility" role="main" lang="en"><header className="nirengi-a11y-hero"><div className="container nirengi-narrow"><p className="nirengi-eyebrow">Accessibility on macOS</p><h1>{page.heading}</h1><p className="nirengi-lead">{page.lead}</p><aside className="nirengi-a11y-notice"><h2>Current declaration status</h2><p>Implemented support and known limitations are documented transparently while the manual assistive-technology test matrix continues.</p></aside></div></header>{page.sections.map((section, index) => <section className={`nirengi-section${index % 2 ? ' nirengi-alt' : ''}`} key={section.title}><div className="container"><p className="nirengi-eyebrow">Accessibility</p><h2>{section.title}</h2>{section.paragraphs?.map((text) => <p className="nirengi-intro" key={text}>{text}</p>)}{section.items && <div className="nirengi-grid nirengi-a11y-grid">{section.items.map((item) => <article key={item.title}><span className="nirengi-a11y-status">Implemented</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>}{section.bullets && <ul className="nirengi-steps">{section.bullets.map((text) => <li key={text}><p>{text}</p></li>)}</ul>}</div></section>)}</main>;
+  }
+
+  if (isLegal) {
+    const legalClass = isNirengi ? 'nirengi-legal' : 'knotvo-legal';
+    return <main id="main-content" className={legalClass} role="main" lang="en"><article className={`container${isNirengi ? ' nirengi-narrow' : ''}`}><p className={isNirengi ? 'nirengi-eyebrow' : 'muted'}>{isNirengi ? 'Nirengi' : 'Knotvo'}</p><h1>{page.heading}</h1><p className={isNirengi ? 'nirengi-lead' : 'muted'}>{page.lead}</p>{page.sections.map((section) => <section key={section.title}><h2>{section.title}</h2>{section.intro && <p>{section.intro}</p>}{section.paragraphs?.map((text) => <p key={text}>{text}</p>)}{section.bullets && <ul>{section.bullets.map((text) => <li key={text}>{text}</li>)}</ul>}</section>)}{page.cta && <p><a className="btn btn-primary" href={page.cta.href}>{page.cta.label}</a></p>}<Link className={isNirengi ? 'nirengi-back' : undefined} href={isNirengi ? '/en/nirengi-log-analyzer' : '/en/knotvo-site-speed-analyzer'}>← Back to the product page</Link></article></main>;
+  }
+
+  return null;
+}
+
 export default async function EnglishPage({ params }: { params: Promise<{ slug?: string[] }> }) {
   const { slug = [] } = await params;
   const page = pages[slug.join('/')];
   if (!page) notFound();
   if (slug.length === 0) return <EnglishHome />;
   const schema = { '@context': 'https://schema.org', '@type': 'WebPage', name: page.title, description: page.description, url: absoluteUrl(page.enPath), inLanguage: 'en', isPartOf: { '@id': 'https://www.keremgezergun.com/#website' } };
-  return (
-    <main id="main-content" className="english-page" lang="en" role="main">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
-      <header className="english-hero"><div className="container english-narrow"><p className="nirengi-eyebrow">{page.eyebrow}</p><h1>{page.heading}</h1><p className="english-lead">{page.lead}</p></div></header>
-      {page.sections.map((section, index) => (
-        <section className={`english-section${index % 2 ? ' alt' : ''}`} key={section.title} aria-labelledby={`en-section-${index}`}>
-          <div className="container english-narrow"><h2 id={`en-section-${index}`}>{section.title}</h2>{section.intro && <p className="english-intro">{section.intro}</p>}
-            {section.paragraphs?.map((paragraph) => <p className="english-copy" key={paragraph}>{paragraph}</p>)}
-            {section.bullets && <ul className="english-bullets">{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
-            {section.items && <div className="english-grid">{section.items.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>}
-          </div>
-        </section>
-      ))}
-      {page.cta && <section className="english-cta" aria-labelledby="english-cta-title"><div className="container english-narrow"><h2 id="english-cta-title">{page.cta.title}</h2><p>{page.cta.text}</p>{page.cta.href.startsWith('/') ? <Link className="btn btn-primary" href={page.cta.href}>{page.cta.label}</Link> : <a className="btn btn-primary" href={page.cta.href}>{page.cta.label}</a>}</div></section>}
-      <nav className="english-language-return" aria-label="Language versions"><div className="container english-narrow"><Link href={page.trPath} hrefLang="tr">Türkçe sürümü görüntüle</Link></div></nav>
-    </main>
-  );
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} /><EnglishInnerPage page={page} /></>;
 }
 
 export const dynamicParams = false;

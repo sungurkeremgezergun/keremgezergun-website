@@ -1,4 +1,55 @@
+'use client';
+
+import { createContext, useContext } from 'react';
 import { jsonLdSafe } from '@/lib/jsonLd';
+
+type RoadmapLanguage = 'tr' | 'en';
+const RoadmapLanguageContext = createContext<RoadmapLanguage>('tr');
+
+const phraseTranslations: Array<[string, string]> = [
+  ['SEO Yolculuğunuzda Yardıma mı İhtiyacınız Var?', 'Need help with your SEO journey?'],
+  ['Temellerden ileri seviyeye, kapsamlı kaynak rehberi ile SEO öğrenin.', 'Learn SEO from fundamentals to advanced practice with a comprehensive resource library.'],
+  ['Bu rehber, SEO öğrenmek isteyenler için derlenmiş kapsamlı bir kaynak haritasıdır. Strateji, teknik altyapı, içerik, analitik ve kariyer dahil her alanda kaliteli ve güncel kaynaklar bulabilirsiniz.', 'This roadmap is a comprehensive resource library for learning SEO. It preserves current, high-quality material across strategy, technical foundations, content, analytics and career development.'],
+  ['SEO Kaynakları', 'SEO Resources'], ['SEO Rehberi', 'SEO Learning Roadmap'],
+  ['Ana Kategori', 'Main Categories'], ['Alt Konu', 'Subtopics'], ['Kaynak', 'Resources'],
+  ['yeni sekmede açılır', 'opens in a new tab'], ['Ana Sayfa', 'Home'],
+  ['Temelleri', 'Fundamentals'], ['Temel Kavramlar', 'Core Concepts'], ['Genel Kavramlar', 'Core Concepts'],
+  ['Derinlemesine', 'In Depth'], ['Genel Bakış', 'Overview'], ['Başlangıç Rehberi', 'Starter Guide'],
+  ['Yeni Başlayanlar İçin', 'For Beginners'], ['Kapsamlı Rehber', 'Complete Guide'],
+  ['Nasıl Çalışır', 'How It Works'], ['Nedir ve Neden Önemlidir', 'What It Is and Why It Matters'],
+  ['Nedir?', 'What Is It?'], ['Nasıl', 'How to'], ['Neden', 'Why'], ['için', 'for'], ['İçin', 'for'],
+  ['Arama Motorlarının Yapısı ve İşleyişi', 'Search Engine Architecture and Operation'],
+  ['Arama Motoru', 'Search Engine'], ['Arama Niyeti', 'Search Intent'], ['Arama', 'Search'],
+  ['Anahtar Kelime', 'Keyword'], ['Araştırma', 'Research'], ['Rakip', 'Competitor'],
+  ['Konu Kümeleri', 'Topic Clusters'], ['Haritalama', 'Mapping'], ['Sınıflandırma', 'Classification'],
+  ['İçerik', 'Content'], ['Optimizasyonu', 'Optimization'], ['Optimizasyon', 'Optimization'],
+  ['Stratejileri', 'Strategies'], ['Stratejisi', 'Strategy'], ['Strateji', 'Strategy'],
+  ['Planlama', 'Planning'], ['Denetimi', 'Audit'], ['Denetim', 'Audit'], ['Güncelleme', 'Refresh'],
+  ['Site İçi', 'On-Page'], ['İç Bağlantı', 'Internal Linking'], ['Başlık', 'Heading'],
+  ['Yapısı', 'Structure'], ['Sayfası', 'Page'], ['Sayfa', 'Page'], ['Etiketler', 'Tags'],
+  ['Teknik SEO', 'Technical SEO'], ['Tarama', 'Crawling'], ['İndeksleme', 'Indexing'],
+  ['Yönlendirmeler', 'Redirects'], ['Site Mimarisi', 'Site Architecture'], ['Log Analizi', 'Log File Analysis'],
+  ['Davranışı', 'Behavior'], ['Performans', 'Performance'], ['Ölçüm', 'Measurement'], ['İzleme', 'Monitoring'],
+  ['Yapılandırılmış Veri', 'Structured Data'], ['Görsel', 'Image'], ['Video İçerik', 'Video Content'],
+  ['Erişilebilirlik', 'Accessibility'], ['Bağlantı', 'Link'], ['Dijital PR', 'Digital PR'],
+  ['Otorite', 'Authority'], ['Güvenilirlik', 'Trust'], ['Yerel', 'Local'], ['Uluslararası', 'International'],
+  ['E-ticaret', 'E-commerce'], ['Ürün', 'Product'], ['Kategori', 'Category'], ['Mobil', 'Mobile'],
+  ['Haber', 'News'], ['Mevsimsel', 'Seasonal'], ['Ceza Türleri', 'Penalty Types'], ['Kurtarma', 'Recovery'],
+  ['Araçları', 'Tools'], ['Araçlar', 'Tools'], ['Raporlama', 'Reporting'], ['Tahminleme', 'Forecasting'],
+  ['Kullanıcı Deneyimi', 'User Experience'], ['Dönüşüm Oranı', 'Conversion Rate'],
+  ['Yapay Zeka', 'Artificial Intelligence'], ['AI ile', 'AI-Assisted'], ['Riskleri', 'Risks'],
+  ['İş Akışları', 'Workflows'], ['Görünürlüğü', 'Visibility'], ['Programlama', 'Programming'],
+  ['Makine Öğrenimi', 'Machine Learning'], ['Kariyer Yolu', 'Career Path'], ['Vaka Çalışması', 'Case Study'],
+  ['Haber ve Blog Kaynakları', 'News and Blog Resources'], ['Etkinlikleri ve Konferansları', 'Events and Conferences'],
+  ['Rehberi', 'Guide'], ['Rehber', 'Guide'], ['Eğitimi', 'Course'], ['Kursu', 'Course'], ['Kurs', 'Course'], ['Video', 'Video'],
+  ['Bülten', 'Newsletter'], ['Etkinlik', 'Event'], ['Eklenti', 'Extension'],
+  [' ve ', ' and '], [' ile ', ' with '], [' Türleri', ' Types'], [' Süreci', ' Process'], [' Yönetimi', ' Management'],
+];
+
+function translateRoadmapText(value: string, language: RoadmapLanguage) {
+  if (language === 'tr') return value;
+  return phraseTranslations.reduce((text, [source, target]) => text.split(source).join(target), value);
+}
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -42,12 +93,13 @@ interface AccordionSectionProps {
 }
 
 function AccordionSection({ title, desc, defaultOpen = false, children }: AccordionSectionProps) {
+  const language = useContext(RoadmapLanguageContext);
   return (
     <details className="section-accordion" open={defaultOpen}>
       <summary className="section-accordion-header">
         <span className="title">
-          {title}
-          <span className="desc">{desc}</span>
+          {translateRoadmapText(title, language)}
+          <span className="desc">{translateRoadmapText(desc, language)}</span>
         </span>
         <ChevronSvg />
       </summary>
@@ -65,6 +117,8 @@ interface ResourceItemProps {
 }
 
 function ResourceItem({ href, type, typeClass, title, author }: ResourceItemProps) {
+  const language = useContext(RoadmapLanguageContext);
+  const localizedTitle = translateRoadmapText(title, language);
   return (
     <li>
       <a
@@ -72,10 +126,10 @@ function ResourceItem({ href, type, typeClass, title, author }: ResourceItemProp
         target="_blank"
         rel="nofollow noopener noreferrer"
         className="resource-item"
-        aria-label={`${title}, ${author} (yeni sekmede açılır)`}
+        aria-label={`${localizedTitle}, ${author} (${language === 'en' ? 'opens in a new tab' : 'yeni sekmede açılır'})`}
       >
-        <span className={`resource-type ${typeClass}`}>{type}</span>
-        <span className="resource-title">{title}</span>
+        <span className={`resource-type ${typeClass}`}>{translateRoadmapText(type, language)}</span>
+        <span className="resource-title">{localizedTitle}</span>
         <span className="resource-author">{author}</span>
       </a>
     </li>
@@ -88,56 +142,62 @@ interface SubsectionProps {
 }
 
 function Subsection({ title, children }: SubsectionProps) {
+  const language = useContext(RoadmapLanguageContext);
   return (
     <section className="subsection">
-      <h3 className="subsection-title">{title}</h3>
+      <h3 className="subsection-title">{translateRoadmapText(title, language)}</h3>
       <ul className="resource-list">{children}</ul>
     </section>
   );
 }
 
-export default function SeoOgrenmeHaritasiPage() {
+export default function SeoOgrenmeHaritasiPage({ language = 'tr' }: { language?: RoadmapLanguage }) {
+  const localizedBreadcrumbSchema = language === 'en' ? {
+    ...breadcrumbSchema,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/' },
+      { '@type': 'ListItem', position: 2, name: 'SEO Learning Roadmap', item: 'https://www.keremgezergun.com/en/seo-learning-roadmap' },
+    ],
+  } : breadcrumbSchema;
   return (
-    <>
+    <RoadmapLanguageContext.Provider value={language}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(localizedBreadcrumbSchema) }}
       />
 
       <main id="main-content" role="main">
         <section className="page-header" aria-labelledby="page-title">
           <div className="container">
-            <span className="section-tag">SEO Rehberi</span>
-            <h1 id="page-title">SEO Rehberi</h1>
-            <p>Temellerden ileri seviyeye, kapsamlı kaynak rehberi ile SEO öğrenin.</p>
+            <span className="section-tag">{translateRoadmapText('SEO Rehberi', language)}</span>
+            <h1 id="page-title">{translateRoadmapText('SEO Rehberi', language)}</h1>
+            <p>{translateRoadmapText('Temellerden ileri seviyeye, kapsamlı kaynak rehberi ile SEO öğrenin.', language)}</p>
           </div>
         </section>
 
         <section className="page-content" aria-labelledby="roadmap-heading">
           <div className="container">
             <h2 id="roadmap-heading" className="visually-hidden">
-              SEO Kaynakları
+              {translateRoadmapText('SEO Kaynakları', language)}
             </h2>
 
             <div className="roadmap-intro">
               <ul className="roadmap-stats">
                 <li className="roadmap-stat">
                   <span className="number">590+</span>
-                  <span className="label">Kaynak</span>
+                  <span className="label">{translateRoadmapText('Kaynak', language)}</span>
                 </li>
                 <li className="roadmap-stat">
                   <span className="number">50</span>
-                  <span className="label">Ana Kategori</span>
+                  <span className="label">{translateRoadmapText('Ana Kategori', language)}</span>
                 </li>
                 <li className="roadmap-stat">
                   <span className="number">139</span>
-                  <span className="label">Alt Konu</span>
+                  <span className="label">{translateRoadmapText('Alt Konu', language)}</span>
                 </li>
               </ul>
               <p>
-                Bu rehber, SEO öğrenmek isteyenler için derlenmiş kapsamlı bir kaynak
-                haritasıdır. Strateji, teknik altyapı, içerik, analitik ve kariyer dahil
-                her alanda kaliteli ve güncel kaynaklar bulabilirsiniz.
+                {translateRoadmapText('Bu rehber, SEO öğrenmek isteyenler için derlenmiş kapsamlı bir kaynak haritasıdır. Strateji, teknik altyapı, içerik, analitik ve kariyer dahil her alanda kaliteli ve güncel kaynaklar bulabilirsiniz.', language)}
               </p>
             </div>
 
@@ -1365,20 +1425,20 @@ export default function SeoOgrenmeHaritasiPage() {
         {/* CTA Section */}
         <section className="cta-section" aria-labelledby="cta-heading">
           <div className="container">
-            <h2 id="cta-heading">SEO Yolculuğunuzda Yardıma mı İhtiyacınız Var?</h2>
-            <p>Profesyonel SEO danışmanlığı ve strateji desteği için bizimle iletişime geçin.</p>
+            <h2 id="cta-heading">{translateRoadmapText('SEO Yolculuğunuzda Yardıma mı İhtiyacınız Var?', language)}</h2>
+            <p>{language === 'en' ? 'Contact us for professional SEO strategy and consulting support.' : 'Profesyonel SEO danışmanlığı ve strateji desteği için bizimle iletişime geçin.'}</p>
             <a
               href="https://businessup.com.tr/"
               target="_blank"
               rel="nofollow noopener noreferrer"
               className="btn btn-primary btn-large"
-              aria-label="BusinessUp web sitesini ziyaret et (yeni sekmede açılır)"
+              aria-label={language === 'en' ? 'Visit the BusinessUp website (opens in a new tab)' : 'BusinessUp web sitesini ziyaret et (yeni sekmede açılır)'}
             >
-              BusinessUp&apos;ı Ziyaret Edin
+              {language === 'en' ? 'Visit BusinessUp' : <>BusinessUp&apos;ı Ziyaret Edin</>}
             </a>
           </div>
         </section>
       </main>
-    </>
+    </RoadmapLanguageContext.Provider>
   );
 }

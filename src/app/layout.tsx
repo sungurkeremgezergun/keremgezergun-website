@@ -148,6 +148,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const language = (await headers()).get('x-site-language') === 'en' ? 'en' : 'tr';
+  const localizedPersonSchema = language === 'en' ? {
+    ...personSchema,
+    image: { ...personSchema.image, caption: 'Kerem Gezergün - Senior E-commerce SEO Consultant' },
+    jobTitle: 'Senior E-commerce SEO Consultant',
+    description: 'Senior E-commerce SEO Consultant with experience scaling organic revenue for more than 30 brands. Best Low Budget Campaign (SEO) finalist.',
+    knowsAbout: ['SEO', 'E-commerce SEO', 'Technical SEO', 'Organic Growth Strategy', 'Search Engine Optimization', 'Digital Marketing', 'Generative Engine Optimization', 'SaaS Development', 'AI-assisted Product Discovery'],
+    hasOccupation: { ...personSchema.hasOccupation, name: 'SEO Consultant', skills: ['SEO', 'Technical SEO', 'E-commerce SEO', 'Content Strategy', 'Link Building'] },
+  } : personSchema;
+  const localizedWebsiteSchema = language === 'en' ? {
+    ...websiteSchema,
+    description: 'The personal website of Kerem Gezergün, specializing in e-commerce SEO, technical SEO and organic growth strategy.',
+    inLanguage: 'en-US',
+  } : websiteSchema;
 
   return (
     <html lang={language} className={`${inter.variable} ${playfair.variable}`}>
@@ -178,11 +191,11 @@ export default async function RootLayout({
         <meta httpEquiv="Content-Language" content={language} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdSafe(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdSafe(localizedPersonSchema) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdSafe(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdSafe(localizedWebsiteSchema) }}
         />
       </head>
       <body>

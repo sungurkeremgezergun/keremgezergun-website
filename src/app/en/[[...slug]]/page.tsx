@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { absoluteUrl, englishAlternateMetadata } from '@/lib/i18n';
 import { jsonLdSafe } from '@/lib/jsonLd';
+import SeoLearningRoadmap from '@/app/seo-ogrenme-haritasi/page';
 
 type Section = { title: string; intro?: string; items?: Array<{ title: string; text: string }>; paragraphs?: string[]; bullets?: string[] };
 type EnglishPage = {
@@ -90,13 +91,33 @@ const pages: Record<string, EnglishPage> = {
     eyebrow: 'Native macOS performance analysis', heading: 'Understand what slows a page down—and what to fix first.',
     lead: 'Knotvo combines HAR inspection, Lighthouse measurements and Core Web Vitals context in a focused Mac application for SEO and web teams.',
     sections: [
-      { title: 'From performance data to an action plan', items: [
-        { title: 'Plain-language insights', text: 'Translate technical findings into prioritized work for developers, marketers and stakeholders.' },
-        { title: 'Waterfall and request inventory', text: 'Inspect timing, transfer size, blocking chains, domains, resource types and failed requests.' },
-        { title: 'Lab and field data together', text: 'Understand the difference between Lighthouse tests and real-user Core Web Vitals.' },
+      { title: 'See site health at a glance', paragraphs: ['The overview combines the performance score, the three most expensive bottlenecks and the estimated gain from completing the highest-priority work.'], bullets: ['A plain explanation next to the score', 'Findings ordered from critical to low priority', 'Estimated byte and time savings for every finding'] },
+      { title: 'Actions, not unexplained metrics', paragraphs: ['Knotvo explains what a finding means, why it matters and how to fix it instead of leaving interpretation to the user.'], bullets: ['Impact, cause and recommended fix together', 'Priorities that can be handed directly to development', 'Technical evidence for every recommendation'] },
+      { title: 'Live measurement, step by step', paragraphs: ['Enter a public URL and Knotvo validates the address, connects to PageSpeed Insights, checks CrUX field data, processes Lighthouse and interprets Core Web Vitals.'], bullets: ['Mobile and desktop measurement', 'Visible progress for every stage', 'Clear handling for quota, API and reachability errors'] },
+      { title: 'See where every request loses time', paragraphs: ['The waterfall exposes DNS, connection, TLS, waiting and download time for each request, together with blocking chains and failed resources.'], bullets: ['Timing breakdown per request', 'Domain and resource-type filters', 'Transfer size, compression and cache evidence'] },
+      { title: 'A filterable request inventory', paragraphs: ['Inspect all requests in a sortable table and isolate scripts, images, fonts, third parties, failures or the heaviest resources.'], bullets: ['Search and multi-dimensional filters', 'Status, protocol, MIME type and initiator', 'Exportable evidence for technical teams'] },
+      { title: 'A report ready for stakeholders', paragraphs: ['Turn analysis into a clear report that explains priorities, expected gains and implementation evidence without requiring the reader to understand raw HAR data.'], bullets: ['Executive summary and prioritized findings', 'Detailed evidence for developers', 'Portable output for clients and internal teams'] },
+      { title: 'The complete workflow in one Mac app', items: [
+        { title: 'Lab and field data together', text: 'Compare Lighthouse lab results with real-user Core Web Vitals and understand which signal affects search.' },
+        { title: 'Share-safe HAR copies', text: 'Remove cookies, Authorization headers, tokens and body secrets without altering the original file.' },
+        { title: 'Compare two HAR files', text: 'Measure before and after a release to find new weight, timing regressions or failed requests.' },
+        { title: 'Brand workspace', text: 'Manage multiple brands and sites, keep scan history and monitor changes over time.' },
+        { title: 'Multi-URL comparison', text: 'Measure several public URLs and compare the results in one view.' },
+        { title: 'Private by default', text: 'HAR analysis stays on your Mac; only an optional public live URL is sent to Google.' },
       ] },
-      { title: 'Private by default', paragraphs: ['HAR analysis stays on your Mac. Live measurement sends only the public URL you enter to Google PageSpeed Insights, and this behavior is disclosed before use.'] },
-      { title: 'Built for practical comparison', bullets: ['Compare two HAR captures before and after a release', 'Sanitize cookies, authorization headers and tokens before sharing', 'Analyze localhost, staging and VPN-only pages from browser HAR files', 'Create stakeholder-ready reports'] },
+      { title: 'Why teams choose Knotvo', bullets: ['No account, recurring subscription, queue or analysis quota', 'HAR support for localhost, staging and VPN-only pages', 'On-device analysis for privacy-sensitive teams', 'Recommendations describe the work instead of only reporting a score', 'Native performance on Apple Silicon and Intel Macs', 'Safe sharing tools for production HAR files'] },
+      { title: 'How Knotvo compares', items: [
+        { title: 'Cloud speed tests', text: 'Useful for public lab tests, but typically require accounts, quotas and cannot inspect private pages or local HAR workflows.' },
+        { title: 'Network capture tools', text: 'Powerful for capturing requests, but they do not translate performance evidence into prioritized SEO and development actions.' },
+        { title: 'Free HAR viewers', text: 'They open waterfalls but usually lack recommendations, comparison, field data context and secure sanitization workflows.' },
+      ] },
+      { title: 'Frequently asked questions', items: [
+        { title: 'What does Knotvo do?', text: 'It analyzes HAR files and optional live measurements, then turns requests, Core Web Vitals and third-party load into a prioritized action list.' },
+        { title: 'Does my HAR go to the cloud?', text: 'No. HAR analysis is entirely local. Only a public URL is sent to Google when you explicitly run live measurement.' },
+        { title: 'Can I test localhost or staging?', text: 'Yes. Capture a HAR in the browser and open it in Knotvo. Live measurement itself requires a public URL.' },
+        { title: 'Can I share a HAR safely?', text: 'Use Share-Safe Copy to remove cookies, authorization data and tokens while preserving your original file.' },
+        { title: 'Which devices are supported?', text: 'Knotvo targets macOS 14 and later on Apple Silicon and Intel Macs.' },
+      ] },
     ],
     cta: { title: 'Knotvo for macOS', text: 'Follow the product and get notified when it becomes available.', href: 'mailto:iletisim@keremgezergun.com?subject=Notify%20me%20about%20Knotvo', label: 'Notify me' },
   },
@@ -106,8 +127,13 @@ const pages: Record<string, EnglishPage> = {
     eyebrow: 'Knotvo support', heading: 'Help with site-speed analysis on macOS.',
     lead: 'Contact the developer for questions about HAR files, live measurements, reports, privacy or unexpected results.',
     sections: [
-      { title: 'Include these details', bullets: ['Your macOS and Knotvo versions', 'Whether you used a HAR file or live URL measurement', 'The affected report or screen', 'The exact warning and steps to reproduce the issue'] },
-      { title: 'Protect sensitive data', paragraphs: ['Do not send an unredacted production HAR file. Remove cookies, authorization headers, tokens, personal data and private URLs before sharing diagnostic material.'] },
+      { title: 'What is a HAR file?', paragraphs: ['A HAR (HTTP Archive) file is a log of a web page’s network requests. In Chrome, Edge or Safari DevTools, open Network, reload the page, then choose Save all as HAR. Open that file in Knotvo to analyze it.'] },
+      { title: 'Does my data leave my Mac?', paragraphs: ['HAR analysis is 100% local and nothing is uploaded. The optional live URL measurement sends only the URL you enter to Google PageSpeed Insights.'] },
+      { title: 'Live measurement quota and API keys', paragraphs: ['Live measurement uses Google’s PageSpeed Insights API. You can create a free API key in Google Cloud Console and add it under Settings → PageSpeed Insights API Key.'] },
+      { title: 'Localhost, staging and protected pages', paragraphs: ['Live measurement requires a public URL that Google can reach. For private, staging, localhost or VPN-only pages, capture a HAR in your browser and open it in Knotvo.'] },
+      { title: 'Sharing a HAR safely', paragraphs: ['Use Sanitize → Share-Safe Copy. Knotvo removes cookies, Authorization headers, tokens and body secrets locally while leaving the original file unchanged.'] },
+      { title: 'Resetting Knotvo', paragraphs: ['Settings → Reset all data permanently removes brands, sites, scans, the PageSpeed API key and preferences from your Mac.'] },
+      { title: 'Contact details', paragraphs: ['Sungur Kerem Gezergün · iletisim@keremgezergun.com · +90 552 690 27 82 · Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / Istanbul, Türkiye.'] },
     ],
     cta: { title: 'Contact Knotvo support', text: 'Support requests are handled directly by the developer.', href: 'mailto:iletisim@keremgezergun.com?subject=Knotvo%20Support', label: 'Email support' },
   },
@@ -116,11 +142,12 @@ const pages: Record<string, EnglishPage> = {
     description: 'Learn how Knotvo handles HAR files, live URL measurements, API keys, local processing and support communications.',
     eyebrow: 'Knotvo legal', heading: 'Privacy Policy', lead: 'Effective and last updated: July 25, 2026.',
     sections: [
-      { title: 'Local HAR processing', paragraphs: ['HAR files are analyzed locally on your Mac. Knotvo does not upload the selected file or its analysis result to a developer-controlled service.'] },
-      { title: 'Optional live measurement', paragraphs: ['When you start live URL measurement, the public URL and your API key, if configured, are sent directly to Google PageSpeed Insights so Google can measure the page. HAR analysis does not use this network path.'] },
-      { title: 'Data collection', paragraphs: ['Knotvo does not require an account and does not include advertising, behavioral analytics or a developer-operated HAR storage service. Standard website server logs may be retained for security and reliability.'] },
-      { title: 'Support communications', paragraphs: ['Information you voluntarily provide is used to answer and resolve your request. Never send passwords, verification codes or unredacted production captures.'] },
-      { title: 'Contact', paragraphs: ['Data controller and developer: Sungur Kerem Gezergün. Email: iletisim@keremgezergun.com. Phone: +90 552 690 27 82.'] },
+      { title: 'What we collect', paragraphs: ['Nothing. Knotvo has no account system, login, analytics or telemetry. We do not operate a server that receives, stores or processes your HAR data.'] },
+      { title: 'Data stored on your device', bullets: ['HAR files and analysis results are parsed entirely on your Mac.', 'Brands, sites and scan history remain in local Application Support storage.', 'Your optional PageSpeed Insights API key stays on your Mac and authenticates only your own Google requests.', 'Settings → Reset all data removes all locally stored Knotvo data.'] },
+      { title: 'Live measurement (optional)', paragraphs: ['When you use live URL measurement, Knotvo sends the public URL and your API key, if configured, directly to Google PageSpeed Insights so Google can measure the page. Google’s Privacy Policy applies. HAR-file analysis does not use the network.'] },
+      { title: 'What we do not do', bullets: ['No advertising or advertising identifiers.', 'No third-party tracking.', 'No third-party crash or usage reporting.', 'No cookies.', 'No selling or sharing of personal data.'] },
+      { title: 'Children', paragraphs: ['Knotvo is a professional developer tool and is not directed at children.'] },
+      { title: 'Contact', paragraphs: ['Sungur Kerem Gezergün · iletisim@keremgezergun.com · +90 552 690 27 82 · Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / Istanbul, Türkiye.'] },
     ],
   },
   'nirengi-log-analyzer': {
@@ -140,6 +167,13 @@ const pages: Record<string, EnglishPage> = {
       { title: '41 reports for SEO decisions', bullets: ['Crawler identity: 5 reports', 'AI crawlers: 2 reports', 'Crawl budget: 7 reports', 'Technical errors: 8 reports', 'Coverage and freshness: 6 reports', 'Visitor traffic: 8 reports', 'Optional category analysis: 5 reports'] },
       { title: 'Supported log sources', bullets: ['Apache and Nginx combined, CLF and vhost formats', 'IIS W3C', 'AWS CloudFront and ALB', 'Cloudflare Logpush', 'Nginx, Caddy and Traefik JSON/NDJSON'] },
       { title: 'Measured at production scale', paragraphs: ['A Release build processed a 15.4 GB, 50.9-million-line production log in 40 seconds on an Apple M4 Mac with 16 GB memory. Results vary by hardware, storage, format and enabled features.'] },
+      { title: 'From files to decisions', bullets: ['Select one log file or a rotated group with the macOS file picker.', 'Add an optional site URL, sitemap, category list and DNS verification.', 'Follow progress and warnings while the parallel local engine runs.', 'Review dashboards and filters, then export CSV or a self-contained HTML report.'] },
+      { title: 'Frequently asked questions', items: [
+        { title: 'Does Nirengi upload server logs?', text: 'No. Selected files are processed locally inside the macOS App Sandbox; Nirengi has no account, advertising or telemetry.' },
+        { title: 'When does Nirengi use network access?', text: 'Only when you initiate sitemap or robots.txt retrieval, DNS bot verification, or open a product/support link.' },
+        { title: 'Can I share the results?', text: 'Yes. Export tables as CSV or the complete report as one portable HTML file without a cloud account.' },
+        { title: 'Is Nirengi free?', text: 'Version 1.0 is free and has no subscription or in-app purchase.' },
+      ] },
     ],
     cta: { title: 'Private by design', text: 'Read how Nirengi handles local files and optional network requests.', href: '/en/nirengi-privacy-policy', label: 'Read the privacy policy' },
   },
@@ -283,7 +317,7 @@ function EnglishInnerPage({ page }: { page: EnglishPage }) {
   }
 
   if (slug === 'seo-learning-roadmap') {
-    return <main id="main-content" role="main" lang="en"><section className="page-header"><div className="container"><span className="section-tag">SEO Learning Roadmap</span><h1>Learn SEO in the Right Order</h1><p>{page.lead}</p></div></section><section className="page-content"><div className="container"><div className="roadmap-intro"><ul className="roadmap-stats"><li className="roadmap-stat"><span className="number">7</span><span className="label">Learning stages</span></li><li className="roadmap-stat"><span className="number">20+</span><span className="label">Core subjects</span></li><li className="roadmap-stat"><span className="number">1</span><span className="label">Structured path</span></li></ul></div>{page.sections.map((section, index) => <details className="section-accordion" open={index === 0} key={section.title}><summary className="section-accordion-header"><span className="title">{section.title}<span className="desc">{section.intro ?? 'Skills and concepts to master at this stage'}</span></span></summary><div className="section-accordion-body"><section className="subsection"><h2 className="subsection-title">Learning outcomes</h2><ul className="resource-list">{section.bullets?.map((item) => <li className="resource-item" key={item}><span className="resource-title">{item}</span><span className="resource-author">Practical SEO curriculum</span></li>)}</ul></section></div></details>)}</div></section></main>;
+    return <SeoLearningRoadmap language="en" />;
   }
 
   if (isNirengi && !isLegal && slug !== 'nirengi-accessibility') {

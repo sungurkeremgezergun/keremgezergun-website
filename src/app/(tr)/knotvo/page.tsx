@@ -195,6 +195,7 @@ export default function KnotvoPage() {
               alt="Knotvo genel bakış ekranı: performans skoru, en büyük darboğazlar ve tahmini kazanım"
               placeholder="blur"
               priority
+              fetchPriority="high"
               sizes="(max-width: 1100px) 100vw, 1080px"
             />
           </div>

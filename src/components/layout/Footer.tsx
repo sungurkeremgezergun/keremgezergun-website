@@ -21,7 +21,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
           </div>
 
           <nav className="footer-column" aria-label={isEnglish ? 'Site pages' : 'Site sayfaları'}>
-            <h4>{isEnglish ? 'Pages' : 'Sayfalar'}</h4>
+            <h2>{isEnglish ? 'Pages' : 'Sayfalar'}</h2>
             <Link href={isEnglish ? '/en' : '/'}>{isEnglish ? 'Home' : 'Ana Sayfa'}</Link>
             <Link href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}>{isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}</Link>
             <Link href={isEnglish ? '/en/seo-blog' : '/blog'}>{isEnglish ? 'SEO Blog' : 'Blog'}</Link>
@@ -40,7 +40,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
           </nav>
 
           <address className="footer-column">
-            <h4>{isEnglish ? 'Contact' : 'İletişim'}</h4>
+            <h2>{isEnglish ? 'Contact' : 'İletişim'}</h2>
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <a href={contact.phoneHref}>{contact.phone}</a>
             <p className="footer-location">{isEnglish ? 'Istanbul, Türkiye' : 'İstanbul, Türkiye'}</p>

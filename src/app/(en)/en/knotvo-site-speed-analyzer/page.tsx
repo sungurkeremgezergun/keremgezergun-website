@@ -196,6 +196,7 @@ export default function EnglishKnotvoPage() {
               alt="The Knotvo overview screen: performance score, biggest bottlenecks and estimated gain"
               placeholder="blur"
               priority
+              fetchPriority="high"
               sizes="(max-width: 1100px) 100vw, 1080px"
             />
           </div>

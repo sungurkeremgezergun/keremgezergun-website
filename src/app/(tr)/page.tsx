@@ -385,6 +385,7 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px"
                   priority
+                  fetchPriority="high"
                 />
                 <div className="image-decoration" aria-hidden="true"></div>
               </div>

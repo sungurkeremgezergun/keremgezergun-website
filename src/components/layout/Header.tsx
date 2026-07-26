@@ -118,13 +118,12 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
     };
   }, [menuOpen]);
 
-  // Visual highlight: a section anchor counts as active on its own page.
-  const isActive = (href: string) => {
-    if (href === '/' || href === '/en') return pathname === href;
-    const [path] = href.split('#');
-    const base = path.replace(/\/$/, '') || '/';
-    return pathname === base;
-  };
+  // Only page-level links highlight. An in-page anchor like /#hizmetler is not
+  // a destination you can be "on" — treating it as one marked both Hizmetler
+  // and Hakkımda active simultaneously on the home page, since they share a
+  // base path. Tracking which section is in view would need a scroll observer,
+  // which is not worth client JS for a highlight.
+  const isActive = (href: string) => !href.includes('#') && pathname === href;
 
   // aria-current must be exact. Prefix matching announced "current page" on
   // /nirengi-iletisim, /nirengi-gizlilik-politikasi, /nirengi-erisilebirlik,

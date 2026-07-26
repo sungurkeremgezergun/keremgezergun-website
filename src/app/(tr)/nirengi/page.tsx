@@ -77,7 +77,7 @@ export default function NirengiPage() {
             </div>
           </div>
           <div className="nirengi-window" role="img" aria-label="Nirengi analizinden dört örnek ölçüm">
-            <div className="nirengi-windowbar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div className="nirengi-windowbar" aria-hidden="true"><span></span><span></span><span></span></div>
             <div className="nirengi-metrics">
               <div><strong>2,4 Mn</strong><span>Analiz edilen istek</span></div>
               <div><strong>41</strong><span>Kullanılabilir rapor</span></div>

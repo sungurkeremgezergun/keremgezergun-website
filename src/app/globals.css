@@ -2564,7 +2564,7 @@ textarea:disabled {
     background: #fff; border: 1px solid var(--k-line);
     border-radius: var(--radius-lg); padding: 22px;
 }
-.knotvo .k-stat b {
+.knotvo .k-stat strong {
     display: block; font-size: 1.5rem; font-weight: 700; letter-spacing: -.02em;
     font-family: var(--font-playfair, 'Playfair Display'), serif; color: var(--k-navy);
 }
@@ -2601,7 +2601,7 @@ textarea:disabled {
 }
 .knotvo .lm-pill-wrap { text-align: center; }
 .knotvo .lm-bar { height: 6px; border-radius: 99px; background: #1b2430; margin: 22px 0; overflow: hidden; }
-.knotvo .lm-bar i { display: block; height: 100%; width: 72%; background: linear-gradient(90deg, var(--k-gold), #e6c96a); border-radius: 99px; }
+.knotvo .lm-bar span { display: block; height: 100%; width: 72%; background: linear-gradient(90deg, var(--k-gold), #e6c96a); border-radius: 99px; }
 .knotvo .lm-step { display: flex; align-items: center; gap: 12px; padding: 9px 0; color: #c7cede; font-size: 0.95rem; }
 .knotvo .lm-step .c {
     width: 20px; height: 20px; border-radius: 50%; background: rgba(53,208,127,.16); color: #7ee6ad;
@@ -2636,7 +2636,7 @@ textarea:disabled {
     display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; margin-top: 1px;
 }
 .knotvo .k-benefit span { color: var(--k-ink2); font-size: 0.97rem; }
-.knotvo .k-benefit b { color: var(--k-ink); font-weight: 600; }
+.knotvo .k-benefit strong { color: var(--k-ink); font-weight: 600; }
 @media (max-width: 700px) { .knotvo .k-benefits { grid-template-columns: 1fr; } }
 
 /* Comparison table */
@@ -2723,9 +2723,9 @@ textarea:disabled {
 }
 
 .nirengi-windowbar { display: flex; gap: 7px; padding: 16px 20px; border-bottom: 1px solid #253c58; }
-.nirengi-windowbar i { width: 11px; height: 11px; border-radius: 50%; background: #ed6a5e; }
-.nirengi-windowbar i:nth-child(2) { background: #f4bf4f; }
-.nirengi-windowbar i:nth-child(3) { background: #61c554; }
+.nirengi-windowbar span { width: 11px; height: 11px; border-radius: 50%; background: #ed6a5e; }
+.nirengi-windowbar span:nth-child(2) { background: #f4bf4f; }
+.nirengi-windowbar span:nth-child(3) { background: #61c554; }
 .nirengi-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 24px; }
 .nirengi-metrics div { padding: 18px; border: 1px solid #29415d; border-radius: 14px; background: rgb(255 255 255 / 0.04); }
 .nirengi-metrics strong { display: block; color: #fff; font-size: 1.65rem; }

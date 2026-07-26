@@ -207,19 +207,19 @@ export default function KnotvoPage() {
         <div className="container">
           <div className="k-stats">
             <div className="k-stat">
-              <b>Yerelde</b>
+              <strong>Yerelde</strong>
               <span>HAR analizi bilgisayarında yapılır, hiçbir şey yüklenmez</span>
             </div>
             <div className="k-stat">
-              <b>22+</b>
+              <strong>22+</strong>
               <span>Otomatik performans kuralı, tahmini kazançlarıyla</span>
             </div>
             <div className="k-stat">
-              <b>Sınırsız</b>
+              <strong>Sınırsız</strong>
               <span>Hesap yok, kuyruk yok, aylık ödeme yok</span>
             </div>
             <div className="k-stat">
-              <b>Lab + Saha</b>
+              <strong>Lab + Saha</strong>
               <span>Lighthouse ölçümü ve gerçek kullanıcı verisi bir arada</span>
             </div>
           </div>
@@ -316,7 +316,7 @@ export default function KnotvoPage() {
               <div className="lm-pill-wrap">
                 <span className="lm-pill"><span>https://www.site.com</span><span>Mobil</span><span>~30 sn</span></span>
               </div>
-              <div className="lm-bar"><i></i></div>
+              <div className="lm-bar"><span></span></div>
               <div className="lm-step"><span className="c">✓</span> Adres doğrulanıyor</div>
               <div className="lm-step"><span className="c">✓</span> PageSpeed Insights bağlantısı kuruluyor</div>
               <div className="lm-step"><span className="c">✓</span> Gerçek kullanıcı verisi (CrUX) kontrol ediliyor</div>
@@ -427,14 +427,14 @@ export default function KnotvoPage() {
           <div className="k-eyebrow">Neden Knotvo</div>
           <h2 id="k-why">Günlük işini kolaylaştıran yanları</h2>
           <div className="k-benefits">
-            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><b>Kota, hesap ve abonelik derdi yok.</b> İstediğin kadar analiz yap, tek seferlik bir uygulama.</span></div>
-            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><b>localhost, staging ve VPN arkası sayfalar.</b> Tarayıcıda HAR al, Knotvo&apos;da aç. Bulut araçlarının yapamadığı şey.</span></div>
-            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><b>Verilerin bilgisayarından çıkmaz.</b> Gizlilik ya da uyumluluk gereken ekipler için rahat bir seçenek.</span></div>
-            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><b>Skoru değil, işi anlatır.</b> Her bulgu ne yapman gerektiğini söyler.</span></div>
-            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><b>Native bir Mac uygulaması.</b> Hızlı ve akıcı, bir tarayıcı sekmesi değil.</span></div>
-            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><b>Lab ve gerçek kullanıcı verisi birlikte.</b> Sıralamayı gerçekte ne etkiliyor, kafan karışmadan gör.</span></div>
-            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><b>Paylaşırken sır sızdırmaz.</b> HAR&apos;ı temizleyip öyle gönderirsin.</span></div>
-            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><b>Öğrenmesi kolay.</b> Sürükle bırak, gerisini uygulama halleder.</span></div>
+            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><strong>Kota, hesap ve abonelik derdi yok.</strong> İstediğin kadar analiz yap, tek seferlik bir uygulama.</span></div>
+            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><strong>localhost, staging ve VPN arkası sayfalar.</strong> Tarayıcıda HAR al, Knotvo&apos;da aç. Bulut araçlarının yapamadığı şey.</span></div>
+            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><strong>Verilerin bilgisayarından çıkmaz.</strong> Gizlilik ya da uyumluluk gereken ekipler için rahat bir seçenek.</span></div>
+            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><strong>Skoru değil, işi anlatır.</strong> Her bulgu ne yapman gerektiğini söyler.</span></div>
+            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><strong>Native bir Mac uygulaması.</strong> Hızlı ve akıcı, bir tarayıcı sekmesi değil.</span></div>
+            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><strong>Lab ve gerçek kullanıcı verisi birlikte.</strong> Sıralamayı gerçekte ne etkiliyor, kafan karışmadan gör.</span></div>
+            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><strong>Paylaşırken sır sızdırmaz.</strong> HAR&apos;ı temizleyip öyle gönderirsin.</span></div>
+            <div className="k-benefit"><span className="chk" aria-hidden="true">✓</span><span><strong>Öğrenmesi kolay.</strong> Sürükle bırak, gerisini uygulama halleder.</span></div>
           </div>
         </div>
       </section>

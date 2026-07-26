@@ -65,7 +65,10 @@ export default function EnglishKnotvoPrivacyPage() {
       </p>
 
       <h1>Knotvo — Privacy Policy</h1>
-      <p className="muted">Last updated: {policyDates.knotvo.iso}</p>
+      <p className="muted">
+        Last updated:{' '}
+        <time dateTime={policyDates.knotvo.iso}>{policyDates.knotvo.en}</time>
+      </p>
 
       <p>
         Knotvo is a local macOS application that analyses web performance from HAR files and live

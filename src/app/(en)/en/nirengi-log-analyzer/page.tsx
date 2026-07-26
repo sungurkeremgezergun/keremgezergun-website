@@ -180,9 +180,9 @@ export default function EnglishNirengiPage() {
           </div>
           <div className="nirengi-window" role="img" aria-label="Four example measurements from a Nirengi analysis">
             <div className="nirengi-windowbar" aria-hidden="true">
-              <i />
-              <i />
-              <i />
+              <span />
+              <span />
+              <span />
             </div>
             <div className="nirengi-metrics">
               <div>

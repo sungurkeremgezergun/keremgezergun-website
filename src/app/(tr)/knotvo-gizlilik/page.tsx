@@ -49,7 +49,7 @@ const breadcrumbSchema = {
 
 export default function KnotvoGizlilikPage() {
   return (
-    <main id="main-content" className="knotvo-legal" role="main">
+    <main id="main-content" tabIndex={-1} className="knotvo-legal">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
@@ -100,8 +100,9 @@ export default function KnotvoGizlilikPage() {
           <strong>Canlı URL ölçümü</strong> özelliğini kullandığınızda Knotvo, girdiğiniz URL&apos;i
           Google&apos;ın <strong>PageSpeed Insights API</strong>&apos;sine gönderir; böylece Google o
           sayfayı ölçebilir. Bu durumda URL (ve varsa API anahtarınız) Google&apos;a iletilir ve{' '}
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" aria-label="Google Gizlilik Politikası (yeni sekmede açılır)">
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" >
             Google&apos;ın Gizlilik Politikası
+            <span className="sr-only"> (yeni sekmede açılır)</span>
           </a>
           &apos;na tabidir. Bu yolla yalnızca herkese açık URL&apos;ler ölçülebilir. HAR dosyası
           analizi hiç ağ kullanmaz.

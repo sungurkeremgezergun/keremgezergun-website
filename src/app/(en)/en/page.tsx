@@ -420,7 +420,7 @@ const tools = [
 
 export default function EnglishHomePage() {
   return (
-    <main id="main-content" role="main">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
@@ -758,7 +758,6 @@ export default function EnglishHomePage() {
                   href="/en/knotvo-site-speed-analyzer"
                   className="btn btn-primary btn-large"
                   style={{ marginTop: 20 }}
-                  aria-label="Go to the Knotvo product page"
                 >
                   Explore Knotvo
                 </Link>
@@ -880,9 +879,9 @@ export default function EnglishHomePage() {
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="Message me on WhatsApp (opens in a new tab)"
           >
             Message me on WhatsApp
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </section>

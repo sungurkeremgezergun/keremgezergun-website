@@ -62,7 +62,7 @@ const supportRows = [
 
 export default function EnglishNirengiSupportPage() {
   return (
-    <main id="main-content" className="nirengi-legal" role="main">
+    <main id="main-content" tabIndex={-1} className="nirengi-legal">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
@@ -92,9 +92,10 @@ export default function EnglishNirengiSupportPage() {
             className="nirengi-table-wrap"
             tabIndex={0}
             role="region"
-            aria-label="Information needed for a support request"
+            aria-labelledby="support-caption"
           >
             <table>
+              <caption id="support-caption">What to include in a support request, by issue</caption>
               <thead>
                 <tr>
                   <th scope="col">Issue</th>

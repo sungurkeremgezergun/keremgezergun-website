@@ -104,7 +104,7 @@ const faqSchema = {
 
 export default function KnotvoDestekPage() {
   return (
-    <main id="main-content" className="knotvo-legal" role="main">
+    <main id="main-content" tabIndex={-1} className="knotvo-legal">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}

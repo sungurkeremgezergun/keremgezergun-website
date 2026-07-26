@@ -54,7 +54,7 @@ const breadcrumbSchema = {
 
 export default function EnglishKnotvoPrivacyPage() {
   return (
-    <main id="main-content" className="knotvo-legal" role="main">
+    <main id="main-content" tabIndex={-1} className="knotvo-legal">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
@@ -108,9 +108,9 @@ export default function EnglishKnotvoPrivacyPage() {
           href="https://policies.google.com/privacy"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Google Privacy Policy (opens in a new tab)"
         >
           Google&apos;s Privacy Policy
+          <span className="sr-only"> (opens in a new tab)</span>
         </a>
         . Only publicly reachable URLs can be measured this way. HAR file analysis uses no network
         at all.

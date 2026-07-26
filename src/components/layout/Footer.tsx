@@ -9,7 +9,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
   const pathname = usePathname();
   const isEnglish = pathname === '/en' || pathname.startsWith('/en/') || (!pathname && language === 'en');
   return (
-    <footer className="footer" role="contentinfo" aria-label={isEnglish ? 'Site footer' : 'Site alt bilgisi'}>
+    <footer className="footer">
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
@@ -20,7 +20,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             </p>
           </div>
 
-          <nav className="footer-column" aria-label={isEnglish ? 'Site pages' : 'Site sayfaları'}>
+          <nav className="footer-column" aria-label={isEnglish ? 'Pages' : 'Sayfalar'}>
             <h2>{isEnglish ? 'Pages' : 'Sayfalar'}</h2>
             <Link href={isEnglish ? '/en' : '/'}>{isEnglish ? 'Home' : 'Ana Sayfa'}</Link>
             <Link href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}>{isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}</Link>
@@ -46,7 +46,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             <p className="footer-location">{isEnglish ? 'Istanbul, Türkiye' : 'İstanbul, Türkiye'}</p>
             <nav
               className="footer-social-icons"
-              aria-label={isEnglish ? 'Social media links' : 'Sosyal medya bağlantıları'}
+              aria-label={isEnglish ? 'Social media' : 'Sosyal medya'}
             >
               <a
                 href="https://www.linkedin.com/in/sungur-kerem-gezergun/"

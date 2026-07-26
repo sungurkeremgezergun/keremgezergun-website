@@ -10,12 +10,17 @@
     --primary-light: #1A2D4A;
     --secondary: #0A1628;
     --accent: #C9A84C;
-    --accent-text: #7A5D14;
+    /* Text-safe accent: 7.17:1 on --bg-primary (WCAG AAA 1.4.6). */
+    --accent-text: #655014;
+    /* Focus ring. --accent itself is only 2.11:1 on the light surfaces and
+       fails SC 2.4.13; this tone clears 3:1 against --bg-primary,
+       --bg-secondary AND --bg-dark, so one ring works on every section. */
+    --focus-ring: #8F7326;
     --text-primary: #0A1628;
     --text-secondary: #3D4F65;
-    /* WCAG AA on --bg-secondary (#F0EDE5), the lightest surface this token is
-       used on. The previous #6B7B8F measured 3.70:1 and failed. */
-    --text-light: #55647A;
+    /* 7.12:1 on --bg-secondary (#F0EDE5), the lightest surface this token
+       lands on — WCAG AAA 1.4.6. */
+    --text-light: #414F62;
     --bg-primary: #F8F6F0;
     --bg-secondary: #F0EDE5;
     --bg-dark: #0A1628;
@@ -37,13 +42,28 @@
     box-sizing: border-box;
 }
 
+/* The header is position:fixed at 72px, so anything scrolled to would land
+   underneath it. scroll-padding applies to the scroll container and therefore
+   covers EVERY scrollIntoView trigger — in-page links, find-in-page, and
+   crucially sequential keyboard focus. scroll-margin only covers the elements
+   it is set on, which left Tab-driven scrolling uncorrected.
+   SC 2.4.11 (AA) / 2.4.12 (AAA) Focus Not Obscured. */
+html {
+    scroll-padding-top: 90px;
+}
+
+:target,
+[id] {
+    scroll-margin-top: 90px;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
     font-family: var(--font-inter, 'Inter'), -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.6;
     color: var(--text-primary);
     background: var(--bg-primary);
@@ -97,7 +117,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     justify-content: center;
     gap: 8px;
     padding: 12px 24px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 600;
     border-radius: var(--radius);
     border: 2px solid transparent;
@@ -131,7 +151,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 
 .btn-large {
     padding: 16px 32px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .btn-full {
@@ -193,7 +213,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 }
 
 .nav-menu a {
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 500;
     color: var(--text-secondary);
 }
@@ -216,7 +236,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     background: transparent;
     color: var(--text-secondary);
     font: inherit;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 500;
     cursor: pointer;
 }
@@ -228,7 +248,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 }
 
 .nav-chevron {
-    font-size: 17px;
+    font-size: 1.0625rem;
     transition: transform 0.2s ease;
 }
 
@@ -318,7 +338,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     background: linear-gradient(135deg, rgba(201, 168, 76, 0.12) 0%, rgba(201, 168, 76, 0.22) 100%);
     border: 1px solid rgba(201, 168, 76, 0.3);
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     color: var(--accent-text);
     margin-bottom: 24px;
@@ -334,14 +354,14 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 }
 
 .hero-title {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-secondary);
     margin-bottom: 16px;
 }
 
 .hero-description {
-    font-size: 18px;
+    font-size: 1.125rem;
     color: var(--text-secondary);
     margin-bottom: 32px;
     max-width: 500px;
@@ -366,13 +386,13 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 
 .stat-number {
     display: block;
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 800;
     color: var(--accent-text);
 }
 
 .stat-label {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-secondary);
 }
 
@@ -422,7 +442,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
 
 .tools-title {
     text-align: center;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-light);
     text-transform: uppercase;
@@ -483,7 +503,7 @@ section {
     padding: 6px 16px;
     background: var(--primary);
     color: white;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -513,7 +533,7 @@ section {
 }
 
 .about-text p {
-    font-size: 18px;
+    font-size: 1.125rem;
     color: var(--text-secondary);
     margin-bottom: 16px;
 }
@@ -562,11 +582,11 @@ section {
 
 .expertise-card h3 {
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .expertise-card p {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-secondary);
 }
 
@@ -611,7 +631,7 @@ section {
     padding: 6px 12px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 16px;
 }
@@ -623,7 +643,7 @@ section {
 .project-card p {
     color: var(--text-secondary);
     margin-bottom: 16px;
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
 
 .project-tags {
@@ -636,7 +656,7 @@ section {
     padding: 4px 12px;
     background: rgba(0, 0, 0, 0.05);
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
 }
 
@@ -688,7 +708,7 @@ section {
     padding: 4px 10px;
     background: rgba(201, 168, 76, 0.12);
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     color: var(--accent-text);
     margin-bottom: 12px;
@@ -696,12 +716,12 @@ section {
 
 .blog-card h3 {
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .blog-card p {
     color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 /* Ongoing Projects Section */
@@ -760,7 +780,7 @@ section {
     padding: 4px 12px;
     background: rgba(201, 168, 76, 0.25);
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     color: var(--accent);
     margin-bottom: 12px;
@@ -769,12 +789,12 @@ section {
 .ongoing-card h3 {
     color: white;
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .ongoing-card p {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 /* Project Badge Secondary */
@@ -784,7 +804,7 @@ section {
     background: var(--primary);
     color: white;
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 12px;
 }
@@ -795,7 +815,7 @@ section {
     background: var(--primary);
     color: white;
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
 }
 
@@ -818,18 +838,19 @@ section {
     color: white;
     margin-bottom: 12px;
     display: block;
-    font-size: 28px;
+    font-size: 1.75rem;
 }
 
 .footer-brand p {
     color: rgba(255, 255, 255, 0.6);
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-bottom: 8px;
 }
 
 .footer-brand .footer-description {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 14px;
+    /* 0.6 alpha = 7.06:1 on --bg-dark (AAA). 0.5 only reached 5.22:1. */
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
     line-height: 1.6;
     max-width: 280px;
 }
@@ -844,14 +865,14 @@ section {
    the visual size is set here rather than by the tag. */
 .footer-column h2 {
     color: white;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
 .footer-column a {
     color: rgba(255, 255, 255, 0.6);
-    font-size: 14px;
+    font-size: 0.875rem;
     transition: var(--transition);
 }
 
@@ -862,7 +883,7 @@ section {
 
 .footer-column .footer-location {
     color: rgba(255, 255, 255, 0.5);
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .footer-social-icons {
@@ -872,8 +893,9 @@ section {
 }
 
 .footer-social-icons a {
-    width: 40px;
-    height: 40px;
+    /* 44px square meets SC 2.5.5 Target Size (Enhanced). */
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -902,7 +924,7 @@ section {
 }
 
 .footer-bottom p {
-    font-size: 14px;
+    font-size: 0.875rem;
     /* 0.4 alpha measured 3.79:1 on --bg-dark and failed AA. */
     color: rgba(255, 255, 255, 0.6);
 }
@@ -923,7 +945,7 @@ section {
 }
 
 .page-header p {
-    font-size: 18px;
+    font-size: 1.125rem;
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
@@ -989,14 +1011,14 @@ section {
     background: var(--primary);
     color: white;
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 16px;
     width: fit-content;
 }
 
 .project-detail-content h2 {
-    font-size: 24px;
+    font-size: 1.5rem;
     margin-bottom: 12px;
 }
 
@@ -1017,7 +1039,7 @@ section {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-secondary);
 }
 
@@ -1058,7 +1080,7 @@ section {
 }
 
 .blog-card-large h3 {
-    font-size: 22px;
+    font-size: 1.375rem;
     margin-bottom: 12px;
 }
 
@@ -1074,7 +1096,7 @@ section {
 }
 
 .blog-meta .meta-item {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-light);
 }
 
@@ -1125,12 +1147,12 @@ section {
 }
 
 .service-card h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
     margin-bottom: 12px;
 }
 
 .service-card p {
-    font-size: 15px;
+    font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 16px;
@@ -1138,7 +1160,7 @@ section {
 }
 
 .service-output {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     color: var(--accent-text);
     padding-top: 16px;
@@ -1187,14 +1209,14 @@ section {
 
 .result-label {
     display: block;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
     margin-bottom: 12px;
 }
 
 .result-card p {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.5;
 }
@@ -1264,12 +1286,12 @@ section {
 }
 
 .award-card h3 {
-    font-size: 17px;
+    font-size: 1.0625rem;
     margin-bottom: 8px;
 }
 
 .award-card p {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-secondary);
     margin-bottom: 16px;
     line-height: 1.5;
@@ -1281,7 +1303,7 @@ section {
     background: rgba(201, 168, 76, 0.15);
     color: var(--accent-text);
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
 }
 
@@ -1309,7 +1331,7 @@ section {
 }
 
 .podcast-description {
-    font-size: 17px;
+    font-size: 1.0625rem;
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 24px;
@@ -1330,7 +1352,7 @@ section {
     padding: 6px 16px;
     background: rgba(201, 168, 76, 0.12);
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     color: var(--accent-text);
 }
@@ -1395,7 +1417,7 @@ section {
 .podcast-artwork-title {
     display: block;
     font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
     color: white;
 }
@@ -1428,7 +1450,7 @@ section {
     padding: 20px 24px;
     cursor: pointer;
     font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 600;
     color: var(--text-primary);
     transition: var(--transition);
@@ -1460,7 +1482,7 @@ section {
 }
 
 .faq-answer p {
-    font-size: 15px;
+    font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.7;
 }
@@ -1520,7 +1542,7 @@ section {
 
     .faq-question {
         padding: 16px 20px;
-        font-size: 15px;
+        font-size: 0.9375rem;
     }
 
     .faq-answer {
@@ -1548,7 +1570,7 @@ section {
 
 .cta-section p {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 18px;
+    font-size: 1.125rem;
     margin-bottom: 32px;
     max-width: 500px;
     margin-left: auto;
@@ -1789,7 +1811,7 @@ section {
     }
 
     .stat-number {
-        font-size: 24px;
+        font-size: 1.5rem;
     }
 
     .hero-cta {
@@ -1853,7 +1875,7 @@ section {
 
 .skip-link:focus {
     top: 0;
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
 }
 
@@ -1865,20 +1887,20 @@ section {
 }
 
 *:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
 }
 
 /* Buton focus */
 .btn:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
     box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.3);
 }
 
 /* Link focus */
 a:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
 }
 
@@ -1886,21 +1908,21 @@ a:focus-visible {
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
     border-color: var(--accent);
 }
 
 /* Nav link focus */
 .nav-menu a:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 4px;
     border-radius: 4px;
 }
 
 /* Social link focus */
 .social-link:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
 }
 
@@ -1908,7 +1930,7 @@ select:focus-visible {
 .project-card:focus-visible,
 .blog-card:focus-visible,
 .expertise-card:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
 }
 
@@ -1972,6 +1994,13 @@ select:focus-visible {
         scroll-behavior: auto !important;
     }
 
+    /* The universal selector does not reliably reach the scroll container in
+       every engine, and html { scroll-behavior: smooth } is exactly the motion
+       this media query exists to stop. SC 2.3.3. */
+    html {
+        scroll-behavior: auto !important;
+    }
+
     .hero-content {
         animation: none;
     }
@@ -1986,12 +2015,13 @@ select:focus-visible {
 /* ===========================================
    6. High Contrast Mode Destegi
    =========================================== */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more), (prefers-contrast: high) {
     :root {
         --primary: #000000;
         --primary-dark: #000000;
         --accent: #8B6D1E;
         --accent-text: #6B5200;
+        --focus-ring: #000000;
         --text-primary: #000000;
         --text-secondary: #000000;
         --bg-primary: #ffffff;
@@ -2099,6 +2129,23 @@ select:focus-visible {
 /* ===========================================
    8. Minimum Touch Target Size (44x44px) - WCAG 2.5.5
    =========================================== */
+/* No viewport qualifier: SC 2.5.8 (24px, AA) and 2.5.5 (44px, AAA) apply at
+   every width, not just on mobile. inline-flex is required or min-width is a
+   no-op on inline elements. */
+.btn,
+a.nav-link,
+.social-link,
+.hamburger,
+.footer-social-icons a,
+.nav-menu > li > a,
+.nav-submenu a,
+.language-switch {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
 @media (max-width: 768px) {
     .btn,
     a.nav-link,
@@ -2166,7 +2213,7 @@ a:focus {
 /* Hata mesajlari icin stil */
 .form-error {
     color: #a71d2a;
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-top: 4px;
     display: flex;
     align-items: center;
@@ -2183,14 +2230,14 @@ a:focus {
     background: #a71d2a;
     color: white;
     border-radius: 50%;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: bold;
 }
 
 /* Basari mesajlari icin stil */
 .form-success {
     color: #0a7c42;
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-top: 4px;
     display: flex;
     align-items: center;
@@ -2207,7 +2254,7 @@ a:focus {
     background: #0a7c42;
     color: white;
     border-radius: 50%;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: bold;
 }
 
@@ -2219,7 +2266,7 @@ a:focus {
 
 /* Focus indicator for interactive elements */
 .interactive:focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
 }
 
@@ -2363,6 +2410,21 @@ textarea:disabled {
 .resource-list {
     display: grid;
     gap: 8px;
+}
+
+/* Visible "leaves this site" cue. currentColor so it survives forced-colors,
+   where background-image icons are stripped. */
+.resource-external {
+    flex: 0 0 auto;
+    width: 15px;
+    height: 15px;
+    margin-left: auto;
+    opacity: 0.65;
+}
+
+.resource-item:hover .resource-external,
+.resource-item:focus-visible .resource-external {
+    opacity: 1;
 }
 
 .resource-item {
@@ -2678,7 +2740,7 @@ textarea:disabled {
 .nirengi-grid p { color: var(--text-secondary); }
 
 .nirengi-table-wrap { overflow-x: auto; margin-top: 28px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: #fff; }
-.nirengi-table-wrap:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.nirengi-table-wrap:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 4px; }
 .nirengi-table-wrap table { width: 100%; min-width: 680px; border-collapse: collapse; }
 .nirengi-table-wrap th, .nirengi-table-wrap td { padding: 15px 17px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
 .nirengi-table-wrap thead th { background: var(--primary); color: #fff; font-size: 0.85rem; }
@@ -2850,4 +2912,25 @@ textarea:disabled {
 @media (max-width: 520px) {
     .nirengi-metrics, .nirengi-steps, .nirengi-bench { grid-template-columns: 1fr; }
     .nirengi-metrics { padding: 16px; }
+}
+
+
+/* ===========================================
+   9. Reduced Transparency — macOS/Windows "reduce transparency"
+   =========================================== */
+@media (prefers-reduced-transparency: reduce) {
+    .header {
+        background: var(--bg-primary);
+        backdrop-filter: none;
+    }
+
+    .nav-submenu {
+        backdrop-filter: none;
+    }
+}
+
+/* <address> defaults to italic, which is harder to read for dyslexic users.
+   The element is kept for its semantics, not its styling. */
+address {
+    font-style: normal;
 }

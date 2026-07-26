@@ -150,7 +150,7 @@ const faqSchema = {
 
 export default function KnotvoPage() {
   return (
-    <main id="main-content" className="knotvo" role="main">
+    <main id="main-content" tabIndex={-1} className="knotvo">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }}
@@ -448,8 +448,9 @@ export default function KnotvoPage() {
             Piyasada üç grup araç var ve hiçbiri tam olarak Knotvo&apos;nun durduğu yerde değil.
             Aşağıda marka adı vermeden, tür bazında karşılaştırdık.
           </p>
-          <div className="k-tablewrap">
+          <div className="k-tablewrap" tabIndex={0} role="region" aria-labelledby="cmp-caption">
             <table>
+              <caption id="cmp-caption">Knotvo ile diğer araç türlerinin yetenek karşılaştırması</caption>
               <thead>
                 <tr>
                   <th>Yetenek</th>

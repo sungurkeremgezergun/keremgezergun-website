@@ -86,8 +86,30 @@ function ChevronSvg() {
   );
 }
 
+function ExternalIcon() {
+  return (
+    <svg
+      className="resource-external"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  );
+}
+
+// No aria-label here on purpose. The visible content already names the link,
+// and an aria-label that omitted the visible type badge ("Rehber"/"Guide")
+// broke SC 2.5.3 Label in Name on ~1180 links — voice control could not match
+// what the user could read. The new-tab warning is now both visible (icon) and
+// announced (sr-only text), which is what SC 3.2.5 asks for.
 function ResourceItem({ resource, language }: { resource: RoadmapResource; language: Language }) {
-  const title = resource.title[language];
   return (
     <li>
       <a
@@ -95,13 +117,14 @@ function ResourceItem({ resource, language }: { resource: RoadmapResource; langu
         target="_blank"
         rel="nofollow noopener noreferrer"
         className="resource-item"
-        aria-label={`${title}, ${resource.author} (${chrome.newTab[language]})`}
       >
         <span className={`resource-type type-${resource.type}`}>
           {resourceTypeLabels[resource.type][language]}
         </span>
-        <span className="resource-title">{title}</span>
+        <span className="resource-title">{resource.title[language]}</span>
         <span className="resource-author">{resource.author}</span>
+        <ExternalIcon />
+        <span className="sr-only">({chrome.newTab[language]})</span>
       </a>
     </li>
   );
@@ -147,7 +170,7 @@ export default function SeoOgrenmeHaritasiPage({ language = 'tr' }: { language?:
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema(language)) }}
       />
 
-      <main id="main-content" role="main" lang={language === 'en' ? 'en' : undefined}>
+      <main id="main-content" tabIndex={-1} lang={language === 'en' ? 'en' : undefined}>
         <section className="page-header" aria-labelledby="page-title">
           <div className="container">
             <span className="section-tag">{chrome.tag[language]}</span>
@@ -195,9 +218,9 @@ export default function SeoOgrenmeHaritasiPage({ language = 'tr' }: { language?:
               target="_blank"
               rel="nofollow noopener noreferrer"
               className="btn btn-primary btn-large"
-              aria-label={chrome.ctaLabel[language]}
             >
               {chrome.ctaButton[language]}
+              <span className="sr-only"> ({chrome.newTab[language]})</span>
             </a>
           </div>
         </section>

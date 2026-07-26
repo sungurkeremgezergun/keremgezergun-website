@@ -327,7 +327,7 @@ const faqSchema = {
 
 export default function HomePage() {
   return (
-    <main id="main-content" role="main">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
@@ -788,7 +788,6 @@ export default function HomePage() {
                   href="/knotvo"
                   className="btn btn-primary btn-large"
                   style={{ marginTop: 20 }}
-                  aria-label="Knotvo detay sayfasına git"
                 >
                   Knotvo&apos;yu Keşfet
                 </Link>
@@ -902,9 +901,9 @@ export default function HomePage() {
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="WhatsApp’tan mesaj gönder (yeni sekmede açılır)"
           >
             WhatsApp’tan Yazın
+            <span className="sr-only"> (yeni sekmede açılır)</span>
           </a>
         </div>
       </section>

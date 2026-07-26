@@ -72,7 +72,7 @@ const ClockIcon = () => (
 
 export default function EnglishIndustryProjectsPage() {
   return (
-    <main id="main-content" role="main">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
@@ -237,9 +237,9 @@ export default function EnglishIndustryProjectsPage() {
                     rel="nofollow noopener noreferrer"
                     className="btn btn-primary"
                     style={{ marginTop: 20 }}
-                    aria-label="Watch the Sepetteki SEO podcast on YouTube (opens in a new tab)"
                   >
                     Watch on YouTube
+                    <span className="sr-only"> — the Sepetteki SEO podcast (opens in a new tab)</span>
                   </a>
                 </div>
               </article>
@@ -260,9 +260,9 @@ export default function EnglishIndustryProjectsPage() {
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="Message me on WhatsApp (opens in a new tab)"
           >
             Message me on WhatsApp
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </section>

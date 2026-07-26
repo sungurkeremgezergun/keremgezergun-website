@@ -53,7 +53,7 @@ const breadcrumbSchema = {
 
 export default function EnglishNirengiPrivacyPage() {
   return (
-    <main id="main-content" className="nirengi-legal" role="main">
+    <main id="main-content" tabIndex={-1} className="nirengi-legal">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}

@@ -63,7 +63,7 @@ const formats = [
 
 export default function NirengiPage() {
   return (
-    <main id="main-content" className="nirengi" role="main">
+    <main id="main-content" tabIndex={-1} className="nirengi">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }} />
       <section className="nirengi-hero" aria-labelledby="nirengi-title">
         <div className="container nirengi-hero-grid">
@@ -108,8 +108,8 @@ export default function NirengiPage() {
         <div className="container">
           <p className="nirengi-eyebrow">Eksiksiz yetenek haritası</p>
           <h2 id="reports-title">SEO kararları için düzenlenmiş 41 rapor.</h2>
-          <div className="nirengi-table-wrap" tabIndex={0} role="region" aria-label="Nirengi rapor grupları tablosu">
-            <table><thead><tr><th scope="col">Rapor grubu</th><th scope="col">Rapor</th><th scope="col">Öne çıkan analizler</th></tr></thead>
+          <div className="nirengi-table-wrap" tabIndex={0} role="region" aria-labelledby="reports-caption">
+            <table><caption id="reports-caption">Nirengi rapor grupları ve öne çıkan analizler</caption><thead><tr><th scope="col">Rapor grubu</th><th scope="col">Rapor</th><th scope="col">Öne çıkan analizler</th></tr></thead>
               <tbody>{reportGroups.map(([group, count, detail]) => <tr key={group}><th scope="row">{group}</th><td>{count}</td><td>{detail}</td></tr>)}</tbody>
             </table>
           </div>
@@ -131,8 +131,8 @@ export default function NirengiPage() {
       <section className="nirengi-section nirengi-alt" aria-labelledby="formats-title">
         <div className="container">
           <p className="nirengi-eyebrow">Otomatik format algılama</p><h2 id="formats-title">Modern sunucu logları için tek analiz aracı.</h2>
-          <div className="nirengi-table-wrap" tabIndex={0} role="region" aria-label="Desteklenen log formatları tablosu">
-            <table><thead><tr><th scope="col">Kaynak</th><th scope="col">Desteklenen format</th></tr></thead><tbody>{formats.map(([source, detail]) => <tr key={source}><th scope="row">{source}</th><td>{detail}</td></tr>)}</tbody></table>
+          <div className="nirengi-table-wrap" tabIndex={0} role="region" aria-labelledby="formats-caption">
+            <table><caption id="formats-caption">Kaynağa göre desteklenen log formatları</caption><thead><tr><th scope="col">Kaynak</th><th scope="col">Desteklenen format</th></tr></thead><tbody>{formats.map(([source, detail]) => <tr key={source}><th scope="row">{source}</th><td>{detail}</td></tr>)}</tbody></table>
           </div>
         </div>
       </section>

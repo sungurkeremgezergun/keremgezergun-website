@@ -144,7 +144,7 @@ const formats = [
 
 export default function EnglishNirengiPage() {
   return (
-    <main id="main-content" className="nirengi" role="main">
+    <main id="main-content" tabIndex={-1} className="nirengi">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }}
@@ -235,9 +235,10 @@ export default function EnglishNirengiPage() {
             className="nirengi-table-wrap"
             tabIndex={0}
             role="region"
-            aria-label="Nirengi report groups"
+            aria-labelledby="reports-caption"
           >
             <table>
+              <caption id="reports-caption">Nirengi report groups and highlighted analyses</caption>
               <thead>
                 <tr>
                   <th scope="col">Report group</th>
@@ -292,9 +293,10 @@ export default function EnglishNirengiPage() {
             className="nirengi-table-wrap"
             tabIndex={0}
             role="region"
-            aria-label="Supported log formats"
+            aria-labelledby="formats-caption"
           >
             <table>
+              <caption id="formats-caption">Supported log formats by source</caption>
               <thead>
                 <tr>
                   <th scope="col">Source</th>

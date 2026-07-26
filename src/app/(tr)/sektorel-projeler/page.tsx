@@ -56,7 +56,7 @@ const breadcrumbSchema = {
 
 export default function SektorelProjelerPage() {
   return (
-    <main id="main-content" role="main">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
@@ -315,9 +315,9 @@ export default function SektorelProjelerPage() {
                     rel="nofollow noopener noreferrer"
                     className="btn btn-primary"
                     style={{ marginTop: 20 }}
-                    aria-label="Sepetteki SEO Podcast'i YouTube'da izle (yeni sekmede açılır)"
                   >
                     YouTube&apos;da İzle
+                    <span className="sr-only"> — Sepetteki SEO podcast&apos;i (yeni sekmede açılır)</span>
                   </a>
                 </div>
               </article>
@@ -342,9 +342,9 @@ export default function SektorelProjelerPage() {
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="WhatsApp’tan mesaj gönder (yeni sekmede açılır)"
           >
             WhatsApp’tan Yazın
+            <span className="sr-only"> (yeni sekmede açılır)</span>
           </a>
         </div>
       </section>

@@ -150,7 +150,7 @@ const cellClass = (value: string) =>
 
 export default function EnglishKnotvoPage() {
   return (
-    <main id="main-content" className="knotvo" role="main">
+    <main id="main-content" tabIndex={-1} className="knotvo">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }}
@@ -610,8 +610,9 @@ export default function EnglishKnotvoPage() {
             There are three groups of tools on the market and none of them sits exactly where Knotvo
             does. The table below compares by category rather than naming brands.
           </p>
-          <div className="k-tablewrap">
+          <div className="k-tablewrap" tabIndex={0} role="region" aria-labelledby="cmp-caption">
             <table>
+              <caption id="cmp-caption">Capability comparison between Knotvo and other tool types</caption>
               <thead>
                 <tr>
                   <th>Capability</th>

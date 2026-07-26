@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function NirengiPrivacyPage() {
-  return <main id="main-content" className="nirengi-legal" role="main"><article className="container nirengi-narrow">
+  return <main id="main-content" tabIndex={-1} className="nirengi-legal"><article className="container nirengi-narrow">
     <p className="nirengi-eyebrow">Nirengi</p><h1>Gizlilik Politikası</h1><p className="nirengi-updated">Yürürlük ve son güncelleme: 24 Temmuz 2026</p>
     <p className="nirengi-summary"><strong>Kısaca:</strong> Nirengi, seçtiğiniz log dosyalarını veya analiz sonuçlarını yüklemez. İsteğe bağlı ağ özellikleri ve destek iletişimi aşağıda açıklanır.</p>
     <div className="nirengi-policy">

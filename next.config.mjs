@@ -24,6 +24,10 @@ const securityHeaders = [
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
+  // Isolates the top-level window from any document it opens or is opened by.
+  // Lighthouse flags a missing COOP as high severity; the site opens only
+  // plain external links, so same-origin costs us nothing.
+  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
 ];
 
 const nextConfig = {

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 import knotvoShot from '../../../../public/knotvo/overview.png';
 
@@ -419,7 +420,7 @@ const tools = [
 
 export default function EnglishHomePage() {
   return (
-    <main id="main-content" role="main">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
@@ -458,13 +459,13 @@ export default function EnglishHomePage() {
               </ul>
               <div className="hero-cta">
                 <a
-                  href="https://businessup.com.tr/iletisim/"
+                  href={contact.whatsapp}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   className="btn btn-primary btn-large"
                 >
                   Work with me
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  <span className="sr-only"> — message me on WhatsApp (opens in a new tab)</span>
                 </a>
                 <Link href="/en/#projects" className="btn btn-outline btn-large">
                   Explore projects
@@ -479,6 +480,7 @@ export default function EnglishHomePage() {
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px"
                   priority
+                  fetchPriority="high"
                 />
                 <div className="image-decoration" aria-hidden="true" />
               </div>
@@ -756,7 +758,6 @@ export default function EnglishHomePage() {
                   href="/en/knotvo-site-speed-analyzer"
                   className="btn btn-primary btn-large"
                   style={{ marginTop: 20 }}
-                  aria-label="Go to the Knotvo product page"
                 >
                   Explore Knotvo
                 </Link>
@@ -874,13 +875,13 @@ export default function EnglishHomePage() {
             Get in touch to strengthen your SEO strategy or grow your digital visibility.
           </p>
           <a
-            href="https://businessup.com.tr/"
+            href={contact.whatsapp}
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="Visit the BusinessUp website (opens in a new tab)"
           >
-            Visit BusinessUp
+            Message me on WhatsApp
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </section>

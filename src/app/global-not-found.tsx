@@ -20,7 +20,7 @@ export default function GlobalNotFound() {
   return (
     <html lang="tr" className={fontVariables}>
       <body>
-        <main id="main-content" role="main">
+        <main id="main-content" tabIndex={-1}>
           <section
             className="page-header"
             style={{ minHeight: '70vh', display: 'flex', alignItems: 'center' }}

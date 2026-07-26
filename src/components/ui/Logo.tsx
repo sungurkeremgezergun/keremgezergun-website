@@ -20,7 +20,8 @@ export default function Logo({ variant = 'header', href = '/' }: { variant?: 'he
         alt="Kerem Gezergün"
         width={width}
         height={height}
-        priority={variant === 'header'}
+        // No `priority` here on purpose: preloading the small header logo
+        // competes with the real LCP element (the hero portrait) for bandwidth.
         sizes={variant === 'header' ? '(max-width: 768px) 140px, 180px' : '220px'}
       />
     </Link>

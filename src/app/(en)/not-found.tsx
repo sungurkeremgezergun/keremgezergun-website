@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main id="main-content" role="main" lang="en">
+    <main id="main-content" tabIndex={-1} lang="en">
       <section className="page-header" style={{ minHeight: '50vh', display: 'flex', alignItems: 'center' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <h1>404</h1>

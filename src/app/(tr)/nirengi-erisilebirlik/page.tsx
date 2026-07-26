@@ -77,7 +77,7 @@ const shortcuts = [
 
 export default function NirengiAccessibilityPage() {
   return (
-    <main id="main-content" className="nirengi-accessibility" role="main">
+    <main id="main-content" tabIndex={-1} className="nirengi-accessibility">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }} />
 
       <header className="nirengi-a11y-hero">

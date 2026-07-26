@@ -53,7 +53,7 @@ const breadcrumbSchema = {
 
 export default function EnglishNirengiPrivacyPage() {
   return (
-    <main id="main-content" className="nirengi-legal" role="main">
+    <main id="main-content" tabIndex={-1} className="nirengi-legal">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
@@ -61,7 +61,7 @@ export default function EnglishNirengiPrivacyPage() {
       <article className="container nirengi-narrow">
         <p className="nirengi-eyebrow">Nirengi</p>
         <h1>Privacy Policy</h1>
-        <p className="nirengi-updated">Effective and last updated: 24 July 2026</p>
+        <p className="nirengi-updated">Effective and last updated: <time dateTime="2026-07-24">24 July 2026</time></p>
         <p className="nirengi-summary">
           <strong>In short:</strong> Nirengi does not upload the log files you select or the
           analysis results it produces. Optional network features and support communication are

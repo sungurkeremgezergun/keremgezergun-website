@@ -18,10 +18,10 @@ const supportRows = [
 ];
 
 export default function NirengiContactPage() {
-  return <main id="main-content" className="nirengi-legal" role="main"><div className="container nirengi-narrow">
+  return <main id="main-content" tabIndex={-1} className="nirengi-legal"><div className="container nirengi-narrow">
     <p className="nirengi-eyebrow">Nirengi</p><h1>Destek ve iletişim</h1><p className="nirengi-lead">Log formatı, analiz sonucu, gizlilik veya dışa aktarım konusunda yardıma mı ihtiyacınız var? Geliştiriciyle doğrudan iletişim kurun.</p>
     <div className="nirengi-contact-grid"><a href="mailto:iletisim@keremgezergun.com?subject=Nirengi%20Destek"><span>E-posta</span><strong>iletisim@keremgezergun.com</strong></a><a href="tel:+905526902782"><span>Telefon</span><strong>+90 552 690 27 82</strong></a></div>
-    <section aria-labelledby="request-title"><h2 id="request-title">Destek talebine neleri eklemelisiniz?</h2><div className="nirengi-table-wrap" tabIndex={0} role="region" aria-label="Destek talebi için gereken bilgiler"><table><thead><tr><th scope="col">Sorun</th><th scope="col">Yararlı bilgiler</th></tr></thead><tbody>{supportRows.map(([issue, info]) => <tr key={issue}><th scope="row">{issue}</th><td>{info}</td></tr>)}</tbody></table></div>
+    <section aria-labelledby="request-title"><h2 id="request-title">Destek talebine neleri eklemelisiniz?</h2><div className="nirengi-table-wrap" tabIndex={0} role="region" aria-labelledby="support-caption"><table><caption id="support-caption">Soruna göre destek talebine eklenecek bilgiler</caption><thead><tr><th scope="col">Sorun</th><th scope="col">Yararlı bilgiler</th></tr></thead><tbody>{supportRows.map(([issue, info]) => <tr key={issue}><th scope="row">{issue}</th><td>{info}</td></tr>)}</tbody></table></div>
     <p className="nirengi-note"><strong>Güvenlik notu:</strong> IP adresleri, alan adları, URL’ler, çerezler, erişim belirteçleri ve diğer gizli bilgiler temizlenmeden üretim loglarını e-postayla göndermeyin. Nirengi desteği Apple ID parolanızı veya doğrulama kodunuzu istemez.</p></section>
     <Link className="nirengi-back" href="/nirengi">← Nirengi ürün sayfasına dön</Link>
   </div></main>;

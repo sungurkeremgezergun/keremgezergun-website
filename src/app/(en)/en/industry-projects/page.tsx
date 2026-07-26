@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/industry-projects';
 
@@ -71,7 +72,7 @@ const ClockIcon = () => (
 
 export default function EnglishIndustryProjectsPage() {
   return (
-    <main id="main-content" role="main">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
@@ -236,9 +237,9 @@ export default function EnglishIndustryProjectsPage() {
                     rel="nofollow noopener noreferrer"
                     className="btn btn-primary"
                     style={{ marginTop: 20 }}
-                    aria-label="Watch the Sepetteki SEO podcast on YouTube (opens in a new tab)"
                   >
                     Watch on YouTube
+                    <span className="sr-only"> — the Sepetteki SEO podcast (opens in a new tab)</span>
                   </a>
                 </div>
               </article>
@@ -255,13 +256,13 @@ export default function EnglishIndustryProjectsPage() {
             e-commerce.
           </p>
           <a
-            href="https://businessup.com.tr/iletisim/"
+            href={contact.whatsapp}
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="Go to the contact page (opens in a new tab)"
           >
-            Get in touch
+            Message me on WhatsApp
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </section>

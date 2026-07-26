@@ -1,4 +1,5 @@
 import type { Language } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 const BASE_URL = 'https://www.keremgezergun.com';
 
@@ -16,11 +17,11 @@ const sharedPerson = {
     '@type': 'WebPage',
     '@id': `${BASE_URL}/`,
   },
+  // Employer is kept as an entity name only. All outbound links to the agency
+  // were removed from the site, so the schema must not reintroduce one.
   worksFor: {
     '@type': 'Organization',
-    '@id': 'https://businessup.com.tr/#organization',
     name: 'BusinessUp!',
-    url: 'https://businessup.com.tr/',
   },
   knowsLanguage: ['tr', 'en'],
   alumniOf: {
@@ -38,7 +39,9 @@ const sharedPerson = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'professional',
-    url: 'https://businessup.com.tr/iletisim/',
+    telephone: contact.phone,
+    email: contact.email,
+    url: contact.whatsapp,
   },
 };
 

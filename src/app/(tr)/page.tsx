@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 import knotvoShot from '../../../public/knotvo/overview.png';
 
 export const metadata: Metadata = {
@@ -326,7 +327,7 @@ const faqSchema = {
 
 export default function HomePage() {
   return (
-    <main id="main-content" role="main">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
@@ -363,13 +364,13 @@ export default function HomePage() {
               </ul>
               <div className="hero-cta">
                 <a
-                  href="https://businessup.com.tr/"
+                  href={contact.whatsapp}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   className="btn btn-primary btn-large"
                 >
                   Benimle Çalışın
-                  <span className="sr-only"> (yeni sekmede açılır)</span>
+                  <span className="sr-only"> — WhatsApp’tan mesaj gönder (yeni sekmede açılır)</span>
                 </a>
                 <Link href="/#projeler" className="btn btn-outline btn-large">
                   Projeleri İncele
@@ -384,6 +385,7 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px"
                   priority
+                  fetchPriority="high"
                 />
                 <div className="image-decoration" aria-hidden="true"></div>
               </div>
@@ -786,7 +788,6 @@ export default function HomePage() {
                   href="/knotvo"
                   className="btn btn-primary btn-large"
                   style={{ marginTop: 20 }}
-                  aria-label="Knotvo detay sayfasına git"
                 >
                   Knotvo&apos;yu Keşfet
                 </Link>
@@ -896,13 +897,13 @@ export default function HomePage() {
             iletişime geçin.
           </p>
           <a
-            href="https://businessup.com.tr/"
+            href={contact.whatsapp}
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="BusinessUp web sitesini ziyaret et (yeni sekmede açılır)"
           >
-            BusinessUp&apos;ı Ziyaret Edin
+            WhatsApp’tan Yazın
+            <span className="sr-only"> (yeni sekmede açılır)</span>
           </a>
         </div>
       </section>

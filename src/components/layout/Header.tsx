@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
 import { routePair } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,34 +25,57 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
     setToolsOpen(false);
   }, []);
 
-  // Close menu when the route changes (browser back/forward, programmatic nav).
-  // Link clicks already close via onClick; this effect only catches external nav.
+  // Close the menu on route change. Activating a link inside the menu leaves
+  // focus in a subtree that is about to be display:none — browsers then reset
+  // focus to <body> and the user has to Tab from the top of the document. Move
+  // focus to <main> instead, which is the same place the skip link lands.
+  const firstRender = useRef(true);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen((open) => (open ? false : open));
+    setToolsOpen(false);
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    document.getElementById('main-content')?.focus();
   }, [pathname]);
 
-  // ESC key closes menu
+  // Escape steps back one level at a time: submenu first, then the whole menu.
+  // Closing both at once breaks the user's mental model (APG disclosure pattern).
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && menuOpen) {
-        closeMenu();
-        hamburgerRef.current?.focus();
-      } else if (e.key === 'Escape' && toolsOpen) {
+      if (e.key !== 'Escape') return;
+      if (toolsOpen) {
         setToolsOpen(false);
         toolsButtonRef.current?.focus();
+      } else if (menuOpen) {
+        setMenuOpen(false);
+        hamburgerRef.current?.focus();
       }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [menuOpen, toolsOpen, closeMenu]);
+  }, [menuOpen, toolsOpen]);
 
-  // Focus trap inside nav when open on mobile
+  // Focus trap inside nav when open on mobile.
+  // Guarded by the breakpoint: above 768px the menu is always visible, so
+  // trapping there would lock scroll and capture focus with no way out.
   useEffect(() => {
     if (!menuOpen) return;
+    if (typeof window === 'undefined') return;
+
+    const mobile = window.matchMedia('(max-width: 768px)');
+    if (!mobile.matches) return;
 
     const navMenu = navMenuRef.current;
     if (!navMenu) return;
+
+    // Resizing past the breakpoint must release the trap immediately.
+    const release = () => {
+      if (!mobile.matches) setMenuOpen(false);
+    };
+    mobile.addEventListener('change', release);
 
     const focusableElements = navMenu.querySelectorAll<HTMLElement>(
       'a[href], button:not([disabled])'
@@ -76,12 +100,15 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
 
     document.addEventListener('keydown', handleTab);
     firstFocusable?.focus();
-    return () => document.removeEventListener('keydown', handleTab);
+    return () => {
+      document.removeEventListener('keydown', handleTab);
+      mobile.removeEventListener('change', release);
+    };
   }, [menuOpen]);
 
-  // Prevent body scroll when menu open
+  // Prevent body scroll when menu open — mobile only, same reason as the trap.
   useEffect(() => {
-    if (menuOpen) {
+    if (menuOpen && window.matchMedia('(max-width: 768px)').matches) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -91,16 +118,23 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
     };
   }, [menuOpen]);
 
+  // Visual highlight: a section anchor counts as active on its own page.
   const isActive = (href: string) => {
-    if (href === '/') return pathname === '/';
-    if (href.startsWith('/#')) return pathname === '/';
-    return pathname.startsWith(href);
+    if (href === '/' || href === '/en') return pathname === href;
+    const [path] = href.split('#');
+    const base = path.replace(/\/$/, '') || '/';
+    return pathname === base;
   };
 
+  // aria-current must be exact. Prefix matching announced "current page" on
+  // /nirengi-iletisim, /nirengi-gizlilik-politikasi, /nirengi-erisilebirlik,
+  // /knotvo-destek and /knotvo-gizlilik — actively misleading. SC 4.1.2.
+  const currentPage = (href: string) => (pathname === href ? 'page' : undefined);
+
   return (
-    <header className="header" role="banner" aria-label={isEnglish ? 'Site header' : 'Site başlığı'}>
+    <header className="header">
       <div className="container">
-        <nav className="nav" role="navigation" aria-label={isEnglish ? 'Main navigation' : 'Ana menü'}>
+        <nav className="nav" aria-label={isEnglish ? 'Main' : 'Ana'}>
           <Logo variant="header" href={isEnglish ? '/en' : '/'} />
 
           <ul
@@ -131,7 +165,7 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
               <Link
                 href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}
                 className={isActive(isEnglish ? '/en/industry-projects' : '/sektorel-projeler') ? 'active' : undefined}
-                aria-current={isActive(isEnglish ? '/en/industry-projects' : '/sektorel-projeler') ? 'page' : undefined}
+                aria-current={currentPage(isEnglish ? '/en/industry-projects' : '/sektorel-projeler')}
                 onClick={closeMenu}
               >
                 {isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}
@@ -141,7 +175,7 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
               <Link
                 href={isEnglish ? '/en/seo-blog' : '/blog'}
                 className={isActive(isEnglish ? '/en/seo-blog' : '/blog') ? 'active' : undefined}
-                aria-current={isActive(isEnglish ? '/en/seo-blog' : '/blog') ? 'page' : undefined}
+                aria-current={currentPage(isEnglish ? '/en/seo-blog' : '/blog')}
                 onClick={closeMenu}
               >
                 {isEnglish ? 'SEO Blog' : 'Blog'}
@@ -151,7 +185,7 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
               <Link
                 href={isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi'}
                 className={isActive(isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi') ? 'active' : undefined}
-                aria-current={isActive(isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi') ? 'page' : undefined}
+                aria-current={currentPage(isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi')}
                 onClick={closeMenu}
               >
                 {isEnglish ? 'SEO Roadmap' : 'SEO Rehberi'}
@@ -172,7 +206,7 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                 <li>
                   <Link
                     href={isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi'}
-                    aria-current={isActive(isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi') ? 'page' : undefined}
+                    aria-current={currentPage(isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi')}
                     onClick={closeMenu}
                   >
                     Nirengi
@@ -181,7 +215,7 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                 <li>
                   <Link
                     href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}
-                    aria-current={isActive(isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo') ? 'page' : undefined}
+                    aria-current={currentPage(isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo')}
                     onClick={closeMenu}
                   >
                     Knotvo
@@ -190,21 +224,27 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
               </ul>
             </li>
             <li>
-              <Link href={languageHref} className="language-switch" hrefLang={isEnglish ? 'tr' : 'en'} onClick={closeMenu}>
+              <Link
+                href={languageHref}
+                className="language-switch"
+                hrefLang={isEnglish ? 'tr' : 'en'}
+                lang={isEnglish ? 'tr' : 'en'}
+                onClick={closeMenu}
+              >
                 {isEnglish ? 'TR' : 'EN'}
                 <span className="sr-only"> — {isEnglish ? 'Türkçe sürüme geç' : 'switch to English'}</span>
               </Link>
             </li>
             <li>
               <a
-                href="https://businessup.com.tr/iletisim/"
+                href={contact.whatsapp}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="btn btn-primary"
                 onClick={closeMenu}
               >
                 {isEnglish ? 'Contact' : 'İletişim'}
-                <span className="sr-only"> {isEnglish ? '(opens in a new tab)' : '(yeni sekmede açılır)'}</span>
+                <span className="sr-only"> {isEnglish ? '— message me on WhatsApp (opens in a new tab)' : '— WhatsApp’tan mesaj gönder (yeni sekmede açılır)'}</span>
               </a>
             </li>
           </ul>

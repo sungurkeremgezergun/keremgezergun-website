@@ -9,7 +9,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
   const pathname = usePathname();
   const isEnglish = pathname === '/en' || pathname.startsWith('/en/') || (!pathname && language === 'en');
   return (
-    <footer className="footer" role="contentinfo" aria-label={isEnglish ? 'Site footer' : 'Site alt bilgisi'}>
+    <footer className="footer">
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
@@ -20,8 +20,8 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             </p>
           </div>
 
-          <nav className="footer-column" aria-label={isEnglish ? 'Site pages' : 'Site sayfaları'}>
-            <h4>{isEnglish ? 'Pages' : 'Sayfalar'}</h4>
+          <nav className="footer-column" aria-label={isEnglish ? 'Pages' : 'Sayfalar'}>
+            <h2>{isEnglish ? 'Pages' : 'Sayfalar'}</h2>
             <Link href={isEnglish ? '/en' : '/'}>{isEnglish ? 'Home' : 'Ana Sayfa'}</Link>
             <Link href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}>{isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}</Link>
             <Link href={isEnglish ? '/en/seo-blog' : '/blog'}>{isEnglish ? 'SEO Blog' : 'Blog'}</Link>
@@ -30,23 +30,23 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             <Link href={isEnglish ? '/en/nirengi-accessibility' : '/nirengi-erisilebirlik'}>{isEnglish ? 'Nirengi Accessibility' : 'Nirengi Erişilebilirlik'}</Link>
             <Link href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}>Knotvo</Link>
             <a
-              href="https://businessup.com.tr/iletisim/"
+              href={contact.whatsapp}
               target="_blank"
               rel="nofollow noopener noreferrer"
             >
               {isEnglish ? 'Contact' : 'İletişim'}
-              <span className="sr-only"> {isEnglish ? '(opens in a new tab)' : '(yeni sekmede açılır)'}</span>
+              <span className="sr-only"> {isEnglish ? '— message me on WhatsApp (opens in a new tab)' : '— WhatsApp’tan mesaj gönder (yeni sekmede açılır)'}</span>
             </a>
           </nav>
 
           <address className="footer-column">
-            <h4>{isEnglish ? 'Contact' : 'İletişim'}</h4>
+            <h2>{isEnglish ? 'Contact' : 'İletişim'}</h2>
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <a href={contact.phoneHref}>{contact.phone}</a>
             <p className="footer-location">{isEnglish ? 'Istanbul, Türkiye' : 'İstanbul, Türkiye'}</p>
             <nav
               className="footer-social-icons"
-              aria-label={isEnglish ? 'Social media links' : 'Sosyal medya bağlantıları'}
+              aria-label={isEnglish ? 'Social media' : 'Sosyal medya'}
             >
               <a
                 href="https://www.linkedin.com/in/sungur-kerem-gezergun/"

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { contact } from '@/lib/contact';
 
 export const metadata: Metadata = {
   title: 'Sektörel Projeler',
@@ -55,7 +56,7 @@ const breadcrumbSchema = {
 
 export default function SektorelProjelerPage() {
   return (
-    <main id="main-content" role="main">
+    <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
@@ -314,9 +315,9 @@ export default function SektorelProjelerPage() {
                     rel="nofollow noopener noreferrer"
                     className="btn btn-primary"
                     style={{ marginTop: 20 }}
-                    aria-label="Sepetteki SEO Podcast'i YouTube'da izle (yeni sekmede açılır)"
                   >
                     YouTube&apos;da İzle
+                    <span className="sr-only"> — Sepetteki SEO podcast&apos;i (yeni sekmede açılır)</span>
                   </a>
                 </div>
               </article>
@@ -337,13 +338,13 @@ export default function SektorelProjelerPage() {
             mutluluk duyarım.
           </p>
           <a
-            href="https://businessup.com.tr/iletisim/"
+            href={contact.whatsapp}
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="btn btn-primary btn-large"
-            aria-label="İletişim sayfasına git (yeni sekmede açılır)"
           >
-            İletişime Geçin
+            WhatsApp’tan Yazın
+            <span className="sr-only"> (yeni sekmede açılır)</span>
           </a>
         </div>
       </section>

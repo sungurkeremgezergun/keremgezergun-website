@@ -150,7 +150,7 @@ const cellClass = (value: string) =>
 
 export default function EnglishKnotvoPage() {
   return (
-    <main id="main-content" className="knotvo" role="main">
+    <main id="main-content" tabIndex={-1} className="knotvo">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }}
@@ -196,6 +196,7 @@ export default function EnglishKnotvoPage() {
               alt="The Knotvo overview screen: performance score, biggest bottlenecks and estimated gain"
               placeholder="blur"
               priority
+              fetchPriority="high"
               sizes="(max-width: 1100px) 100vw, 1080px"
             />
           </div>
@@ -207,19 +208,19 @@ export default function EnglishKnotvoPage() {
         <div className="container">
           <div className="k-stats">
             <div className="k-stat">
-              <b>Local</b>
+              <strong>Local</strong>
               <span>HAR analysis runs on your machine; nothing is uploaded</span>
             </div>
             <div className="k-stat">
-              <b>22+</b>
+              <strong>22+</strong>
               <span>Automated performance rules, each with an estimated gain</span>
             </div>
             <div className="k-stat">
-              <b>Unlimited</b>
+              <strong>Unlimited</strong>
               <span>No account, no queue, no monthly payment</span>
             </div>
             <div className="k-stat">
-              <b>Lab + Field</b>
+              <strong>Lab + Field</strong>
               <span>Lighthouse measurement and real-user data side by side</span>
             </div>
           </div>
@@ -333,7 +334,7 @@ export default function EnglishKnotvoPage() {
                 </span>
               </div>
               <div className="lm-bar">
-                <i />
+                <span />
               </div>
               <div className="lm-step">
                 <span className="c">✓</span> Validating the address
@@ -533,7 +534,7 @@ export default function EnglishKnotvoPage() {
                 ✓
               </span>
               <span>
-                <b>No quotas, accounts or subscriptions.</b> Run as many analyses as you want — it is
+                <strong>No quotas, accounts or subscriptions.</strong> Run as many analyses as you want — it is
                 a one-time application.
               </span>
             </div>
@@ -542,7 +543,7 @@ export default function EnglishKnotvoPage() {
                 ✓
               </span>
               <span>
-                <b>localhost, staging and pages behind a VPN.</b> Capture a HAR in the browser and
+                <strong>localhost, staging and pages behind a VPN.</strong> Capture a HAR in the browser and
                 open it in Knotvo — something cloud tools cannot do.
               </span>
             </div>
@@ -551,7 +552,7 @@ export default function EnglishKnotvoPage() {
                 ✓
               </span>
               <span>
-                <b>Your data never leaves your machine.</b> A comfortable option for teams with
+                <strong>Your data never leaves your machine.</strong> A comfortable option for teams with
                 privacy or compliance requirements.
               </span>
             </div>
@@ -560,7 +561,7 @@ export default function EnglishKnotvoPage() {
                 ✓
               </span>
               <span>
-                <b>It describes the work, not the score.</b> Every finding tells you what to do.
+                <strong>It describes the work, not the score.</strong> Every finding tells you what to do.
               </span>
             </div>
             <div className="k-benefit">
@@ -568,7 +569,7 @@ export default function EnglishKnotvoPage() {
                 ✓
               </span>
               <span>
-                <b>A native Mac application.</b> Fast and fluid — not a browser tab.
+                <strong>A native Mac application.</strong> Fast and fluid — not a browser tab.
               </span>
             </div>
             <div className="k-benefit">
@@ -576,7 +577,7 @@ export default function EnglishKnotvoPage() {
                 ✓
               </span>
               <span>
-                <b>Lab and real-user data together.</b> See what actually affects rankings without
+                <strong>Lab and real-user data together.</strong> See what actually affects rankings without
                 the confusion.
               </span>
             </div>
@@ -585,7 +586,7 @@ export default function EnglishKnotvoPage() {
                 ✓
               </span>
               <span>
-                <b>It will not leak secrets when you share.</b> Sanitize the HAR first, then send it.
+                <strong>It will not leak secrets when you share.</strong> Sanitize the HAR first, then send it.
               </span>
             </div>
             <div className="k-benefit">
@@ -593,7 +594,7 @@ export default function EnglishKnotvoPage() {
                 ✓
               </span>
               <span>
-                <b>Easy to learn.</b> Drag, drop, and the application handles the rest.
+                <strong>Easy to learn.</strong> Drag, drop, and the application handles the rest.
               </span>
             </div>
           </div>
@@ -609,8 +610,9 @@ export default function EnglishKnotvoPage() {
             There are three groups of tools on the market and none of them sits exactly where Knotvo
             does. The table below compares by category rather than naming brands.
           </p>
-          <div className="k-tablewrap">
+          <div className="k-tablewrap" tabIndex={0} role="region" aria-labelledby="cmp-caption">
             <table>
+              <caption id="cmp-caption">Capability comparison between Knotvo and other tool types</caption>
               <thead>
                 <tr>
                   <th>Capability</th>

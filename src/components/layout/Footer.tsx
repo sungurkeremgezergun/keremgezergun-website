@@ -1,13 +1,18 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
 import { contact } from '@/lib/contact';
 
+// Computed once at build time. `new Date().getFullYear()` here used to run on
+// the client, and the HTML is cached for a year (s-maxage=31536000) while the
+// VPS is UTC and the audience is UTC+3 — so around New Year the server and
+// client would disagree and React would throw hydration error #418.
+const YEAR = new Date().getFullYear();
+
+// Deliberately a server component. The only thing that ever needed the client
+// was usePathname(), and the `language` prop already carries the same answer —
+// the layout that renders this knows its own locale.
 export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) {
-  const pathname = usePathname();
-  const isEnglish = pathname === '/en' || pathname.startsWith('/en/') || (!pathname && language === 'en');
+  const isEnglish = language === 'en';
   return (
     <footer className="footer">
       <div className="container">
@@ -22,13 +27,13 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
 
           <nav className="footer-column" aria-label={isEnglish ? 'Pages' : 'Sayfalar'}>
             <h2>{isEnglish ? 'Pages' : 'Sayfalar'}</h2>
-            <Link href={isEnglish ? '/en' : '/'}>{isEnglish ? 'Home' : 'Ana Sayfa'}</Link>
-            <Link href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}>{isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}</Link>
-            <Link href={isEnglish ? '/en/seo-blog' : '/blog'}>{isEnglish ? 'SEO Blog' : 'Blog'}</Link>
-            <Link href={isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi'}>{isEnglish ? 'SEO Roadmap' : 'SEO Rehberi'}</Link>
-            <Link href={isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi'}>Nirengi</Link>
-            <Link href={isEnglish ? '/en/nirengi-accessibility' : '/nirengi-erisilebirlik'}>{isEnglish ? 'Nirengi Accessibility' : 'Nirengi Erişilebilirlik'}</Link>
-            <Link href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}>Knotvo</Link>
+            <Link prefetch={false} href={isEnglish ? '/en' : '/'}>{isEnglish ? 'Home' : 'Ana Sayfa'}</Link>
+            <Link prefetch={false} href={isEnglish ? '/en/industry-projects' : '/sektorel-projeler'}>{isEnglish ? 'Industry Projects' : 'Sektörel Projeler'}</Link>
+            <Link prefetch={false} href={isEnglish ? '/en/seo-blog' : '/blog'}>{isEnglish ? 'SEO Blog' : 'Blog'}</Link>
+            <Link prefetch={false} href={isEnglish ? '/en/seo-learning-roadmap' : '/seo-ogrenme-haritasi'}>{isEnglish ? 'SEO Roadmap' : 'SEO Rehberi'}</Link>
+            <Link prefetch={false} href={isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi'}>Nirengi</Link>
+            <Link prefetch={false} href={isEnglish ? '/en/nirengi-accessibility' : '/nirengi-erisilebirlik'}>{isEnglish ? 'Nirengi Accessibility' : 'Nirengi Erişilebilirlik'}</Link>
+            <Link prefetch={false} href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}>Knotvo</Link>
             <a
               href={contact.whatsapp}
               target="_blank"
@@ -39,11 +44,16 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             </a>
           </nav>
 
-          <address className="footer-column">
+          <div className="footer-column">
             <h2>{isEnglish ? 'Contact' : 'İletişim'}</h2>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-            <a href={contact.phoneHref}>{contact.phone}</a>
-            <p className="footer-location">{isEnglish ? 'Istanbul, Türkiye' : 'İstanbul, Türkiye'}</p>
+            {/* <address> is only for the contact details themselves. Wrapping the
+                heading and the social nav in it was invalid HTML and gave
+                assistive technology a group boundary that meant nothing. */}
+            <address className="footer-address">
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              <a href={contact.phoneHref}>{contact.phone}</a>
+              <p className="footer-location">{isEnglish ? 'Istanbul, Türkiye' : 'İstanbul, Türkiye'}</p>
+            </address>
             <nav
               className="footer-social-icons"
               aria-label={isEnglish ? 'Social media' : 'Sosyal medya'}
@@ -97,11 +107,11 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                 </svg>
               </a>
             </nav>
-          </address>
+          </div>
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Kerem Gezergün. {isEnglish ? 'All rights reserved.' : 'Tüm hakları saklıdır.'}</p>
+          <p>&copy; {YEAR} Kerem Gezergün. {isEnglish ? 'All rights reserved.' : 'Tüm hakları saklıdır.'}</p>
         </div>
       </div>
     </footer>

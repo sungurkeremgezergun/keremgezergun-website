@@ -20,8 +20,10 @@ export default function Logo({ variant = 'header', href = '/' }: { variant?: 'he
         alt="Kerem Gezergün"
         width={width}
         height={height}
-        // No `priority` here on purpose: preloading the small header logo
-        // competes with the real LCP element (the hero portrait) for bandwidth.
+        // No `priority`: preloading a 180px logo would put a competing request
+        // ahead of the real LCP element. But it is above the fold, so it must
+        // not be lazy either — without this Next defaults to loading="lazy".
+        loading={variant === 'header' ? 'eager' : 'lazy'}
         sizes={variant === 'header' ? '(max-width: 768px) 140px, 180px' : '220px'}
       />
     </Link>

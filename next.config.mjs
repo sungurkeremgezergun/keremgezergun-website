@@ -41,6 +41,10 @@ const nextConfig = {
     globalNotFound: true,
   },
   images: {
+    // Default is 4 hours, which makes repeat visitors revalidate optimized
+    // images constantly. The sources are content images that change with a
+    // deploy, and the URL carries a query hash, so a long TTL is safe.
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       {
         protocol: 'https',

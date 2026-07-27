@@ -48,7 +48,6 @@ export default function Document({
 `,
           }}
         />
-        <meta httpEquiv="Content-Language" content={language} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdSafe(personSchema(language)) }}

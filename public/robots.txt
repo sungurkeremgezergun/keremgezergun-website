@@ -1,33 +1,61 @@
+# Content preferences for automated systems — https://contentsignals.org/
+# Draft spec: draft-romm-aipref-contentsignals
+#
+#   ai-train  = training or fine-tuning AI models
+#   search    = search applications that link back to this site
+#   ai-input  = grounding / retrieval-augmented generation for AI answers
+#
+# Everything is allowed here on purpose. This site publishes SEO and GEO
+# material and wants to be citable by AI answer engines, so ai-input=yes is
+# deliberate — declaring it "no" would opt out of exactly the visibility the
+# content is written for.
+#
+# The signal is repeated in every group rather than stated once: under the
+# robots exclusion protocol a crawler reads only its single most specific
+# matching group and inherits nothing from "*", so a named agent would never
+# see a signal declared only there.
+
 User-agent: *
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
-# AI crawlers are welcome. Training, search-index and user-triggered agents are
-# all allowed; keep this explicit so the policy is visible rather than implied.
 User-agent: GPTBot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 User-agent: OAI-SearchBot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 User-agent: ChatGPT-User
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 User-agent: ClaudeBot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 User-agent: Claude-Web
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 User-agent: PerplexityBot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
+# Google-Extended and Applebot-Extended are not crawlers — they are opt-out
+# tokens for AI use of content already fetched by Googlebot and Applebot.
+# Allowing them explicitly is the affirmative half of the same declaration.
 User-agent: Google-Extended
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 User-agent: Applebot-Extended
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 User-agent: CCBot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 Sitemap: https://www.keremgezergun.com/sitemap.xml

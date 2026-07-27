@@ -31,6 +31,17 @@ equivalents live under /en and are linked with hreflang.
 - [Nirengi privacy policy](https://www.keremgezergun.com/en/nirengi-privacy-policy) · [Nirengi support](https://www.keremgezergun.com/en/nirengi-support) · [Nirengi accessibility](https://www.keremgezergun.com/en/nirengi-accessibility)
 - [Knotvo privacy policy](https://www.keremgezergun.com/en/knotvo-privacy-policy) · [Knotvo support](https://www.keremgezergun.com/en/knotvo-support)
 
+## Content usage
+
+Automated systems are welcome. robots.txt declares this in machine-readable
+form with Content-Signal (contentsignals.org):
+
+- `ai-train=yes` — this content may be used to train or fine-tune models
+- `search=yes` — this content may be indexed by search applications
+- `ai-input=yes` — this content may be used to ground and cite AI answers
+
+Attribution to https://www.keremgezergun.com is appreciated but not required.
+
 ## Contact
 
 - WhatsApp (primary): https://wa.me/905526902782

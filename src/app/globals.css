@@ -229,6 +229,28 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     gap: 32px;
 }
 
+/* Above the breakpoint the disclosure must disappear as a mechanism: the
+   summary is hidden and the list shows whether or not <details> is open.
+   Chrome 131+ renders closed <details> content in a slot with
+   content-visibility: hidden, which author `display` cannot override — hence
+   ::details-content. Engines without that pseudo-element use the older
+   display-based hiding, which .nav-menu's own `display: flex` already beats. */
+@media (min-width: 48.0625em) {
+    .nav-drawer {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-drawer > summary {
+        display: none;
+    }
+
+    .nav-drawer::details-content {
+        content-visibility: visible;
+        block-size: auto;
+    }
+}
+
 .nav-menu a {
     font-size: 0.9375rem;
     font-weight: 500;
@@ -2001,11 +2023,14 @@ select:focus-visible {
    =========================================== */
 /* No viewport qualifier: SC 2.5.8 (24px, AA) and 2.5.5 (44px, AAA) apply at
    every width, not just on mobile. inline-flex is required or min-width is a
-   no-op on inline elements. */
+   no-op on inline elements.
+   .hamburger is deliberately NOT in this list: it is display:none above the
+   breakpoint, and setting display here would override that and leave the
+   hamburger visible on desktop. It gets its size in the mobile block below,
+   where it is actually shown. */
 .btn,
 a.nav-link,
 .social-link,
-.hamburger,
 .footer-social-icons a,
 .nav-menu > li > a,
 .nav-submenu a,

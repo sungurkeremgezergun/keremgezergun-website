@@ -3,6 +3,13 @@
    Professional Personal Brand Website
    ========================================== */
 
+/* Breakpoints are in em, not px, so they respond to the user's own default
+   font size. Someone who sets their browser default to 24px gets the mobile
+   layout at the width where they actually need it, instead of a desktop layout
+   at a text size that no longer fits. At the default 16px root these values are
+   identical to the px ones they replaced (48em = 768px).
+   Header.tsx's matchMedia string must stay in sync with the 48em breakpoint. */
+
 /* CSS Variables — Navy Authority Palette */
 :root {
     --primary: #0A1628;
@@ -193,13 +200,27 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     border-radius: 6px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
     .logo-mark img {
         width: 140px;
     }
     .logo-mark--footer img {
         width: 180px;
     }
+}
+
+/* The menu is a native <details> so it works with JavaScript off and before
+   hydration. <summary> keeps the .hamburger class, so the existing hamburger
+   rules still apply — only the disclosure marker needs suppressing. */
+.nav-drawer > summary,
+.nav-dropdown > summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.nav-drawer > summary::-webkit-details-marker,
+.nav-dropdown > summary::-webkit-details-marker {
+    display: none;
 }
 
 .nav-menu {
@@ -223,7 +244,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     position: relative;
 }
 
-.nav-dropdown > button {
+.nav-dropdown > summary {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -237,9 +258,9 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     cursor: pointer;
 }
 
-.nav-dropdown > button:hover,
-.nav-dropdown > button.active,
-.nav-dropdown > button:focus-visible {
+.nav-dropdown > summary:hover,
+.nav-dropdown > summary.active,
+.nav-dropdown > summary:focus-visible {
     color: var(--primary);
 }
 
@@ -248,7 +269,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     transition: transform 0.2s ease;
 }
 
-.nav-dropdown.open .nav-chevron {
+.nav-dropdown[open] > summary .nav-chevron {
     transform: rotate(180deg);
 }
 
@@ -268,7 +289,11 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 }
 
-.nav-dropdown.open .nav-submenu {
+/* [open] covers pointer and the enhancement script; :focus-within covers pure
+   keyboard with no JavaScript at all. .nav-submenu hides with opacity and
+   visibility rather than display:none, so this costs nothing. */
+.nav-dropdown[open] > .nav-submenu,
+.nav-dropdown:focus-within > .nav-submenu {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0);
@@ -1406,7 +1431,7 @@ section {
 /* ==========================================
    RESPONSIVE — New Sections
    ========================================== */
-@media (max-width: 1024px) {
+@media (max-width: 64em) {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1433,7 +1458,7 @@ section {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
     .services-grid {
         grid-template-columns: 1fr;
     }
@@ -1466,7 +1491,7 @@ section {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30em) {
     .results-grid {
         grid-template-columns: 1fr;
     }
@@ -1500,7 +1525,7 @@ section {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 64em) {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1571,7 +1596,7 @@ section {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
     .nav-menu {
         display: none;
         position: absolute;
@@ -1586,7 +1611,7 @@ section {
         box-shadow: var(--shadow-md);
     }
 
-    .nav-menu.active {
+    .nav-drawer[open] > .nav-menu {
         display: flex;
     }
 
@@ -1594,15 +1619,15 @@ section {
         display: flex;
     }
 
-    .hamburger.active span:nth-child(1) {
+    .nav-drawer[open] > .hamburger span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
 
-    .hamburger.active span:nth-child(2) {
+    .nav-drawer[open] > .hamburger span:nth-child(2) {
         opacity: 0;
     }
 
-    .hamburger.active span:nth-child(3) {
+    .nav-drawer[open] > .hamburger span:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px);
     }
 
@@ -1705,7 +1730,7 @@ section {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30em) {
     .hero-stats {
         gap: 24px;
     }
@@ -1991,7 +2016,7 @@ a.nav-link,
     align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
     .btn,
     a.nav-link,
     .social-link,
@@ -2262,7 +2287,7 @@ textarea:disabled {
     flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
     .roadmap-stats { gap: 24px; }
     .roadmap-stat .number { font-size: 2rem; }
     .section-accordion-header { padding: 16px; font-size: 1rem; }
@@ -2346,7 +2371,7 @@ textarea:disabled {
     font-family: var(--font-playfair, 'Playfair Display'), serif; color: var(--k-navy);
 }
 .knotvo .k-stat span { font-size: 0.9rem; color: var(--k-ink2); }
-@media (max-width: 760px) { .knotvo .k-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 47.5em) { .knotvo .k-stats { grid-template-columns: repeat(2, 1fr); } }
 
 /* Feature rows */
 .knotvo .k-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
@@ -2356,7 +2381,7 @@ textarea:disabled {
 .knotvo .k-flist { list-style: none; padding: 0; margin: 16px 0 0; }
 .knotvo .k-flist li { padding-left: 26px; position: relative; margin-bottom: 8px; color: var(--k-ink2); }
 .knotvo .k-flist li::before { content: '✓'; position: absolute; left: 0; color: var(--k-green); font-weight: 800; }
-@media (max-width: 820px) {
+@media (max-width: 51.25em) {
     .knotvo .k-feature { grid-template-columns: 1fr; gap: 26px; }
     .knotvo .k-feature.rev .k-txt { order: 0; }
 }
@@ -2402,8 +2427,8 @@ textarea:disabled {
     display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 14px;
 }
 .knotvo .k-card p { color: var(--k-ink2); font-size: 0.95rem; margin: 0; }
-@media (max-width: 900px) { .knotvo .k-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .knotvo .k-grid { grid-template-columns: 1fr; } }
+@media (max-width: 56.25em) { .knotvo .k-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 37.5em) { .knotvo .k-grid { grid-template-columns: 1fr; } }
 
 /* Benefits */
 .knotvo .k-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-top: 28px; }
@@ -2414,7 +2439,7 @@ textarea:disabled {
 }
 .knotvo .k-benefit span { color: var(--k-ink2); font-size: 0.97rem; }
 .knotvo .k-benefit strong { color: var(--k-ink); font-weight: 600; }
-@media (max-width: 700px) { .knotvo .k-benefits { grid-template-columns: 1fr; } }
+@media (max-width: 43.75em) { .knotvo .k-benefits { grid-template-columns: 1fr; } }
 
 /* Comparison table */
 .knotvo .k-tablewrap { overflow-x: auto; border: 1px solid var(--k-line); border-radius: var(--radius-lg); margin-top: 28px; }
@@ -2638,7 +2663,7 @@ textarea:disabled {
 .nirengi-a11y-limitations p { color: var(--text-secondary); }
 .nirengi-a11y-limitations p + p { margin-top: 14px; }
 
-@media (max-width: 1024px) {
+@media (max-width: 64em) {
     .nav-menu { gap: 20px; }
     .nirengi-hero-grid { grid-template-columns: 1fr; }
     .nirengi-window { max-width: 620px; }
@@ -2646,11 +2671,11 @@ textarea:disabled {
     .nirengi-steps { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
     .nav-dropdown { width: 100%; }
-    .nav-dropdown > button { width: 100%; justify-content: center; padding: 12px 20px; }
+    .nav-dropdown > summary { width: 100%; justify-content: center; padding: 12px 20px; }
     .nav-submenu { position: static; display: none; width: min(280px, 100%); margin: 0 auto; padding: 4px; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
-    .nav-dropdown.open .nav-submenu { display: block; transform: none; }
+    .nav-dropdown[open] > .nav-submenu { display: block; transform: none; }
     .nav-submenu a { text-align: center; }
     .nirengi-hero { padding: 120px 0 70px; }
     .nirengi-a11y-hero { padding: 120px 0 62px; }
@@ -2661,7 +2686,7 @@ textarea:disabled {
     .nirengi-policy { padding: 6px 20px; }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 32.5em) {
     .nirengi-metrics, .nirengi-steps, .nirengi-bench { grid-template-columns: 1fr; }
     .nirengi-metrics { padding: 16px; }
 }

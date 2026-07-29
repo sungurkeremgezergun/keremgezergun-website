@@ -34,6 +34,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             <Link prefetch={false} href={isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi'}>Nirengi</Link>
             <Link prefetch={false} href={isEnglish ? '/en/nirengi-accessibility' : '/nirengi-erisilebirlik'}>{isEnglish ? 'Nirengi Accessibility' : 'Nirengi Erişilebilirlik'}</Link>
             <Link prefetch={false} href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}>Knotvo</Link>
+            <Link prefetch={false} href={isEnglish ? '/en/crawlseer' : '/crawlseer'}>Crawlseer</Link>
             <a
               href={contact.whatsapp}
               target="_blank"

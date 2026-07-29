@@ -21,6 +21,8 @@ const settings: Record<string, RouteSettings> = {
   '/knotvo': { changeFrequency: 'monthly', lastModified: '2026-07-26' },
   '/knotvo-destek': { changeFrequency: 'yearly', lastModified: '2026-07-26' },
   '/knotvo-gizlilik': { changeFrequency: 'yearly', lastModified: '2026-07-20' },
+  '/crawlseer': { changeFrequency: 'monthly', lastModified: '2026-07-29' },
+  '/crawlseer/gizlilik': { changeFrequency: 'yearly', lastModified: '2026-07-29' },
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {

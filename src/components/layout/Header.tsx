@@ -168,7 +168,8 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                   <summary
                     className={
                       isActive(isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi') ||
-                      isActive(isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo')
+                      isActive(isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo') ||
+                      isActive(isEnglish ? '/en/crawlseer' : '/crawlseer')
                         ? 'active'
                         : undefined
                     }
@@ -197,6 +198,14 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                         )}
                       >
                         Knotvo
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={isEnglish ? '/en/crawlseer' : '/crawlseer'}
+                        aria-current={currentPage(isEnglish ? '/en/crawlseer' : '/crawlseer')}
+                      >
+                        Crawlseer
                       </Link>
                     </li>
                   </ul>

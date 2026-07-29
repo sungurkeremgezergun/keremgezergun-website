@@ -3,7 +3,8 @@
 > Sungur Kerem Gezergün is a Senior E-commerce SEO Consultant based in Istanbul,
 > Türkiye. He works at BusinessUp!, has scaled organic revenue for more than 30
 > e-commerce brands, hosts the Turkish-language "Sepetteki SEO" podcast, and
-> builds two macOS tools for technical SEO teams: Nirengi and Knotvo.
+> builds tools for technical SEO teams: Nirengi and Knotvo for macOS, and
+> Crawlseer, a Chrome extension.
 
 The site is bilingual. Turkish pages live at the site root; the English
 equivalents live under /en and are linked with hreflang.
@@ -25,11 +26,13 @@ equivalents live under /en and are linked with hreflang.
 
 - [Nirengi (Turkish)](https://www.keremgezergun.com/nirengi) / [English](https://www.keremgezergun.com/en/nirengi-log-analyzer): A native macOS server log analyzer for SEO. 41 reports covering Googlebot and AI crawlers, crawl budget, technical errors, index coverage and freshness. Log files are processed entirely on device and never uploaded. Version 1.0 is free.
 - [Knotvo (Turkish)](https://www.keremgezergun.com/knotvo) / [English](https://www.keremgezergun.com/en/knotvo-site-speed-analyzer): A native macOS site speed analyzer. Turns HAR files and live PageSpeed Insights measurements into a prioritized to-do list, combining Lighthouse lab data with CrUX field data. HAR analysis is fully local. Coming to the Mac App Store.
+- [Crawlseer (Turkish)](https://www.keremgezergun.com/crawlseer) / [English](https://www.keremgezergun.com/en/crawlseer): A free Chrome extension that shows how a page looks to search engines and AI crawlers — indexability, canonical, hreflang, headings, structured data and Open Graph, read from the page you are already on. Runs entirely in the browser; nothing is sent anywhere. Coming soon to the Chrome Web Store.
 
 ## Policies and support
 
 - [Nirengi privacy policy](https://www.keremgezergun.com/en/nirengi-privacy-policy) · [Nirengi support](https://www.keremgezergun.com/en/nirengi-support) · [Nirengi accessibility](https://www.keremgezergun.com/en/nirengi-accessibility)
 - [Knotvo privacy policy](https://www.keremgezergun.com/en/knotvo-privacy-policy) · [Knotvo support](https://www.keremgezergun.com/en/knotvo-support)
+- [Crawlseer privacy policy](https://www.keremgezergun.com/en/crawlseer/privacy)
 
 ## Content usage
 

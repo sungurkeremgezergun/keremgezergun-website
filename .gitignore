@@ -23,12 +23,6 @@ Thumbs.db
 *.har
 *.docx
 
-# Standalone HTML exports kept for manual/legacy hosting. They are NOT the
-# source of truth — the live pages are Next.js routes under src/app. Ignored so
-# a stale copy (with its own canonical tags) can never be committed or shipped.
-/website-export/
-/nirengi-erisilebirlik.html
-
 # debug
 npm-debug.log*
 yarn-debug.log*

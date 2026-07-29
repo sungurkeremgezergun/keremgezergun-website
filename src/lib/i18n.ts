@@ -17,6 +17,8 @@ export const localeRoutes = [
   { tr: '/nirengi-iletisim', en: '/en/nirengi-support' },
   { tr: '/nirengi-gizlilik-politikasi', en: '/en/nirengi-privacy-policy' },
   { tr: '/nirengi-erisilebirlik', en: '/en/nirengi-accessibility' },
+  { tr: '/crawlseer', en: '/en/crawlseer' },
+  { tr: '/crawlseer/gizlilik', en: '/en/crawlseer/privacy' },
 ] as const;
 
 export type LocaleRoute = (typeof localeRoutes)[number];

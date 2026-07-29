@@ -23,4 +23,5 @@ export const contact = {
 export const policyDates = {
   nirengi: { iso: '2026-07-24', tr: '24 Temmuz 2026', en: '24 July 2026' },
   knotvo: { iso: '2026-07-20', tr: '20 Temmuz 2026', en: '20 July 2026' },
+  crawlseer: { iso: '2026-07-29', tr: '29 Temmuz 2026', en: '29 July 2026' },
 } as const;

@@ -17,11 +17,11 @@ const sharedPerson = {
     '@type': 'WebPage',
     '@id': `${BASE_URL}/`,
   },
-  // Employer is kept as an entity name only. All outbound links to the agency
-  // were removed from the site, so the schema must not reintroduce one.
+  // Employer is kept as an entity name only. The site carries no outbound link
+  // to the employer, so the schema must not reintroduce one.
   worksFor: {
     '@type': 'Organization',
-    name: 'BusinessUp!',
+    name: 'Hepsiburada',
   },
   knowsLanguage: ['tr', 'en'],
   alumniOf: {
@@ -47,10 +47,10 @@ const sharedPerson = {
 
 const personByLanguage = {
   tr: {
-    imageCaption: 'Kerem Gezergün - Senior E-Ticaret SEO Danışmanı',
-    jobTitle: 'Senior E-Ticaret SEO Danışmanı',
+    imageCaption: 'Kerem Gezergün - E-Ticaret SEO Danışmanı',
+    jobTitle: 'SEO Specialist',
     description:
-      'Senior E-Ticaret SEO Danışmanı. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim. Best Low Budget Campaign (SEO) Finalisti.',
+      'Hepsiburada’da SEO Specialist. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim. Best Low Budget Campaign (SEO) Finalisti.',
     knowsAbout: [
       'SEO',
       'E-ticaret SEO',
@@ -66,10 +66,10 @@ const personByLanguage = {
     skills: ['SEO', 'Teknik SEO', 'E-ticaret SEO', 'İçerik Stratejisi', 'Link Building'],
   },
   en: {
-    imageCaption: 'Kerem Gezergün - Senior E-commerce SEO Consultant',
-    jobTitle: 'Senior E-commerce SEO Consultant',
+    imageCaption: 'Kerem Gezergün - E-commerce SEO Consultant',
+    jobTitle: 'SEO Specialist',
     description:
-      'Senior E-commerce SEO Consultant with experience scaling organic revenue for more than 30 brands. Best Low Budget Campaign (SEO) finalist.',
+      'SEO Specialist at Hepsiburada, with experience scaling organic revenue for more than 30 e-commerce brands. Best Low Budget Campaign (SEO) finalist.',
     knowsAbout: [
       'SEO',
       'E-commerce SEO',

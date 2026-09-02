@@ -1,7 +1,7 @@
 # Kerem Gezergün
 
-> Sungur Kerem Gezergün is a Senior E-commerce SEO Consultant based in Istanbul,
-> Türkiye. He works at BusinessUp!, has scaled organic revenue for more than 30
+> Sungur Kerem Gezergün is an e-commerce SEO specialist based in Istanbul,
+> Türkiye. He works at Hepsiburada, has scaled organic revenue for more than 30
 > e-commerce brands, hosts the Turkish-language "Sepetteki SEO" podcast, and
 > builds tools for technical SEO teams: Nirengi and Knotvo for macOS, and
 > Crawlseer, a Chrome extension.

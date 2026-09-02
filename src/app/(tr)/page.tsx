@@ -8,10 +8,10 @@ import knotvoShot from '../../../public/knotvo/overview.png';
 
 export const metadata: Metadata = {
   description:
-    'Sungur Kerem Gezergün — Senior E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
+    'Sungur Kerem Gezergün — E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
   alternates: alternateMetadata('/', '/en'),
   openGraph: {
-    title: 'Kerem Gezergün | Senior E-Ticaret SEO Danışmanı',
+    title: 'Kerem Gezergün | E-Ticaret SEO Danışmanı',
     description:
       'E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle büyütüyorum. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim.',
     url: 'https://www.keremgezergun.com/',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kerem Gezergün - Senior E-Ticaret SEO Danışmanı',
+        alt: 'Kerem Gezergün - E-Ticaret SEO Danışmanı',
       },
     ],
     locale: 'tr_TR',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kerem Gezergün | Senior E-Ticaret SEO Danışmanı',
+    title: 'Kerem Gezergün | E-Ticaret SEO Danışmanı',
     description:
       'E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle büyütüyorum. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim.',
     creator: '@keremgezergun',
@@ -345,7 +345,7 @@ export default function HomePage() {
                 Merhaba, ben{' '}
                 <span className="highlight">Kerem Gezergün</span>
               </h1>
-              <p className="hero-title">Senior E-Ticaret SEO Danışmanı</p>
+              <p className="hero-title">E-Ticaret SEO Danışmanı</p>
               <p className="hero-description">
                 E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle
                 büyütüyorum. Bugüne kadar <strong>30&apos;dan fazla e-ticaret markasının</strong>{' '}
@@ -381,7 +381,7 @@ export default function HomePage() {
               <div className="image-wrapper">
                 <Image
                   src="/images/kerem-gezergun.jpg"
-                  alt="Kerem Gezergün - Senior E-Ticaret SEO Danışmanı, profesyonel portre fotoğrafı"
+                  alt="Kerem Gezergün - E-Ticaret SEO Danışmanı, profesyonel portre fotoğrafı"
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px"
                   priority
@@ -584,10 +584,10 @@ export default function HomePage() {
                 kapsayan bütünsel bir süreç olarak ele alıyorum.
               </p>
               <p>
-                Halihazırda <strong>BusinessUp!</strong> ajansında Senior E-Ticaret SEO Danışmanı
-                olarak görev yapıyorum. Aynı zamanda sektördeki bilgi birikimimi paylaşmak amacıyla
-                kurduğum <strong>&ldquo;Sepetteki SEO&rdquo;</strong> podcast serisinin kurucusu
-                ve sunucusuyum.
+                2023&apos;te ilk SEO görevimle başladım; ajans tarafında bir ekibin liderliğini
+                üstlendim ve bugün <strong>Hepsiburada</strong>&apos;da SEO Specialist olarak
+                çalışıyorum. Öğrendiklerimi bir yerde biriktirmek için kurduğum{' '}
+                <strong>&ldquo;Sepetteki SEO&rdquo;</strong> podcast serisini de sunuyorum.
               </p>
             </aside>
           </div>

@@ -278,7 +278,7 @@ const PAGE_URL = 'https://www.keremgezergun.com/en';
 export const metadata: Metadata = {
   title: 'E-commerce SEO Consultant & Technical SEO Expert',
   description:
-    'Senior e-commerce SEO consultant Kerem Gezergün helps online retailers grow organic revenue through technical SEO, content strategy and data-led search optimization.',
+    'E-commerce SEO consultant Kerem Gezergün helps online retailers grow organic revenue through technical SEO, content strategy and data-led search optimization.',
   keywords: [
     'SEO consultant',
     'E-commerce SEO',
@@ -288,7 +288,7 @@ export const metadata: Metadata = {
   ],
   alternates: englishAlternateMetadata('/', '/en'),
   openGraph: {
-    title: 'Kerem Gezergün | Senior E-commerce SEO Consultant',
+    title: 'Kerem Gezergün | E-commerce SEO Consultant',
     description:
       'I grow e-commerce websites with strategies that turn organic visibility into revenue.',
     url: PAGE_URL,
@@ -306,7 +306,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kerem Gezergün | Senior E-commerce SEO Consultant',
+    title: 'Kerem Gezergün | E-commerce SEO Consultant',
     description:
       'I grow e-commerce websites with strategies that turn organic visibility into revenue.',
     creator: '@keremgezergun',
@@ -440,7 +440,7 @@ export default function EnglishHomePage() {
               <h1>
                 Hello, I&apos;m <span className="highlight">Kerem Gezergün</span>
               </h1>
-              <p className="hero-title">Senior E-commerce SEO Consultant</p>
+              <p className="hero-title">E-commerce SEO Consultant</p>
               <p className="hero-description">
                 I grow e-commerce websites with strategies that turn organic visibility into
                 revenue. I have helped <strong>more than 30 e-commerce brands</strong> scale
@@ -476,7 +476,7 @@ export default function EnglishHomePage() {
               <div className="image-wrapper">
                 <Image
                   src="/images/kerem-gezergun.jpg"
-                  alt="Kerem Gezergün, Senior E-commerce SEO Consultant"
+                  alt="Kerem Gezergün, E-commerce SEO Consultant"
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px"
                   priority
@@ -563,10 +563,10 @@ export default function EnglishHomePage() {
                 <strong>search intent, information architecture and brand visibility</strong>.
               </p>
               <p>
-                I currently work as a Senior E-commerce SEO Consultant at{' '}
-                <strong>BusinessUp!</strong>. I also founded and host{' '}
-                <strong>&ldquo;Sepetteki SEO&rdquo;</strong>, a podcast series created to share what
-                I learn in the industry.
+                I took my first SEO job in 2023, went on to lead a team agency-side, and today I
+                work as an SEO Specialist at <strong>Hepsiburada</strong>. I also host{' '}
+                <strong>&ldquo;Sepetteki SEO&rdquo;</strong>, a podcast I started to keep what I
+                learn in one place.
               </p>
             </aside>
           </div>

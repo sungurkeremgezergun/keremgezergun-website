@@ -493,35 +493,44 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     margin-bottom: 32px;
 }
 
+/* Wordmarks, not logo files. The bitmaps that used to sit here were flattened
+   exports carrying the transparency checkerboard baked into their pixels, so
+   every one of them drew a grey checked rectangle on the cream background. */
 .tools-grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 48px;
+    gap: 12px 14px;
     flex-wrap: wrap;
+    list-style: none;
 }
 
 .tool-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 60px;
-    filter: grayscale(100%);
-    opacity: 0.6;
-    transition: var(--transition);
+    gap: 10px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.tool-item::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
 }
 
 .tool-item:hover {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.tool-item img {
-    max-height: 40px;
-    max-width: 100px;
-    object-fit: contain;
+    border-color: var(--accent);
+    color: var(--text-primary);
+    transform: translateY(-2px);
 }
 
 /* Section Styles */
@@ -1128,6 +1137,18 @@ section {
     line-height: 1.6;
     margin-bottom: 16px;
     flex: 1;
+}
+
+/* Product cards on the home page reuse this card, but their availability note
+   and button row must sit at the bottom rather than share the free space the
+   description paragraph claims. */
+.service-card .nirengi-note {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+}
+
+.service-card .nirengi-actions {
+    margin-top: 16px;
 }
 
 /* ==========================================
@@ -1906,7 +1927,6 @@ section {
 
     .tool-item {
         flex: 0 0 auto;
-        width: 100px;
         scroll-snap-align: start;
     }
 

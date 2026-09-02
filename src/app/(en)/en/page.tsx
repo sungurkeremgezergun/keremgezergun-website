@@ -3,10 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
-import { contact } from '@/lib/contact';
+import { contact, stores } from '@/lib/contact';
 import Experience from '@/components/home/Experience';
+import { tools } from '@/lib/experience';
 
-import knotvoShot from '../../../../public/knotvo/overview.png';
 
 type FaqEntry = { q: string; a: React.ReactNode; plain: string };
 
@@ -397,27 +397,6 @@ const services = [
   },
 ];
 
-const tools = [
-  { name: 'Ahrefs', src: '/images/tools/ahrefs.png', alt: 'Ahrefs SEO tool logo' },
-  {
-    name: 'Google Search Console',
-    src: 'https://www.gstatic.com/images/branding/product/2x/search_console_64dp.png',
-    alt: 'Google Search Console logo',
-  },
-  {
-    name: 'Google Analytics',
-    src: 'https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg',
-    alt: 'Google Analytics logo',
-    unoptimized: true,
-  },
-  { name: 'Semrush', src: '/images/tools/semrush.png', alt: 'Semrush SEO tool logo' },
-  {
-    name: 'Screaming Frog',
-    src: '/images/tools/screaming-frog.png',
-    alt: 'Screaming Frog SEO Spider logo',
-  },
-  { name: 'GTmetrix', src: '/images/tools/gtmetrix.png', alt: 'GTmetrix performance tool logo' },
-];
 
 export default function EnglishHomePage() {
   return (
@@ -498,31 +477,10 @@ export default function EnglishHomePage() {
           </p>
           <ul className="tools-grid" aria-label="SEO tools">
             {tools.map((tool) => (
-              <li className="tool-item" title={tool.name} key={tool.name}>
-                <Image
-                  src={tool.src}
-                  alt={tool.alt}
-                  width={100}
-                  height={40}
-                  unoptimized={tool.unoptimized}
-                />
+              <li className="tool-item" key={tool} translate="no">
+                {tool}
               </li>
             ))}
-            <li className="tool-item" title="ReportSup">
-              <a
-                href="https://reportsup.com.tr/"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                aria-label="Visit the ReportSup website (opens in a new tab)"
-              >
-                <Image
-                  src="/images/tools/reportsup.webp"
-                  alt="ReportSup SEO reporting tool logo"
-                  width={100}
-                  height={40}
-                />
-              </a>
-            </li>
           </ul>
         </div>
       </section>
@@ -736,45 +694,75 @@ export default function EnglishHomePage() {
         </div>
       </section>
 
-      {/* Knotvo product */}
-      <section className="knotvo" aria-labelledby="knotvo-home-heading">
-        <div className="knotvo-section alt">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-tag">New product · Mac</span>
-              <h2 id="knotvo-home-heading">Knotvo — Site Speed Analyzer</h2>
-            </div>
-            <div className="k-feature" style={{ marginTop: 8 }}>
-              <div className="k-txt">
-                <p>
-                  <strong>Knotvo</strong> is a Mac application I built. It brings your browser&apos;s
-                  network capture (HAR) and live measurement into one screen, then turns the reason
-                  a page is slow into a plain to-do list. Not opaque scores — what to actually fix.
-                </p>
-                <ul className="k-flist">
-                  <li>HAR analysis is entirely local — nothing goes to the cloud</li>
-                  <li>Lab (Lighthouse) and field (CrUX) data side by side</li>
-                  <li>No account, no queue, no subscription</li>
-                  <li>A PDF report you can send to a client</li>
-                </ul>
-                <Link
-                  href="/en/knotvo-site-speed-analyzer"
-                  className="btn btn-primary btn-large"
-                  style={{ marginTop: 20 }}
+      {/* Products */}
+      <section id="products" className="services-section" aria-labelledby="products-heading">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">Products</span>
+            <h2 id="products-heading">The SEO tools I build</h2>
+          </div>
+          <ul className="services-grid" aria-label="Product list">
+            <li className="service-card">
+              <h3>Nirengi — Log File Analyser</h3>
+              <p>
+                A macOS app that analyzes server logs on your own Mac, compares Googlebot with AI
+                crawlers and produces 41 reports. Your files never leave the machine.
+              </p>
+              <p className="nirengi-note">🍎 Available on the Mac App Store · Free</p>
+              <div className="nirengi-actions">
+                <a
+                  className="btn btn-primary"
+                  href={stores.nirengi.en}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Explore Knotvo
+                  Download
+                  <span className="sr-only"> — Nirengi (opens in a new tab)</span>
+                </a>
+                <Link className="btn btn-outline" href="/en/nirengi-log-analyzer">
+                  Details
+                  <span className="sr-only"> — Nirengi</span>
                 </Link>
               </div>
-              <div className="k-shot">
-                <Image
-                  src={knotvoShot}
-                  alt="The Knotvo overview screen: performance score and prioritized bottlenecks"
-                  placeholder="blur"
-                  sizes="(max-width: 820px) 100vw, 520px"
-                />
+            </li>
+            <li className="service-card">
+              <h3>Crawlseer — Chrome Extension</h3>
+              <p>
+                Audit the open tab in one click: eleven analysis panes, Core Web Vitals and a
+                robots.txt access matrix for 16 AI crawlers.
+              </p>
+              <p className="nirengi-note">🧩 Available on the Chrome Web Store · Free</p>
+              <div className="nirengi-actions">
+                <a
+                  className="btn btn-primary"
+                  href={stores.crawlseer}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Add to Chrome
+                  <span className="sr-only"> — Crawlseer (opens in a new tab)</span>
+                </a>
+                <Link className="btn btn-outline" href="/en/crawlseer">
+                  Details
+                  <span className="sr-only"> — Crawlseer</span>
+                </Link>
               </div>
-            </div>
-          </div>
+            </li>
+            <li className="service-card">
+              <h3>Knotvo — Site Speed Analyzer</h3>
+              <p>
+                A Mac app that brings HAR capture and live measurement onto one screen and turns
+                the reason a site is slow into a plain to-do list.
+              </p>
+              <p className="nirengi-note">🍎 Coming soon to the Mac App Store</p>
+              <div className="nirengi-actions">
+                <Link className="btn btn-outline" href="/en/knotvo-site-speed-analyzer">
+                  Details
+                  <span className="sr-only"> — Knotvo</span>
+                </Link>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 

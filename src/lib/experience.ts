@@ -161,6 +161,21 @@ export const brands = [
   'Talya Foods',
 ].sort(new Intl.Collator('tr').compare);
 
+/**
+ * The tools shown in the home page strip. CV data, so it lives beside `brands`
+ * rather than being duplicated in the two home pages — and it feeds
+ * `Person.hasOccupation.skills`.
+ */
+export const tools = [
+  'Ahrefs',
+  'Google Search Console',
+  'Google Analytics',
+  'Semrush',
+  'Screaming Frog',
+  'GTmetrix',
+  'Google PageSpeed Insights',
+];
+
 const locales: Record<Language, string> = { tr: 'tr-TR', en: 'en-US' };
 
 const asDate = (month: YearMonth) => new Date(`${month}-01T00:00:00Z`);

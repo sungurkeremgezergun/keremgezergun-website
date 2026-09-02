@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
 import { contact } from '@/lib/contact';
+import Experience from '@/components/home/Experience';
 import knotvoShot from '../../../public/knotvo/overview.png';
 
 export const metadata: Metadata = {
@@ -593,6 +594,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <Experience language="tr" />
 
       {/* Results Section */}
       <section className="results-section" aria-labelledby="results-heading">

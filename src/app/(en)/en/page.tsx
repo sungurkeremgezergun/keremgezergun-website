@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
 import { contact } from '@/lib/contact';
+import Experience from '@/components/home/Experience';
 
 import knotvoShot from '../../../../public/knotvo/overview.png';
 
@@ -572,6 +573,8 @@ export default function EnglishHomePage() {
           </div>
         </div>
       </section>
+
+      <Experience language="en" />
 
       {/* Results */}
       <section className="results-section" aria-labelledby="results-heading">

@@ -59,8 +59,18 @@ src/
 └── lib/
     ├── fonts.ts                # Her iki layout'un paylaştığı font tanımı
     ├── i18n.ts                 # TR↔EN route eşleşmeleri, hreflang üretimi
-    ├── siteSchema.ts           # Dile göre Person + WebSite JSON-LD
-    └── jsonLd.ts               # XSS-safe JSON-LD serializer
+    ├── contact.ts              # Tek NAP kaynağı, mağaza linkleri, politika tarihleri
+    ├── experience.ts           # Kariyer geçmişi, markalar, araçlar (CV verisi)
+    ├── projects.ts             # Konuşmacılık ve zirveler (Event verisi)
+    ├── jsonLd.ts               # XSS-safe JSON-LD serializer
+    └── schema/                 # JSON-LD düğüm üreticileri
+        ├── base.ts             # @id'ler, graph(), ref(), inLanguage()
+        ├── person.ts           # Person + OrganizationRole kariyer geçmişi
+        ├── website.ts          # WebSite + her sayfanın <head> grafiği
+        ├── product.ts          # Üç ürünün SoftwareApplication düğümleri
+        ├── page.ts             # Breadcrumb, FAQ, WebPage, ItemList
+        ├── home.ts             # ProfilePage, PodcastSeries, marka/ürün listeleri
+        └── events.ts           # Sektörel projeler Event grafiği
 ```
 
 ## Güvenlik

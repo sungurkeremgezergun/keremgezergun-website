@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
 import { contact, policyDates } from '@/lib/contact';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/knotvo-privacy-policy';
 
@@ -37,27 +39,30 @@ export const metadata: Metadata = {
   },
 };
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Knotvo',
-      item: 'https://www.keremgezergun.com/en/knotvo-site-speed-analyzer',
-    },
-    { '@type': 'ListItem', position: 3, name: 'Privacy Policy', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema(
+  'en',
+  { name: 'Knotvo', url: 'https://www.keremgezergun.com/en/knotvo-site-speed-analyzer' },
+  { name: 'Privacy Policy', url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'knotvo',
+  language: 'en',
+  name: 'Knotvo — Privacy Policy',
+  description: 'How Knotvo handles HAR files, live URL measurements, API keys, local processing and support communication.',
+  url: PAGE_URL,
+});
 
 export default function EnglishKnotvoPrivacyPage() {
   return (
     <main id="main-content" tabIndex={-1} className="knotvo-legal">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
 
       <p style={{ marginBottom: 24 }}>

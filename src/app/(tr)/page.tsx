@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
 import { contact, stores } from '@/lib/contact';
 import Experience from '@/components/home/Experience';
+import HomeSchema from '@/components/home/HomeSchema';
 import { tools } from '@/lib/experience';
 
 export const metadata: Metadata = {
@@ -313,26 +313,10 @@ const faqs: FaqEntry[] = [
   },
 ];
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ q, plain }) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: plain,
-    },
-  })),
-};
-
 export default function HomePage() {
   return (
     <main id="main-content" tabIndex={-1}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
-      />
+      <HomeSchema language="tr" faq={faqs} />
       {/* Hero Section */}
       <section className="hero" aria-label="Tanıtım bölümü">
         <div className="container">

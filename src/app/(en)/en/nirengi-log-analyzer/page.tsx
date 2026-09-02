@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
 import { stores } from '@/lib/contact';
+import { appSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/nirengi-log-analyzer';
 const APP_STORE_URL = stores.nirengi.en;
@@ -37,45 +39,8 @@ export const metadata: Metadata = {
   },
 };
 
-const softwareSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  '@id': `${PAGE_URL}#software`,
-  name: 'Nirengi',
-  applicationCategory: 'DeveloperApplication',
-  applicationSubCategory: 'SEO Software',
-  operatingSystem: 'macOS 14.4 or later',
-  softwareVersion: '1.0',
-  inLanguage: 'en',
-  description:
-    'An on-device SEO server log analyzer offering 41 reports across Googlebot, AI crawlers, crawl budget, technical errors and index coverage.',
-  author: {
-    '@type': 'Person',
-    '@id': 'https://www.keremgezergun.com/#person',
-    name: 'Sungur Kerem Gezergün',
-  },
-  publisher: { '@id': 'https://www.keremgezergun.com/#person' },
-  url: PAGE_URL,
-  downloadUrl: APP_STORE_URL,
-  installUrl: APP_STORE_URL,
-  sameAs: APP_STORE_URL,
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-    url: APP_STORE_URL,
-    availability: 'https://schema.org/InStock',
-  },
-};
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    { '@type': 'ListItem', position: 2, name: 'Nirengi', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema('en', { name: 'Nirengi', url: PAGE_URL });
 
 const faqs = [
   {
@@ -158,11 +123,11 @@ export default function EnglishNirengiPage() {
     <main id="main-content" tabIndex={-1} className="nirengi">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(appSchema('nirengi', 'en')) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
       <script
         type="application/ld+json"

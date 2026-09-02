@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { appSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 import overviewShot from '../../../../../public/knotvo/overview.png';
 import insightShot from '../../../../../public/knotvo/insight.png';
@@ -55,50 +57,8 @@ export const metadata: Metadata = {
   },
 };
 
-const softwareSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  '@id': `${PAGE_URL}#software`,
-  name: 'Knotvo',
-  applicationCategory: 'DeveloperApplication',
-  applicationSubCategory: 'Web Performance Analyzer',
-  operatingSystem: 'macOS 14.0 or later',
-  processorRequirements: 'Apple Silicon or Intel',
-  description:
-    'Knotvo is a local Mac application that turns HAR files and live measurements into a single, plain to-do list for site speed.',
-  url: PAGE_URL,
-  inLanguage: 'en',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-    availability: 'https://schema.org/PreOrder',
-  },
-  featureList: [
-    'HAR file analysis (entirely local)',
-    'Live measurement — PageSpeed Insights and Lighthouse',
-    'Core Web Vitals lab + field data',
-    'Waterfall timeline',
-    'Compare two HAR files',
-    'Sanitize secrets for safe HAR sharing',
-    'PDF report output',
-  ],
-  author: {
-    '@type': 'Person',
-    '@id': 'https://www.keremgezergun.com/#person',
-    name: 'Sungur Kerem Gezergün',
-  },
-  publisher: { '@id': 'https://www.keremgezergun.com/#person' },
-};
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    { '@type': 'ListItem', position: 2, name: 'Knotvo', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema('en', { name: 'Knotvo', url: PAGE_URL });
 
 const faqs = [
   {
@@ -153,11 +113,11 @@ export default function EnglishKnotvoPage() {
     <main id="main-content" tabIndex={-1} className="knotvo">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(appSchema('knotvo', 'en')) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
       <script
         type="application/ld+json"

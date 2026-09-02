@@ -3,9 +3,43 @@ import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
 import { stores } from '@/lib/contact';
+import { appSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/nirengi';
 const APP_STORE_URL = stores.nirengi.tr;
+
+const breadcrumb = breadcrumbSchema('tr', { name: 'Nirengi', url: PAGE_URL });
+
+const faqs = [
+  {
+    q: 'Nirengi sunucu loglarımı yükler mi?',
+    a: 'Hayır. Seçtiğiniz dosyalar macOS App Sandbox içinde yerel olarak işlenir; uygulama hesap, reklam veya telemetri içermez.',
+  },
+  {
+    q: 'Ne zaman ağ erişimi kullanır?',
+    a: 'Yalnızca başlattığınız sitemap, robots.txt indirme veya DNS bot doğrulama işlemlerinde.',
+  },
+  {
+    q: 'Sonuçları paylaşabilir miyim?',
+    a: 'Evet. Tabloları CSV, tüm raporu ise bulut hesabı gerektirmeyen tek dosyalı HTML olarak aktarabilirsiniz.',
+  },
+  {
+    q: 'Nirengi ücretsiz mi?',
+    a: '1.0 sürümü tamamen ücretsizdir; abonelik veya uygulama içi satın alma içermez.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: 'tr',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 
 export const metadata: Metadata = {
   title: 'Nirengi — macOS için SEO Log Analiz Aracı',
@@ -30,28 +64,6 @@ export const metadata: Metadata = {
   twitter: { card: 'summary', title: 'Nirengi — SEO Log Analiz Aracı', description: 'Sunucu loglarınızı Mac’inizde analiz edin.' },
 };
 
-const softwareSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Nirengi',
-  applicationCategory: 'DeveloperApplication',
-  applicationSubCategory: 'SEO Software',
-  operatingSystem: 'macOS 14.4 or later',
-  softwareVersion: '1.0',
-  description: 'Googlebot, AI tarayıcıları, tarama bütçesi, teknik hatalar ve indeks kapsamı için 41 rapor sunan cihaz içi SEO sunucu log analiz aracı.',
-  author: { '@type': 'Person', name: 'Sungur Kerem Gezergün', url: 'https://www.keremgezergun.com' },
-  url: PAGE_URL,
-  downloadUrl: APP_STORE_URL,
-  installUrl: APP_STORE_URL,
-  sameAs: APP_STORE_URL,
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'TRY',
-    url: APP_STORE_URL,
-    availability: 'https://schema.org/InStock',
-  },
-};
 
 const reportGroups = [
   ['Bot kimliği', '5', 'Bot analizi, kategoriler, günlük taramalar, mobil/masaüstü ayrımı ve DNS doğrulama'],
@@ -75,7 +87,9 @@ const formats = [
 export default function NirengiPage() {
   return (
     <main id="main-content" tabIndex={-1} className="nirengi">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(appSchema('nirengi', 'tr')) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }} />
       <section className="nirengi-hero" aria-labelledby="nirengi-title">
         <div className="container nirengi-hero-grid">
           <div>
@@ -167,10 +181,7 @@ export default function NirengiPage() {
       <section className="nirengi-section nirengi-alt" aria-labelledby="faq-title">
         <div className="container nirengi-narrow"><p className="nirengi-eyebrow">Sık sorulanlar</p><h2 id="faq-title">Analizden önce bilmeniz gerekenler.</h2>
           <div className="nirengi-faq">
-            <details><summary>Nirengi sunucu loglarımı yükler mi?</summary><p>Hayır. Seçtiğiniz dosyalar macOS App Sandbox içinde yerel olarak işlenir; uygulama hesap, reklam veya telemetri içermez.</p></details>
-            <details><summary>Ne zaman ağ erişimi kullanır?</summary><p>Yalnızca başlattığınız sitemap, robots.txt indirme veya DNS bot doğrulama işlemlerinde.</p></details>
-            <details><summary>Sonuçları paylaşabilir miyim?</summary><p>Evet. Tabloları CSV, tüm raporu ise bulut hesabı gerektirmeyen tek dosyalı HTML olarak aktarabilirsiniz.</p></details>
-            <details><summary>Nirengi ücretsiz mi?</summary><p>1.0 sürümü tamamen ücretsizdir; abonelik veya uygulama içi satın alma içermez.</p></details>
+            {faqs.map(({ q, a }) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}
           </div>
           <div className="nirengi-actions"><a className="btn btn-primary" href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">Mac App Store’dan indir<span className="sr-only"> (yeni sekmede açılır)</span></a><Link className="btn btn-outline" href="/nirengi-iletisim">Destek ve iletişim</Link><Link className="btn btn-outline" href="/nirengi-gizlilik-politikasi">Gizlilik politikası</Link><Link className="btn btn-outline" href="/nirengi-erisilebirlik">Erişilebilirlik</Link></div>
         </div>

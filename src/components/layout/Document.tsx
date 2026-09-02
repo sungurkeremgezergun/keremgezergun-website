@@ -3,7 +3,7 @@ import Footer from '@/components/layout/Footer';
 import { fontVariables } from '@/lib/fonts';
 import type { Language } from '@/lib/i18n';
 import { jsonLdSafe } from '@/lib/jsonLd';
-import { personSchema, websiteSchema } from '@/lib/siteSchema';
+import { siteGraph } from '@/lib/schema/website';
 
 const GA_ID = 'G-TVTZYGQ64H';
 
@@ -48,13 +48,12 @@ export default function Document({
 `,
           }}
         />
+        {/* Person + WebSite as one @graph. It stays in the layout rather than
+            being repeated per page: a page that forgot it would drop the site's
+            identity with nothing to fail on. */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdSafe(personSchema(language)) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdSafe(websiteSchema(language)) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdSafe(siteGraph(language)) }}
         />
       </head>
       <body>

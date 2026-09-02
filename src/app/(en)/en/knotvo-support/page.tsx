@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
 import { contact } from '@/lib/contact';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/knotvo-support';
 
@@ -37,20 +39,19 @@ export const metadata: Metadata = {
   },
 };
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Knotvo',
-      item: 'https://www.keremgezergun.com/en/knotvo-site-speed-analyzer',
-    },
-    { '@type': 'ListItem', position: 3, name: 'Support', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema(
+  'en',
+  { name: 'Knotvo', url: 'https://www.keremgezergun.com/en/knotvo-site-speed-analyzer' },
+  { name: 'Support', url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'knotvo',
+  language: 'en',
+  name: 'Knotvo — Support',
+  description: 'Knotvo support and FAQ: how to capture a HAR file, how live measurement works, how to reset your data and where to get help.',
+  url: PAGE_URL,
+});
 
 const faqs: Array<{ q: string; a: React.ReactNode; plain: string }> = [
   {
@@ -141,7 +142,11 @@ export default function EnglishKnotvoSupportPage() {
     <main id="main-content" tabIndex={-1} className="knotvo-legal">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
       <script
         type="application/ld+json"

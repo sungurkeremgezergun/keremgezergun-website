@@ -3,9 +3,9 @@ import CrawlseerLanding from '@/components/crawlseer/Landing';
 import { faqs } from '@/components/crawlseer/content';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
-import { stores } from '@/lib/contact';
+import { appSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
-const STORE_URL = stores.crawlseer;
 const PAGE_URL = 'https://www.keremgezergun.com/en/crawlseer';
 
 export const metadata: Metadata = {
@@ -33,41 +33,8 @@ export const metadata: Metadata = {
   },
 };
 
-const softwareSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  '@id': `${PAGE_URL}#software`,
-  name: 'Crawlseer',
-  applicationCategory: 'DeveloperApplication',
-  applicationSubCategory: 'SEO Software',
-  operatingSystem: 'Chrome 116 or later',
-  softwareVersion: '1.0.0',
-  inLanguage: 'en',
-  description: 'A free Chrome extension that audits on-page SEO, schema, hreflang and AI crawler access.',
-  url: PAGE_URL,
-  image: 'https://www.keremgezergun.com/crawlseer/promo-marquee-1400x560.png',
-  downloadUrl: STORE_URL,
-  installUrl: STORE_URL,
-  sameAs: STORE_URL,
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-    url: STORE_URL,
-    availability: 'https://schema.org/InStock',
-  },
-  author: { '@type': 'Person', '@id': 'https://www.keremgezergun.com/#person', name: 'Sungur Kerem Gezergün' },
-  publisher: { '@id': 'https://www.keremgezergun.com/#person' },
-};
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    { '@type': 'ListItem', position: 2, name: 'Crawlseer', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema('en', { name: 'Crawlseer', url: PAGE_URL });
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -83,8 +50,8 @@ const faqSchema = {
 export default function EnglishCrawlseerPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(appSchema('crawlseer', 'en')) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }} />
       <CrawlseerLanding language="en" />
     </>

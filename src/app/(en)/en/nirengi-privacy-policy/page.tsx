@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/nirengi-privacy-policy';
 
@@ -36,27 +38,30 @@ export const metadata: Metadata = {
   },
 };
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Nirengi',
-      item: 'https://www.keremgezergun.com/en/nirengi-log-analyzer',
-    },
-    { '@type': 'ListItem', position: 3, name: 'Privacy Policy', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema(
+  'en',
+  { name: 'Nirengi', url: 'https://www.keremgezergun.com/en/nirengi-log-analyzer' },
+  { name: 'Privacy Policy', url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'nirengi',
+  language: 'en',
+  name: 'Nirengi Privacy Policy',
+  description: 'How Nirengi protects your data through local macOS processing, optional network requests and account-free operation.',
+  url: PAGE_URL,
+});
 
 export default function EnglishNirengiPrivacyPage() {
   return (
     <main id="main-content" tabIndex={-1} className="nirengi-legal">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
       <article className="container nirengi-narrow">
         <p className="nirengi-eyebrow">Nirengi</p>

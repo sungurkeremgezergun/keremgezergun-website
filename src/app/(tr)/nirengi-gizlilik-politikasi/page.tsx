@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
+
+const PAGE_URL = 'https://www.keremgezergun.com/nirengi-gizlilik-politikasi';
 
 export const metadata: Metadata = {
   title: 'Nirengi Gizlilik Politikası',
@@ -8,8 +13,25 @@ export const metadata: Metadata = {
   alternates: alternateMetadata('/nirengi-gizlilik-politikasi', '/en/nirengi-privacy-policy'),
 };
 
+const breadcrumb = breadcrumbSchema(
+  'tr',
+  { name: 'Nirengi', url: 'https://www.keremgezergun.com/nirengi' },
+  { name: 'Gizlilik Politikası', url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'nirengi',
+  language: 'tr',
+  name: 'Nirengi Gizlilik Politikası',
+  description: 'Nirengi’nin yerel macOS işlemesi, isteğe bağlı ağ istekleri ve destek iletişiminde verileri nasıl koruduğunu okuyun.',
+  url: PAGE_URL,
+});
+
 export default function NirengiPrivacyPage() {
-  return <main id="main-content" tabIndex={-1} className="nirengi-legal"><article className="container nirengi-narrow">
+  return <main id="main-content" tabIndex={-1} className="nirengi-legal">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
+    <article className="container nirengi-narrow">
     <p className="nirengi-eyebrow">Nirengi</p><h1>Gizlilik Politikası</h1><p className="nirengi-updated">Yürürlük ve son güncelleme: <time dateTime="2026-07-24">24 Temmuz 2026</time></p>
     <p className="nirengi-summary"><strong>Kısaca:</strong> Nirengi, seçtiğiniz log dosyalarını veya analiz sonuçlarını yüklemez. İsteğe bağlı ağ özellikleri ve destek iletişimi aşağıda açıklanır.</p>
     <div className="nirengi-policy">

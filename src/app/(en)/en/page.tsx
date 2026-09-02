@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
 import { contact, stores } from '@/lib/contact';
 import Experience from '@/components/home/Experience';
+import HomeSchema from '@/components/home/HomeSchema';
 import { tools } from '@/lib/experience';
 
 
@@ -316,17 +316,6 @@ export const metadata: Metadata = {
   },
 };
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  inLanguage: 'en',
-  mainEntity: faqs.map(({ q, plain }) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: { '@type': 'Answer', text: plain },
-  })),
-};
-
 const services = [
   {
     title: 'SEO Strategy & Consulting',
@@ -397,14 +386,10 @@ const services = [
   },
 ];
 
-
 export default function EnglishHomePage() {
   return (
     <main id="main-content" tabIndex={-1}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
-      />
+      <HomeSchema language="en" faq={faqs} />
 
       {/* Hero */}
       <section className="hero" aria-label="Introduction">

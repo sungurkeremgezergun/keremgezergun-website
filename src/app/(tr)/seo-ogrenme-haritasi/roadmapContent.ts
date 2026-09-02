@@ -4583,3 +4583,38 @@ export const roadmapSections: RoadmapSection[] = [
     ],
   },
 ];
+
+/**
+ * Anchor slug for a section, used by both the `<details>` id and the
+ * ItemList in `roadmapSchema.ts`.
+ *
+ * The Turkish letters are mapped explicitly. `normalize('NFD')` does not help
+ * here: ı and İ are distinct base letters, not i plus a combining mark, so a
+ * generic diacritic strip leaves them intact and produces the wrong slug.
+ * Changing a section title therefore changes its anchor.
+ */
+const TR_LETTERS: Record<string, string> = {
+  ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u',
+  Ç: 'c', Ğ: 'g', İ: 'i', I: 'i', Ö: 'o', Ş: 's', Ü: 'u',
+};
+
+export function sectionSlug(section: RoadmapSection): string {
+  return section.title.tr
+    .replace(/[çğıöşüÇĞİIÖŞÜ]/g, (letter) => TR_LETTERS[letter])
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * The counts shown on the page and quoted in the metadata. Derived, so the
+ * stat cards, the meta description and the schema cannot disagree — they did.
+ */
+export const roadmapTotals = {
+  resources: roadmapSections.reduce(
+    (n, section) => n + section.subsections.reduce((m, sub) => m + sub.resources.length, 0),
+    0,
+  ),
+  categories: roadmapSections.length,
+  subtopics: roadmapSections.reduce((n, section) => n + section.subsections.length, 0),
+};

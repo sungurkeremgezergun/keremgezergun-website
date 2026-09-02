@@ -3,6 +3,15 @@
  * canonical NAP; before this existed the footer, the Knotvo pages and the
  * Nirengi pages each carried a slightly different email, phone format or domain.
  */
+const addressParts = {
+  street: 'Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41',
+  locality: 'Üsküdar',
+  region: { tr: 'İstanbul', en: 'Istanbul' },
+  /** ISO 3166-1 alpha-2, which is what schema.org addressCountry expects. */
+  countryCode: 'TR',
+  countryName: 'Türkiye',
+} as const;
+
 export const contact = {
   name: 'Sungur Kerem Gezergün',
   email: 'iletisim@keremgezergun.com',
@@ -11,9 +20,15 @@ export const contact = {
   phoneHref: 'tel:+905526902782',
   /** Every contact CTA on the site points here. No prefilled text by design. */
   whatsapp: 'https://wa.me/905526902782',
+  /**
+   * The address in parts, for schema.org PostalAddress. `address` below is
+   * composed from these, so the printed line and the machine-readable node
+   * cannot drift apart.
+   */
+  addressParts,
   address: {
-    tr: 'Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / İstanbul, Türkiye',
-    en: 'Mimar Sinan Mahallesi, Katibim Aziz Bey Caddesi No: 41, Üsküdar / Istanbul, Türkiye',
+    tr: `${addressParts.street}, ${addressParts.locality} / ${addressParts.region.tr}, ${addressParts.countryName}`,
+    en: `${addressParts.street}, ${addressParts.locality} / ${addressParts.region.en}, ${addressParts.countryName}`,
   },
   website: 'https://www.keremgezergun.com',
   websiteLabel: 'www.keremgezergun.com',

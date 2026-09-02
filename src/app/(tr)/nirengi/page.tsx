@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { stores } from '@/lib/contact';
 
 const PAGE_URL = 'https://www.keremgezergun.com/nirengi';
+const APP_STORE_URL = stores.nirengi.tr;
 
 export const metadata: Metadata = {
   title: 'Nirengi — macOS için SEO Log Analiz Aracı',
@@ -39,7 +41,16 @@ const softwareSchema = {
   description: 'Googlebot, AI tarayıcıları, tarama bütçesi, teknik hatalar ve indeks kapsamı için 41 rapor sunan cihaz içi SEO sunucu log analiz aracı.',
   author: { '@type': 'Person', name: 'Sungur Kerem Gezergün', url: 'https://www.keremgezergun.com' },
   url: PAGE_URL,
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' },
+  downloadUrl: APP_STORE_URL,
+  installUrl: APP_STORE_URL,
+  sameAs: APP_STORE_URL,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'TRY',
+    url: APP_STORE_URL,
+    availability: 'https://schema.org/InStock',
+  },
 };
 
 const reportGroups = [
@@ -72,9 +83,18 @@ export default function NirengiPage() {
             <h1 id="nirengi-title">Loglarınız. Mac’iniz. <span>İçgörüleriniz.</span></h1>
             <p className="nirengi-lead">Ham sunucu loglarını Googlebot, AI tarayıcıları, tarama bütçesi ve teknik SEO için kullanılabilir içgörülere dönüştürün. Dosyalarınız cihazınızda işlenir ve hiçbir yere yüklenmez.</p>
             <div className="nirengi-actions">
-              <a className="btn btn-primary btn-large" href="#ozellikler">Özellikleri keşfet</a>
-              <Link className="btn btn-outline btn-large" href="/nirengi-erisilebirlik">Erişilebilirlik</Link>
+              <a
+                className="btn btn-primary btn-large"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Mac App Store’dan indir
+                <span className="sr-only"> (yeni sekmede açılır)</span>
+              </a>
+              <a className="btn btn-outline btn-large" href="#ozellikler">Özellikleri keşfet</a>
             </div>
+            <p className="nirengi-note">🍎 Mac App Store’da yayında · Ücretsiz · macOS 14.4 ve üzeri</p>
           </div>
           <div className="nirengi-window" role="img" aria-label="Nirengi analizinden dört örnek ölçüm">
             <div className="nirengi-windowbar" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -152,7 +172,7 @@ export default function NirengiPage() {
             <details><summary>Sonuçları paylaşabilir miyim?</summary><p>Evet. Tabloları CSV, tüm raporu ise bulut hesabı gerektirmeyen tek dosyalı HTML olarak aktarabilirsiniz.</p></details>
             <details><summary>Nirengi ücretsiz mi?</summary><p>1.0 sürümü tamamen ücretsizdir; abonelik veya uygulama içi satın alma içermez.</p></details>
           </div>
-          <div className="nirengi-actions"><Link className="btn btn-primary" href="/nirengi-iletisim">Destek ve iletişim</Link><Link className="btn btn-outline" href="/nirengi-gizlilik-politikasi">Gizlilik politikası</Link><Link className="btn btn-outline" href="/nirengi-erisilebirlik">Erişilebilirlik</Link></div>
+          <div className="nirengi-actions"><a className="btn btn-primary" href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">Mac App Store’dan indir<span className="sr-only"> (yeni sekmede açılır)</span></a><Link className="btn btn-outline" href="/nirengi-iletisim">Destek ve iletişim</Link><Link className="btn btn-outline" href="/nirengi-gizlilik-politikasi">Gizlilik politikası</Link><Link className="btn btn-outline" href="/nirengi-erisilebirlik">Erişilebilirlik</Link></div>
         </div>
       </section>
     </main>

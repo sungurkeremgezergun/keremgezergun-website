@@ -25,3 +25,17 @@ export const policyDates = {
   knotvo: { iso: '2026-07-20', tr: '20 Temmuz 2026', en: '20 July 2026' },
   crawlseer: { iso: '2026-07-29', tr: '29 Temmuz 2026', en: '29 July 2026' },
 } as const;
+
+/**
+ * Public store listings for the shipped products. Both the product pages and
+ * the home page link here, so a storefront change is a one-line edit.
+ * Knotvo has no entry yet — it has not been released.
+ */
+export const stores = {
+  nirengi: {
+    tr: 'https://apps.apple.com/tr/app/nirengi-log-file-analyser/id6794631310?l=tr&mt=12',
+    en: 'https://apps.apple.com/app/nirengi-log-file-analyser/id6794631310?mt=12',
+  },
+  crawlseer:
+    'https://chromewebstore.google.com/detail/crawlseer-seo-checker-ai/mecbmoidhdnoedfblkhdlkebnpkepgnj',
+} as const;

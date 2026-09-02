@@ -2539,6 +2539,7 @@ textarea:disabled {
 
 .nirengi-lead { font-size: 1.25rem; }
 .nirengi-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.nirengi-note { margin-top: 16px; color: var(--text-light); font-size: 0.875rem; }
 
 .nirengi-window {
     overflow: hidden;

@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { stores } from '@/lib/contact';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/nirengi-log-analyzer';
+const APP_STORE_URL = stores.nirengi.en;
 
 export const metadata: Metadata = {
   title: 'Nirengi — SEO Log Analyzer for macOS',
@@ -54,7 +56,16 @@ const softwareSchema = {
   },
   publisher: { '@id': 'https://www.keremgezergun.com/#person' },
   url: PAGE_URL,
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  downloadUrl: APP_STORE_URL,
+  installUrl: APP_STORE_URL,
+  sameAs: APP_STORE_URL,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    url: APP_STORE_URL,
+    availability: 'https://schema.org/InStock',
+  },
 };
 
 const breadcrumbSchema = {
@@ -170,13 +181,22 @@ export default function EnglishNirengiPage() {
               and technical SEO. Your files are processed on your own machine and never uploaded.
             </p>
             <div className="nirengi-actions">
-              <a className="btn btn-primary btn-large" href="#features">
+              <a
+                className="btn btn-primary btn-large"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download on the Mac App Store
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              <a className="btn btn-outline btn-large" href="#features">
                 Explore features
               </a>
-              <Link className="btn btn-outline btn-large" href="/en/nirengi-accessibility">
-                Accessibility
-              </Link>
             </div>
+            <p className="nirengi-note">
+              🍎 Available on the Mac App Store · Free · macOS 14.4 or later
+            </p>
           </div>
           <div className="nirengi-window" role="img" aria-label="Four example measurements from a Nirengi analysis">
             <div className="nirengi-windowbar" aria-hidden="true">
@@ -359,7 +379,16 @@ export default function EnglishNirengiPage() {
             ))}
           </div>
           <div className="nirengi-actions">
-            <Link className="btn btn-primary" href="/en/nirengi-support">
+            <a
+              className="btn btn-primary"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download on the Mac App Store
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <Link className="btn btn-outline" href="/en/nirengi-support">
               Support and contact
             </Link>
             <Link className="btn btn-outline" href="/en/nirengi-privacy-policy">

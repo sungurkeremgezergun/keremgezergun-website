@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Language } from '@/lib/i18n';
-import { contact } from '@/lib/contact';
+import { stores } from '@/lib/contact';
 import { chrome, faqs, privacyCards, screenshots, tabFeatures, whyFeatures } from './content';
 
-const NOTIFY = `mailto:${contact.email}?subject=Crawlseer`;
+const STORE_URL = stores.crawlseer;
 
 export default function CrawlseerLanding({ language }: { language: Language }) {
   const en = language === 'en';
@@ -25,14 +25,22 @@ export default function CrawlseerLanding({ language }: { language: Language }) {
           </ul>
 
           <div className="nirengi-actions">
-            <a className="btn btn-primary btn-large" href={NOTIFY}>
-              {chrome.notify[language]}
+            <a
+              className="btn btn-primary btn-large"
+              href={STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {chrome.install[language]}
+              <span className="sr-only">
+                {en ? ' (opens in a new tab)' : ' (yeni sekmede açılır)'}
+              </span>
             </a>
             <a className="btn btn-outline btn-large" href="#features">
               {chrome.explore[language]}
             </a>
           </div>
-          <p className="crawlseer-note">{chrome.comingSoon[language]}</p>
+          <p className="crawlseer-note">{chrome.availability[language]}</p>
           <p className="crawlseer-byline">{chrome.byline[language]}</p>
 
           <div className="k-heroshot k-shot">
@@ -158,8 +166,16 @@ export default function CrawlseerLanding({ language }: { language: Language }) {
         <div className="container">
           <h2 id="crawlseer-cta">{chrome.ctaHeading[language]}</h2>
           <p>{chrome.ctaText[language]}</p>
-          <a className="btn btn-primary btn-large" href={NOTIFY}>
-            {chrome.notify[language]}
+          <a
+            className="btn btn-primary btn-large"
+            href={STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {chrome.install[language]}
+            <span className="sr-only">
+              {en ? ' (opens in a new tab)' : ' (yeni sekmede açılır)'}
+            </span>
           </a>
         </div>
       </section>

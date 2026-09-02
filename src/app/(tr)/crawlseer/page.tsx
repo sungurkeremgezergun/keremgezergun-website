@@ -3,7 +3,9 @@ import CrawlseerLanding from '@/components/crawlseer/Landing';
 import { faqs } from '@/components/crawlseer/content';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { stores } from '@/lib/contact';
 
+const STORE_URL = stores.crawlseer;
 const PAGE_URL = 'https://www.keremgezergun.com/crawlseer';
 
 export const metadata: Metadata = {
@@ -39,11 +41,21 @@ const softwareSchema = {
   applicationCategory: 'DeveloperApplication',
   applicationSubCategory: 'SEO Software',
   operatingSystem: 'Chrome 116 or later',
+  softwareVersion: '1.0.0',
   inLanguage: 'tr-TR',
   description: 'Sayfa içi SEO, schema, hreflang ve yapay zekâ tarayıcı denetimi yapan ücretsiz Chrome uzantısı.',
   url: PAGE_URL,
   image: 'https://www.keremgezergun.com/crawlseer/promo-marquee-1400x560.png',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  downloadUrl: STORE_URL,
+  installUrl: STORE_URL,
+  sameAs: STORE_URL,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    url: STORE_URL,
+    availability: 'https://schema.org/InStock',
+  },
   author: { '@type': 'Person', '@id': 'https://www.keremgezergun.com/#person', name: 'Sungur Kerem Gezergün' },
   publisher: { '@id': 'https://www.keremgezergun.com/#person' },
 };

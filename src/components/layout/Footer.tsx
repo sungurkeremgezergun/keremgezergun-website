@@ -19,7 +19,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
         <div className="footer-content">
           <div className="footer-brand">
             <Logo variant="footer" href={isEnglish ? '/en' : '/'} />
-            <p>{isEnglish ? 'Senior E-commerce SEO Consultant' : 'Senior E-Ticaret SEO Danışmanı'}</p>
+            <p>{isEnglish ? 'E-commerce SEO Consultant' : 'E-Ticaret SEO Danışmanı'}</p>
             <p className="footer-description">
               {isEnglish ? 'Digital marketing professional specializing in e-commerce SEO, technical SEO and organic growth strategy.' : 'E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri alanında uzmanlaşmış dijital pazarlama profesyoneli.'}
             </p>

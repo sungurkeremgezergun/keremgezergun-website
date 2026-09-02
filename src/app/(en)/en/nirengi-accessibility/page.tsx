@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/nirengi-accessibility';
 
@@ -36,42 +38,20 @@ export const metadata: Metadata = {
   },
 };
 
-const pageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
+const pageSchema = productPageSchema({
+  product: 'nirengi',
+  language: 'en',
   name: 'Nirengi Accessibility Support',
+  description: 'Accessibility support details for the Nirengi macOS SEO log analyzer, including keyboard commands and known limitations.',
   url: PAGE_URL,
-  inLanguage: 'en',
-  description:
-    'Accessibility support details for the Nirengi macOS SEO log analyzer, including keyboard commands and known limitations.',
-  isPartOf: { '@id': 'https://www.keremgezergun.com/#website' },
-  about: {
-    '@type': 'SoftwareApplication',
-    name: 'Nirengi',
-    operatingSystem: 'macOS 14.4 or later',
-    applicationCategory: 'DeveloperApplication',
-    author: {
-      '@type': 'Person',
-      '@id': 'https://www.keremgezergun.com/#person',
-      name: 'Sungur Kerem Gezergün',
-    },
-  },
-};
+  dateModified: '2026-07-25',
+});
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Nirengi',
-      item: 'https://www.keremgezergun.com/en/nirengi-log-analyzer',
-    },
-    { '@type': 'ListItem', position: 3, name: 'Accessibility', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema(
+  'en',
+  { name: 'Nirengi', url: 'https://www.keremgezergun.com/en/nirengi-log-analyzer' },
+  { name: 'Accessibility', url: PAGE_URL },
+);
 
 const features = [
   {
@@ -152,7 +132,7 @@ export default function EnglishNirengiAccessibilityPage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
 
       <header className="nirengi-a11y-hero">

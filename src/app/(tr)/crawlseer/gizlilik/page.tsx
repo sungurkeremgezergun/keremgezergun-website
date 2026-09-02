@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import CrawlseerPrivacy from '@/components/crawlseer/Privacy';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/crawlseer/gizlilik';
 
@@ -28,20 +30,25 @@ export const metadata: Metadata = {
   },
 };
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: 'https://www.keremgezergun.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Crawlseer', item: 'https://www.keremgezergun.com/crawlseer' },
-    { '@type': 'ListItem', position: 3, name: 'Gizlilik Politikası', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema(
+  'tr',
+  { name: 'Crawlseer', url: 'https://www.keremgezergun.com/crawlseer' },
+  { name: 'Gizlilik Politikası', url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'crawlseer',
+  language: 'tr',
+  name: 'Crawlseer — Gizlilik Politikası',
+  description: 'Crawlseer hiçbir veriyi geliştiriciye göndermez. Arka uç sunucu yoktur; tüm analiz tarayıcınızda çalışır ve veriler cihazınızda kalır.',
+  url: PAGE_URL,
+});
 
 export default function CrawlseerPrivacyPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
       <CrawlseerPrivacy language="tr" />
     </>
   );

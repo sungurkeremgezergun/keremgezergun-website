@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { appSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 import overviewShot from '../../../../public/knotvo/overview.png';
 import insightShot from '../../../../public/knotvo/insight.png';
@@ -56,50 +58,8 @@ export const metadata: Metadata = {
   },
 };
 
-const softwareSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  '@id': `${PAGE_URL}#software`,
-  name: 'Knotvo',
-  applicationCategory: 'DeveloperApplication',
-  applicationSubCategory: 'Web Performance Analyzer',
-  operatingSystem: 'macOS 14.0 or later',
-  processorRequirements: 'Apple Silicon veya Intel',
-  description:
-    'Knotvo, HAR dosyalarını ve canlı ölçümleri tek ekranda sade bir yapılacaklar listesine çeviren, Mac için tasarlanmış yerel bir site hızı analiz aracıdır.',
-  url: PAGE_URL,
-  inLanguage: 'tr-TR',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-    availability: 'https://schema.org/PreOrder',
-  },
-  featureList: [
-    'HAR dosyası analizi (tamamen yerel)',
-    'Canlı ölçüm — PageSpeed Insights ve Lighthouse',
-    'Core Web Vitals lab + saha verisi',
-    'Waterfall zaman çizelgesi',
-    'İki HAR karşılaştırma',
-    'Sır temizleyip güvenli HAR paylaşımı',
-    'PDF rapor çıktısı',
-  ],
-  author: {
-    '@type': 'Person',
-    '@id': 'https://www.keremgezergun.com/#person',
-    name: 'Sungur Kerem Gezergün',
-  },
-  publisher: { '@id': 'https://www.keremgezergun.com/#person' },
-};
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: 'https://www.keremgezergun.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Knotvo', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema('tr', { name: 'Knotvo', url: PAGE_URL });
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -153,11 +113,11 @@ export default function KnotvoPage() {
     <main id="main-content" tabIndex={-1} className="knotvo">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(appSchema('knotvo', 'tr')) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
       <script
         type="application/ld+json"

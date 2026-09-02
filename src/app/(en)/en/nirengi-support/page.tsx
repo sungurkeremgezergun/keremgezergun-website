@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/nirengi-support';
 
@@ -36,20 +38,19 @@ export const metadata: Metadata = {
   },
 };
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Nirengi',
-      item: 'https://www.keremgezergun.com/en/nirengi-log-analyzer',
-    },
-    { '@type': 'ListItem', position: 3, name: 'Support', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema(
+  'en',
+  { name: 'Nirengi', url: 'https://www.keremgezergun.com/en/nirengi-log-analyzer' },
+  { name: 'Support', url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'nirengi',
+  language: 'en',
+  name: 'Nirengi Support & Contact',
+  description: 'Get help with the Nirengi macOS SEO log analyzer: log formats, reports, exports, privacy and performance support.',
+  url: PAGE_URL,
+});
 
 const supportRows = [
   ['A log will not open', 'Your macOS and Nirengi versions, the file extension, approximate size and where the file lives'],
@@ -65,7 +66,11 @@ export default function EnglishNirengiSupportPage() {
     <main id="main-content" tabIndex={-1} className="nirengi-legal">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
       <div className="container nirengi-narrow">
         <p className="nirengi-eyebrow">Nirengi</p>

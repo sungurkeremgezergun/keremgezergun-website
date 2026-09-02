@@ -3,6 +3,8 @@ import Link from "next/link";
 import { jsonLdSafe } from "@/lib/jsonLd";
 import { alternateMetadata } from "@/lib/i18n";
 import { contact } from "@/lib/contact";
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = "https://www.keremgezergun.com/knotvo-gizlilik";
 
@@ -41,37 +43,30 @@ export const metadata: Metadata = {
   },
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Ana Sayfa",
-      item: "https://www.keremgezergun.com/",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Knotvo",
-      item: "https://www.keremgezergun.com/knotvo",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: "Gizlilik Politikası",
-      item: PAGE_URL,
-    },
-  ],
-};
+const breadcrumb = breadcrumbSchema(
+  'tr',
+  { name: "Knotvo", url: "https://www.keremgezergun.com/knotvo" },
+  { name: "Gizlilik Politikası", url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'knotvo',
+  language: 'tr',
+  name: 'Knotvo — Gizlilik Politikası',
+  description: 'Knotvo gizlilik politikası. Knotvo yerel bir macOS uygulamasıdır; hesap, telemetri veya sunucu yoktur. HAR analizi tamamen cihazınızda yapılır.',
+  url: PAGE_URL,
+});
 
 export default function KnotvoGizlilikPage() {
   return (
     <main id="main-content" tabIndex={-1} className="knotvo-legal">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
 
       <p style={{ marginBottom: 24 }}>

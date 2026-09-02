@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s | Kerem Gezergün',
   },
   description:
-    'Sungur Kerem Gezergün — Senior E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
+    'Sungur Kerem Gezergün — E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
   keywords: ['SEO Uzmanı', 'E-ticaret SEO', 'Teknik SEO', 'Organik Büyüme', 'İstanbul SEO'],
   authors: [{ name: 'Sungur Kerem Gezergün' }],
   referrer: 'strict-origin-when-cross-origin',

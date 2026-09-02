@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s | Kerem Gezergün',
   },
   description:
-    'Sungur Kerem Gezergün — Senior E-commerce SEO Consultant. I grow online retailers with strategies that turn organic visibility into revenue.',
+    'Sungur Kerem Gezergün — E-commerce SEO Consultant. I grow online retailers with strategies that turn organic visibility into revenue.',
   keywords: [
     'SEO consultant',
     'E-commerce SEO',

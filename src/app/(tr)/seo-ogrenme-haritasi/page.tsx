@@ -4,10 +4,13 @@ import { contact } from '@/lib/contact';
 import {
   resourceTypeLabels,
   roadmapSections,
+  roadmapTotals,
+  sectionSlug,
   type RoadmapResource,
   type RoadmapSection,
   type RoadmapSubsection,
 } from './roadmapContent';
+import { roadmapGraph } from './roadmapSchema';
 
 const chrome = {
   tag: { tr: 'SEO Rehberi', en: 'SEO Learning Roadmap' },
@@ -40,36 +43,7 @@ const chrome = {
   ctaButton: { tr: 'WhatsApp’tan Yazın', en: 'Message me on WhatsApp' },
 } as const;
 
-const breadcrumbSchema = (language: Language) => ({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: language === 'en' ? 'Home' : 'Ana Sayfa',
-      item: 'https://www.keremgezergun.com/',
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: chrome.heading[language],
-      item:
-        language === 'en'
-          ? 'https://www.keremgezergun.com/en/seo-learning-roadmap'
-          : 'https://www.keremgezergun.com/seo-ogrenme-haritasi',
-    },
-  ],
-});
 
-const totals = {
-  resources: roadmapSections.reduce(
-    (n, section) => n + section.subsections.reduce((m, sub) => m + sub.resources.length, 0),
-    0,
-  ),
-  categories: roadmapSections.length,
-  subtopics: roadmapSections.reduce((n, section) => n + section.subsections.length, 0),
-};
 
 function ChevronSvg() {
   return (
@@ -145,7 +119,7 @@ function Subsection({ subsection, language }: { subsection: RoadmapSubsection; l
 
 function AccordionSection({ section, language }: { section: RoadmapSection; language: Language }) {
   return (
-    <details className="section-accordion" open={section.defaultOpen}>
+    <details className="section-accordion" id={sectionSlug(section)} open={section.defaultOpen}>
       <summary className="section-accordion-header">
         <span className="title">
           {section.title[language]}
@@ -167,7 +141,7 @@ export default function SeoOgrenmeHaritasiPage({ language = 'tr' }: { language?:
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema(language)) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(roadmapGraph(language)) }}
       />
 
       <main id="main-content" tabIndex={-1} lang={language === 'en' ? 'en' : undefined}>
@@ -188,15 +162,15 @@ export default function SeoOgrenmeHaritasiPage({ language = 'tr' }: { language?:
             <div className="roadmap-intro">
               <ul className="roadmap-stats">
                 <li className="roadmap-stat">
-                  <span className="number">{totals.resources}+</span>
+                  <span className="number">{roadmapTotals.resources}+</span>
                   <span className="label">{chrome.statResources[language]}</span>
                 </li>
                 <li className="roadmap-stat">
-                  <span className="number">{totals.categories}</span>
+                  <span className="number">{roadmapTotals.categories}</span>
                   <span className="label">{chrome.statCategories[language]}</span>
                 </li>
                 <li className="roadmap-stat">
-                  <span className="number">{totals.subtopics}</span>
+                  <span className="number">{roadmapTotals.subtopics}</span>
                   <span className="label">{chrome.statSubtopics[language]}</span>
                 </li>
               </ul>

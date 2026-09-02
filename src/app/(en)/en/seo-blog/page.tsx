@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/seo-blog';
 
@@ -65,14 +66,7 @@ const posts = [
   },
 ];
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.keremgezergun.com/en' },
-    { '@type': 'ListItem', position: 2, name: 'SEO Blog', item: PAGE_URL },
-  ],
-};
+const breadcrumb = breadcrumbSchema('en', { name: 'SEO Blog', url: PAGE_URL });
 
 const collectionPageSchema = {
   '@context': 'https://schema.org',
@@ -101,7 +95,7 @@ export default function EnglishBlogPage() {
     <main id="main-content" tabIndex={-1}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
       <script
         type="application/ld+json"

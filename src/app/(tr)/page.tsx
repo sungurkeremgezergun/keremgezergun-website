@@ -1,17 +1,18 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
-import { contact } from '@/lib/contact';
-import knotvoShot from '../../../public/knotvo/overview.png';
+import { contact, stores } from '@/lib/contact';
+import Experience from '@/components/home/Experience';
+import HomeSchema from '@/components/home/HomeSchema';
+import { tools } from '@/lib/experience';
 
 export const metadata: Metadata = {
   description:
-    'Sungur Kerem Gezergün — Senior E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
+    'Sungur Kerem Gezergün — E-Ticaret SEO Danışmanı. E-ticaret sitelerini sadece trafiğe değil satışa dönüştüren stratejilerle büyütüyorum.',
   alternates: alternateMetadata('/', '/en'),
   openGraph: {
-    title: 'Kerem Gezergün | Senior E-Ticaret SEO Danışmanı',
+    title: 'Kerem Gezergün | E-Ticaret SEO Danışmanı',
     description:
       'E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle büyütüyorum. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim.',
     url: 'https://www.keremgezergun.com/',
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
         url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kerem Gezergün - Senior E-Ticaret SEO Danışmanı',
+        alt: 'Kerem Gezergün - E-Ticaret SEO Danışmanı',
       },
     ],
     locale: 'tr_TR',
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kerem Gezergün | Senior E-Ticaret SEO Danışmanı',
+    title: 'Kerem Gezergün | E-Ticaret SEO Danışmanı',
     description:
       'E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle büyütüyorum. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim.',
     creator: '@keremgezergun',
@@ -312,26 +313,10 @@ const faqs: FaqEntry[] = [
   },
 ];
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ q, plain }) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: plain,
-    },
-  })),
-};
-
 export default function HomePage() {
   return (
     <main id="main-content" tabIndex={-1}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
-      />
+      <HomeSchema language="tr" faq={faqs} />
       {/* Hero Section */}
       <section className="hero" aria-label="Tanıtım bölümü">
         <div className="container">
@@ -345,7 +330,7 @@ export default function HomePage() {
                 Merhaba, ben{' '}
                 <span className="highlight">Kerem Gezergün</span>
               </h1>
-              <p className="hero-title">Senior E-Ticaret SEO Danışmanı</p>
+              <p className="hero-title">E-Ticaret SEO Danışmanı</p>
               <p className="hero-description">
                 E-ticaret sitenizi sadece trafiğe değil, satışa dönüştüren stratejilerle
                 büyütüyorum. Bugüne kadar <strong>30&apos;dan fazla e-ticaret markasının</strong>{' '}
@@ -381,7 +366,7 @@ export default function HomePage() {
               <div className="image-wrapper">
                 <Image
                   src="/images/kerem-gezergun.jpg"
-                  alt="Kerem Gezergün - Senior E-Ticaret SEO Danışmanı, profesyonel portre fotoğrafı"
+                  alt="Kerem Gezergün - E-Ticaret SEO Danışmanı, profesyonel portre fotoğrafı"
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px"
                   priority
@@ -401,70 +386,11 @@ export default function HomePage() {
             Kullandığım Araçlar
           </p>
           <ul className="tools-grid" aria-label="SEO araçları listesi">
-            <li className="tool-item" title="Ahrefs">
-              <Image
-                src="/images/tools/ahrefs.png"
-                alt="Ahrefs SEO aracı logosu"
-                width={100}
-                height={40}
-              />
-            </li>
-            <li className="tool-item" title="Google Search Console">
-              <Image
-                src="https://www.gstatic.com/images/branding/product/2x/search_console_64dp.png"
-                alt="Google Search Console logosu"
-                width={100}
-                height={40}
-              />
-            </li>
-            <li className="tool-item" title="Google Analytics">
-              <Image
-                src="https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg"
-                alt="Google Analytics logosu"
-                width={100}
-                height={40}
-                unoptimized
-              />
-            </li>
-            <li className="tool-item" title="Semrush">
-              <Image
-                src="/images/tools/semrush.png"
-                alt="Semrush SEO aracı logosu"
-                width={100}
-                height={40}
-              />
-            </li>
-            <li className="tool-item" title="Screaming Frog">
-              <Image
-                src="/images/tools/screaming-frog.png"
-                alt="Screaming Frog SEO Spider logosu"
-                width={100}
-                height={40}
-              />
-            </li>
-            <li className="tool-item" title="GTmetrix">
-              <Image
-                src="/images/tools/gtmetrix.png"
-                alt="GTmetrix performans aracı logosu"
-                width={100}
-                height={40}
-              />
-            </li>
-            <li className="tool-item" title="ReportSup">
-              <a
-                href="https://reportsup.com.tr/"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                aria-label="ReportSup web sitesini ziyaret et (yeni sekmede açılır)"
-              >
-                <Image
-                  src="/images/tools/reportsup.webp"
-                  alt="ReportSup SEO raporlama aracı logosu"
-                  width={100}
-                  height={40}
-                />
-              </a>
-            </li>
+            {tools.map((tool) => (
+              <li className="tool-item" key={tool} translate="no">
+                {tool}
+              </li>
+            ))}
           </ul>
         </div>
       </section>
@@ -584,15 +510,17 @@ export default function HomePage() {
                 kapsayan bütünsel bir süreç olarak ele alıyorum.
               </p>
               <p>
-                Halihazırda <strong>BusinessUp!</strong> ajansında Senior E-Ticaret SEO Danışmanı
-                olarak görev yapıyorum. Aynı zamanda sektördeki bilgi birikimimi paylaşmak amacıyla
-                kurduğum <strong>&ldquo;Sepetteki SEO&rdquo;</strong> podcast serisinin kurucusu
-                ve sunucusuyum.
+                2023&apos;te ilk SEO görevimle başladım; ajans tarafında bir ekibin liderliğini
+                üstlendim ve bugün <strong>Hepsiburada</strong>&apos;da SEO Specialist olarak
+                çalışıyorum. Öğrendiklerimi bir yerde biriktirmek için kurduğum{' '}
+                <strong>&ldquo;Sepetteki SEO&rdquo;</strong> podcast serisini de sunuyorum.
               </p>
             </aside>
           </div>
         </div>
       </section>
+
+      <Experience language="tr" />
 
       {/* Results Section */}
       <section className="results-section" aria-labelledby="results-heading">
@@ -762,46 +690,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Knotvo Product Section */}
-      <section className="knotvo" aria-labelledby="knotvo-home-heading">
-        <div className="knotvo-section alt">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-tag">Yeni Ürün · Mac</span>
-              <h2 id="knotvo-home-heading">Knotvo — Site Hızı Analiz Aracı</h2>
-            </div>
-            <div className="k-feature" style={{ marginTop: 8 }}>
-              <div className="k-txt">
-                <p>
-                  Geliştirdiğim <strong>Knotvo</strong>, tarayıcının ağ kaydını (HAR) ve canlı
-                  ölçümü tek ekranda toplayıp sitenin neden yavaş olduğunu sade bir yapılacaklar
-                  listesine çeviren, Mac için tasarlanmış bir site hızı analiz aracı. Karmaşık
-                  skorlar değil, ne yapman gerektiği.
-                </p>
-                <ul className="k-flist">
-                  <li>HAR analizi tamamen yerel — hiçbir şey buluta gitmez</li>
-                  <li>Lab (Lighthouse) ve saha (CrUX) verisi yan yana</li>
-                  <li>Hesap yok, kuyruk yok, abonelik yok</li>
-                  <li>Müşteriye gönderilebilir PDF rapor</li>
-                </ul>
-                <Link
-                  href="/knotvo"
-                  className="btn btn-primary btn-large"
-                  style={{ marginTop: 20 }}
+      {/* Products Section */}
+      <section id="urunler" className="services-section" aria-labelledby="products-heading">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">Ürünler</span>
+            <h2 id="products-heading">Geliştirdiğim SEO Araçları</h2>
+          </div>
+          <ul className="services-grid" aria-label="Ürün listesi">
+            <li className="service-card">
+              <h3>Nirengi — Log Analiz Aracı</h3>
+              <p>
+                Sunucu loglarını Mac&apos;inizde analiz eden, Googlebot ile AI tarayıcılarını
+                karşılaştıran ve 41 rapor üreten macOS uygulaması. Dosyalar cihazdan çıkmaz.
+              </p>
+              <p className="nirengi-note">🍎 Mac App Store&apos;da yayında · Ücretsiz</p>
+              <div className="nirengi-actions">
+                <a
+                  className="btn btn-primary"
+                  href={stores.nirengi.tr}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Knotvo&apos;yu Keşfet
+                  İndir
+                  <span className="sr-only"> — Nirengi (yeni sekmede açılır)</span>
+                </a>
+                <Link className="btn btn-outline" href="/nirengi">
+                  Detaylar
+                  <span className="sr-only"> — Nirengi</span>
                 </Link>
               </div>
-              <div className="k-shot">
-                <Image
-                  src={knotvoShot}
-                  alt="Knotvo genel bakış ekranı: performans skoru ve öncelikli darboğazlar"
-                  placeholder="blur"
-                  sizes="(max-width: 820px) 100vw, 520px"
-                />
+            </li>
+            <li className="service-card">
+              <h3>Crawlseer — Chrome Uzantısı</h3>
+              <p>
+                Açık olan sekmeyi tek tıkla denetleyin: 11 analiz sekmesi, Core Web Vitals ve 16
+                yapay zekâ tarayıcısı için robots.txt erişim matrisi.
+              </p>
+              <p className="nirengi-note">🧩 Chrome Web Store&apos;da yayında · Ücretsiz</p>
+              <div className="nirengi-actions">
+                <a
+                  className="btn btn-primary"
+                  href={stores.crawlseer}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Chrome&apos;a ekle
+                  <span className="sr-only"> — Crawlseer (yeni sekmede açılır)</span>
+                </a>
+                <Link className="btn btn-outline" href="/crawlseer">
+                  Detaylar
+                  <span className="sr-only"> — Crawlseer</span>
+                </Link>
               </div>
-            </div>
-          </div>
+            </li>
+            <li className="service-card">
+              <h3>Knotvo — Site Hızı Analiz Aracı</h3>
+              <p>
+                HAR kaydını ve canlı ölçümü tek ekranda toplayıp sitenin neden yavaş olduğunu sade
+                bir yapılacaklar listesine çeviren Mac uygulaması.
+              </p>
+              <p className="nirengi-note">🍎 Mac App Store&apos;da çok yakında</p>
+              <div className="nirengi-actions">
+                <Link className="btn btn-outline" href="/knotvo">
+                  Detaylar
+                  <span className="sr-only"> — Knotvo</span>
+                </Link>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 

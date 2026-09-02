@@ -1,12 +1,31 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
+
+const PAGE_URL = 'https://www.keremgezergun.com/nirengi-iletisim';
 
 export const metadata: Metadata = {
   title: 'Nirengi Destek ve İletişim',
   description: 'Nirengi macOS SEO log analiz aracı için format, rapor, dışa aktarım, gizlilik ve performans desteği alın.',
   alternates: alternateMetadata('/nirengi-iletisim', '/en/nirengi-support'),
 };
+
+const breadcrumb = breadcrumbSchema(
+  'tr',
+  { name: 'Nirengi', url: 'https://www.keremgezergun.com/nirengi' },
+  { name: 'Destek', url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'nirengi',
+  language: 'tr',
+  name: 'Nirengi Destek ve İletişim',
+  description: 'Nirengi macOS SEO log analiz aracı için format, rapor, dışa aktarım, gizlilik ve performans desteği alın.',
+  url: PAGE_URL,
+});
 
 const supportRows = [
   ['Log açılamıyor', 'macOS ve Nirengi sürümü, dosya uzantısı, yaklaşık boyut ve dosyanın konumu'],
@@ -18,7 +37,10 @@ const supportRows = [
 ];
 
 export default function NirengiContactPage() {
-  return <main id="main-content" tabIndex={-1} className="nirengi-legal"><div className="container nirengi-narrow">
+  return <main id="main-content" tabIndex={-1} className="nirengi-legal">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
+    <div className="container nirengi-narrow">
     <p className="nirengi-eyebrow">Nirengi</p><h1>Destek ve iletişim</h1><p className="nirengi-lead">Log formatı, analiz sonucu, gizlilik veya dışa aktarım konusunda yardıma mı ihtiyacınız var? Geliştiriciyle doğrudan iletişim kurun.</p>
     <div className="nirengi-contact-grid"><a href="mailto:iletisim@keremgezergun.com?subject=Nirengi%20Destek"><span>E-posta</span><strong>iletisim@keremgezergun.com</strong></a><a href="tel:+905526902782"><span>Telefon</span><strong>+90 552 690 27 82</strong></a></div>
     <section aria-labelledby="request-title"><h2 id="request-title">Destek talebine neleri eklemelisiniz?</h2><div className="nirengi-table-wrap" tabIndex={0} role="region" aria-labelledby="support-caption"><table><caption id="support-caption">Soruna göre destek talebine eklenecek bilgiler</caption><thead><tr><th scope="col">Sorun</th><th scope="col">Yararlı bilgiler</th></tr></thead><tbody>{supportRows.map(([issue, info]) => <tr key={issue}><th scope="row">{issue}</th><td>{info}</td></tr>)}</tbody></table></div>

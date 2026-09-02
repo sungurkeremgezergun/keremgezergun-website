@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
+import { productPageSchema } from '@/lib/schema/product';
+import { breadcrumbSchema } from '@/lib/schema/page';
 
 const PAGE_URL = 'https://www.keremgezergun.com/nirengi-erisilebirlik';
 
@@ -35,26 +37,20 @@ export const metadata: Metadata = {
   },
 };
 
-const pageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
+const breadcrumb = breadcrumbSchema(
+  'tr',
+  { name: 'Nirengi', url: 'https://www.keremgezergun.com/nirengi' },
+  { name: 'Erişilebilirlik', url: PAGE_URL },
+);
+
+const pageSchema = productPageSchema({
+  product: 'nirengi',
+  language: 'tr',
   name: 'Nirengi Erişilebilirlik Desteği',
   description: 'Nirengi macOS SEO log analiz aracı için erişilebilirlik desteği ayrıntıları.',
   url: PAGE_URL,
-  inLanguage: ['tr', 'en'],
-  about: {
-    '@type': 'SoftwareApplication',
-    name: 'Nirengi',
-    operatingSystem: 'macOS 14.4 or later',
-    applicationCategory: 'DeveloperApplication',
-  },
-  author: {
-    '@type': 'Person',
-    name: 'Sungur Kerem Gezergün',
-    url: 'https://www.keremgezergun.com',
-  },
   dateModified: '2026-07-25',
-};
+});
 
 const workflows = [
   ['Sunucu loglarını seçme', 'Standart macOS dosya seçici veya sürükle-bırak', 'Dosya adı, boyut, seçili dosya sayısı ve bağlamsal kaldırma eylemi'],
@@ -79,6 +75,7 @@ export default function NirengiAccessibilityPage() {
   return (
     <main id="main-content" tabIndex={-1} className="nirengi-accessibility">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(pageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
 
       <header className="nirengi-a11y-hero">
         <div className="container nirengi-narrow">

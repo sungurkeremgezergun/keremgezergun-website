@@ -22,11 +22,11 @@ export const chrome = {
     tr: 'Açık olan sekmeyi tek tıkla denetleyin. 11 analiz sekmesi, tarayıcının kendi ölçümünden okunan Core Web Vitals ve 16 yapay zekâ tarayıcısı için robots.txt erişim matrisi.',
     en: 'Audit the open tab in one click. Eleven analysis panes, Core Web Vitals read from the browser’s own performance timeline, and a robots.txt access matrix for 16 AI crawlers.',
   },
-  comingSoon: {
-    tr: '🧩 Chrome Web Store’da çok yakında · Chrome 116+ · Edge, Brave, Opera ve Vivaldi ile uyumlu',
-    en: '🧩 Coming soon to the Chrome Web Store · Chrome 116+ · works in Edge, Brave, Opera and Vivaldi',
+  availability: {
+    tr: '🧩 Chrome Web Store’da yayında · Ücretsiz · Chrome 116+ · Edge, Brave, Opera ve Vivaldi ile uyumlu',
+    en: '🧩 Available on the Chrome Web Store · Free · Chrome 116+ · works in Edge, Brave, Opera and Vivaldi',
   },
-  notify: { tr: 'Çıkınca haber ver', en: 'Notify me at launch' },
+  install: { tr: 'Chrome’a ekle', en: 'Add to Chrome' },
   explore: { tr: 'Neler yapıyor?', en: 'What it does' },
   byline: { tr: 'Geliştiren: Kerem Gezergün', en: 'Built by Kerem Gezergün' },
   trust: {
@@ -68,8 +68,8 @@ export const chrome = {
     en: 'Make your next audit take three seconds',
   },
   ctaText: {
-    tr: 'Crawlseer Chrome Web Store’da yayınlandığında haberdar olmak için tek bir e-posta yeterli.',
-    en: 'One email is all it takes to hear about Crawlseer when it reaches the Chrome Web Store.',
+    tr: 'Crawlseer Chrome Web Store’da yayında ve ücretsiz. Kurun, açık olan sekmeyi tek tıkla denetleyin.',
+    en: 'Crawlseer is live on the Chrome Web Store and free. Install it and audit the open tab in one click.',
   },
 } as const;
 

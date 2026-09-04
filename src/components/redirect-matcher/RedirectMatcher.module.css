@@ -1,0 +1,759 @@
+/* ==========================================================================
+   Redirect Matcher
+
+   A CSS Module, not a section of globals.css. Next does not remove a route's
+   stylesheet on soft navigation, so a plain stylesheet here would become
+   globally active after a visitor leaves this page and would collide with
+   globals.css's unnamespaced class names. Design tokens still come from
+   globals.css's :root.
+   ========================================================================== */
+
+.tool {
+    margin-top: 40px;
+}
+
+/* --------------------------------------------------------------- privacy --- */
+
+.privacy {
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    background: #fff;
+}
+
+.privacy p {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.privacy p + p {
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 0.94rem;
+}
+
+.sampleRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.sampleHint {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+}
+
+/* ------------------------------------------------------------------ steps --- */
+
+.step {
+    margin-top: 32px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+}
+
+.stepHeading {
+    margin-bottom: 12px;
+    font-size: 1.16rem;
+}
+
+.stepNote {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+}
+
+.stepNote + .stepNote {
+    margin-top: 6px;
+}
+
+.stepWarning {
+    margin-top: 10px;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.94rem;
+}
+
+.templateActions {
+    margin-top: 16px;
+}
+
+/* ------------------------------------------------------------------- tabs --- */
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab {
+    padding: 10px 18px;
+    min-height: 44px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: none;
+    color: var(--text-secondary);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tab[aria-selected='true'] {
+    border-bottom-color: var(--accent);
+    color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------- dropzone --- */
+
+.dropzone {
+    display: grid;
+    gap: 12px;
+    place-items: center;
+    padding: 36px 24px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-primary);
+    text-align: center;
+}
+
+.dropzoneActive {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+}
+
+.dropzoneLabel {
+    color: var(--text-secondary);
+}
+
+.fileField {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.fileInput {
+    padding: 10px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    font: inherit;
+}
+
+/* ------------------------------------------------------------------ paste --- */
+
+.pasteGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label,
+.fieldLabel {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.94rem;
+}
+
+.field textarea {
+    min-height: 190px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--text-primary);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88rem;
+    resize: vertical;
+}
+
+.hint {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------------------- summary --- */
+
+.summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 20px;
+    padding: 16px 18px;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    font-size: 0.94rem;
+}
+
+.summaryFile {
+    font-weight: 700;
+}
+
+.noticeList {
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+    list-style: none;
+}
+
+.notice,
+.error {
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    font-size: 0.94rem;
+}
+
+/* 11.05:1 (WCAG AAA 1.4.6). */
+
+.notice {
+    border-left: 3px solid var(--accent);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.error {
+    border-left: 3px solid #8C2F2F;
+    background: #FBEFEF;
+    color: #5E1F1F;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* --------------------------------------------------------------- settings --- */
+
+.settings {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+}
+
+.settings > summary {
+    padding: 14px 18px;
+    min-height: 44px;
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.settings > summary::-webkit-details-marker {
+    display: none;
+}
+
+.settings > summary::before {
+    content: '+ ';
+    color: var(--accent-text);
+    font-weight: 800;
+}
+
+.settings[open] > summary::before {
+    content: '\2212\00a0';
+}
+
+.settingsBody {
+    display: grid;
+    gap: 20px;
+    padding: 0 18px 20px;
+}
+
+.settingsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.checkboxField {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.checkboxField input {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    flex: none;
+}
+
+.numberInput,
+.textInput,
+.select {
+    padding: 10px 12px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--text-primary);
+    font: inherit;
+}
+
+.weights {
+    border: 0;
+    padding: 0;
+}
+
+.weights legend {
+    margin-bottom: 4px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.94rem;
+}
+
+/* --------------------------------------------------------------- progress --- */
+
+.progress {
+    margin-top: 24px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+}
+
+.progressHead {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.progressPhase {
+    font-weight: 600;
+}
+
+.progress progress {
+    width: 100%;
+    height: 12px;
+}
+
+/* ---------------------------------------------------------------- results --- */
+
+.results {
+    margin-top: 40px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 0;
+    border: 0;
+}
+
+.filters legend {
+    padding: 0;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.filter {
+    display: grid;
+    gap: 4px;
+    padding: 16px 18px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--text-secondary);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.filter[aria-pressed='true'] {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.filterCount {
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.bulk {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.bulkButton {
+    padding: 10px 16px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.bulkButton:disabled {
+    color: var(--text-light);
+    cursor: not-allowed;
+}
+
+.keyboard {
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    font-size: 0.9rem;
+}
+
+.keyboard dt {
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.keyboard dd {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+/*
+   A data table keeps its two-dimensional layout at every width. SC 1.4.10
+   exempts content that needs it, and turning the rows into blocks would strip
+   the table semantics that make the header association work at all. The
+   wrapper is focusable so the scroll region is reachable from the keyboard.
+*/
+.tableWrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+}
+
+.tableWrap:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 4px;
+}
+
+.tableWrap table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+.tableWrap caption {
+    padding: 16px 17px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: left;
+}
+
+.tableWrap th,
+.tableWrap td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.tableWrap thead th {
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.82rem;
+    white-space: nowrap;
+}
+
+.tableWrap tbody th {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.tableWrap tbody tr:last-child th,
+.tableWrap tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.row:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: -3px;
+}
+
+.rowExcluded th,
+.rowExcluded td {
+    opacity: 0.55;
+}
+
+.urlCell {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.84rem;
+    word-break: break-all;
+}
+
+/*
+   The highlight must not be the only signal. A background colour alone carries
+   the "this word matched" information, which SC 1.4.1 forbids; the weight and
+   the underline are the non-colour cues, and the row also lists the matched
+   words as text for a screen reader. Measured 8.70:1 (WCAG AAA 1.4.6).
+*/
+.matchedWord {
+    padding: 0 2px;
+    border-radius: 3px;
+    background: #F2E4B4;
+    color: #4A3A08;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.targetCell {
+    display: grid;
+    gap: 6px;
+    min-width: 260px;
+}
+
+.manualInput {
+    padding: 8px 10px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.82rem;
+}
+
+.score {
+    font-size: 1.05rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.band {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 400;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.chip {
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.76rem;
+    white-space: nowrap;
+}
+
+/* 7.82:1 (WCAG AAA 1.4.6). */
+.chipWarning {
+    border-color: #C9A84C;
+    background: #FBF4DF;
+    color: #5C4A10;
+}
+
+.include {
+    width: 22px;
+    height: 22px;
+}
+
+.pager {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.empty {
+    padding: 40px 24px;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* -------------------------------------------------------------- export bar --- */
+
+.exportBar {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-md);
+}
+
+.exportCount {
+    font-weight: 700;
+}
+
+.exportControls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.notDownloaded {
+    width: 100%;
+    color: var(--accent-text);
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.unchanged {
+    margin-top: 32px;
+}
+
+.unchangedList {
+    margin-top: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.82rem;
+    list-style: none;
+}
+
+/* ---------------------------------------------------------------- article --- */
+
+.article {
+    display: grid;
+    gap: 44px;
+    max-width: 860px;
+}
+
+.article h3 {
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+.article p {
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+}
+
+.article ul,
+.article ol {
+    display: grid;
+    gap: 12px;
+    margin: 0 0 16px 22px;
+}
+
+.article li {
+    color: var(--text-secondary);
+}
+
+.article .tableWrap,
+.article table {
+    margin-bottom: 20px;
+}
+
+.article table {
+    min-width: 560px;
+}
+
+.code {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-dark);
+    color: #E8E4D8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+/* ------------------------------------------------------------ narrow view --- */
+
+@media (max-width: 64em) {
+    .pasteGrid,
+    .settingsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 37.5em) {
+    .step {
+        padding: 18px;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .exportBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dropzone,
+    .filter,
+    .tab {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .privacy,
+    .step,
+    .tableWrap,
+    .exportBar,
+    .chip {
+        border: 1px solid CanvasText;
+    }
+
+    .matchedWord {
+        background: Highlight;
+        color: HighlightText;
+    }
+
+    .filter[aria-pressed='true'],
+    .tab[aria-selected='true'] {
+        border: 2px solid Highlight;
+    }
+}

@@ -153,3 +153,22 @@ export type MatchReport = {
   old: NormalizedUrl[];
   new: NormalizedUrl[];
 };
+
+/**
+ * A URL reduced to what the interface needs.
+ *
+ * The full `NormalizedUrl` carries three `Set`s per entry; posting 4000 of them
+ * back from the worker would cost more than the matching did. The interface only
+ * needs the original string and the comparison path.
+ */
+export type UrlView = { original: string; path: string };
+
+/** Everything one run produces, in a shape `postMessage` can clone cheaply. */
+export type MatchOutcome = {
+  rows: MatchRow[];
+  old: UrlView[];
+  new: UrlView[];
+  unchanged: string[];
+  drops: DropRecord[];
+  notices: ParseNotice[];
+};

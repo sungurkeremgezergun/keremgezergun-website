@@ -1,9 +1,10 @@
 import { requestPath } from './normalize';
 import type {
   Confidence,
-  MatchReport,
+  MatchRow,
   MatcherSettings,
   Reason,
+  UrlView,
   WarningKind,
 } from './types';
 
@@ -52,14 +53,28 @@ function renderTarget(original: string, settings: MatcherSettings): string {
   return `https://${host}${path}`;
 }
 
-export function buildExportRows(report: MatchReport, settings: MatcherSettings): ExportSets {
+/**
+ * Only `original` is read from the two lists, so the interface can pass the
+ * lightweight views it got back from the worker; a full `MatchReport` also fits.
+ */
+export function buildExportRows(
+  report: { rows: MatchRow[]; old: UrlView[]; new: UrlView[] },
+  settings: MatcherSettings,
+): ExportSets {
   const included: ExportRow[] = [];
   const unmatched: ExportRow[] = [];
 
   for (const row of report.rows) {
     const source = report.old[row.source];
     const candidate = row.chosen >= 0 ? row.candidates[row.chosen] : undefined;
-    const target = row.manualTarget ?? (candidate ? report.new[candidate.target].original : '');
+    // A defined manual target wins even when it is empty: the user cleared the
+    // field deliberately, which means this row has no target.
+    const target =
+      row.manualTarget !== undefined
+        ? row.manualTarget.trim()
+        : candidate
+          ? report.new[candidate.target].original
+          : '';
 
     const entry: ExportRow = {
       from: source.original,

@@ -9,6 +9,12 @@ const ContentSecurityPolicy = [
   "img-src 'self' data: blob: https://www.gstatic.com https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://stats.g.doubleclick.net",
   "font-src 'self' data: https://fonts.gstatic.com",
   "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://cloudflareinsights.com https://static.cloudflareinsights.com",
+  // The redirect matcher runs its comparison in a Web Worker. Turbopack 16.2+
+  // serves the worker from a same-origin /_next/static/chunks URL, which
+  // default-src already allows; naming worker-src explicitly removes that
+  // fallback, so a future regression back to a blob: URL breaks loudly here
+  // instead of silently in the browser. blob: is deliberately not listed.
+  "worker-src 'self'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

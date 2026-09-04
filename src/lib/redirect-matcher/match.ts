@@ -1,8 +1,10 @@
 import { CANDIDATE_LIMIT, PARENT_SCORE, REVIEW_BAND, TIE_WINDOW, confidenceOf } from './defaults';
 import { buildCorpus, rareMatches, scorePair, totalWeight, type Corpus } from './score';
+import { prepareInputs } from './parse';
 import { annotateWarnings } from './warnings';
 import type {
   Candidate,
+  MatchOutcome,
   MatchProgress,
   MatchReport,
   MatchRow,
@@ -192,4 +194,36 @@ export function* runMatch(
   yield { phase: 'warnings', done: rows.length, total: rows.length };
 
   return { rows, old: sources, new: targets };
+}
+
+/**
+ * The whole job: normalize both lists, match, annotate, reduce to a
+ * clone-friendly result.
+ *
+ * This is the single entry point the Web Worker and the main-thread fallback
+ * both drive, so neither path can drift from the other.
+ */
+export function* runJob(
+  oldValues: string[],
+  newValues: string[],
+  settings: MatcherSettings,
+): Generator<MatchProgress, MatchOutcome> {
+  const input = prepareInputs(oldValues, newValues, {
+    includeQuery: settings.includeQuery,
+    stripLanguagePrefix: settings.stripLanguagePrefix,
+  });
+
+  const report = yield* runMatch(input, settings);
+
+  const view = (list: NormalizedUrl[]) =>
+    list.map(({ original, path }) => ({ original, path }));
+
+  return {
+    rows: report.rows,
+    old: view(report.old),
+    new: view(report.new),
+    unchanged: input.unchanged,
+    drops: input.drops,
+    notices: input.notices,
+  };
 }

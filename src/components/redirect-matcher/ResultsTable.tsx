@@ -165,7 +165,7 @@ export default function ResultsTable({
       <p className={styles.hint}>{results.narrowNote[language]}</p>
 
       {pageRows.length === 0 ? (
-        <p className={styles.empty}>{results.filterNone[language]}: 0</p>
+        <p className={styles.empty}>{results.emptyFilter[language]}</p>
       ) : (
         <div
           className={styles.tableWrap}
@@ -230,7 +230,7 @@ export default function ResultsTable({
                         <select
                           id={`target-${row.source}`}
                           className={styles.select}
-                          value={row.manualTarget ? 'manual' : String(row.chosen)}
+                          value={row.manualTarget !== undefined ? 'manual' : String(row.chosen)}
                           onChange={(event) => {
                             if (event.target.value === 'manual') onManual(row.source, '');
                             else onChoose(row.source, Number(event.target.value));

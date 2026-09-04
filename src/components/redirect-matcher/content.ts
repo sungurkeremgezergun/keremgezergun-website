@@ -208,6 +208,10 @@ export const results = {
     en: 'On a narrow screen the table becomes a card layout. Reviewing a long list is easier on a desktop, but every function works here too.',
   },
   matchedWords: { tr: 'Eşleşen kelimeler', en: 'Matched words' },
+  emptyFilter: {
+    tr: 'Bu filtrede satır yok. Yukarıdan başka bir filtre seçin.',
+    en: 'No rows in this filter. Pick another one above.',
+  },
   unchangedHeading: { tr: 'Yönlendirme gerekmeyen URL’ler', en: 'URLs that need no redirect' },
   unchangedNote: {
     tr: 'Bu URL’ler yeni listede aynı adresle var.',

@@ -71,13 +71,20 @@ export default function Tool({ language }: { language: Language }) {
   };
 
   const source = matcher.source;
-  const visibleNotices: string[] = [];
-  if (source?.assumedColumns) visibleNotices.push(noticeCopy.assumedColumns[language]);
+
+  // The upload preview and the finished run report the same kinds of notice.
+  // Once a run exists its notices are authoritative — the settings may have
+  // changed since the file was read — and a Set keeps the two from doubling up.
+  const noticeSet = new Set<string>();
+  if (source?.assumedColumns) noticeSet.add(noticeCopy.assumedColumns[language]);
   if (source?.delimiter === ';' || source?.delimiter === '\t') {
-    visibleNotices.push(noticeText({ kind: 'delimiter', delimiter: source.delimiter }));
+    noticeSet.add(noticeText({ kind: 'delimiter', delimiter: source.delimiter }));
   }
-  for (const notice of source?.notices ?? []) visibleNotices.push(noticeText(notice));
-  for (const notice of matcher.outcome?.notices ?? []) visibleNotices.push(noticeText(notice));
+  for (const notice of source?.notices ?? []) {
+    if (notice.kind === 'row-limit' || !matcher.outcome) noticeSet.add(noticeText(notice));
+  }
+  for (const notice of matcher.outcome?.notices ?? []) noticeSet.add(noticeText(notice));
+  const visibleNotices = [...noticeSet];
 
   const errorText = matcher.error ? noticeCopy[matcher.error][language] : null;
 

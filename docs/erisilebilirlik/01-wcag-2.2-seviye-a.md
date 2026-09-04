@@ -106,7 +106,8 @@ Aşağıda `$OUT` = derlenmiş HTML çıktısı dizini (`.next/server/app`).
 
 ### 2.1.4 Karakter Tuşu Kısayolları
 - **Gereklilik:** Tek karakterli kısayollar kapatılabilir, yeniden atanabilir veya yalnızca bileşen odaktayken etkindir.
-- **Uygulanır:** **hayır** — kısayol yok.
+- **Uygulanır:** **evet** — `/301-yonlendirme-araci` sonuç tablosunda `1`–`5` ve boşluk kısayolları var.
+- **Nasıl karşılanıyor:** Dinleyici `document`/`window` üzerinde değil, tablo satırının kendisinde; ayrıca `event.target !== event.currentTarget` ise erken çıkıyor, yani seçim kutusu veya metin alanı odaktayken hiç çalışmıyor. Ölçütün "yalnızca bileşen odaktayken etkin" yolu bu. Kısayol listesi sayfada görünür yazıyor.
 - **Nasıl kontrol edilir:** `document`/`window` üzerindeki `keydown`/`keyup`/`keypress` dinleyicilerinin çıplak harf/rakam/noktalama tuşuna bağlanmadığı doğrulanır.
 
 ### 2.2.1 Ayarlanabilir Zamanlama
@@ -213,17 +214,20 @@ Aşağıda `$OUT` = derlenmiş HTML çıktısı dizini (`.next/server/app`).
 
 ### 3.3.1 Hata Tanımlama
 - **Gereklilik:** Otomatik algılanan girdi hataları metin olarak tanımlanır ve açıklanır.
-- **Uygulanır:** **hayır** — form veya kullanıcı girdisi yok.
-- **Nasıl kontrol edilir:** `<form>`, `<input>`, `<textarea>`, `<select>` bulunmadığı doğrulanır. Form eklenirse bu ölçüt geçerli hale gelir.
+- **Uygulanır:** **evet** — `/301-yonlendirme-araci` sitenin ilk kullanıcı girdisini getirdi (2026-09-05).
+- **Nasıl karşılanıyor:** Desteklenmeyen dosya biçimi, tek kolonlu dosya, geçerli URL bulunamaması, satır limiti aşımı ve eşleşme bulunamaması ayrı ayrı metin mesajı üretiyor; hata bloğu `role="alert"` taşıyor. Atlanan satırlar sayı ve sebeple birlikte listeleniyor — sessiz satır düşürme yok.
+- **Nasıl kontrol edilir:** Her hata durumunun metin karşılığı olduğu ve yalnızca renk/simge ile iletilmediği doğrulanır.
 
 ### 3.3.2 Etiketler veya Yönergeler
 - **Gereklilik:** Kullanıcı girdisi gerektiren içerikte etiket veya yönerge sunulur.
-- **Uygulanır:** **hayır**.
-- **Nasıl kontrol edilir:** 3.3.1 ile aynı. Regresyon nöbetçisi: `<input>` eklenirse her birinin `<label for>`, `aria-label` veya `aria-labelledby` taşıması gerekir — yalnızca `placeholder` hatadır.
+- **Uygulanır:** **evet**.
+- **Nasıl karşılanıyor:** Yönlendirme aracındaki her alan görünür `<label for>` taşıyor; dosya seçici, iki metin kutusu ve eşik alanı ayrıca `aria-describedby` ile beklenen biçimi açıklayan bir yazıya bağlı. Tablo içindeki seçim kutuları ve elle URL alanı `sr-only` etiketli. Hiçbir alan yalnızca `placeholder` ile tanımlanmıyor.
+- **Nasıl kontrol edilir:** Her `<input>`/`<textarea>`/`<select>` için `<label for>`, `aria-label` veya `aria-labelledby` bulunduğu doğrulanır — yalnızca `placeholder` hatadır.
 
 ### 3.3.7 Gereksiz Giriş *(2.2'de yeni)*
 - **Gereklilik:** Kullanıcının bir süreçte zaten girdiği bilgi tekrar istenmez; otomatik doldurulur veya seçime sunulur.
-- **Uygulanır:** **hayır** — çok adımlı süreç, form veya kimlik doğrulama yok.
+- **Uygulanır:** **evet** — yönlendirme aracı çok adımlı bir süreç (şablon → yükleme → eşleştirme → dışa aktarma).
+- **Nasıl karşılanıyor:** Ayarlar (eşik, çıktı biçimi, hedef alan adı, ağırlıklar) tarayıcıda hatırlanıyor, her çalıştırmada yeniden girilmiyor. URL listeleri bilinçli olarak hatırlanmıyor; bu bir gizlilik kararı ve sayfada yazılı.
 
 ---
 

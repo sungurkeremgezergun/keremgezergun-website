@@ -16,6 +16,9 @@ E-ticaret SEO, Teknik SEO ve Organik Büyüme Stratejileri içerikleri sunar.
 - **Çok dillilik:** İki root layout, iki route group. `src/app/(tr)` Türkçe,
   `src/app/(en)` İngilizce sayfaları barındırır; `<html lang>` URL'den gelir.
 - **Lint:** ESLint 9 + `next/core-web-vitals`
+- **Test:** Yalnızca saf kütüphaneler. `tsconfig.test.json` `src/lib/redirect-matcher`
+  ile `tests/` dizinini `dist-test/`e derler, Node'un yerleşik `node:test`'i
+  çalıştırır. Ek bağımlılık yok.
 
 ## Kurulum
 
@@ -33,6 +36,7 @@ npm run dev        # http://localhost:3000
 | `npm run build`     | Production build                      |
 | `npm run start`     | Production sunucusu (build sonrası)   |
 | `npm run lint`      | ESLint + Next.js kuralları            |
+| `npm test`          | Saf kütüphanelerin `node:test` testleri |
 | `npm run typecheck` | TypeScript tipi kontrolü              |
 
 ## Proje Yapısı
@@ -45,7 +49,7 @@ src/
 │   │   ├── page.tsx            # Ana sayfa
 │   │   ├── not-found.tsx       # TR 404
 │   │   ├── blog/, sektorel-projeler/, seo-ogrenme-haritasi/
-│   │   ├── nirengi*/ , knotvo*/
+│   │   ├── nirengi*/ , knotvo*/ , 301-yonlendirme-araci/
 │   ├── (en)/                   # İngilizce root layout + sayfalar
 │   │   ├── layout.tsx          # <html lang="en">, EN metadata
 │   │   ├── not-found.tsx       # EN 404
@@ -55,6 +59,11 @@ src/
 │   └── globals.css             # Tüm stiller
 ├── components/
 │   ├── layout/{Document,Header,Footer}.tsx
+│   ├── redirect-matcher/     # 301 yönlendirme aracı arayüzü
+│   │   ├── Page.tsx          # Sunucu bileşeni: sayfa + araç altı içerik
+│   │   ├── Tool.tsx          # Tek istemci bileşeni; worker'ı tıklamada kurar
+│   │   ├── matcher.worker.ts # Eşleştirmeyi ana thread dışında sürer
+│   │   └── *.module.css      # Route'a özgü stil, globals.css'e girmez
 │   └── ui/Logo.tsx
 └── lib/
     ├── fonts.ts                # Her iki layout'un paylaştığı font tanımı
@@ -63,6 +72,8 @@ src/
     ├── experience.ts           # Kariyer geçmişi, markalar, araçlar (CV verisi)
     ├── projects.ts             # Konuşmacılık ve zirveler (Event verisi)
     ├── jsonLd.ts               # XSS-safe JSON-LD serializer
+    ├── redirect-matcher/       # Saf çekirdek: normalizasyon, skorlama, çıktı
+    │                           # React/DOM yok, `node:test` ile test edilir
     └── schema/                 # JSON-LD düğüm üreticileri
         ├── base.ts             # @id'ler, graph(), ref(), inLanguage()
         ├── person.ts           # Person + OrganizationRole kariyer geçmişi
@@ -83,7 +94,7 @@ src/
 
 ## Deploy
 
-`main` dalına push → GitHub Actions **CI** (typecheck + lint + build) →
+`main` dalına push → GitHub Actions **CI** (typecheck + test + lint + build) →
 başarılıysa **Deploy to VPS** workflow'u SSH ile sunucuya bağlanır, `npm ci`
 ve `npm run build` çalıştırıp pm2 üzerinden `keremgezergun-website` sürecini
 yeniden yükler. Bkz. `.github/workflows/{ci,deploy}.yml`.

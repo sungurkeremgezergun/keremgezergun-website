@@ -23,6 +23,7 @@ const settings: Record<string, RouteSettings> = {
   '/knotvo-gizlilik': { changeFrequency: 'yearly', lastModified: '2026-07-20' },
   '/crawlseer': { changeFrequency: 'monthly', lastModified: '2026-07-29' },
   '/crawlseer/gizlilik': { changeFrequency: 'yearly', lastModified: '2026-07-29' },
+  '/301-yonlendirme-araci': { changeFrequency: 'monthly', lastModified: '2026-09-05' },
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {

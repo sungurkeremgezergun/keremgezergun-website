@@ -35,6 +35,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             <Link prefetch={false} href={isEnglish ? '/en/nirengi-accessibility' : '/nirengi-erisilebirlik'}>{isEnglish ? 'Nirengi Accessibility' : 'Nirengi Erişilebilirlik'}</Link>
             <Link prefetch={false} href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}>Knotvo</Link>
             <Link prefetch={false} href={isEnglish ? '/en/crawlseer' : '/crawlseer'}>Crawlseer</Link>
+            <Link prefetch={false} href={isEnglish ? '/en/redirect-mapping-tool' : '/301-yonlendirme-araci'}>{isEnglish ? 'Redirect Mapping Tool' : '301 Yönlendirme Aracı'}</Link>
             <a
               href={contact.whatsapp}
               target="_blank"

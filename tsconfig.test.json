@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "module": "commonjs",
+    "moduleResolution": "node10",
+    "target": "ES2022",
+    "outDir": "dist-test",
+    "rootDir": ".",
+    "incremental": false,
+    "sourceMap": true,
+    "types": ["node"],
+    "paths": {},
+    "plugins": []
+  },
+  "include": ["src/lib/redirect-matcher/**/*.ts", "tests/redirect-matcher/**/*.ts"],
+  "exclude": ["node_modules", ".next", "dist-test"]
+}

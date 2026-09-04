@@ -10,6 +10,9 @@ out/
 # production
 build/
 
+# compiled test output (tsconfig.test.json)
+dist-test/
+
 # misc
 .DS_Store
 Thumbs.db

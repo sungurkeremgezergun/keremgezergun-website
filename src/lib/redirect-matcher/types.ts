@@ -47,6 +47,13 @@ export type NormalizedUrl = {
   core: string[];
   /** `core` as a set, for the subset test. */
   coreSet: Set<string>;
+  /**
+   * Core tokens of the last segment only.
+   *
+   * Used for the coverage test between two URLs of equal depth, where the
+   * directories are structure and the last segment carries the identity.
+   */
+  slugCoreSet: Set<string>;
   /** Padded character trigrams of `path`, for the character-level component. */
   trigrams: Set<string>;
   /** Numeric / SKU-shaped tokens that can carry an identity match. */

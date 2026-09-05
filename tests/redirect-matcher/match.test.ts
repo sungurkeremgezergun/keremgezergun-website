@@ -67,6 +67,38 @@ test('an identical slug in a different directory scores at least 90', () => {
   assert.ok(report.rows[0].candidates[0].reasons.includes('same-slug'));
 });
 
+test('a renamed category is not treated as a narrower page', () => {
+  // The most common migration there is. On the flattened core sets the extra
+  // word 'giyim' makes the source a subset of the candidate, which would cap
+  // the obviously correct answer at 60.
+  const report = match(
+    ['/kadin/kirmizi-elbise-modelleri'],
+    ['/kadin-giyim/kirmizi-elbise', '/kadin-giyim/elbise'],
+  );
+  const best = report.rows[0].candidates[0];
+  assert.equal(report.new[best.target].path, '/kadin-giyim/kirmizi-elbise');
+  assert.ok(best.score >= 85, `expected a high score, got ${best.score}`);
+  assert.ok(!best.reasons.includes('narrower-page'), 'must not be capped');
+});
+
+test('a genuinely narrower page at the same depth is still capped', () => {
+  const report = match(['/ayakkabi/spor-ayakkabi'], ['/ayakkabi/kadin-spor-ayakkabi']);
+  const best = report.rows[0].candidates[0];
+  assert.ok(best.reasons.includes('narrower-page'));
+  assert.ok(best.score <= 60, `expected a ceiling, got ${best.score}`);
+});
+
+test('a single common word in the slug does not earn the 90 floor', () => {
+  // '/kadin/elbise' and '/erkek/elbise' share their last segment, so the floor
+  // as the brief wrote it would score a women's-to-men's redirect at 90.
+  const crowd = Array.from({ length: 30 }, (_, index) => `/erkek/elbise-${index}`);
+  const report = match(['/kadin/elbise'], ['/erkek/elbise', ...crowd]);
+  const best = report.rows[0].candidates[0];
+  assert.equal(report.new[best.target].path, '/erkek/elbise');
+  assert.ok(best.score < 70, `expected no floor, got ${best.score}`);
+  assert.ok(!best.reasons.includes('same-slug'));
+});
+
 test('a shared product id overrides the coverage ceiling', () => {
   const report = match(['/urun/12345/kirmizi-elbise-modelleri'], ['/p/12345']);
   const candidate = report.rows[0].candidates[0];

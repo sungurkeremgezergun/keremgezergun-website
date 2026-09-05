@@ -120,10 +120,10 @@ export const sections: Section[] = [
           [
             { tr: '/kirmizi-elbise', en: '/crimson-dress' },
             {
-              tr: 'Anlamlı kelime kümesi kaynakla aynı → tavan yok, örtüşme tam',
-              en: 'Same meaningful word set as the source, so no cap and full overlap',
+              tr: 'Anlamlı kelime kümesi kaynakla aynı → tavan yok; son segmentin anlamlı kelimeleri de aynı olduğu için 90 tabanı devreye girer',
+              en: 'Same meaningful word set as the source, so no cap; the last segment carries the same meaningful words too, which brings in the 90 floor',
             },
-            { tr: '86', en: '86' },
+            { tr: '90', en: '90' },
           ],
           [
             { tr: '/elbise', en: '/dress' },
@@ -131,9 +131,16 @@ export const sections: Section[] = [
               tr: 'Kaynağın alt kümesi → tavan 65; ayrıca "elbise" yaygın bir kelime, ağırlığı düşük',
               en: 'A subset of the source, so capped at 65; "dress" is also a common word with a low weight',
             },
-            { tr: '54', en: '54' },
+            { tr: '56', en: '56' },
           ],
         ],
+      },
+      {
+        kind: 'p',
+        text: {
+          tr: 'Üç kısayol bu hesabın üzerine biner. Standartlaştırılmış yollar birebir aynıysa skor 100’dür. İki URL ortak bir ürün numarası veya SKU taşıyorsa skor en az 95 olur ve bu taban özgüllük tavanını ezer — ID, aynı ürünün kanıtıdır. Son segmentin anlamlı kelimeleri aynı ama dizin farklıysa skor en az 90 olur; bu taban tavanı ezmez, çünkü /kadin/elbise ile /elbise arasında son segment aynı olsa bile aday hâlâ daha genel sayfadır. Son taban bir koşula bağlı: slug ayırt edici olmalı, yani en az iki anlamlı kelime taşımalı ya da taşıdığı tek kelime listede nadir olmalı. Aksi hâlde /kadin/elbise ile /erkek/elbise son segmentlerini paylaştığı için kadın sayfasından erkek sayfasına yapılan bir yönlendirme 90 alırdı.',
+          en: 'Three shortcuts sit above this calculation. If the normalized paths are identical the score is 100. If both URLs carry the same product id or SKU the score is at least 95, and that floor overrides the specificity cap — an id is evidence of the same product. If the last segment carries the same meaningful words but the directory differs the score is at least 90; this floor does not override the cap, because between /women/dress and /dress the last segment matches while the candidate is still the more general page. That last floor has a condition: the slug has to be distinctive, meaning at least two meaningful words, or one word that is rare in the list. Otherwise /women/dress and /men/dress share their last segment and a women’s-to-men’s redirect would score 90.',
+        },
       },
       {
         kind: 'p',
@@ -145,8 +152,8 @@ export const sections: Section[] = [
       {
         kind: 'p',
         text: {
-          tr: 'Üç kısayol bu hesabın üzerine biner: standartlaştırılmış yollar birebir aynıysa skor 100’dür; iki URL ortak bir ürün numarası veya SKU taşıyorsa skor en az 95 olur ve bu taban özgüllük tavanını ezer (ID, aynı ürünün kanıtıdır); son segment birebir aynı ama dizin farklıysa skor en az 90 olur — ancak bu taban tavanı ezmez, çünkü /kadin/elbise ile /elbise arasında son segment aynı olsa bile aday hâlâ daha genel sayfadır.',
-          en: 'Three shortcuts sit above this calculation. If the normalized paths are identical the score is 100. If both URLs carry the same product id or SKU the score is at least 95, and that floor overrides the specificity cap — an id is evidence of the same product. If the last segment is identical but the directory differs the score is at least 90 — but this floor does not override the cap, because between /women/dress and /dress the last segment matches while the candidate is still the more general page.',
+          tr: 'Kapsama testinin bir ince noktası var. İki URL aynı derinlikteyse test yalnızca son segment üzerinden yapılır, tüm yol üzerinden değil. Sebebi en yaygın taşıma deseni: /kadin/kirmizi-elbise-modelleri adresinin /kadin-giyim/kirmizi-elbise olması. Tüm yolun kelimelerine bakılırsa fazladan gelen "giyim" kelimesi kaynağı adayın alt kümesi yapar ve apaçık doğru olan cevap 60’a kırpılır. Dizinler yapıdır; sayfayı tanımlayan son segmenttir ve özgüllük değişikliği de orada görünür.',
+          en: 'The coverage test has one subtlety. When two URLs sit at the same depth the test runs on the last segment alone, not the whole path. The reason is the most common migration there is: /women/crimson-dress-models becoming /womenswear/crimson-dress. Looking at the whole path, the extra word "womenswear" makes the source a subset of the candidate and caps the obviously correct answer at 60. Directories are structure; the last segment is what identifies the page, and it is where a real change in specificity shows up.',
         },
       },
       {

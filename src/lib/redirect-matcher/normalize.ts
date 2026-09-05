@@ -211,6 +211,10 @@ export function normalizeUrl(raw: string, options: NormalizeOptions): NormalizeR
   const rawTokens = tokenize(comparisonPath);
   const tokens = rawTokens.map(stripSuffix);
   const core = tokens.filter((token) => !isNoise(token));
+  const slug = segments.length > 0 ? segments[segments.length - 1] : '';
+  const slugCore = tokenize(slug)
+    .map(stripSuffix)
+    .filter((token) => !isNoise(token));
 
   return {
     ok: true,
@@ -224,6 +228,7 @@ export function normalizeUrl(raw: string, options: NormalizeOptions): NormalizeR
       tokenSet: new Set(tokens),
       core,
       coreSet: new Set(core),
+      slugCoreSet: new Set(slugCore),
       trigrams: trigrams(comparisonPath),
       ids: rawTokens.filter((token) => ID_TOKEN.test(token) || SKU_TOKEN.test(token)),
     },

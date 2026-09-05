@@ -97,6 +97,43 @@ function properSubset(a: Set<string>, b: Set<string>): boolean {
   return true;
 }
 
+function setsEqual(a: Set<string>, b: Set<string>): boolean {
+  if (a.size !== b.size) return false;
+  for (const value of a) if (!b.has(value)) return false;
+  return true;
+}
+
+/**
+ * Whether the two URLs name the same thing in their last segment.
+ *
+ * Identical strings, or identical meaningful words. The brief asked only for
+ * identical strings, but '/kadin/kirmizi-elbise-modelleri' and
+ * '/kadin-giyim/kirmizi-elbise' name the same page and differ only by a filler
+ * word, which is exactly the case the noise list exists to see through.
+ */
+function sameSlug(source: NormalizedUrl, target: NormalizedUrl): boolean {
+  if (source.segments.length === 0 || target.segments.length === 0) return false;
+  if (source.segments[source.segments.length - 1] === target.segments[target.segments.length - 1]) {
+    return true;
+  }
+  return source.slugCoreSet.size > 0 && setsEqual(source.slugCoreSet, target.slugCoreSet);
+}
+
+/**
+ * Whether a shared last segment is enough on its own to claim the same entity.
+ *
+ * A distinctive slug identifies a page wherever it moves, which is what makes
+ * the 90 floor safe. A single common word does not: on the brief's rule as
+ * written, '/kadin/elbise' and '/erkek/elbise' share their last segment and the
+ * floor would score a women's-to-men's redirect at 90. Two meaningful words, or
+ * one rare one, is the line.
+ */
+function distinctiveSlug(url: NormalizedUrl, corpus: Corpus): boolean {
+  if (url.slugCoreSet.size >= 2) return true;
+  for (const token of url.slugCoreSet) return corpus.rare.has(token);
+  return false;
+}
+
 function commonPrefix(a: string[], b: string[]): number {
   const limit = Math.min(a.length, b.length);
   let shared = 0;
@@ -163,20 +200,30 @@ export function scorePair(
 
   const reasons: Reason[] = [];
 
-  // The coverage test runs on the noise-free sets. Running it on the full token
-  // sets would make '/kirmizi-elbise' a subset of '/kirmizi-elbise-modelleri'
-  // and cap the correct answer at 65.
-  if (properSubset(target.coreSet, source.coreSet)) {
+  /*
+    The coverage test runs on the noise-free sets. Running it on the full token
+    sets would make '/kirmizi-elbise' a subset of '/kirmizi-elbise-modelleri'
+    and cap the correct answer at 65.
+
+    At equal depth it runs on the last segment alone. A renamed directory is the
+    most common migration there is -- '/kadin/kirmizi-elbise-modelleri' becoming
+    '/kadin-giyim/kirmizi-elbise' -- and on the flattened sets the extra word
+    'giyim' makes the source a subset of the candidate, capping the obviously
+    correct answer at 60. Directories are structure; the last segment is what
+    identifies the thing, and it is where a real change in specificity shows up.
+  */
+  const equalDepth =
+    source.segments.length === target.segments.length && source.segments.length > 0;
+  const sourceCoverage = equalDepth ? source.slugCoreSet : source.coreSet;
+  const targetCoverage = equalDepth ? target.slugCoreSet : target.coreSet;
+
+  if (properSubset(targetCoverage, sourceCoverage)) {
     score = Math.min(score, BROADER_CEILING);
     reasons.push('broader-page');
-  } else if (properSubset(source.coreSet, target.coreSet)) {
+  } else if (properSubset(sourceCoverage, targetCoverage)) {
     score = Math.min(score, NARROWER_CEILING);
     reasons.push('narrower-page');
-  } else if (
-    source.segments.length > 0 &&
-    target.segments.length > 0 &&
-    source.segments[source.segments.length - 1] === target.segments[target.segments.length - 1]
-  ) {
+  } else if (sameSlug(source, target) && distinctiveSlug(source, corpus)) {
     // Only when no ceiling applies: for '/kadin/elbise' against '/elbise' the
     // last segment matches, but the candidate is still the more general page.
     score = Math.max(score, SLUG_FLOOR);

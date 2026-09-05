@@ -238,7 +238,11 @@ export default function Tool({ language }: { language: Language }) {
           </p>
         )}
 
-        {(visibleNotices.length > 0 || errorText) && (
+        {/*
+          matcher.cancelled belongs in this condition: with a clean file there are
+          no other notices, so the cancellation message had nothing to render into.
+        */}
+        {(visibleNotices.length > 0 || errorText || matcher.cancelled) && (
           <ul className={styles.noticeList}>
             {errorText && (
               <li className={styles.error} role="alert">

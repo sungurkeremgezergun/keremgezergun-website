@@ -114,6 +114,13 @@
 
 .dropzone {
     display: grid;
+    /*
+       An implicit auto column takes its max-content width, so the file input
+       widened the column past the viewport and max-width: 100% on the children
+       resolved against that same widened column. minmax(0, 1fr) is what caps it.
+    */
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 100%;
     gap: 12px;
     place-items: center;
     padding: 36px 24px;
@@ -132,14 +139,22 @@
     color: var(--text-secondary);
 }
 
+/*
+   The file input's intrinsic width -- its own button plus the file name -- is
+   wider than a 320px viewport, and an inline-flex column sizes to that. Capping
+   it is what keeps the page from scrolling sideways (SC 1.4.10).
+*/
 .fileField {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     gap: 8px;
     align-items: center;
+    max-width: 100%;
 }
 
 .fileInput {
+    width: 100%;
+    max-width: 100%;
     padding: 10px;
     min-height: 44px;
     border: 1px solid var(--border);
@@ -182,6 +197,7 @@
 }
 
 .hint {
+    max-width: 100%;
     color: var(--text-secondary);
     font-size: 0.85rem;
 }
@@ -444,6 +460,8 @@
    wrapper is focusable so the scroll region is reachable from the keyboard.
 */
 .tableWrap {
+    min-width: 0;
+    max-width: 100%;
     overflow-x: auto;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
@@ -659,6 +677,16 @@
     max-width: 860px;
 }
 
+/*
+   A grid item's automatic minimum size is its min-content width, so a section
+   holding a wide table or a long code line refuses to shrink and pushes the
+   whole page sideways -- overflow-x: auto never gets a chance to engage. This is
+   what SC 1.4.10 measures at 320 CSS pixels.
+*/
+.article > section {
+    min-width: 0;
+}
+
 .article h3 {
     margin-bottom: 16px;
     font-size: 1.5rem;
@@ -690,6 +718,8 @@
 }
 
 .code {
+    min-width: 0;
+    max-width: 100%;
     overflow-x: auto;
     margin-bottom: 20px;
     padding: 18px 20px;

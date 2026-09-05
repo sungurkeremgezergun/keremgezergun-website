@@ -51,8 +51,14 @@ export default function ResultsTable({
   onExcludeAll,
   onUndo,
 }: Props) {
-  // The job is not to read 400 rows, it is to decide on the 40 unclear ones.
-  const [filter, setFilter] = useState<Filter>('review');
+  /*
+    The job is not to read 400 rows, it is to decide on the 40 unclear ones, so
+    the review filter is where the user lands. When there is nothing to review --
+    a clean list where everything clears 90 -- that view would open empty, which
+    reads as a broken tool rather than a finished job. The component only mounts
+    once the results exist, so the counts are final here and no effect is needed.
+  */
+  const [filter, setFilter] = useState<Filter>(() => (counts.review > 0 ? 'review' : 'all'));
   const [page, setPage] = useState(0);
   const [activeRow, setActiveRow] = useState(0);
   const bodyRef = useRef<HTMLTableSectionElement>(null);

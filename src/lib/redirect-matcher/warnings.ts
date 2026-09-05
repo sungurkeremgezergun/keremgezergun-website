@@ -66,9 +66,9 @@ export function annotateWarnings(
     const sameNormalizedPath = sourceIndexByPath.get(sources[row.source].path);
     if (sameNormalizedPath && sameNormalizedPath.length > 1) warnings.add('query-only');
 
-    const candidate = row.chosen >= 0 ? row.candidates[row.chosen] : row.candidates[0];
-    if (candidate?.reasons.includes('broader-page')) warnings.add('broader-page');
-    if (candidate?.reasons.includes('narrower-page')) warnings.add('narrower-page');
+    // The coverage labels are deliberately not repeated here. They already
+    // appear in the reason column, and showing the same words twice in adjacent
+    // columns reads as two separate problems.
 
     row.warnings = [...warnings];
   }

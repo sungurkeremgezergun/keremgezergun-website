@@ -525,7 +525,9 @@
 .urlCell {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.84rem;
-    word-break: break-all;
+    /* `anywhere` breaks a long path only where it has to; `break-all` split
+       every line mid-word, including short ones that fit. */
+    overflow-wrap: anywhere;
 }
 
 /*

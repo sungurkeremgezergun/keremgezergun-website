@@ -204,8 +204,8 @@ export const results = {
     en: 'The number keys only act while a row has focus.',
   },
   narrowNote: {
-    tr: 'Dar ekranda tablo kart düzenine geçer. Uzun listeleri gözden geçirmek masaüstünde daha rahat, ama tüm işlevler burada da çalışır.',
-    en: 'On a narrow screen the table becomes a card layout. Reviewing a long list is easier on a desktop, but every function works here too.',
+    tr: 'Dar ekranda tablo kendi içinde yana kaydırılır. Uzun listeleri gözden geçirmek masaüstünde daha rahat, ama tüm işlevler burada da çalışır.',
+    en: 'On a narrow screen the table scrolls sideways inside its own region. Reviewing a long list is easier on a desktop, but every function works here too.',
   },
   matchedWords: { tr: 'Eşleşen kelimeler', en: 'Matched words' },
   emptyFilter: {

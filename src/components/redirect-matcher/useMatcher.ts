@@ -12,7 +12,9 @@ import {
   rowLimitNotices,
   splitPasted,
 } from '@/lib/redirect-matcher/parse';
+import { normalizeUrl } from '@/lib/redirect-matcher/normalize';
 import { SAMPLE_NEW, SAMPLE_OLD } from '@/lib/redirect-matcher/template';
+import { withWarnings, type SiteRef } from '@/lib/redirect-matcher/warnings';
 import type {
   MatchOutcome,
   MatchProgress,
@@ -290,16 +292,40 @@ export function useMatcher() {
     setCancelled(true);
   }, [source, stopWorker]);
 
-  /** Every row edit is recorded, so any of them can be undone. */
+  /**
+   * Every row edit is recorded, so any of them can be undone, and the
+   * structural warnings are recomputed from the resolved targets.
+   *
+   * Retargeting a row by hand is the realistic way to build a chain: at match
+   * time a target that is also an old URL has already been separated out as
+   * needing no redirect. Without this the warning column would go stale the
+   * moment the user changed anything.
+   */
   const editRows = useCallback(
     (update: (current: MatchRow[]) => MatchRow[]) => {
       setRows((current) => {
         setHistory((past) => [...past.slice(-20), current]);
-        return update(current);
+        const next = update(current);
+        if (!outcome) return next;
+
+        const resolve = (row: MatchRow): SiteRef | undefined => {
+          if (row.manualTarget !== undefined) {
+            const typed = row.manualTarget.trim();
+            if (!typed) return undefined;
+            const parsed = normalizeUrl(typed, {
+              includeQuery: settings.includeQuery,
+              stripLanguagePrefix: settings.stripLanguagePrefix,
+            });
+            return parsed.ok ? { path: parsed.value.path, host: parsed.value.host } : undefined;
+          }
+          return row.chosen >= 0 ? outcome.new[row.candidates[row.chosen].target] : undefined;
+        };
+
+        return withWarnings(next, outcome.old, resolve);
       });
       setDownloaded(false);
     },
-    [],
+    [outcome, settings.includeQuery, settings.stripLanguagePrefix],
   );
 
   const undo = useCallback(() => {

@@ -125,12 +125,23 @@ function sameSlug(source: NormalizedUrl, target: NormalizedUrl): boolean {
  * A distinctive slug identifies a page wherever it moves, which is what makes
  * the 90 floor safe. A single common word does not: on the brief's rule as
  * written, '/kadin/elbise' and '/erkek/elbise' share their last segment and the
- * floor would score a women's-to-men's redirect at 90. Two meaningful words, or
- * one rare one, is the line.
+ * floor would score a women's-to-men's redirect at 90.
+ *
+ * A lone number is not distinctive either, however rare it is:
+ * '/urunler/tum-urunler-sayfa-2' and '/sayfa/2' both reduce to the slug word
+ * '2' once the filler is set aside, and the floor scored that pair 90. Real
+ * identifiers are four digits or a SKU, and those are already handled by the id
+ * rule, which outranks this one.
  */
+const MIN_DISTINCTIVE_SLUG = 4;
+
 function distinctiveSlug(url: NormalizedUrl, corpus: Corpus): boolean {
   if (url.slugCoreSet.size >= 2) return true;
-  for (const token of url.slugCoreSet) return corpus.rare.has(token);
+  for (const token of url.slugCoreSet) {
+    return (
+      corpus.rare.has(token) && token.length >= MIN_DISTINCTIVE_SLUG && !/^\d+$/.test(token)
+    );
+  }
   return false;
 }
 
@@ -143,6 +154,15 @@ function commonPrefix(a: string[], b: string[]): number {
 
 export type PairScore = {
   score: number;
+  /**
+   * The score before any ceiling or floor.
+   *
+   * The 90 floor lifts several candidates onto exactly the same number, which
+   * erases the difference between the right parent and the wrong one -- both
+   * '/kadin-giyim/kirmizi-elbise' and '/erkek-giyim/kirmizi-elbise' land on 90.
+   * The tie-breakers fall back on this to recover the ordering.
+   */
+  base: number;
   reasons: Reason[];
   matched: string[];
 };
@@ -191,13 +211,14 @@ export function scorePair(
     lengthMax === 0 ? 1 : 1 - Math.abs(source.path.length - target.path.length) / lengthMax;
   const shape = 0.5 * depthRatio + 0.5 * lengthRatio;
 
-  let score =
+  const raw =
     100 *
     (weights.tokens * overlap +
       weights.characters * characters +
       weights.structure * structure +
       weights.shape * shape);
 
+  let score = raw;
   const reasons: Reason[] = [];
 
   /*
@@ -245,7 +266,12 @@ export function scorePair(
 
   if (reasons.length === 0) reasons.push('similar');
 
-  return { score: Math.round(Math.min(100, Math.max(0, score))), reasons, matched };
+  return {
+    score: Math.round(Math.min(100, Math.max(0, score))),
+    base: Math.round(Math.min(100, Math.max(0, raw))),
+    reasons,
+    matched,
+  };
 }
 
 /** Sum of the rare matched tokens, used as the first tie-breaker. */

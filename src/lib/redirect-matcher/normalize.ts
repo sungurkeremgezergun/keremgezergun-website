@@ -57,23 +57,52 @@ export function foldTurkish(value: string): string {
 /**
  * Turkish plural and possessive endings, plus the English plural.
  *
- * Applied only to tokens longer than five characters, only from this list, and
- * repeatedly until nothing else applies. Repeating matters: `otobusler` has to
- * reduce to the same stem as `otobus`, which needs two passes. Longest ending
- * first so `leri` wins over `i`.
+ * Applied only to tokens longer than five characters, only from these lists,
+ * and repeatedly until nothing else applies. Repeating matters: `otobusler` has
+ * to reduce to the same stem as `otobus`, which needs two passes. Longest
+ * ending first so `leri` wins over `i`.
  */
-const SUFFIXES = ['leri', 'lari', 'ler', 'lar', 'es', 'si', 's', 'i'];
+const TURKISH_SUFFIXES = ['leri', 'lari', 'ler', 'lar', 'si', 'i'];
+const ENGLISH_SUFFIXES = ['es', 's'];
 const MIN_STEM = 3;
+
+/**
+ * Turkish consonant mutation, undone.
+ *
+ * A vowel-initial suffix softens a final k, p or t: gömlek becomes gömleği,
+ * kitap becomes kitabı, kanat becomes kanadı. Strip the suffix and you are left
+ * with `gomleg`, which matches nothing — the possessive form of every word
+ * ending in one of those letters silently fails to match its own root. Undoing
+ * the softening is what makes `/erkek/gomlegi` find `/erkek-giyim/gomlek`.
+ *
+ * Only after a Turkish suffix. Applying it to the English plural would turn
+ * `weblogs` into `weblok`. (ç needs no entry: the ASCII fold already collapses
+ * it and its softened form c onto the same letter.)
+ */
+const SOFTENED: Record<string, string> = { g: 'k', b: 'p', d: 't' };
+
+const unsoften = (stem: string): string => {
+  const last = stem[stem.length - 1];
+  const hard = SOFTENED[last];
+  return hard ? stem.slice(0, -1) + hard : stem;
+};
 
 export function stripSuffix(token: string): string {
   let stem = token;
   for (let pass = 0; pass < 3; pass += 1) {
     if (stem.length <= 5) return stem;
-    const suffix = SUFFIXES.find(
-      (candidate) => stem.endsWith(candidate) && stem.length - candidate.length >= MIN_STEM,
-    );
-    if (!suffix) return stem;
-    stem = stem.slice(0, stem.length - suffix.length);
+    const fits = (candidate: string) =>
+      stem.endsWith(candidate) && stem.length - candidate.length >= MIN_STEM;
+
+    const turkish = TURKISH_SUFFIXES.find(fits);
+    if (turkish) {
+      stem = unsoften(stem.slice(0, stem.length - turkish.length));
+      continue;
+    }
+
+    const english = ENGLISH_SUFFIXES.find(fits);
+    if (!english) return stem;
+    stem = stem.slice(0, stem.length - english.length);
   }
   return stem;
 }

@@ -2,8 +2,14 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DEFAULT_SETTINGS } from '../../src/lib/redirect-matcher/defaults';
 import { runMatch } from '../../src/lib/redirect-matcher/match';
+import { stripSuffix } from '../../src/lib/redirect-matcher/normalize';
 import { prepareInputs } from '../../src/lib/redirect-matcher/parse';
-import type { MatchReport, MatcherSettings } from '../../src/lib/redirect-matcher/types';
+import { withWarnings, type SiteRef } from '../../src/lib/redirect-matcher/warnings';
+import type {
+  MatchReport,
+  MatchRow,
+  MatcherSettings,
+} from '../../src/lib/redirect-matcher/types';
 
 const options = { includeQuery: false, stripLanguagePrefix: false };
 
@@ -148,25 +154,121 @@ test('an exact path on the same host needs no redirect', () => {
   assert.equal(report.rows.length, 0);
 });
 
-/** Acceptance criterion 9. */
-test('flags a redirect chain in a domain migration', () => {
-  // On the same host a target that is also an old URL is classified as needing
-  // no redirect, so a chain can only arise once the hosts differ.
-  const report = match(
-    ['https://eski.example.com/mavi-kazak', 'https://eski.example.com/lacivert-kazak'],
-    ['https://yeni.example.com/lacivert-kazak', 'https://yeni.example.com/kazak-koleksiyon'],
-  );
-  const chained = report.rows.find((row) => row.warnings.includes('chain'));
-  assert.ok(chained, 'expected a row pointing at another old URL');
+test('a softened Turkish consonant still finds its root', () => {
+  // gömlek -> gömleği. Strip the possessive and you get `gomleg`, which matches
+  // nothing; the possessive form of every word ending in k, p or t would fail.
+  const report = match(['/erkek/gomlegi'], ['/erkek-giyim/gomlek', '/erkek-giyim/elbise']);
+  const best = report.rows[0].candidates[0];
+  assert.equal(report.new[best.target].path, '/erkek-giyim/gomlek');
+  assert.ok(best.score >= 85, `expected a high score, got ${best.score}`);
+
+  assert.equal(stripSuffix('gomlegi'), stripSuffix('gomlek'));
+  assert.equal(stripSuffix('bardagi'), stripSuffix('bardak'));
+  assert.equal(stripSuffix('kitabi'), stripSuffix('kitap'));
+  assert.equal(stripSuffix('kanadi'), stripSuffix('kanat'));
+  // The English plural must not be softened: weblogs is not weblok.
+  assert.equal(stripSuffix('weblogs'), 'weblog');
 });
 
-test('flags a two-way loop', () => {
+test('a lone number is not a distinctive slug', () => {
+  // Both slugs reduce to the word "2" once the filler is set aside, and the
+  // 90 floor turned two junk pagination URLs into a high-confidence match.
+  const crowd = Array.from({ length: 25 }, (_, index) => `/kategori/urun-${index}`);
+  const report = match(['/urunler/tum-urunler-sayfa-2'], ['/sayfa/2', ...crowd]);
+  const best = report.rows[0].candidates[0];
+  assert.ok(best.score < 70, `expected no floor, got ${best.score}`);
+  assert.ok(!best.reasons.includes('same-slug'));
+});
+
+test('the 90 floor does not flatten the ordering it lands on', () => {
+  // Both parents earn the floor, so both sit on exactly 90; the pre-floor score
+  // is what separates the right parent from the wrong one.
   const report = match(
-    ['https://eski.example.com/a-kazak', 'https://eski.example.com/b-kazak'],
-    ['https://yeni.example.com/b-kazak', 'https://yeni.example.com/a-kazak'],
+    ['/kadin/kirmizi-elbise-modelleri'],
+    ['/erkek-giyim/kirmizi-elbise', '/kadin-giyim/kirmizi-elbise'],
   );
-  const looped = report.rows.filter((row) => row.warnings.includes('loop'));
-  assert.equal(looped.length, 2, 'both rows are part of the loop');
+  const [row] = report.rows;
+  assert.equal(report.new[row.candidates[0].target].path, '/kadin-giyim/kirmizi-elbise');
+  assert.ok(!row.warnings.includes('ambiguous'), 'the tie must be resolvable');
+});
+
+test('unrelated URLs are left unmatched rather than forced onto something', () => {
+  const catalogue = [
+    '/kadin-giyim/kirmizi-elbise',
+    '/erkek-giyim/gomlek',
+    '/ayakkabi/kosu-ayakkabi',
+    '/aksesuar/gumus-kolye',
+    '/hakkimizda',
+    '/iletisim',
+  ];
+  const strangers = [
+    '/kariyer/is-basvuru-formu-2018',
+    '/destek/fatura-iade-sureci',
+    '/kvkk-aydinlatma-metni',
+    '/zzz-tamamen-alakasiz-bir-sayfa',
+    '/xyz123abc',
+  ];
+  const report = match(strangers, catalogue);
+  for (const row of report.rows) {
+    const path = report.old[row.source].path;
+    assert.equal(row.chosen, -1, `${path} should not have been matched`);
+    assert.equal(row.selected, false, `${path} must not be exported`);
+    assert.ok(!row.warnings.includes('ambiguous'), `${path} has no match to be ambiguous about`);
+  }
+});
+
+test('a short word does not latch onto a longer one that contains it', () => {
+  // `kolye` is five letters, so the stemmer must leave it alone; reducing it to
+  // `kol` would invent a match out of nothing.
+  const report = match(['/kol'], ['/aksesuar/kolye', '/aksesuar/altin-yuzuk']);
+  assert.equal(report.rows[0].chosen, -1);
+  assert.ok(report.rows[0].candidates[0].score < 50);
+});
+
+/** Acceptance criterion 9. */
+test('a domain migration is not a chain or a loop', () => {
+  // Every path exists on both sides of a migration, so comparing paths alone
+  // marks every single row a chain and a loop -- the warning column would be
+  // useless in the tool's main use case.
+  const report = match(
+    ['https://eski.example.com/kazak-mavi', 'https://eski.example.com/kazak-lacivert'],
+    ['https://yeni.example.com/kazak-mavi', 'https://yeni.example.com/kazak-lacivert'],
+  );
+  assert.equal(report.rows.length, 2);
+  for (const row of report.rows) {
+    assert.ok(!row.warnings.includes('chain'), `unexpected chain on row ${row.source}`);
+    assert.ok(!row.warnings.includes('loop'), `unexpected loop on row ${row.source}`);
+  }
+});
+
+test('retargeting a row onto another old URL raises a chain, then a loop', () => {
+  // At match time a target that is also an old URL has already been separated
+  // out as needing no redirect, so a hand-picked target is the realistic way to
+  // build a chain. The warnings are recomputed from the resolved targets.
+  const sources: SiteRef[] = [{ path: '/a-kazak' }, { path: '/b-kazak' }];
+  const rows: MatchRow[] = sources.map((_, index) => ({
+    source: index,
+    candidates: [],
+    chosen: -1,
+    confidence: 'none',
+    warnings: ['ambiguous'],
+    selected: false,
+  }));
+
+  const pointing = ['/b-kazak', '/c-kazak'];
+  const chained = withWarnings(rows, sources, (row) => ({ path: pointing[row.source] }));
+  assert.ok(chained[0].warnings.includes('chain'), 'a -> b is a chain');
+  assert.ok(!chained[0].warnings.includes('loop'), 'b does not point back yet');
+  assert.ok(chained[0].warnings.includes('ambiguous'), 'warnings it does not own are kept');
+
+  const both = ['/b-kazak', '/a-kazak'];
+  const looped = withWarnings(rows, sources, (row) => ({ path: both[row.source] }));
+  assert.equal(looped.filter((row) => row.warnings.includes('loop')).length, 2);
+
+  // Recomputing must clear a warning that no longer applies, not accumulate.
+  const cleared = withWarnings(looped, sources, () => undefined);
+  assert.ok(cleared.every((row) => !row.warnings.includes('chain')));
+  assert.ok(cleared.every((row) => !row.warnings.includes('loop')));
 });
 
 test('flags many-to-one fanout above the limit', () => {

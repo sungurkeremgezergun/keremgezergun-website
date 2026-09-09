@@ -74,6 +74,8 @@ export type Candidate = {
   /** Index into the new-URL array. */
   target: number;
   score: number;
+  /** Score before any ceiling or floor, used only to break ties. */
+  base: number;
   reasons: Reason[];
   /** Tokens shared with the source, for the highlight in the results table. */
   matched: string[];
@@ -168,7 +170,7 @@ export type MatchReport = {
  * back from the worker would cost more than the matching did. The interface only
  * needs the original string and the comparison path.
  */
-export type UrlView = { original: string; path: string };
+export type UrlView = { original: string; path: string; host?: string };
 
 /** Everything one run produces, in a shape `postMessage` can clone cheaply. */
 export type MatchOutcome = {

@@ -1,7 +1,7 @@
 import { CANDIDATE_LIMIT, PARENT_SCORE, REVIEW_BAND, TIE_WINDOW, confidenceOf } from './defaults';
 import { buildCorpus, rareMatches, scorePair, totalWeight, type Corpus } from './score';
 import { prepareInputs } from './parse';
-import { annotateWarnings } from './warnings';
+import { withWarnings } from './warnings';
 import type {
   Candidate,
   MatchOutcome,
@@ -73,6 +73,7 @@ function breakTies(
       right.rare - left.rare ||
       left.depth - right.depth ||
       left.length - right.length ||
+      b.base - a.base ||
       b.score - a.score
     );
   });
@@ -84,7 +85,10 @@ function breakTies(
   const first = rank(tied[0]);
   const second = rank(tied[1]);
   return (
-    first.rare === second.rare && first.depth === second.depth && first.length === second.length
+    first.rare === second.rare &&
+    first.depth === second.depth &&
+    first.length === second.length &&
+    tied[0].base === tied[1].base
   );
 }
 
@@ -110,6 +114,7 @@ function parentSuggestion(
         target: index,
         score: PARENT_SCORE,
         reasons: ['parent-suggestion'],
+        base: PARENT_SCORE,
         matched: [...source.tokenSet].filter((token) => target.tokenSet.has(token)),
       };
     }
@@ -138,7 +143,7 @@ export function* runMatch(
     const candidates: Candidate[] = [];
 
     for (let j = 0; j < targets.length; j += 1) {
-      const { score, reasons, matched } = scorePair(
+      const { score, base, reasons, matched } = scorePair(
         source,
         sourceWeight,
         targets[j],
@@ -146,7 +151,7 @@ export function* runMatch(
         corpus,
         settings.weights,
       );
-      insertCandidate(candidates, { target: j, score, reasons, matched });
+      insertCandidate(candidates, { target: j, score, base, reasons, matched });
     }
 
     const ambiguous = breakTies(candidates, source, targets, corpus);
@@ -180,7 +185,9 @@ export function* runMatch(
       candidates,
       chosen,
       confidence: confidenceOf(chosen >= 0 ? score : (candidates[0]?.score ?? 0)),
-      warnings: ambiguous ? ['ambiguous'] : [],
+      // Two equally poor candidates on a row that matched nothing is not a
+      // choice the user has to make; labelling it ambiguous is just noise.
+      warnings: ambiguous && chosen >= 0 ? ['ambiguous'] : [],
       selected: chosen >= 0 && score >= REVIEW_BAND,
     });
 
@@ -190,10 +197,12 @@ export function* runMatch(
   }
 
   yield { phase: 'warnings', done: 0, total: rows.length };
-  annotateWarnings(rows, sources, targets);
+  const warned = withWarnings(rows, sources, (row) =>
+    row.chosen >= 0 ? targets[row.candidates[row.chosen].target] : undefined,
+  );
   yield { phase: 'warnings', done: rows.length, total: rows.length };
 
-  return { rows, old: sources, new: targets };
+  return { rows: warned, old: sources, new: targets };
 }
 
 /**
@@ -216,7 +225,7 @@ export function* runJob(
   const report = yield* runMatch(input, settings);
 
   const view = (list: NormalizedUrl[]) =>
-    list.map(({ original, path }) => ({ original, path }));
+    list.map(({ original, path, host }) => ({ original, path, host }));
 
   return {
     rows: report.rows,

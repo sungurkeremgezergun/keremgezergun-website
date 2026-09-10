@@ -58,7 +58,7 @@ src/
 │   ├── sitemap.ts              # XML sitemap (hreflang alternates ile)
 │   └── globals.css             # Tüm stiller
 ├── components/
-│   ├── layout/{Document,Header,Footer}.tsx
+│   ├── layout/{Document,Header,Footer}.tsx   # gtag: next/script, afterInteractive
 │   ├── redirect-matcher/     # 301 yönlendirme aracı arayüzü
 │   │   ├── Page.tsx          # Sunucu bileşeni: sayfa + araç altı içerik
 │   │   ├── Tool.tsx          # Tek istemci bileşeni; worker'ı tıklamada kurar

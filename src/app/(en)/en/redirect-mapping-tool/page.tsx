@@ -5,39 +5,44 @@ import { englishAlternateMetadata } from '@/lib/i18n';
 import { jsonLdSafe } from '@/lib/jsonLd';
 
 const PAGE_URL = pageUrl('en');
-const TITLE = 'Redirect Mapping Tool — Match Old URLs to New Ones';
+
+/** Leads with the same phrase as the H1 and stays inside the SERP cut-off. */
+const TITLE = 'Redirect Mapping Tool — Build Your 301 Map';
+
+/** Word for word the promise the hero makes, so the click is not a bait. */
 const DESCRIPTION =
-  'Upload your old and new URL lists. The tool finds the closest new address for every 404, shows the similarity score with its reasoning, and writes your Apache or nginx redirect file. Everything runs in your browser.';
+  'Upload your old and new URL lists. The tool finds the closest new URL for every old one, shows a similarity score and the reasoning behind it, and writes your Apache or nginx redirect file. Everything runs in your browser.';
+
+const SOCIAL_SUMMARY =
+  'Map the 404s from a site migration onto their new addresses. The scoring is explained in full and your file is never uploaded.';
+
+const OG_IMAGE = {
+  url: 'https://www.keremgezergun.com/301-yonlendirme-araci/og-en.png',
+  width: 1200,
+  height: 630,
+  alt: 'Redirect Mapping Tool — results table with score, reason and warning columns',
+};
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: [
-    'redirect mapping tool',
-    'url matching tool',
-    '301 redirect generator',
-    'site migration redirects',
-    'redirect map',
-    '404 redirect mapping',
-    'htaccess redirect generator',
-  ],
   alternates: englishAlternateMetadata('/301-yonlendirme-araci', '/en/redirect-mapping-tool'),
   openGraph: {
     title: TITLE,
-    description:
-      'Map the 404s from a site migration onto their new addresses. The scoring is explained in full and your file is never uploaded.',
+    description: SOCIAL_SUMMARY,
     url: PAGE_URL,
     siteName: 'Kerem Gezergün',
+    images: [OG_IMAGE],
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: TITLE,
-    description:
-      'Map the 404s from a site migration onto their new addresses. Everything runs in your browser.',
+    description: SOCIAL_SUMMARY,
     creator: '@keremgezergun',
     site: '@keremgezergun',
+    images: [OG_IMAGE.url],
   },
 };
 

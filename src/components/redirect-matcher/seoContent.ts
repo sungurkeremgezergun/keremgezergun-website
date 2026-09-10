@@ -13,7 +13,17 @@ export type Block =
   | { kind: 'ul'; items: Localized[] }
   | { kind: 'ol'; items: Localized[] }
   | { kind: 'code'; text: string }
-  | { kind: 'table'; head: Localized[]; rows: Localized[][] };
+  /**
+   * External sources.
+   *
+   * The guide makes specific claims about how Google treats chains, soft 404s
+   * and 302s. Those claims are correct, and citing them builds authority with a
+   * technical audience rather than spending it.
+   */
+  | { kind: 'sources'; heading: Localized; items: { label: Localized; href: string }[] }
+  /** `caption` is required: a data table without one is unlabelled for a
+   *  screen reader, and it is rendered visually hidden. */
+  | { kind: 'table'; caption: Localized; head: Localized[]; rows: Localized[][] };
 
 export type Section = { id: string; heading: Localized; blocks: Block[] };
 
@@ -28,12 +38,16 @@ export const sections: Section[] = [
       {
         kind: 'p',
         text: {
-          tr: 'Skor 0–100 arası tek bir sayıdır ve dört bileşenin ağırlıklı toplamıdır. Piyasadaki yönlendirme araçlarının çoğu bu hesabı gizler; burada tamamı yazılı, çünkü hangi satıra güveneceğinize karar verebilmeniz için gerekçeyi görmeniz gerekir.',
-          en: 'The score is a single number between 0 and 100: the weighted sum of four components. Most redirect tools keep this calculation hidden. It is written out in full here, because deciding which rows to trust requires seeing the reasoning, not just the number.',
+          tr: 'Skor 0–100 arası tek bir sayıdır ve dört bileşenin ağırlıklı toplamıdır. Çoğu araç skoru nasıl hesapladığını açıklamaz. Burada tamamı yazılı: hangi satıra güveneceğinize karar verebilmeniz için sayıyı değil, gerekçeyi görmeniz gerekir.',
+          en: 'The score is a single number between 0 and 100: the weighted sum of four components. Most tools do not explain how their score is calculated. It is written out in full here, because deciding which rows to trust requires seeing the reasoning, not just the number.',
         },
       },
       {
         kind: 'table',
+        caption: {
+          tr: 'Skorun dört bileşeni, ağırlıkları ve ne ölçtükleri',
+          en: 'The four components of the score, their weights and what they measure',
+        },
         head: [
           { tr: 'Bileşen', en: 'Component' },
           { tr: 'Ağırlık', en: 'Weight' },
@@ -98,19 +112,23 @@ export const sections: Section[] = [
       {
         kind: 'p',
         text: {
-          tr: 'Bunun üzerine bir de özgüllük kuralı gelir. Gürültü kelimeleri çıkarıldıktan sonra kalan anlamlı kelime kümeleri karşılaştırılır: aday, kaynağın alt kümesiyse (yani daha genel bir sayfaysa) skoru en fazla 65 olur ve "daha genel sayfa" etiketi alır; kaynak adayın alt kümesiyse (aday daha dar bir sayfaysa) tavan 60’tır. Tavan adayı listeden çıkarmaz, yalnızca otomatik onaylanmasını ve eşit özgüllükteki bir adayı geçmesini engeller.',
+          tr: 'Bunun üzerine bir de özgüllük kuralı gelir. Gürültü kelimeleri çıkarıldıktan sonra kalan anlamlı kelime kümeleri karşılaştırılır. Aday kaynağın alt kümesiyse, yani daha genel bir sayfaysa, skoru en fazla 65 olur ve "daha genel sayfa" etiketi alır. Kaynak adayın alt kümesiyse tavan 60’tır. Tavan adayı listeden çıkarmaz; yalnızca otomatik onaylanmasını ve eşit özgüllükteki bir adayı geçmesini engeller.',
           en: 'A specificity rule sits on top of that. After the filler words are set aside, the remaining meaningful word sets are compared: if the candidate is a subset of the source — a more general page — its score is capped at 65 and it is labelled "broader page"; if the source is a subset of the candidate, the cap is 60. A cap does not remove a candidate, it only stops it being auto-approved and stops it outranking a candidate of equal specificity.',
         },
       },
       {
         kind: 'p',
         text: {
-          tr: 'Somut örnek. Kaynak URL /kirmizi-elbise-modelleri; anlamlı kelimeleri kirmizi ve elbise ("modelleri" gürültü).',
-          en: 'A worked example. The source URL is /crimson-dress-models; its meaningful words are crimson and dress ("models" is filler).',
+          tr: 'Somut bir örnek: kaynak URL /kirmizi-elbise-modelleri; anlamlı kelimeleri kirmizi ve elbise ("modelleri" gürültü).',
+          en: 'A worked example: the source URL is /crimson-dress-models; its meaningful words are crimson and dress ("models" is filler).',
         },
       },
       {
         kind: 'table',
+        caption: {
+          tr: '/kirmizi-elbise-modelleri için iki adayın adım adım değerlendirmesi',
+          en: 'Two candidates for /crimson-dress-models, assessed step by step',
+        },
         head: [
           { tr: 'Aday', en: 'Candidate' },
           { tr: 'Değerlendirme', en: 'Assessment' },
@@ -138,7 +156,7 @@ export const sections: Section[] = [
       {
         kind: 'p',
         text: {
-          tr: 'Üç kısayol bu hesabın üzerine biner. Standartlaştırılmış yollar birebir aynıysa skor 100’dür. İki URL ortak bir ürün numarası veya SKU taşıyorsa skor en az 95 olur ve bu taban özgüllük tavanını ezer — ID, aynı ürünün kanıtıdır. Son segmentin anlamlı kelimeleri aynı ama dizin farklıysa skor en az 90 olur; bu taban tavanı ezmez, çünkü /kadin/elbise ile /elbise arasında son segment aynı olsa bile aday hâlâ daha genel sayfadır. Son taban bir koşula bağlı: slug ayırt edici olmalı, yani en az iki anlamlı kelime taşımalı ya da taşıdığı tek kelime listede nadir olmalı. Aksi hâlde /kadin/elbise ile /erkek/elbise son segmentlerini paylaştığı için kadın sayfasından erkek sayfasına yapılan bir yönlendirme 90 alırdı.',
+          tr: 'Bu hesabın üzerine üç kısayol eklenir. Standartlaştırılmış yollar birebir aynıysa skor 100’dür. İki URL ortak bir ürün numarası veya SKU taşıyorsa skor en az 95 olur ve bu taban özgüllük tavanını ezer — ID, aynı ürünün kanıtıdır. Son segmentin anlamlı kelimeleri aynı ama dizin farklıysa skor en az 90 olur; bu taban tavanı ezmez, çünkü /kadin/elbise ile /elbise arasında son segment aynı olsa bile aday hâlâ daha genel sayfadır. Son taban bir koşula bağlı: slug ayırt edici olmalı, yani en az iki anlamlı kelime taşımalı ya da taşıdığı tek kelime listede nadir olmalı. Aksi hâlde /kadin/elbise ile /erkek/elbise son segmentlerini paylaştığı için kadın sayfasından erkek sayfasına yapılan bir yönlendirme 90 alırdı.',
           en: 'Three shortcuts sit above this calculation. If the normalized paths are identical the score is 100. If both URLs carry the same product id or SKU the score is at least 95, and that floor overrides the specificity cap — an id is evidence of the same product. If the last segment carries the same meaningful words but the directory differs the score is at least 90; this floor does not override the cap, because between /women/dress and /dress the last segment matches while the candidate is still the more general page. That last floor has a condition: the slug has to be distinctive, meaning at least two meaningful words, or one word that is rare in the list. Otherwise /women/dress and /men/dress share their last segment and a women’s-to-men’s redirect would score 90.',
         },
       },
@@ -323,6 +341,33 @@ export const sections: Section[] = [
           },
         ],
       },
+      {
+        kind: 'sources',
+        heading: { tr: 'Bu bölümdeki iddiaların kaynakları', en: 'Sources for the claims above' },
+        items: [
+          {
+            label: {
+              tr: 'Google Search Central — Yönlendirmeler ve Google Arama',
+              en: 'Google Search Central — Redirects and Google Search',
+            },
+            href: 'https://developers.google.com/search/docs/crawling-indexing/301-redirects',
+          },
+          {
+            label: {
+              tr: 'Google Search Central — URL değişiklikleriyle site taşıma',
+              en: 'Google Search Central — Site moves with URL changes',
+            },
+            href: 'https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes',
+          },
+          {
+            label: {
+              tr: 'Google Search Central — HTTP ve ağ hataları (soft 404 dahil)',
+              en: 'Google Search Central — HTTP and network errors (including soft 404s)',
+            },
+            href: 'https://developers.google.com/search/docs/crawling-indexing/http-network-errors',
+          },
+        ],
+      },
     ],
   },
 
@@ -333,7 +378,7 @@ export const sections: Section[] = [
       {
         kind: 'p',
         text: {
-          tr: 'Hiçbir yere. Dosya okuma, standartlaştırma, eşleştirme ve dosya üretme adımlarının tamamı tarayıcınızda, bir Web Worker içinde çalışır. Eşleştirme sırasında geliştirici araçlarının ağ sekmesini açık tutarsanız tek bir istek görmezsiniz.',
+          tr: 'Hiçbir yere. Dosya okuma, standartlaştırma, eşleştirme ve dosya üretme adımlarının tamamı tarayıcınızda, bir Web Worker içinde çalışır. Eşleştirme sırasında geliştirici araçlarının ağ sekmesini açık tutarsanız tek bir istek bile göremezsiniz.',
           en: 'Nowhere. Reading the file, normalizing, matching and writing the output all happen in your browser, inside a Web Worker. Keep the network tab open while matching runs and you will not see a single request.',
         },
       },

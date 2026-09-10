@@ -66,11 +66,14 @@ export default function Tool({ language }: { language: Language }) {
       case 'collapsed':
         return `${notice.count} ${noticeCopy.collapsed[language]}`;
       case 'dropped':
-        return `${notice.count} ${upload.summarySkipped[language]} — ${dropReasons[notice.reason][language]}`;
+        return `${notice.count} ${noticeCopy.droppedPrefix[language]} — ${dropReasons[notice.reason][language]}`;
     }
   };
 
   const source = matcher.source;
+  const weightTotal = Math.round(
+    Object.values(settings.weights).reduce((sum, value) => sum + value, 0) * 100,
+  );
 
   // The upload preview and the finished run report the same kinds of notice.
   // Once a run exists its notices are authoritative — the settings may have
@@ -92,7 +95,9 @@ export default function Tool({ language }: { language: Language }) {
     <div className={styles.tool}>
       <div className={styles.privacy}>
         <p>{chrome.privacy[language]}</p>
-        <p>{chrome.privacyDetail[language]}</p>
+        <a className={styles.privacyLink} href="#matcher-gizlilik">
+          {chrome.privacyMore[language]}
+        </a>
         <div className={styles.sampleRow}>
           <button
             type="button"
@@ -161,10 +166,15 @@ export default function Tool({ language }: { language: Language }) {
               an enhancement; this is the single-pointer alternative SC 2.5.7
               requires, and it carries the visible label SC 3.3.2 requires.
             */}
+            {/*
+              A real <input type="file"> with a real <label>, but the browser's
+              own "Dosya Seç · Dosya seçilmedi" control is clipped out of view:
+              inside a custom dropzone it read as a third, contradictory way to
+              do the same thing. The label is the visible trigger, so this stays
+              a single-pointer alternative to dragging (SC 2.5.7) and keeps its
+              visible label (SC 3.3.2).
+            */}
             <div className={styles.fileField}>
-              <label className={styles.fieldLabel} htmlFor={`${ids}-file`}>
-                {upload.fileLabel[language]}
-              </label>
               <input
                 ref={fileInputRef}
                 id={`${ids}-file`}
@@ -177,6 +187,9 @@ export default function Tool({ language }: { language: Language }) {
                   if (file) void matcher.loadFile(file);
                 }}
               />
+              <label className="btn btn-outline" htmlFor={`${ids}-file`}>
+                {upload.fileLabel[language]}
+              </label>
               <span id={`${ids}-file-hint`} className={styles.hint}>
                 {upload.fileHint[language]}
               </span>
@@ -230,6 +243,11 @@ export default function Tool({ language }: { language: Language }) {
             <span>
               {source.usableNew} {upload.summaryNew[language]}
             </span>
+            {source.noRedirectNeeded > 0 && (
+              <span>
+                {source.noRedirectNeeded} {upload.summaryNoRedirect[language]}
+              </span>
+            )}
             {source.skipped > 0 && (
               <span>
                 {source.skipped} {upload.summarySkipped[language]}
@@ -288,7 +306,7 @@ export default function Tool({ language }: { language: Language }) {
                   className={styles.textInput}
                   type="text"
                   value={settings.outputHost}
-                  placeholder={settingsCopy.outputHostHint[language]}
+                  placeholder={settingsCopy.outputHostPlaceholder[language]}
                   aria-describedby={`${ids}-host-hint`}
                   onChange={(event) => setSettings({ ...settings, outputHost: event.target.value })}
                 />
@@ -346,25 +364,37 @@ export default function Tool({ language }: { language: Language }) {
                 ).map(([key, label]) => (
                   <div key={key} className={styles.field}>
                     <label htmlFor={`${ids}-w-${key}`}>{label}</label>
+                    {/*
+                      Shown as a percentage, because the guide above states the
+                      same four numbers as 50 / 25 / 15 / 10. Two notations for
+                      one value made the panel look unrelated to the text.
+                    */}
                     <input
                       id={`${ids}-w-${key}`}
                       className={styles.numberInput}
                       type="number"
                       min={0}
-                      max={1}
-                      step={0.05}
-                      value={settings.weights[key]}
+                      max={100}
+                      step={5}
+                      value={Math.round(settings.weights[key] * 100)}
                       onChange={(event) =>
                         setSettings({
                           ...settings,
-                          weights: { ...settings.weights, [key]: Number(event.target.value) },
+                          weights: {
+                            ...settings.weights,
+                            [key]: Number(event.target.value) / 100,
+                          },
                         })
                       }
                     />
                   </div>
                 ))}
               </div>
-              <p className={styles.hint}>{settingsCopy.weightsHint[language]}</p>
+              <p className={styles.hint}>
+                <strong>{settingsCopy.weightsTotal[language]}: {weightTotal}%</strong>
+                {weightTotal !== 100 ? ' — ' : ' · '}
+                {settingsCopy.weightsHint[language]}
+              </p>
             </fieldset>
 
             <div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Language } from '@/lib/i18n';
 import {
   buildExportRows,
@@ -49,6 +49,15 @@ function download(name: string, content: string, mime: string): void {
   URL.revokeObjectURL(url);
 }
 
+/**
+ * How long results can sit undownloaded before the reminder is worth showing.
+ *
+ * It used to appear the instant matching finished, in warning colours, before
+ * the user had looked at a single row -- a warning about something they had had
+ * no chance to do yet.
+ */
+const REMINDER_DELAY_MS = 60_000;
+
 export default function ExportBar({
   language,
   outcome,
@@ -59,6 +68,24 @@ export default function ExportBar({
   onDownloaded,
 }: Props) {
   const [format, setFormat] = useState<Format>('csv');
+  const [remind, setRemind] = useState(false);
+  const armed = useRef(false);
+
+  useEffect(() => {
+    if (downloaded || selectedCount === 0) return;
+    armed.current = true;
+    const timer = window.setTimeout(() => setRemind(true), REMINDER_DELAY_MS);
+    // Leaving the tab is the other moment the reminder earns its place.
+    const onHide = () => {
+      if (document.visibilityState === 'hidden' && armed.current) setRemind(true);
+    };
+    document.addEventListener('visibilitychange', onHide);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener('visibilitychange', onHide);
+      armed.current = false;
+    };
+  }, [downloaded, selectedCount]);
 
   const labels: CsvLabels = useMemo(
     () => ({
@@ -154,8 +181,10 @@ export default function ExportBar({
         beforeunload does not fire on Next's client-side navigation, so the
         reminder is also on the page rather than only in a dialog.
       */}
-      {!downloaded && selectedCount > 0 && (
-        <p className={styles.notDownloaded}>{exportBar.notDownloaded[language]}</p>
+      {remind && !downloaded && selectedCount > 0 && (
+        <p className={styles.notDownloaded} role="status">
+          {exportBar.notDownloaded[language]}
+        </p>
       )}
     </div>
   );

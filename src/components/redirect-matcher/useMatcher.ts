@@ -42,7 +42,10 @@ export type InputSource = {
   /** Valid URLs left after normalization, which is what the summary reports. */
   usableOld: number;
   usableNew: number;
+  /** Rows the tool could not read. A failure, and reported as one. */
   skipped: number;
+  /** Rows that already exist unchanged in the new list. A result, not a loss. */
+  noRedirectNeeded: number;
   notices: ParseNotice[];
   assumedColumns: boolean;
   singleColumn: boolean;
@@ -105,7 +108,10 @@ export function useMatcher() {
         newValues,
         usableOld: preview ? preview.old.length : oldValues.length,
         usableNew: preview ? preview.new.length : newValues.length,
-        skipped: preview ? preview.drops.length : 0,
+        skipped: preview
+          ? preview.drops.filter((drop) => drop.reason !== 'same-as-source').length
+          : 0,
+        noRedirectNeeded: preview ? preview.unchanged.length : 0,
         notices: [...(preview?.notices ?? []), ...limitNotices],
         assumedColumns: extra.assumedColumns ?? false,
         singleColumn: extra.singleColumn ?? false,

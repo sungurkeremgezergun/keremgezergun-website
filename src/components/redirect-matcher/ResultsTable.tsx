@@ -123,28 +123,47 @@ export default function ResultsTable({
   return (
     <section className={styles.results} aria-labelledby="matcher-results-heading">
       <h3 id="matcher-results-heading" className={styles.stepHeading}>
-        {results.caption[language]}
+        {results.heading[language]}
       </h3>
+      <p className={styles.hint}>{results.caption[language]}</p>
 
       <fieldset className={styles.filters}>
-        <legend className="sr-only">{results.filterAll[language]}</legend>
+        <legend className="sr-only">{results.filterLegend[language]}</legend>
         {filters.map((entry) => (
           <button
             key={entry.key}
             type="button"
             className={styles.filter}
             aria-pressed={filter === entry.key}
+            // Without this the accessible name is the concatenation of the two
+            // spans -- "16Toplam" -- which a screen reader reads as one word.
+            aria-label={`${entry.label}: ${entry.count} ${results.filterName[language]}`}
             onClick={() => changeFilter(entry.key)}
           >
-            <span className={styles.filterCount}>{entry.count}</span>
-            <span>{entry.label}</span>
+            <span className={styles.filterCount} aria-hidden="true">
+              {entry.count}
+            </span>
+            <span aria-hidden="true">{entry.label}</span>
           </button>
         ))}
       </fieldset>
 
-      {/* Announced without taking focus, which is what SC 4.1.3 asks for. */}
-      <p role="status" className={styles.hint}>
-        {visible.length} / {counts.total}
+      {/*
+        The default view shows a filtered subset, which used to be announced
+        only by a small grey "2 / 16". A user expecting sixteen rows saw two and
+        had no idea a filter was on. Announced without taking focus, which is
+        what SC 4.1.3 asks for.
+      */}
+      <p role="status" className={filter === 'all' ? styles.hint : styles.filterNotice}>
+        <span>
+          <strong>{visible.length}</strong> {results.filteredNotice[language]} (
+          {results.filteredOf[language]} {counts.total})
+        </span>
+        {filter !== 'all' && (
+          <button type="button" className={styles.filterClear} onClick={() => changeFilter('all')}>
+            {results.showAll[language]}
+          </button>
+        )}
       </p>
 
       <div className={styles.bulk}>
@@ -157,8 +176,14 @@ export default function ResultsTable({
         <button type="button" className={styles.bulkButton} onClick={onExcludeAll}>
           {results.excludeSelected[language]}
         </button>
-        <button type="button" className={styles.bulkButton} onClick={onUndo} disabled={!canUndo}>
-          {canUndo ? results.undo[language] : results.undoneNothing[language]}
+        <button
+          type="button"
+          className={styles.bulkButton}
+          onClick={onUndo}
+          disabled={!canUndo}
+          title={canUndo ? undefined : results.undoneNothing[language]}
+        >
+          {results.undo[language]}
         </button>
       </div>
 
@@ -168,7 +193,7 @@ export default function ResultsTable({
         <dd>{results.keyboardNote[language]}</dd>
       </dl>
 
-      <p className={styles.hint}>{results.narrowNote[language]}</p>
+      <p className={styles.narrowOnly}>{results.narrowNote[language]}</p>
 
       {pageRows.length === 0 ? (
         <p className={styles.empty}>{results.emptyFilter[language]}</p>

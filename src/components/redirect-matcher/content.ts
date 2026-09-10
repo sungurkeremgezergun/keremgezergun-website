@@ -15,22 +15,29 @@ export const chrome = {
     tr: '301 Yönlendirme Eşleştirme Aracı',
     en: 'Redirect Mapping Tool',
   },
+  // Kept identical to the page's meta description: whoever clicks through from
+  // a search result or a shared link must be met by the promise they clicked.
   lead: {
-    tr: 'Eski ve yeni URL listenizi yükleyin; araç her eski URL için en uygun yeni URL’yi bulur, benzerlik skoru ve gerekçesini gösterir, yönlendirme dosyanızı üretir.',
-    en: 'Upload your old and new URL lists. The tool finds the closest new URL for every old one, shows a similarity score and the reasoning behind it, and writes your redirect file.',
+    tr: 'Eski ve yeni URL listenizi yükleyin; araç her eski URL için en uygun yeni URL’yi bulur, benzerlik skoru ve gerekçesini gösterir, Apache veya nginx yönlendirme dosyanızı üretir.',
+    en: 'Upload your old and new URL lists. The tool finds the closest new URL for every old one, shows a similarity score and the reasoning behind it, and writes your Apache or nginx redirect file.',
   },
   privacy: {
-    tr: 'Dosyanız sunucuya yüklenmiyor. Tüm işlem tarayıcınızda çalışıyor; URL listeniz cihazınızdan çıkmıyor.',
-    en: 'Your file is never uploaded. Everything runs in your browser; your URL list never leaves your device.',
+    tr: 'Dosyanız sunucuya yüklenmiyor — tüm işlem tarayıcınızda çalışır, URL listeniz cihazınızdan çıkmaz.',
+    en: 'Your file is never uploaded — everything runs in your browser and your URL list never leaves your device.',
   },
-  privacyDetail: {
-    tr: 'Eşleştirme sırasında ağ sekmesinde tek bir istek görmezsiniz. Yalnızca ayarlarınız tarayıcınızda hatırlanır — verileriniz hatırlanmaz.',
-    en: 'You will not see a single request in the network tab while matching runs. Only your settings are remembered in this browser — your data is not.',
-  },
+  /**
+   * One line in the hero, the detail in the guide.
+   *
+   * The same promise used to be made three times on one page -- hero, guide,
+   * FAQ -- and every repetition weakened the one before it.
+   */
+  privacyMore: { tr: 'Nasıl çalıştığını okuyun', en: 'Read how it works' },
   sample: { tr: 'Örnek veriyle dene', en: 'Try it with sample data' },
+  // The counts have to survive contact with the summary line: four of the
+  // twenty already exist in the new list, so the tool reports sixteen sources.
   sampleHint: {
-    tr: '20 eski ve 20 yeni URL ile aracı 5 saniyede görün.',
-    en: 'See the tool in five seconds with 20 old and 20 new URLs.',
+    tr: '20 eski ve 20 yeni URL. Dördü yeni listede aynı adreste olduğu için yönlendirme gerektirmiyor.',
+    en: '20 old and 20 new URLs. Four of them already exist at the same address, so they need no redirect.',
   },
 } as const;
 
@@ -51,9 +58,9 @@ export const upload = {
     en: 'Drag your CSV file here',
   },
   or: { tr: 'veya', en: 'or' },
-  fileLabel: { tr: 'Dosya seçin (CSV)', en: 'Choose a file (CSV)' },
+  fileLabel: { tr: 'Dosya seçin', en: 'Choose a file' },
   fileHint: {
-    tr: 'CSV kabul edilir. Ayırıcı otomatik algılanır: virgül, noktalı virgül veya sekme.',
+    tr: 'Yalnızca CSV yükleyebilirsiniz. Ayırıcı otomatik algılanır: virgül, noktalı virgül veya sekme.',
     en: 'CSV files only. The delimiter is detected automatically: comma, semicolon or tab.',
   },
   tabFile: { tr: 'Dosya', en: 'File' },
@@ -65,7 +72,12 @@ export const upload = {
   clear: { tr: 'Temizle', en: 'Clear' },
   summaryOld: { tr: 'eski URL', en: 'old URLs' },
   summaryNew: { tr: 'yeni URL', en: 'new URLs' },
-  summarySkipped: { tr: 'satır atlandı', en: 'rows skipped' },
+  summarySkipped: { tr: 'satır okunamadı', en: 'rows could not be read' },
+  // "Skipped" reads like a failure; these rows are a result, not a loss.
+  summaryNoRedirect: {
+    tr: 'URL yönlendirme gerektirmiyor',
+    en: 'URLs need no redirect',
+  },
   run: { tr: 'Eşleştir', en: 'Match' },
   runAgain: { tr: 'Yeniden eşleştir', en: 'Match again' },
 } as const;
@@ -113,6 +125,7 @@ export const notices = {
     tr: 'satır standartlaştırma sonrası aynı URL’ye denk geldiği için birleştirildi',
     en: 'rows collapsed because they normalize to the same URL',
   },
+  droppedPrefix: { tr: 'satır atlandı', en: 'rows dropped' },
   homepageWarning: {
     tr: 'Eşleşmeyen URL’leri toplu hâlde ana sayfaya yönlendirmeyin. Yanlış yönlendirme, yönlendirme yapmamaktan daha zararlıdır; Google bunları soft 404 olarak değerlendirir.',
     en: 'Do not bulk-redirect unmatched URLs to the home page. A wrong redirect is worse than no redirect; Google treats these as soft 404s.',
@@ -144,9 +157,10 @@ export const settings = {
   },
   absoluteOutput: { tr: 'Çıktıda tam URL kullan', en: 'Use absolute URLs in the output' },
   outputHost: { tr: 'Hedef alan adı', en: 'Target domain' },
+  outputHostPlaceholder: { tr: 'yenisite.com', en: 'newsite.com' },
   outputHostHint: {
-    tr: 'Örnek: yenisite.com',
-    en: 'For example: newsite.com',
+    tr: 'Çıktıdaki hedeflerin başına bu alan adı eklenir.',
+    en: 'This domain is put in front of every target in the output.',
   },
   weights: { tr: 'Skor ağırlıkları', en: 'Score weights' },
   weightTokens: { tr: 'Kelime örtüşmesi', en: 'Word overlap' },
@@ -154,9 +168,10 @@ export const settings = {
   weightStructure: { tr: 'Yol yapısı', en: 'Path structure' },
   weightShape: { tr: 'Derinlik ve uzunluk', en: 'Depth and length' },
   weightsHint: {
-    tr: 'Varsayılanlar çoğu liste için doğrudur; değiştirmeniz gerekmez.',
-    en: 'The defaults are right for most lists; you should not need to change them.',
+    tr: 'Dört ağırlığın toplamı 1 olmalı. Varsayılanlar çoğu liste için doğrudur; değiştirmeniz gerekmez.',
+    en: 'The four weights should add up to 1. The defaults are right for most lists; you should not need to change them.',
   },
+  weightsTotal: { tr: 'Toplam', en: 'Total' },
   reset: { tr: 'Varsayılanlara dön', en: 'Reset to defaults' },
 } as const;
 
@@ -168,14 +183,46 @@ export const progress = {
   of: { tr: '/', en: 'of' },
 } as const;
 
+export const page = {
+  /** The tool section's own heading. It used to repeat the H1 word for word. */
+  toolHeading: { tr: 'Aracı kullanın', en: 'Use the tool' },
+  breadcrumbHome: { tr: 'Ana Sayfa', en: 'Home' },
+  breadcrumbTools: { tr: 'Araçlar', en: 'Tools' },
+  breadcrumbHere: { tr: '301 Yönlendirme Aracı', en: 'Redirect Mapping Tool' },
+  breadcrumbLabel: { tr: 'Site içi konum', en: 'Breadcrumb' },
+  contentsHeading: { tr: 'Bu bölümde', en: 'In this section' },
+  author: { tr: 'Sungur Kerem Gezergün', en: 'Sungur Kerem Gezergün' },
+  updated: { tr: 'Son güncelleme', en: 'Last updated' },
+  relatedHeading: { tr: 'İlgili araçlar', en: 'Related tools' },
+  ctaHeading: {
+    tr: 'Taşıma büyükse tek başınıza kalmayın',
+    en: 'On a large migration, you should not be on your own',
+  },
+  ctaText: {
+    tr: '5.000 URL’lik bir taşımada eşleştirme işin yalnızca bir parçası. Taşıma öncesi kontrol, yönlendirme kurulumu ve sonrasındaki izleme için birlikte çalışabiliriz.',
+    en: 'On a 5,000-URL migration the mapping is one part of the job. I can help with the pre-migration audit, deploying the rules and watching what happens afterwards.',
+  },
+  ctaButton: { tr: 'Teknik SEO danışmanlığı', en: 'Technical SEO consulting' },
+} as const;
+
 export const results = {
   filterAll: { tr: 'Toplam', en: 'Total' },
   filterHigh: { tr: 'Yüksek güven', en: 'High confidence' },
   filterReview: { tr: 'İncelenecek', en: 'To review' },
   filterNone: { tr: 'Eşleşmeyen', en: 'Unmatched' },
+  filterLegend: { tr: 'Sonuçları filtrele', en: 'Filter the results' },
+  /** Screen-reader name for a filter button: the count and the label, spoken apart. */
+  filterName: { tr: 'satır', en: 'rows' },
+  filteredNotice: {
+    tr: 'satır gösteriliyor',
+    en: 'rows shown',
+  },
+  filteredOf: { tr: 'toplam', en: 'of' },
+  showAll: { tr: 'Tümünü göster', en: 'Show all' },
+  heading: { tr: 'Eşleştirme sonuçları', en: 'Matching results' },
   caption: {
-    tr: 'Eşleştirme sonuçları. Her satırda hedefi değiştirebilir, satırı dışarıda bırakabilirsiniz.',
-    en: 'Matching results. You can change the target on any row, or leave a row out.',
+    tr: 'Her satırda hedefi değiştirebilir, satırı dışarıda bırakabilirsiniz.',
+    en: 'You can change the target on any row, or leave a row out.',
   },
   colInclude: { tr: 'Dahil', en: 'Include' },
   colOld: { tr: 'Eski URL', en: 'Old URL' },
@@ -191,6 +238,8 @@ export const results = {
   excludeSelected: { tr: 'Seçilenleri dışla', en: 'Exclude the selected rows' },
   undo: { tr: 'Geri al', en: 'Undo' },
   undoneNothing: { tr: 'Geri alınacak işlem yok', en: 'Nothing to undo' },
+  copy: { tr: 'Kopyala', en: 'Copy' },
+  copied: { tr: 'Kopyalandı', en: 'Copied' },
   page: { tr: 'Sayfa', en: 'Page' },
   previous: { tr: 'Önceki', en: 'Previous' },
   next: { tr: 'Sonraki', en: 'Next' },
@@ -203,16 +252,20 @@ export const results = {
     tr: 'Sayı tuşları yalnızca bir satır odaktayken çalışır.',
     en: 'The number keys only act while a row has focus.',
   },
+  /** Shown only on a narrow screen, where it is actually true. */
   narrowNote: {
-    tr: 'Dar ekranda tablo kendi içinde yana kaydırılır. Uzun listeleri gözden geçirmek masaüstünde daha rahat, ama tüm işlevler burada da çalışır.',
-    en: 'On a narrow screen the table scrolls sideways inside its own region. Reviewing a long list is easier on a desktop, but every function works here too.',
+    tr: 'Tabloyu yana kaydırarak tüm sütunları görebilirsiniz.',
+    en: 'Scroll the table sideways to reach every column.',
   },
   matchedWords: { tr: 'Eşleşen kelimeler', en: 'Matched words' },
   emptyFilter: {
     tr: 'Bu filtrede satır yok. Yukarıdan başka bir filtre seçin.',
     en: 'No rows in this filter. Pick another one above.',
   },
-  unchangedHeading: { tr: 'Yönlendirme gerekmeyen URL’ler', en: 'URLs that need no redirect' },
+  unchangedHeading: {
+    tr: 'Yönlendirme gerektirmeyen URL’ler',
+    en: 'URLs that need no redirect',
+  },
   unchangedNote: {
     tr: 'Bu URL’ler yeni listede aynı adresle var.',
     en: 'These URLs exist at the same address in the new list.',
@@ -295,9 +348,10 @@ export const exportBar = {
   formatNginx: { tr: 'Nginx yapılandırması', en: 'Nginx configuration' },
   formatRedirection: { tr: 'WordPress Redirection CSV', en: 'WordPress Redirection CSV' },
   unmatched: { tr: 'Eşleşmeyenleri indir', en: 'Download the unmatched list' },
+  /** Only once leaving would actually cost something -- see ExportBar. */
   notDownloaded: {
-    tr: 'Sonuçlar henüz indirilmedi.',
-    en: 'The results have not been downloaded yet.',
+    tr: 'Sonuçlarınızı indirmediniz — sayfayı kapatırsanız kaybolur.',
+    en: 'You have not downloaded your results — they are lost if you close the page.',
   },
   leaveWarning: {
     tr: 'Sonuçlarınız indirilmedi. Sayfadan ayrılırsanız kaybolur.',

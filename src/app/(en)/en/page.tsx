@@ -611,6 +611,19 @@ export default function EnglishHomePage() {
               </ul>
             </li>
             <li className="project-card">
+              <span className="project-badge-secondary">Trainer</span>
+              <h3>International Youth Association</h3>
+              <p>
+                I ran a three-week AI Fundamentals &amp; Visibility training at the International
+                Youth Association, covering the basics of artificial intelligence and GEO.
+              </p>
+              <ul className="project-tags" aria-label="Tags">
+                <li>Association</li>
+                <li>AI</li>
+                <li>GEO</li>
+              </ul>
+            </li>
+            <li className="project-card">
               <span className="project-badge-secondary">Podcast</span>
               <h3>Sepetteki SEO</h3>
               <p>

@@ -609,6 +609,19 @@ export default function HomePage() {
               </ul>
             </li>
             <li className="project-card">
+              <span className="project-badge-secondary">Eğitmen</span>
+              <h3>Uluslararası Genç Derneği</h3>
+              <p>
+                Uluslararası Genç Derneği&apos;nde üç hafta süren Temel Yapay Zeka &amp; Görünürlük
+                Eğitimi verdim; temel yapay zeka ve GEO konularını ele aldık.
+              </p>
+              <ul className="project-tags" aria-label="Etiketler">
+                <li>Dernek</li>
+                <li>Yapay Zeka</li>
+                <li>GEO</li>
+              </ul>
+            </li>
+            <li className="project-card">
               <span className="project-badge-secondary">Podcast</span>
               <h3>Sepetteki SEO</h3>
               <p>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { alternateMetadata } from '@/lib/i18n';
 import { breadcrumbSchema } from '@/lib/schema/page';
@@ -51,10 +52,16 @@ const collectionPageSchema = {
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Teknik SEO Rehberi' },
-      { '@type': 'ListItem', position: 2, name: 'GEO Rehberi' },
-      { '@type': 'ListItem', position: 3, name: 'Site İçi SEO Rehberi' },
-      { '@type': 'ListItem', position: 4, name: 'Backlink Rehberi' },
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Türkiye’nin En İyi SEO Uzmanları: 2026 SEO & GEO Listesi',
+        url: 'https://www.keremgezergun.com/turkiyenin-en-iyi-seo-uzmanlari',
+      },
+      { '@type': 'ListItem', position: 2, name: 'Teknik SEO Rehberi' },
+      { '@type': 'ListItem', position: 3, name: 'GEO Rehberi' },
+      { '@type': 'ListItem', position: 4, name: 'Site İçi SEO Rehberi' },
+      { '@type': 'ListItem', position: 5, name: 'Backlink Rehberi' },
     ],
   },
 };
@@ -87,6 +94,29 @@ export default function BlogPage() {
             Blog Yazıları
           </h2>
           <ul className="blog-page-grid" aria-label="Blog yazıları listesi">
+            <li>
+              <article className="blog-card-large">
+                <Link
+                  href="/turkiyenin-en-iyi-seo-uzmanlari"
+                  style={{ display: 'block', height: '100%' }}
+                >
+                  <div className="blog-image placeholder" />
+                  <div className="blog-content">
+                    <span className="blog-category">SEO</span>
+                    <h3>Türkiye’nin En İyi SEO Uzmanları: 2026 SEO & GEO Listesi</h3>
+                    <p>
+                      Türkiye’nin öne çıkan SEO uzmanlarını teknik SEO, e-ticaret, GEO, AEO, AI
+                      Search ve uluslararası SEO deneyimlerine göre karşılaştırın.
+                    </p>
+                    <ul className="blog-meta" aria-label="Blog yazısı bilgileri">
+                      <li className="meta-item">Kapsamlı Rehber</li>
+                      <li className="meta-item">14 Eylül 2026</li>
+                    </ul>
+                  </div>
+                </Link>
+              </article>
+            </li>
+
             <li>
               <article className="blog-card-large">
                 <div className="blog-image placeholder">

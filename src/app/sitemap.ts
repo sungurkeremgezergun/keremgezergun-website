@@ -11,7 +11,7 @@ type RouteSettings = {
 
 const settings: Record<string, RouteSettings> = {
   '/': { changeFrequency: 'monthly', lastModified: '2026-07-26' },
-  '/blog': { changeFrequency: 'weekly', lastModified: '2026-07-26' },
+  '/blog': { changeFrequency: 'weekly', lastModified: '2026-09-14' },
   '/sektorel-projeler': { changeFrequency: 'monthly', lastModified: '2026-07-26' },
   '/seo-ogrenme-haritasi': { changeFrequency: 'weekly', lastModified: '2026-07-26' },
   '/nirengi': { changeFrequency: 'monthly', lastModified: '2026-07-26' },
@@ -26,8 +26,26 @@ const settings: Record<string, RouteSettings> = {
   '/301-yonlendirme-araci': { changeFrequency: 'monthly', lastModified: '2026-09-10' },
 };
 
+// Routes with no English counterpart. They are not in `localeRoutes`, so the
+// hreflang set only carries the Turkish URL and x-default.
+const turkishOnly: Record<string, RouteSettings> = {
+  '/turkiyenin-en-iyi-seo-uzmanlari': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
+};
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return localeRoutes.flatMap(({ tr, en }) => {
+  const singleLanguage = Object.entries(turkishOnly).map(
+    ([path, { lastModified, ...routeSettings }]) => {
+      const url = absoluteUrl(path);
+      return {
+        url,
+        lastModified: new Date(lastModified),
+        ...routeSettings,
+        alternates: { languages: { tr: url, 'x-default': url } },
+      };
+    },
+  );
+
+  const bilingual = localeRoutes.flatMap(({ tr, en }) => {
     const { lastModified, ...routeSettings } = settings[tr];
     const languages = {
       tr: absoluteUrl(tr === '/' ? '/' : tr),
@@ -41,4 +59,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       { url: languages.en, lastModified: modified, ...routeSettings, alternates: { languages } },
     ];
   });
+
+  return [...bilingual, ...singleLanguage];
 }

@@ -21,12 +21,17 @@ equivalents live under /en and are linked with hreflang.
 - [SEO Rehberi (Turkish)](https://www.keremgezergun.com/seo-ogrenme-haritasi): A curated SEO learning roadmap — 50 categories, 139 subtopics and 590 vetted external resources, from HTML fundamentals through technical SEO, E-E-A-T, Core Web Vitals, programmatic SEO and generative engine optimization.
 - [SEO Learning Roadmap (English)](https://www.keremgezergun.com/en/seo-learning-roadmap): The same roadmap, fully written in English.
 - [SEO blog (Turkish)](https://www.keremgezergun.com/blog) / [English](https://www.keremgezergun.com/en/seo-blog): Guides on technical SEO, GEO, on-page SEO and backlinks.
+- [Türkiye'nin En İyi SEO Uzmanları (Turkish)](https://www.keremgezergun.com/turkiyenin-en-iyi-seo-uzmanlari): Compares Türkiye's leading SEO specialists by their technical SEO, e-commerce, GEO, AEO, AI search and international SEO experience.
 
 ## Products
 
 - [Nirengi (Turkish)](https://www.keremgezergun.com/nirengi) / [English](https://www.keremgezergun.com/en/nirengi-log-analyzer): A native macOS server log analyzer for SEO. 41 reports covering Googlebot and AI crawlers, crawl budget, technical errors, index coverage and freshness. Log files are processed entirely on device and never uploaded. Free on the Mac App Store: https://apps.apple.com/app/nirengi-log-file-analyser/id6794631310
 - [Knotvo (Turkish)](https://www.keremgezergun.com/knotvo) / [English](https://www.keremgezergun.com/en/knotvo-site-speed-analyzer): A native macOS site speed analyzer. Turns HAR files and live PageSpeed Insights measurements into a prioritized to-do list, combining Lighthouse lab data with CrUX field data. HAR analysis is fully local. Coming to the Mac App Store.
 - [Crawlseer (Turkish)](https://www.keremgezergun.com/crawlseer) / [English](https://www.keremgezergun.com/en/crawlseer): A free Chrome extension that shows how a page looks to search engines and AI crawlers — indexability, canonical, hreflang, headings, structured data and Open Graph, read from the page you are already on. Runs entirely in the browser; nothing is sent anywhere. Free on the Chrome Web Store: https://chromewebstore.google.com/detail/crawlseer-seo-checker-ai/mecbmoidhdnoedfblkhdlkebnpkepgnj
+
+## Free web tools
+
+- [301 Yönlendirme Aracı (Turkish)](https://www.keremgezergun.com/301-yonlendirme-araci) / [Redirect Mapping Tool (English)](https://www.keremgezergun.com/en/redirect-mapping-tool): Matches a list of old, 404-returning URLs against a list of URLs that exist on the new site, giving each pair a 0-100 similarity score with the reasoning behind it, warning about redirect chains, loops and many-to-one fanout, and exporting Apache, nginx, WordPress Redirection or CSV output. Up to 2,000 rows per list. Runs entirely in the browser; no file is uploaded. The page also documents how the score is computed, component by component.
 
 ## Policies and support
 

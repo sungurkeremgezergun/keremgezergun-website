@@ -169,7 +169,8 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                     className={
                       isActive(isEnglish ? '/en/nirengi-log-analyzer' : '/nirengi') ||
                       isActive(isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo') ||
-                      isActive(isEnglish ? '/en/crawlseer' : '/crawlseer')
+                      isActive(isEnglish ? '/en/crawlseer' : '/crawlseer') ||
+                      isActive(isEnglish ? '/en/redirect-mapping-tool' : '/301-yonlendirme-araci')
                         ? 'active'
                         : undefined
                     }
@@ -206,6 +207,16 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
                         aria-current={currentPage(isEnglish ? '/en/crawlseer' : '/crawlseer')}
                       >
                         Crawlseer
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={isEnglish ? '/en/redirect-mapping-tool' : '/301-yonlendirme-araci'}
+                        aria-current={currentPage(
+                          isEnglish ? '/en/redirect-mapping-tool' : '/301-yonlendirme-araci',
+                        )}
+                      >
+                        {isEnglish ? 'Redirect Mapping' : '301 Yönlendirme'}
                       </Link>
                     </li>
                   </ul>

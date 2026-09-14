@@ -19,9 +19,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "node scripts/inject-gtag-comment.mjs",
     "start": "next start",
     "lint": "eslint .",
+    "test": "node -e \"require('fs').rmSync('dist-test',{recursive:true,force:true})\" && tsc -p tsconfig.test.json && cd dist-test && node --test --enable-source-maps",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

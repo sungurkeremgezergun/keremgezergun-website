@@ -37,8 +37,8 @@ Video yok. `<video>` çıkarsa `<track kind="descriptions">` veya betimlenmiş s
 ### 1.3.4 Yönlendirme (Orientation) — uygulanır
 Ekran yönü kısıtlanmamalı. Kontrol: `orientation: portrait|landscape` media query'si içerik gizlemiyor; `screen.orientation.lock` yok; viewport meta'da `user-scalable=no` / `maximum-scale` yok.
 
-### 1.3.5 Girdi Amacını Belirleme — uygulanmaz
-Form yok. Form eklenirse kullanıcı bilgisi toplayan her alan `autocomplete` jetonu taşımalı.
+### 1.3.5 Girdi Amacını Belirleme — uygulanır ⚠️ **301 yönlendirme aracı ile kapsama girdi**
+Sitede artık bir form var: `/301-yonlendirme-araci` (ve EN karşılığı). Ölçüt kullanıcının **kendi bilgisini** toplayan alanları kapsar; buradaki alanlar (dosya seçici, URL listesi metin kutuları, eşik, hedef alan adı) kullanıcı hakkında bilgi toplamaz, dolayısıyla `autocomplete` jetonu gerektirmez. Her alan yine de görünür `<label>` ve `aria-describedby` ile bağlı bir biçim açıklaması taşır. Kişisel bilgi toplayan bir alan eklenirse jeton zorunlu hâle gelir.
 
 ### 1.4.3 Kontrast (Asgari) — uygulanır ⚠️ **en riskli**
 **Eşikler:** normal metin **≥ 4.5:1**; büyük metin **≥ 3:1** (büyük = ≥24px veya ≥18.66px kalın).
@@ -98,8 +98,8 @@ Mekanizma: sayfanın ortasındaki bir bağlantıya Tab'la ulaşıldığında tar
 
 `scroll-margin-top: 90px` yalnızca `:target` ve belirli blok öğelere uygulanıyor; **Tab kaynaklı kaydırmayı kapsamıyor**. Doğru çözüm `html { scroll-padding-top }` — tüm `scrollIntoView` tetikleyicilerini (odak dahil) kapsar.
 
-### 2.5.7 Sürükleme Hareketleri — uygulanmaz ⭐ 2.2'de yeni
-Sürükleme yok. `draggable`, `dragstart`, `pointermove`, `react-dnd`, `swiper`, `embla` araması sıfır dönmeli. Yerel kaydırma çubukları kullanıcı aracısı davranışıdır, muaf.
+### 2.5.7 Sürükleme Hareketleri — uygulanır ⭐ 2.2'de yeni ⚠️ **301 yönlendirme aracı ile kapsama girdi**
+Yönlendirme aracının dosya bırakma alanı `dragover`/`drop` dinliyor. Sürükleme yalnızca geliştirme: aynı alanda görünür `<label>` taşıyan gerçek bir `<input type="file">` duruyor ve tek işaretçili alternatif odur. Yerel kaydırma çubukları kullanıcı aracısı davranışıdır, muaf. Başka bir sürükleme etkileşimi eklenirse (`react-dnd`, `swiper`, `embla`, elle `pointermove`) bu ölçüt yeniden denetlenmeli.
 
 ### 2.5.8 Hedef Boyutu (Asgari) — uygulanır ⭐ 2.2'de yeni
 **24 × 24 CSS px.** Beş istisna:
@@ -122,17 +122,26 @@ Tekrarlanan gezinme mekanizmaları her sayfada aynı göreli sırada. Paylaşıl
 ### 3.2.4 Tutarlı Tanımlama — uygulanır
 Aynı işleve sahip bileşenler tutarlı tanımlanmalı. Aynı `href`'e giden bağlantılar aynı metni kullanmalı.
 
-### 3.3.3 Hata Önerisi — uygulanmaz
-Form yok.
+### 3.3.3 Hata Önerisi — uygulanır ⚠️ **301 yönlendirme aracı ile kapsama girdi**
+Aracın her hata mesajı düzeltmeyi de söyler: desteklenmeyen dosya biçiminde hangi biçimlerin kabul edildiği ve Excel'in nasıl CSV'ye çevrileceği, tek kolonlu dosyada şablonu indirme yönlendirmesi, geçerli URL bulunamadığında beklenen biçim örneği, eşleşme bulunamadığında eşiği düşürme önerisi. Satır limiti aşıldığında hem satır sayısı hem limit gösterilir.
 
-### 3.3.4 Hata Önleme (Hukuki, Finansal, Veri) — uygulanmaz
-İşlem, hesap veya kullanıcı verisi yok.
+### 3.3.4 Hata Önleme (Hukuki, Finansal, Veri) — uygulanır ⚠️ **301 yönlendirme aracı ile kapsama girdi**
+Araç kullanıcının verisini işliyor ve toplu işlemler geri alınabilir olmalı. Her satır düzenlemesi ve her toplu işlem (90 üstünü onayla, 50 altını temizle, seçilenleri dışla) geri alma yığınına yazılır ve geri alma butonu her zaman görünür kalır. Ayrıca sonuçlar indirilmeden sayfadan ayrılma girişimi uyarı üretir.
 
 ### 3.3.8 Erişilebilir Kimlik Doğrulama (Asgari) — uygulanmaz ⭐ 2.2'de yeni
 Kimlik doğrulama yok. Not: form eklenip CAPTCHA konursa metin/bulmaca CAPTCHA'sı bu ölçütü ihlal eder (nesne tanıma CAPTCHA'sı muaf).
 
-### 4.1.3 Durum Mesajları — kısmen
-Odak almadan duyurulması gereken durum mesajı yok. `<details>` açılması ve menü durumu **4.1.2 kapsamındadır** (`aria-expanded`), 4.1.3 değil. İleride istemci taraflı filtre/arama eklenirse `role="status"` gerekir.
+### 4.1.3 Durum Mesajları — uygulanır ⚠️ **301 yönlendirme aracı ile kapsama girdi**
+`<details>` açılması ve menü durumu **4.1.2 kapsamındadır** (`aria-expanded`), 4.1.3 değil. Ancak yönlendirme aracı odak almadan duyurulması gereken dört durum mesajı üretiyor; dördü de `role="status"` taşıyor:
+
+| Mesaj | Nerede |
+|---|---|
+| Dosya özeti (kaç eski / kaç yeni URL, kaç satır atlandı) | Yükleme bölümü |
+| Eşleştirme ilerlemesi ve aşama adı | İlerleme bloğu |
+| Filtre sonucu sayısı | Sonuç tablosu üstü |
+| Dışa aktarılacak satır sayısı | Dışa aktarma çubuğu |
+
+Hata mesajları odak yönetimi gerektirmedikleri için `role="alert"` ile duyurulur.
 
 ---
 
@@ -142,4 +151,6 @@ Odak almadan duyurulması gereken durum mesajı yok. `<details>` açılması ve 
 
 **İnsan yargısı gerektirir:** 2.4.6, 1.4.5, 3.2.4, 2.4.5, 3.1.2, 1.3.4.
 
-**Ön koşulu doğrulanarak geçilenler:** 1.2.4, 1.2.5 (medya yok), 1.3.5, 3.3.3, 3.3.4 (form yok), 3.3.8 (kimlik doğrulama yok), 2.5.7 (sürükleme yok), 4.1.3 (durum mesajı yok). **Form, bülten kaydı, karusel, video gömme veya istemci taraflı arama eklendiği anda dokuzu da yeniden çalıştırılmalı.**
+**Ön koşulu doğrulanarak geçilenler:** 1.2.4, 1.2.5 (medya yok), 3.3.8 (kimlik doğrulama yok). **Karusel, video gömme veya bülten kaydı eklendiği anda yeniden çalıştırılmalı.**
+
+**Ön koşulu 2026-09-05'te düşenler:** `/301-yonlendirme-araci` sitenin ilk formunu, ilk dosya girişini, ilk sürükle-bırak alanını, ilk istemci taraflı filtresini ve ilk ilerleme göstergesini getirdi. 1.3.5, 2.5.7, 3.3.3, 3.3.4 ve 4.1.3 artık **uygulanır** durumda ve bu belgede tek tek yeniden değerlendirildi. Bu sayfaya form alanı, sürükleme etkileşimi veya durum mesajı eklendiğinde beşi de yeniden denetlenmeli.

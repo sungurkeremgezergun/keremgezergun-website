@@ -26,6 +26,8 @@ export type EventData = {
   startDate: string;
   endDate?: string;
   organizer?: Localized;
+  /** The organizer's own website, absolute. */
+  organizerUrl?: string;
   locationName: Localized;
   addressLocality: Localized;
   maximumAttendeeCapacity?: number;
@@ -45,6 +47,7 @@ export type IndustryProject = {
 
 const KIRSEHIR = { tr: 'Kırşehir', en: 'Kırşehir' };
 const AHI_EVRAN = { tr: 'Kırşehir Ahi Evran Üniversitesi', en: 'Kırşehir Ahi Evran University' };
+const AHI_EVRAN_URL = 'https://www.ahievran.edu.tr';
 
 export const industryProjects: IndustryProject[] = [
   {
@@ -88,6 +91,7 @@ export const industryProjects: IndustryProject[] = [
         },
         startDate: '2024-02-26',
         organizer: AHI_EVRAN,
+        organizerUrl: AHI_EVRAN_URL,
         locationName: AHI_EVRAN,
         addressLocality: KIRSEHIR,
       },
@@ -104,6 +108,7 @@ export const industryProjects: IndustryProject[] = [
         },
         startDate: '2024-10-08',
         organizer: AHI_EVRAN,
+        organizerUrl: AHI_EVRAN_URL,
         locationName: AHI_EVRAN,
         addressLocality: KIRSEHIR,
         maximumAttendeeCapacity: 800,
@@ -144,6 +149,7 @@ export const industryProjects: IndustryProject[] = [
         },
         startDate: '2024-07-01',
         organizer: AHI_EVRAN,
+        organizerUrl: AHI_EVRAN_URL,
         locationName: AHI_EVRAN,
         addressLocality: KIRSEHIR,
       },
@@ -182,6 +188,7 @@ export const industryProjects: IndustryProject[] = [
         },
         startDate: '2025-12-17',
         organizer: { tr: 'Üsküdar Üniversitesi', en: 'Üsküdar University' },
+        organizerUrl: 'https://uskudar.edu.tr',
         locationName: { tr: 'Üsküdar Üniversitesi', en: 'Üsküdar University' },
         addressLocality: { tr: 'İstanbul', en: 'Istanbul' },
       },
@@ -220,7 +227,48 @@ export const industryProjects: IndustryProject[] = [
         startDate: '2026-01-26',
         endDate: '2026-01-28',
         organizer: { tr: 'Türkiye Psikologlar Derneği', en: 'Turkish Psychological Association' },
+        organizerUrl: 'https://www.psikolog.org.tr',
         locationName: { tr: 'Türkiye Psikologlar Derneği', en: 'Turkish Psychological Association' },
+        addressLocality: { tr: 'İstanbul', en: 'Istanbul' },
+      },
+    ],
+  },
+  {
+    slug: 'uluslararasi-genc-dernegi',
+    badge: { tr: 'Eğitmen', en: 'Trainer' },
+    title: { tr: 'Uluslararası Genç Derneği', en: 'International Youth Association' },
+    body: [
+      {
+        tr: 'Uluslararası Genç Derneği’nde üç hafta süren “Temel Yapay Zeka & Görünürlük Eğitimi”ni verdim. Cumartesi günleri ikişer saatlik oturumlarda yapay zekanın temellerini ve GEO’yu, yani yapay zeka cevap motorlarında görünür olmayı ele aldık.',
+        en: 'I gave a three-week “AI Fundamentals & Visibility Training” at the International Youth Association. In two-hour Saturday sessions we covered the fundamentals of artificial intelligence and GEO — generative engine optimization, being visible in AI answer engines.',
+      },
+    ],
+    meta: [
+      { icon: 'clock', label: { tr: '3 Hafta / 6 Saat', en: '3 weeks / 6 hours' } },
+      { icon: 'people', label: { tr: 'Dernek Etkinliği', en: 'Association event' } },
+    ],
+    tags: [
+      { tr: 'Dernek', en: 'Association' },
+      { tr: 'Yapay Zeka', en: 'AI' },
+      { tr: 'GEO', en: 'GEO' },
+    ],
+    events: [
+      {
+        slug: 'uluslararasi-genc-dernegi-temel-yapay-zeka-gorunurluk-egitimi',
+        type: 'EducationEvent',
+        name: {
+          tr: 'Uluslararası Genç Derneği — Temel Yapay Zeka & Görünürlük Eğitimi',
+          en: 'International Youth Association — AI Fundamentals & Visibility Training',
+        },
+        description: {
+          tr: 'Üç cumartesi, ikişer saatlik oturumlarda yapay zekanın temelleri ve GEO üzerine eğitim.',
+          en: 'Three two-hour Saturday sessions on the fundamentals of artificial intelligence and GEO.',
+        },
+        startDate: '2026-08-29',
+        endDate: '2026-09-12',
+        organizer: { tr: 'Uluslararası Genç Derneği', en: 'International Youth Association' },
+        organizerUrl: 'https://gencdernegi.org',
+        locationName: { tr: 'Uluslararası Genç Derneği', en: 'International Youth Association' },
         addressLocality: { tr: 'İstanbul', en: 'Istanbul' },
       },
     ],

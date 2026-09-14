@@ -1,6 +1,16 @@
-# Denetim bulguları — 22 sayfa
+# Denetim bulguları — 24 sayfa
 
-**Yöntem:** derlenmiş HTML çıktısı (`.next/server/app`, 22 sayfa) üzerinde statik denetim + kaynak kodu incelemesi. Ölçülen bulgular `scratchpad/audit.mjs` ile üretildi; kod incelemesi bulguları ayrıca işaretlendi.
+**Yöntem:** derlenmiş HTML çıktısı (`.next/server/app`) üzerinde statik denetim + kaynak kodu incelemesi. Ölçülen bulgular `scratchpad/audit.mjs` ile üretildi; kod incelemesi bulguları ayrıca işaretlendi.
+
+**Kapsam notu (2026-09-05):** `/301-yonlendirme-araci` ve `/en/redirect-mapping-tool` eklendi; sayfa sayısı 22 → 24. Bu iki sayfa sitenin ilk formunu, dosya girişini, sürükle-bırak alanını, istemci taraflı filtresini, ilerleme göstergesini ve düzenlenebilir tablosunu getiriyor. Aşağıdaki ölçülen bulgular bu iki sayfayı **kapsamıyor** — denetim yeniden çalıştırılmadı. Bu sayfalar için gereken ve statik denetimin yakalayamayacağı kontroller:
+
+| Kontrol | Ölçüt |
+|---|---|
+| Klavye turu: tabloda ok tuşları, `1`–`5`, boşluk; kısayolların seçim kutusu odaktayken çalışmaması | 2.1.1, 2.1.4 |
+| 320×256 görünümde tablonun yatay kaydırma bölgesi olarak erişilebilirliği | 1.4.10 |
+| İlerleme, filtre ve dışa aktarma sayacı duyurularının ekran okuyucuda gerçekten okunması | 4.1.3 |
+| Sürükle-bırak alanının klavye ve dokunmatik alternatifinin çalışması | 2.5.7 |
+| Vurgulanan eşleşen kelimelerin (`<mark>`) kontrastı ve `forced-colors` davranışı | 1.4.3, 1.4.11 |
 
 **Toplam:** 1.400 ölçülen bulgu (yüksek 1.216 · orta 30 · düşük 154) + 14 kod incelemesi bulgusu.
 

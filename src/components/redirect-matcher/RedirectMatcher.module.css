@@ -1,0 +1,1179 @@
+/* ==========================================================================
+   Redirect Matcher
+
+   A CSS Module, not a section of globals.css. Next does not remove a route's
+   stylesheet on soft navigation, so a plain stylesheet here would become
+   globally active after a visitor leaves this page and would collide with
+   globals.css's unnamespaced class names. Design tokens still come from
+   globals.css's :root.
+   ========================================================================== */
+
+/*
+   One type scale and three text colours for the whole tool.
+   The page measured 17 distinct font sizes and 7 text colours, several of them
+   a fraction of a pixel apart (15.04 next to 15, 13.6 / 13.44 / 13.12) because
+   em values were multiplying down nested elements. Everything here is rem, so a
+   size means the same thing wherever it lands.
+*/
+/*
+   Playfair Display ships old-style figures by default, so the 3 and the 1 in
+   the "301" of the H1 drop below the baseline and the step numbers sit at
+   x-height. A product whose name starts with a number cannot afford that.
+*/
+.page :is(h1, h2, h3) {
+    font-variant-numeric: lining-nums;
+}
+
+.page {
+    --rm-xs: 0.75rem;
+    --rm-sm: 0.875rem;
+    --rm-body: 1.0625rem;
+    --rm-ui: 1rem;
+    --rm-lead: 1.25rem;
+    --rm-h3: 1.5rem;
+    --rm-h2: 2rem;
+
+    --rm-ink: var(--text-primary);
+    --rm-ink-2: var(--text-secondary);
+    --rm-ink-accent: var(--accent-text);
+}
+
+.tool {
+    font-size: var(--rm-ui);
+}
+
+/*
+   globals.css gives every <section> 100px of vertical padding. That is right
+   for the page's top-level bands and wrong for a section nested inside one:
+   each of the guide's five sub-sections added 100px above and below, so the
+   article carried a thousand pixels of dead space and the page ran past
+   9,000px. Vertical rhythm inside the tool and the guide is owned here.
+*/
+.tool section,
+.tool section,
+.article > section {
+    padding: 0;
+}
+
+/* ------------------------------------------------------------------- hero --- */
+
+/*
+   The hero used to fill the whole first screen with a badge, a headline and
+   three lines of text -- on a 1054x685 viewport no part of the tool was
+   visible. This is a tool page, not a manifesto.
+*/
+/*
+   Two columns, so the page can be short and still show what it produces.
+   The hero used to fill an entire 1054x685 screen with a badge, a headline and
+   three lines of text -- no part of the tool was visible -- and the page had no
+   picture of its own output anywhere. Side by side answers both.
+*/
+.hero {
+    padding-top: 96px;
+    padding-bottom: 28px;
+    text-align: left;
+}
+
+.heroGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 48px;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 1.4rem + 1.6vw, 2.6rem);
+}
+
+.lead {
+    max-width: 46ch;
+    color: var(--rm-ink-2);
+    font-size: var(--rm-lead);
+    line-height: 1.55;
+}
+
+.breadcrumb {
+    margin-bottom: 20px;
+    font-size: var(--rm-sm);
+}
+
+.breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+}
+
+.breadcrumb li + li::before {
+    content: '\203A';
+    margin-right: 6px;
+    color: var(--rm-ink-2);
+}
+
+/* SC 2.5.8 again: an inline link in a list is a 20px-tall target by default. */
+.breadcrumb a,
+.contents a {
+    display: inline-block;
+    padding: 4px 0;
+    min-height: 24px;
+    color: var(--rm-ink-2);
+}
+
+.contents a {
+    color: var(--rm-ink);
+}
+
+.breadcrumb [aria-current] {
+    display: inline-block;
+    padding: 4px 0;
+    min-height: 24px;
+    color: var(--rm-ink);
+    font-weight: 600;
+}
+
+.heroShot {
+    max-width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    line-height: 0;
+}
+
+.heroShot img {
+    width: 100%;
+    height: auto;
+}
+
+/* --------------------------------------------------------- article chrome --- */
+
+/*
+   Left, not centred. globals.css centres a .section-header, which left a
+   centred heading hanging over a wide left-aligned body -- the two read as
+   unrelated blocks. Headings now sit on the same column as the text under them.
+*/
+.articleHeader {
+    margin-bottom: 32px;
+    max-width: 65ch;
+    text-align: left;
+}
+
+.byline {
+    margin-top: 12px;
+    color: var(--rm-ink-2);
+    font-size: var(--rm-sm);
+}
+
+.contents {
+    margin: 0 0 48px;
+    padding: 22px 26px;
+    max-width: 65ch;
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+}
+
+.contents h3 {
+    margin-bottom: 10px;
+    font-size: var(--rm-ui);
+}
+
+.contents ol {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.contents a {
+    color: var(--rm-ink);
+}
+
+.sources {
+    margin-top: 26px;
+    padding: 18px 22px;
+    max-width: 65ch;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+}
+
+.sources h4 {
+    margin-bottom: 10px;
+    font-size: var(--rm-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.sources ul {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.sources a {
+    display: inline-block;
+    padding: 3px 0;
+    min-height: 24px;
+    color: var(--rm-ink);
+    font-size: var(--rm-sm);
+}
+
+/*
+   Each item leads with the name of a mistake, and as a bare list that structure
+   was invisible -- eight indented paragraphs with no markers at all.
+*/
+.reasonList {
+    list-style: disc;
+}
+
+.cta {
+    margin-top: 56px;
+    padding: 28px 30px;
+    max-width: 65ch;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-lg);
+    background: #fff;
+}
+
+.cta h3 {
+    margin-bottom: 10px;
+    font-size: var(--rm-h3);
+}
+
+.cta p {
+    margin-bottom: 20px;
+    color: var(--rm-ink-2);
+    font-size: var(--rm-body);
+    line-height: 1.6;
+}
+
+.related {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+}
+
+.related h3 {
+    margin-bottom: 14px;
+    font-size: var(--rm-ui);
+}
+
+.related ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    list-style: none;
+}
+
+.related a {
+    display: inline-block;
+    padding: 6px 0;
+    min-height: 32px;
+    color: var(--rm-ink);
+}
+
+/*
+   Each item leads with the name of the mistake. As a bare list that structure
+   was invisible -- eight indented paragraphs.
+*/
+.reasonList li::marker {
+    color: var(--rm-ink-accent);
+}
+
+/* --------------------------------------------------------------- privacy --- */
+
+.privacy {
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    background: #fff;
+}
+
+.privacy p {
+    color: var(--rm-ink);
+    font-weight: 600;
+}
+
+.privacyLink {
+    display: inline-block;
+    padding: 4px 0;
+    min-height: 24px;
+    margin-top: 4px;
+    color: var(--rm-ink-accent);
+    font-size: var(--rm-sm);
+    font-weight: 600;
+}
+
+.sampleRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.sampleHint {
+    color: var(--rm-ink-2);
+    font-size: var(--rm-sm);
+}
+
+/* ------------------------------------------------------------------ steps --- */
+
+.step {
+    margin-top: 32px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+}
+
+.stepHeading {
+    margin-bottom: 12px;
+    font-size: var(--rm-h3);
+}
+
+.stepNote {
+    color: var(--rm-ink-2);
+    font-size: var(--rm-sm);
+}
+
+.stepNote + .stepNote {
+    margin-top: 6px;
+}
+
+.stepWarning {
+    margin-top: 10px;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    color: var(--rm-ink);
+    font-size: var(--rm-sm);
+}
+
+.templateActions {
+    margin-top: 16px;
+}
+
+/* ------------------------------------------------------------------- tabs --- */
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab {
+    padding: 10px 18px;
+    min-height: 44px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: none;
+    color: var(--rm-ink-2);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tab[aria-selected='true'] {
+    border-bottom-color: var(--accent);
+    color: var(--rm-ink);
+}
+
+/* --------------------------------------------------------------- dropzone --- */
+
+.dropzone {
+    display: grid;
+    /*
+       An implicit auto column takes its max-content width, so the file input
+       widened the column past the viewport and max-width: 100% on the children
+       resolved against that same widened column. minmax(0, 1fr) is what caps it.
+    */
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 100%;
+    gap: 12px;
+    place-items: center;
+    padding: 36px 24px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-primary);
+    text-align: center;
+}
+
+.dropzoneActive {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+}
+
+.dropzoneLabel {
+    color: var(--rm-ink-2);
+}
+
+/*
+   The file input's intrinsic width -- its own button plus the file name -- is
+   wider than a 320px viewport, and an inline-flex column sizes to that. Capping
+   it is what keeps the page from scrolling sideways (SC 1.4.10).
+*/
+.fileField {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    max-width: 100%;
+}
+
+/*
+   Clipped, not display:none and not visibility:hidden -- the input has to stay
+   focusable so the keyboard reaches it, and its <label> is the visible control.
+*/
+.fileInput {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.fileInput:focus-visible + label {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------ paste --- */
+
+.pasteGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label,
+.fieldLabel {
+    color: var(--rm-ink);
+    font-weight: 600;
+    font-size: var(--rm-sm);
+}
+
+.field textarea {
+    min-height: 190px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--rm-ink);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--rm-sm);
+    resize: vertical;
+}
+
+.hint {
+    max-width: 100%;
+    color: var(--rm-ink-2);
+    font-size: var(--rm-sm);
+}
+
+/* ---------------------------------------------------------------- summary --- */
+
+.summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 20px;
+    padding: 16px 18px;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    font-size: var(--rm-sm);
+}
+
+.summaryFile {
+    font-weight: 700;
+}
+
+.noticeList {
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+    list-style: none;
+}
+
+.notice,
+.error {
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    font-size: var(--rm-sm);
+}
+
+/* 11.05:1 (WCAG AAA 1.4.6). */
+
+.notice {
+    border-left: 3px solid var(--accent);
+    background: var(--bg-secondary);
+    color: var(--rm-ink);
+}
+
+.error {
+    border-left: 3px solid #8C2F2F;
+    background: #FBEFEF;
+    color: #5E1F1F;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* --------------------------------------------------------------- settings --- */
+
+.settings {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+}
+
+.settings > summary {
+    padding: 14px 18px;
+    min-height: 44px;
+    color: var(--rm-ink);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/*
+   Two disclosure indicators were showing at once: the browser's own triangle
+   and the custom +/- below it. -webkit-details-marker alone does not cover
+   engines that use ::marker with list-style-type: disclosure-closed.
+*/
+.settings > summary {
+    list-style: none;
+}
+
+.settings > summary::-webkit-details-marker,
+.settings > summary::marker {
+    display: none;
+    content: '';
+}
+
+.settings > summary::before {
+    content: '+ ';
+    color: var(--rm-ink-accent);
+    font-weight: 800;
+}
+
+.settings[open] > summary::before {
+    content: '\2212\00a0';
+}
+
+.settingsBody {
+    display: grid;
+    gap: 20px;
+    padding: 0 18px 20px;
+}
+
+.settingsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.checkboxField {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.checkboxField input {
+    width: 24px;
+    height: 24px;
+    margin-top: 1px;
+    flex: none;
+}
+
+.numberInput,
+.textInput,
+.select {
+    padding: 10px 12px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--rm-ink);
+    font: inherit;
+}
+
+.weights {
+    border: 0;
+    padding: 0;
+}
+
+/* The group label used to be lighter and smaller than the labels beneath it. */
+.weights legend {
+    margin-bottom: 10px;
+    color: var(--rm-ink);
+    font-weight: 700;
+    font-size: var(--rm-ui);
+}
+
+.filterNotice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    font-size: var(--rm-sm);
+}
+
+.filterClear {
+    padding: 6px 12px;
+    min-height: 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--rm-ink);
+    font: inherit;
+    font-size: var(--rm-sm);
+    cursor: pointer;
+}
+
+/* Only true on a narrow screen, so only shown on one. */
+.narrowOnly {
+    display: none;
+}
+
+@media (max-width: 48em) {
+    .narrowOnly {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--rm-ink-2);
+        font-size: var(--rm-sm);
+    }
+}
+
+/* --------------------------------------------------------------- progress --- */
+
+.progress {
+    margin-top: 24px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+}
+
+.progressHead {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.progressPhase {
+    font-weight: 600;
+}
+
+.progress progress {
+    width: 100%;
+    height: 12px;
+}
+
+/* ---------------------------------------------------------------- results --- */
+
+.results {
+    margin-top: 40px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 0;
+    border: 0;
+}
+
+.filters legend {
+    padding: 0;
+    margin-bottom: 12px;
+    color: var(--rm-ink);
+    font-weight: 600;
+}
+
+.filter {
+    display: grid;
+    gap: 4px;
+    padding: 16px 18px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--rm-ink-2);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.filter[aria-pressed='true'] {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+    color: var(--rm-ink);
+}
+
+.filterCount {
+    font-size: var(--rm-h2);
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.bulk {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.bulkButton {
+    padding: 10px 16px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--rm-ink);
+    font: inherit;
+    font-size: var(--rm-sm);
+    cursor: pointer;
+}
+
+.bulkButton:disabled {
+    color: var(--rm-ink-2);
+    cursor: not-allowed;
+}
+
+.keyboard {
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    font-size: var(--rm-sm);
+}
+
+.keyboard dt {
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.keyboard dd {
+    margin: 0;
+    color: var(--rm-ink-2);
+}
+
+/*
+   A data table keeps its two-dimensional layout at every width. SC 1.4.10
+   exempts content that needs it, and turning the rows into blocks would strip
+   the table semantics that make the header association work at all. The
+   wrapper is focusable so the scroll region is reachable from the keyboard.
+*/
+.tableWrap {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+}
+
+.tableWrap:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 4px;
+}
+
+.tableWrap table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+.tableWrap caption {
+    padding: 16px 17px;
+    background: var(--bg-secondary);
+    color: var(--rm-ink);
+    font-weight: 600;
+    text-align: left;
+}
+
+.tableWrap th,
+.tableWrap td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.tableWrap thead th {
+    background: var(--primary);
+    color: #fff;
+    font-size: var(--rm-sm);
+    white-space: nowrap;
+}
+
+.tableWrap tbody th {
+    color: var(--rm-ink);
+    font-weight: 500;
+}
+
+.tableWrap tbody tr:last-child th,
+.tableWrap tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.row:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: -3px;
+}
+
+.rowExcluded th,
+.rowExcluded td {
+    opacity: 0.55;
+}
+
+.urlCell {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--rm-sm);
+    /* `anywhere` breaks a long path only where it has to; `break-all` split
+       every line mid-word, including short ones that fit. */
+    overflow-wrap: anywhere;
+}
+
+/*
+   The highlight must not be the only signal. A background colour alone carries
+   the "this word matched" information, which SC 1.4.1 forbids; the weight and
+   the underline are the non-colour cues, and the row also lists the matched
+   words as text for a screen reader. Measured 8.70:1 (WCAG AAA 1.4.6).
+*/
+.matchedWord {
+    padding: 0 2px;
+    border-radius: 3px;
+    background: #F2E4B4;
+    color: #4A3A08;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.targetCell {
+    display: grid;
+    gap: 6px;
+    min-width: 260px;
+}
+
+.manualInput {
+    padding: 8px 10px;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--rm-sm);
+}
+
+.score {
+    font-size: var(--rm-ui);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.band {
+    display: block;
+    color: var(--rm-ink-2);
+    font-size: var(--rm-xs);
+    font-weight: 400;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.chip {
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: var(--rm-xs);
+    white-space: nowrap;
+}
+
+/* 7.82:1 (WCAG AAA 1.4.6). */
+.chipWarning {
+    border-color: #C9A84C;
+    background: #FBF4DF;
+    color: #5C4A10;
+}
+
+/*
+   WCAG 2.2 AA (SC 2.5.8) sets the minimum target at 24x24 CSS pixels. These
+   were 22 and the settings checkboxes were 20 -- small enough to fail, and the
+   site's own accessibility documents claim full AA conformance.
+*/
+.include {
+    width: 24px;
+    height: 24px;
+}
+
+.pager {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.empty {
+    padding: 40px 24px;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--rm-ink-2);
+    text-align: center;
+}
+
+/* -------------------------------------------------------------- export bar --- */
+
+/*
+   One row, not two. At 116px on top of a 73px fixed header this took 28% of a
+   667px phone screen; the reminder line was what made it two rows, and it now
+   only appears when it has something to say.
+*/
+.exportBar {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+    padding: 12px 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-md);
+}
+
+.exportCount {
+    font-weight: 700;
+}
+
+.exportControls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.notDownloaded {
+    width: 100%;
+    margin-top: 2px;
+    color: var(--rm-ink-accent);
+    font-size: var(--rm-sm);
+    font-weight: 600;
+}
+
+.unchanged {
+    margin-top: 32px;
+}
+
+.unchangedList {
+    margin-top: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--rm-sm);
+    list-style: none;
+}
+
+/* ---------------------------------------------------------------- article --- */
+
+/*
+   The guide's body ran 121-141 characters per line at 15px. The eye loses its
+   place returning to the start of a line somewhere past 75 characters, and this
+   is dense technical prose with sentences over thirty words long. 68ch at 17px
+   lands around 640-700px. Tables and code blocks are allowed past the measure
+   because they carry their own structure; running text is not.
+*/
+.article {
+    display: grid;
+    gap: 56px;
+    max-width: 900px;
+}
+
+/*
+   A grid item's automatic minimum size is its min-content width, so a section
+   holding a wide table or a long code line refuses to shrink and pushes the
+   whole page sideways -- overflow-x: auto never gets a chance to engage. This is
+   what SC 1.4.10 measures at 320 CSS pixels.
+*/
+.article > section {
+    min-width: 0;
+}
+
+.article h3 {
+    margin-bottom: 18px;
+    max-width: 32ch;
+    font-size: var(--rm-h3);
+    line-height: 1.25;
+}
+
+.article p {
+    margin-bottom: 18px;
+    max-width: 65ch;
+    color: var(--rm-ink-2);
+    font-size: var(--rm-body);
+    line-height: 1.65;
+}
+
+.article ul,
+.article ol {
+    display: grid;
+    gap: 14px;
+    margin: 0 0 18px 22px;
+    max-width: 63ch;
+}
+
+.article li {
+    color: var(--rm-ink-2);
+    font-size: var(--rm-body);
+    line-height: 1.65;
+}
+
+.article .tableWrap,
+.article table {
+    margin-bottom: 20px;
+}
+
+.article table {
+    min-width: 560px;
+}
+
+.codeWrap {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.copyButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    min-height: 32px;
+    border: 1px solid #3A4A63;
+    border-radius: var(--radius);
+    background: #14233A;
+    color: #E8E4D8;
+    font: inherit;
+    font-size: var(--rm-xs);
+    cursor: pointer;
+}
+
+.copyButton:hover {
+    background: #1D3050;
+}
+
+.code {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-dark);
+    color: #E8E4D8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--rm-sm);
+    line-height: 1.6;
+}
+
+/* ------------------------------------------------------------ narrow view --- */
+
+@media (max-width: 64em) {
+    .heroGrid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    .pasteGrid,
+    .settingsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 37.5em) {
+    .step {
+        padding: 18px;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .exportBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dropzone,
+    .filter,
+    .tab {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .privacy,
+    .step,
+    .tableWrap,
+    .exportBar,
+    .chip {
+        border: 1px solid CanvasText;
+    }
+
+    .matchedWord {
+        background: Highlight;
+        color: HighlightText;
+    }
+
+    .filter[aria-pressed='true'],
+    .tab[aria-selected='true'] {
+        border: 2px solid Highlight;
+    }
+}

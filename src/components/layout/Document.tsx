@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { fontVariables } from '@/lib/fonts';
@@ -24,30 +25,8 @@ export default function Document({
   return (
     <html lang={language} className={fontVariables}>
       {/* eslint-disable-next-line @next/next/no-head-element -- App Router root
-          layouts may render <head>; the rule targets the Pages Router. The
-          explicit element keeps the gtag snippet in the exact order that
-          scripts/inject-gtag-comment.mjs expects. */}
+          layouts may render <head>; the rule targets the Pages Router. */}
       <head>
-        {/*
-          Google tag (gtag.js) — the matching "<!-- Google tag (gtag.js) -->"
-          HTML comment is injected into the rendered HTML by
-          scripts/inject-gtag-comment.mjs as a postbuild step (JSX cannot
-          emit raw HTML comments). The same script also moves the inline
-          init <script> back next to the loader, so the live HTML matches
-          Google's pasted snippet byte for byte.
-        */}
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '${GA_ID}');
-`,
-          }}
-        />
         {/* Person + WebSite as one @graph. It stays in the layout rather than
             being repeated per page: a page that forgot it would drop the site's
             identity with nothing to fail on. */}
@@ -63,6 +42,30 @@ export default function Document({
         <Header language={language} />
         {children}
         <Footer language={language} />
+
+        {/*
+          Google tag (gtag.js).
+
+          This used to be two hand-written <script> tags in <head>, put back
+          into Google's exact pasted order by a postbuild pass over the
+          prerendered HTML. That pass rewrote a head React had already
+          rendered, so hydration failed on every page of the site: React threw
+          away the tree and redrew it, which also duplicated every JSON-LD
+          block in the DOM. next/script injects the tag after hydration
+          instead, so there is nothing for React to disagree with. Google Tag
+          Assistant still finds the tag at runtime.
+        */}
+        <Script
+          id="gtag-loader"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+        </Script>
       </body>
     </html>
   );

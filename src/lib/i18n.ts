@@ -18,6 +18,7 @@ export const localeRoutes = [
   { tr: '/nirengi-gizlilik-politikasi', en: '/en/nirengi-privacy-policy' },
   { tr: '/nirengi-erisilebirlik', en: '/en/nirengi-accessibility' },
   { tr: '/crawlseer', en: '/en/crawlseer' },
+  { tr: '/301-yonlendirme-araci', en: '/en/redirect-mapping-tool' },
   { tr: '/crawlseer/gizlilik', en: '/en/crawlseer/privacy' },
 ] as const;
 

@@ -27,7 +27,9 @@ AAA'dan hedeflenen ölçütler: 1.4.6, 1.4.9, 2.1.3, 2.3.2, 2.3.3, 2.4.8, 2.4.10
 | 3.1.6 Telaffuz | Gerçekte uygulanabilir örnek yok; kanıtlamak fayda üretmeyen manuel iki dilli inceleme gerektirir |
 | 1.3.6 Amacı Belirleme | Bağlı olduğu WAI-Adapt sözlüğü kararsız ve yardımcı teknoloji desteği yok |
 
-Medya, form ve kimlik doğrulama olmadığı için boşta geçen ölçütler (1.2.6–1.2.9, 1.4.7, 2.2.3–2.2.6, 3.3.5, 3.3.6, 3.3.9) başarı olarak sayılmaz, **uygulanamaz** olarak not edilir.
+Medya ve kimlik doğrulama olmadığı için boşta geçen ölçütler (1.2.6–1.2.9, 1.4.7, 2.2.3–2.2.6, 3.3.9) başarı olarak sayılmaz, **uygulanamaz** olarak not edilir.
+
+**2026-09-05:** `/301-yonlendirme-araci` sitenin ilk formunu getirdi. Form kaynaklı ölçütler (1.3.5, 2.5.7, 3.3.1, 3.3.2, 3.3.3, 3.3.4, 3.3.7, 4.1.3) artık **uygulanır** ve 01/02 numaralı belgelerde tek tek yeniden değerlendirildi. 3.3.5 ve 3.3.6 AAA seviyesindedir; araçtaki her alan yanında biçim açıklaması taşıdığı için fiilen karşılanıyor ama beyan edilmiyor.
 
 W3C'nin kendi uyarısı bu duruşun gerekçesidir:
 
@@ -38,9 +40,10 @@ W3C'nin kendi uyarısı bu duruşun gerekçesidir:
 Şu değişikliklerden biri yapılırsa ilgili ölçütler **yeniden denetlenmelidir**:
 
 - **Video/ses/gömme eklenirse** → 1.2.1–1.2.9, 1.4.2, 1.4.7 (şu an boşta geçiyorlar)
-- **Form eklenirse** → 1.3.5, 3.3.1–3.3.4, 3.3.6, 3.3.7 ve CAPTCHA konursa 3.3.8/3.3.9
+- **Yeni bir form eklenirse** → 1.3.5, 3.3.1–3.3.4, 3.3.6, 3.3.7 ve CAPTCHA konursa 3.3.8/3.3.9 (ilk form 2026-09-05'te geldi; bu ölçütler artık kapsamda)
 - **Karusel/kaydırıcı eklenirse** → 2.2.2, 2.5.1, 2.5.7
-- **İstemci taraflı arama/filtre eklenirse** → 4.1.3 (`role="status"` gerekir)
+- **İstemci taraflı arama/filtre eklenirse** → 4.1.3 (`role="status"` gerekir; yönlendirme aracının dört durum mesajı bunu taşıyor)
+- **Yeni bir sürükleme etkileşimi eklenirse** → 2.5.7 (tek işaretçili alternatif zorunlu)
 - **`headers()`/`cookies()` bir layout'a eklenirse** → tüm site dinamik render'a düşer (erişilebilirlik değil ama aynı derecede sessiz bir gerileme)
 
 ## Statik denetimin sınırı

@@ -26,6 +26,8 @@ export type EventData = {
   startDate: string;
   endDate?: string;
   organizer?: Localized;
+  /** The organizer's own website, absolute. */
+  organizerUrl?: string;
   locationName: Localized;
   addressLocality: Localized;
   maximumAttendeeCapacity?: number;
@@ -45,6 +47,7 @@ export type IndustryProject = {
 
 const KIRSEHIR = { tr: 'Kırşehir', en: 'Kırşehir' };
 const AHI_EVRAN = { tr: 'Kırşehir Ahi Evran Üniversitesi', en: 'Kırşehir Ahi Evran University' };
+const AHI_EVRAN_URL = 'https://www.ahievran.edu.tr';
 
 export const industryProjects: IndustryProject[] = [
   {
@@ -88,6 +91,7 @@ export const industryProjects: IndustryProject[] = [
         },
         startDate: '2024-02-26',
         organizer: AHI_EVRAN,
+        organizerUrl: AHI_EVRAN_URL,
         locationName: AHI_EVRAN,
         addressLocality: KIRSEHIR,
       },
@@ -104,6 +108,7 @@ export const industryProjects: IndustryProject[] = [
         },
         startDate: '2024-10-08',
         organizer: AHI_EVRAN,
+        organizerUrl: AHI_EVRAN_URL,
         locationName: AHI_EVRAN,
         addressLocality: KIRSEHIR,
         maximumAttendeeCapacity: 800,
@@ -144,6 +149,7 @@ export const industryProjects: IndustryProject[] = [
         },
         startDate: '2024-07-01',
         organizer: AHI_EVRAN,
+        organizerUrl: AHI_EVRAN_URL,
         locationName: AHI_EVRAN,
         addressLocality: KIRSEHIR,
       },
@@ -182,6 +188,7 @@ export const industryProjects: IndustryProject[] = [
         },
         startDate: '2025-12-17',
         organizer: { tr: 'Üsküdar Üniversitesi', en: 'Üsküdar University' },
+        organizerUrl: 'https://uskudar.edu.tr',
         locationName: { tr: 'Üsküdar Üniversitesi', en: 'Üsküdar University' },
         addressLocality: { tr: 'İstanbul', en: 'Istanbul' },
       },
@@ -220,6 +227,7 @@ export const industryProjects: IndustryProject[] = [
         startDate: '2026-01-26',
         endDate: '2026-01-28',
         organizer: { tr: 'Türkiye Psikologlar Derneği', en: 'Turkish Psychological Association' },
+        organizerUrl: 'https://www.psikolog.org.tr',
         locationName: { tr: 'Türkiye Psikologlar Derneği', en: 'Turkish Psychological Association' },
         addressLocality: { tr: 'İstanbul', en: 'Istanbul' },
       },

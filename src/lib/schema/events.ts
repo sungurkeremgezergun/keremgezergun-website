@@ -1,6 +1,6 @@
 import type { Language } from '@/lib/i18n';
 import { industryEvents } from '@/lib/projects';
-import { PERSON_ID, graph, ref, type SchemaNode } from './base';
+import { BASE_URL, PERSON_ID, graph, ref, type SchemaNode } from './base';
 import { breadcrumbNode, itemListNode, webPageNode } from './page';
 import { PODCAST_ID, podcastNode } from './home';
 
@@ -30,13 +30,32 @@ export function eventNodes(language: Language): SchemaNode[] {
     name: event.name[language],
     description: event.description[language],
     startDate: event.startDate,
-    ...(event.endDate ? { endDate: event.endDate } : {}),
+    // Single-day events end the day they start.
+    endDate: event.endDate ?? event.startDate,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
+    // The same portrait the page's OpenGraph uses.
+    image: `${BASE_URL}/images/kerem-gezergun.jpg`,
     performer: ref(PERSON_ID),
     ...(event.organizer
-      ? { organizer: { '@type': 'Organization', name: event.organizer[language] } }
+      ? {
+          organizer: {
+            '@type': 'Organization',
+            name: event.organizer[language],
+            ...(event.organizerUrl ? { url: event.organizerUrl } : {}),
+          },
+        }
       : {}),
+    // Every event was free to attend. availability and validFrom are left
+    // out on purpose: these are past events, so there is no honest value for
+    // either.
+    isAccessibleForFree: true,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'TRY',
+      url: projectsUrl(language),
+    },
     location: {
       '@type': 'Place',
       name: event.locationName[language],

@@ -3076,3 +3076,285 @@ address {
         order: 0;
     }
 }
+
+/* ==========================================
+   ARTICLE — long-form blog posts
+   ========================================== */
+/* The global `section { padding: 100px 0 }` rule targets the page-level
+   bands; an article's inner sections are prose blocks, so the padding is
+   reset here and spacing comes from the headings instead. */
+.article {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.article section {
+    padding: 0;
+}
+
+.article p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.article h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 56px 0 20px;
+}
+
+.article h3 {
+    font-size: 1.25rem;
+    margin: 32px 0 12px;
+}
+
+.article p a {
+    color: var(--accent-text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.article p a:hover {
+    color: var(--primary);
+}
+
+/* Header: a long H1 needs one step less than the page-header default. */
+.article-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-header .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.9375rem;
+    color: var(--text-light);
+}
+
+.page-header .article-meta a {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.page-header .article-meta a:hover {
+    color: var(--accent-text);
+}
+
+.breadcrumb {
+    margin-bottom: 24px;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb li + li::before {
+    content: '/';
+    margin-right: 8px;
+    color: var(--border);
+}
+
+.breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.breadcrumb a:hover {
+    color: var(--primary);
+}
+
+.breadcrumb [aria-current="page"] {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Lead: the first paragraph carries the thesis, so it is set one step larger. */
+.article-lead p:first-child {
+    font-size: 1.25rem;
+    line-height: 1.65;
+    color: var(--text-primary);
+}
+
+/* Table of contents */
+.article-toc {
+    margin: 40px 0 48px;
+    padding: 24px 28px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.article-toc-title {
+    font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.article-toc ol {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 24px;
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+.article-toc li {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.article-toc a {
+    color: var(--text-secondary);
+}
+
+.article-toc a:hover {
+    color: var(--accent-text);
+    text-decoration: underline;
+}
+
+/* Comparison table. min-width keeps three columns legible; the wrapper
+   scrolls so the page itself never does. */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 24px 0 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.table-wrapper table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+}
+
+.table-wrapper thead th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.table-wrapper tbody th,
+.table-wrapper td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.table-wrapper td {
+    color: var(--text-secondary);
+}
+
+.table-wrapper tbody tr:nth-child(even) {
+    background: var(--bg-secondary);
+}
+
+.table-wrapper tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Expert profiles: one block per name, separated by a rule and an inset. */
+.article .expert-profile {
+    margin-top: 48px;
+    padding: 32px 28px 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-lg);
+}
+
+.article .expert-profile h2 {
+    margin-top: 0;
+}
+
+.article .expert-profile + .expert-profile {
+    margin-top: 24px;
+}
+
+/* FAQ inside an article reuses .faq-item; only the outer wrapper differs. */
+.article-faq .faq-list {
+    max-width: none;
+    margin-top: 24px;
+}
+
+.article-faq .faq-question {
+    padding: 18px 20px;
+}
+
+.article-faq .faq-answer p {
+    margin-bottom: 0;
+}
+
+/* Author box */
+.article-author {
+    margin-top: 56px;
+    padding: 24px 28px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.article-author p {
+    margin-bottom: 0;
+}
+
+.article-author-name {
+    font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.article-author-name a:hover {
+    color: var(--accent-text);
+}
+
+.article-author-role {
+    font-size: 0.9375rem;
+    color: var(--text-light);
+}
+
+@media (max-width: 48em) {
+    .article-toc ol {
+        grid-template-columns: 1fr;
+    }
+
+    .article-toc {
+        padding: 20px;
+    }
+
+    .article .expert-profile {
+        padding: 24px 20px 8px;
+    }
+
+    .article-author {
+        padding: 20px;
+    }
+}

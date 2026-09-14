@@ -55,13 +55,19 @@ const collectionPageSchema = {
       {
         '@type': 'ListItem',
         position: 1,
+        name: 'E-Ticaret SEO Nedir? Kapsamlı E-Ticaret SEO Rehberi',
+        url: 'https://www.keremgezergun.com/e-ticaret-seo',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
         name: 'Türkiye’nin En İyi SEO Uzmanları: 2026 SEO & GEO Listesi',
         url: 'https://www.keremgezergun.com/turkiyenin-en-iyi-seo-uzmanlari',
       },
-      { '@type': 'ListItem', position: 2, name: 'Teknik SEO Rehberi' },
-      { '@type': 'ListItem', position: 3, name: 'GEO Rehberi' },
-      { '@type': 'ListItem', position: 4, name: 'Site İçi SEO Rehberi' },
-      { '@type': 'ListItem', position: 5, name: 'Backlink Rehberi' },
+      { '@type': 'ListItem', position: 3, name: 'Teknik SEO Rehberi' },
+      { '@type': 'ListItem', position: 4, name: 'GEO Rehberi' },
+      { '@type': 'ListItem', position: 5, name: 'Site İçi SEO Rehberi' },
+      { '@type': 'ListItem', position: 6, name: 'Backlink Rehberi' },
     ],
   },
 };
@@ -94,6 +100,27 @@ export default function BlogPage() {
             Blog Yazıları
           </h2>
           <ul className="blog-page-grid" aria-label="Blog yazıları listesi">
+            <li>
+              <article className="blog-card-large">
+                <Link href="/e-ticaret-seo" style={{ display: 'block', height: '100%' }}>
+                  <div className="blog-image placeholder" />
+                  <div className="blog-content">
+                    <span className="blog-category">E-ticaret SEO</span>
+                    <h3>E-Ticaret SEO Nedir? Kapsamlı E-Ticaret SEO Rehberi</h3>
+                    <p>
+                      E-ticaret SEO nedir, nasıl yapılır? Kategori, ürün, filtre, teknik SEO,
+                      Merchant Center, GEO ve organik gelir optimizasyonunu kapsamlı şekilde
+                      öğrenin.
+                    </p>
+                    <ul className="blog-meta" aria-label="Blog yazısı bilgileri">
+                      <li className="meta-item">Kapsamlı Rehber</li>
+                      <li className="meta-item">14 Eylül 2026</li>
+                    </ul>
+                  </div>
+                </Link>
+              </article>
+            </li>
+
             <li>
               <article className="blog-card-large">
                 <Link

@@ -15,6 +15,8 @@ const ContentSecurityPolicy = [
   // fallback, so a future regression back to a blob: URL breaks loudly here
   // instead of silently in the browser. blob: is deliberately not listed.
   "worker-src 'self'",
+  // The e-ticaret-seo guide embeds a Spotify podcast episode in an iframe.
+  "frame-src https://open.spotify.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

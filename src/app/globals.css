@@ -3341,6 +3341,215 @@ address {
     color: var(--text-light);
 }
 
+/* Numbered how-to steps: the number is part of the heading text, so the
+   accent is a rule beside it rather than a generated counter. */
+.article .article-step h2 {
+    padding-left: 18px;
+    border-left: 4px solid var(--accent);
+    line-height: 1.3;
+}
+
+/* Lead callout: the one question the introduction builds up to. */
+.article-callout {
+    margin: 4px 0 8px;
+    padding: 24px 28px;
+    background: var(--bg-dark);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.article .article-callout p {
+    margin-bottom: 0;
+    font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: white;
+}
+
+/* Key statements: paragraphs the author set entirely in bold. */
+.article .article-key {
+    margin: 4px 0 28px;
+    padding: 18px 24px;
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: var(--text-primary);
+}
+
+/* Podcast embed. The iframe is the whole figure; the caption sits above it. */
+.article-embed {
+    margin: 36px 0 8px;
+}
+
+.article-embed figcaption span {
+    margin-right: 6px;
+}
+
+.article-embed figcaption {
+    margin-bottom: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.article-embed iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    border: 0;
+}
+
+/* Grouped TOC: each group is a native <details>, so a 44-entry list opens
+   one group at a time and works without JS. The step labels carry their own
+   numbers, so the list markers are dropped. */
+.article-toc-grouped .article-toc-title {
+    margin-bottom: 4px;
+}
+
+.article-toc-group + .article-toc-group {
+    border-top: 1px solid var(--border);
+}
+
+.article-toc-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.article-toc-summary::-webkit-details-marker {
+    display: none;
+}
+
+.article-toc-summary:hover {
+    color: var(--accent-text);
+}
+
+.article-toc-group[open] .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.article-toc-grouped ol {
+    display: block;
+    columns: 2;
+    column-gap: 24px;
+    list-style: none;
+    padding: 0 0 16px;
+}
+
+/* Multi-column, not grid: the numbered steps must read down a column, and
+   a grid would place 1 and 2 side by side. */
+.article-toc-grouped li {
+    break-inside: avoid;
+    padding: 3px 0;
+}
+
+/* Search-query examples: one pill per quoted query. */
+.query-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 4px 0 24px;
+    padding: 0;
+    list-style: none;
+}
+
+.query-list li,
+.article .article-example {
+    display: inline-block;
+    max-width: 100%;
+    padding: 6px 14px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    overflow-wrap: anywhere;
+}
+
+.article .article-example {
+    margin: 0 0 20px;
+}
+
+.article-example code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.875em;
+}
+
+/* Fragment enumerations: comma-separated items the draft set one per line. */
+.article-fragments {
+    columns: 240px 2;
+    column-gap: 24px;
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.article-fragments li {
+    position: relative;
+    break-inside: avoid;
+    padding-left: 18px;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+}
+
+.article-fragments li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* Site-architecture path: each arrow line is indented one step deeper. */
+.article-path {
+    margin: 0 0 24px;
+    padding: 16px 20px;
+    list-style: none;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9375rem;
+    line-height: 1.9;
+    color: var(--text-primary);
+    overflow-x: auto;
+}
+
+.article-path li:nth-child(2) { padding-left: 16px; }
+.article-path li:nth-child(3) { padding-left: 32px; }
+.article-path li:nth-child(4) { padding-left: 48px; }
+.article-path li:nth-child(5) { padding-left: 64px; }
+
+/* Checklist table: two columns, so a narrower min-width than the comparison
+   table; the check mark is decorative. */
+.checklist-table table {
+    min-width: 560px;
+}
+
+.checklist-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    vertical-align: -0.2em;
+    color: var(--accent-text);
+}
+
 @media (max-width: 48em) {
     .article-toc ol {
         grid-template-columns: 1fr;
@@ -3357,4 +3566,21 @@ address {
     .article-author {
         padding: 20px;
     }
+
+    .article-toc-grouped ol {
+        columns: 1;
+    }
+
+    .article-callout,
+    .article .article-key {
+        padding: 16px 18px;
+    }
+
+    .article .article-step h2 {
+        padding-left: 14px;
+    }
+}
+
+.nowrap {
+    white-space: nowrap;
 }

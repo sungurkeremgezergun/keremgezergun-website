@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 
+// React's dev build calls eval() to rebuild server-component call stacks and
+// logs a console error when the CSP forbids it. Production never evals, so
+// the directive is loosened only for `next dev`.
+const scriptSrcDev = process.env.NODE_ENV === 'development' ? " 'unsafe-eval'" : '';
+
 const ContentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
+  `script-src 'self' 'unsafe-inline'${scriptSrcDev} https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com`,
   "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com",

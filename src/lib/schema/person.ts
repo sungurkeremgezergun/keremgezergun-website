@@ -65,7 +65,10 @@ const person = {
     name: 'Ahi Evran Üniversitesi',
     sameAs: 'https://www.ahievran.edu.tr',
   },
-  award: ['Best Low Budget Campaign (SEO) - Finalist'],
+  award: [
+    'Best Low Budget Campaign (SEO) - Finalist',
+    'MENA Search Awards Emerging Talent - Finalist',
+  ],
   sameAs: [
     'https://www.linkedin.com/in/sungur-kerem-gezergun/',
     'https://twitter.com/keremgezergun',

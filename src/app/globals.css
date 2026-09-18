@@ -373,6 +373,13 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     align-items: center;
 }
 
+.hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
 .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -384,7 +391,6 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--accent-text);
-    margin-bottom: 24px;
 }
 
 .hero h1 {
@@ -1496,6 +1502,17 @@ section {
     line-height: 1.5;
 }
 
+.award-card p a {
+    color: var(--accent-text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.award-card p a:hover {
+    color: var(--primary);
+}
+
 .award-year {
     display: inline-block;
     padding: 4px 14px;
@@ -1799,6 +1816,10 @@ section {
 
     .hero-description {
         margin: 0 auto 32px;
+    }
+
+    .hero-badges {
+        justify-content: center;
     }
 
     .hero-stats {

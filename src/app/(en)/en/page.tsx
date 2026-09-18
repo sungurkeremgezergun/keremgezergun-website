@@ -396,11 +396,19 @@ export default function EnglishHomePage() {
         <div className="container">
           <div className="hero-content">
             <div className="hero-text">
-              <div className="hero-badge">
-                <span className="badge-icon" aria-hidden="true">
-                  &#127942;
-                </span>
-                <span>Best Low Budget Campaign (SEO) Finalist</span>
+              <div className="hero-badges">
+                <div className="hero-badge">
+                  <span className="badge-icon" aria-hidden="true">
+                    &#127942;
+                  </span>
+                  <span>Best Low Budget Campaign (SEO) Finalist</span>
+                </div>
+                <div className="hero-badge">
+                  <span className="badge-icon" aria-hidden="true">
+                    &#127942;
+                  </span>
+                  <span>Emerging Talent Award Finalist</span>
+                </div>
               </div>
               <h1>
                 Hello, I&apos;m <span className="highlight">Kerem Gezergün</span>
@@ -570,6 +578,24 @@ export default function EnglishHomePage() {
               <p>
                 My team and I reached the final in the{' '}
                 <strong>&ldquo;Best Low Budget Campaign (SEO)&rdquo;</strong> category.
+              </p>
+              <span className="award-year">Finalist</span>
+            </li>
+            <li className="award-card">
+              <div className="award-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="8" r="7" />
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                </svg>
+              </div>
+              <h3>Emerging Talent Award</h3>
+              <p>
+                I am a finalist in the{' '}
+                <a href="https://menasearchawards.com/" target="_blank" rel="noopener noreferrer">
+                  MENA Search Awards
+                </a>{' '}
+                <strong>&ldquo;Emerging Talent&rdquo;</strong> category. The final results have not
+                been announced yet.
               </p>
               <span className="award-year">Finalist</span>
             </li>

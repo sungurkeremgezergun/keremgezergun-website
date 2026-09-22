@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import RelatedPosts from '@/components/blog/RelatedPosts';
+import { postBySlug } from '@/lib/blog/posts';
 import { contact } from '@/lib/contact';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { BASE_URL, PERSON_ID, WEBSITE_ID, graph, ref } from '@/lib/schema/base';
@@ -24,10 +26,10 @@ const WORD_COUNT = 3220;
 const READING_TIME = '16 dk okuma';
 
 const OG_IMAGE = {
-  url: 'https://www.keremgezergun.com/images/kerem-gezergun.jpg',
+  url: `${BASE_URL}${postBySlug('seo-uyumlu-kategori-agaci').cover}`,
   width: 1200,
   height: 630,
-  alt: 'Kerem Gezergün - SEO Uzmanı',
+  alt: 'SEO Uyumlu Kategori Ağacı Nasıl Oluşturulur? — Kerem Gezergün',
 };
 
 /**
@@ -1300,6 +1302,8 @@ Saten Elbise Modelleri | Marka`}</pre>
           </article>
         </div>
       </section>
+
+      <RelatedPosts current="seo-uyumlu-kategori-agaci" />
 
       {/* CTA Section */}
       <section className="cta-section" aria-labelledby="contact-heading">

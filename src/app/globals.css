@@ -928,6 +928,63 @@ section {
     color: rgba(255, 255, 255, 0.6);
 }
 
+.footer-bottom a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding-block: 5px;
+}
+
+.footer-bottom a:hover {
+    color: white;
+}
+
+/* Cookie consent bar: fixed to the bottom, above the redirect tool's sticky
+   export bar (z-index 5) and below the header (1000). Shown only until the
+   visitor answers. */
+.cookie-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    padding: 16px 24px calc(16px + env(safe-area-inset-bottom, 0px));
+    background: #fff;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -8px 24px rgba(10, 22, 40, 0.08);
+}
+
+.cookie-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+}
+
+.cookie-bar p {
+    flex: 1 1 480px;
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+
+.cookie-bar p a {
+    color: var(--accent-text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.cookie-bar-actions {
+    display: flex;
+    gap: 8px;
+    flex: none;
+}
+
 /* ==========================================
    PAGE STYLES (Sub-pages)
    ========================================== */

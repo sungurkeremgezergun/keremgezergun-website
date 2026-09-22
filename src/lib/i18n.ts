@@ -23,6 +23,7 @@ export const localeRoutes = [
   { tr: '/e-ticaret-seo', en: '/en/ecommerce-seo' },
   { tr: '/seo-uyumlu-kategori-agaci', en: '/en/seo-friendly-category-tree' },
   { tr: '/turkiyenin-en-iyi-seo-uzmanlari', en: '/en/best-seo-experts-in-turkey' },
+  { tr: '/cerez-politikasi', en: '/en/cookie-policy' },
 ] as const;
 
 export type LocaleRoute = (typeof localeRoutes)[number];

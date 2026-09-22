@@ -140,7 +140,7 @@ export default function EnglishNirengiPrivacyPage() {
             <address>
               Data controller and developer: Sungur Kerem Gezergün
               <br />
-              Email: <a href="mailto:iletisim@keremgezergun.com">iletisim@keremgezergun.com</a>
+              Email: <a href="mailto:sungurkeremgezergun@gmail.com">sungurkeremgezergun@gmail.com</a>
               <br />
               Phone: <a href="tel:+905526902782">+90 552 690 27 82</a>
             </address>

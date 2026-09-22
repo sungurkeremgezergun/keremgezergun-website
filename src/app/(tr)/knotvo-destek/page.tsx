@@ -132,8 +132,8 @@ export default function KnotvoDestekPage() {
       <h1>Knotvo — Destek</h1>
       <p>
         Yardıma mı ihtiyacın var?{" "}
-        <a href="mailto:iletisim@keremgezergun.com">
-          iletisim@keremgezergun.com
+        <a href="mailto:sungurkeremgezergun@gmail.com">
+          sungurkeremgezergun@gmail.com
         </a>{" "}
         adresine yaz, sana dönelim.
       </p>

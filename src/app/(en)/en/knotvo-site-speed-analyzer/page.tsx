@@ -13,7 +13,7 @@ import requestsShot from '../../../../../public/knotvo/requests.png';
 import reportsShot from '../../../../../public/knotvo/reports.png';
 
 const PAGE_URL = 'https://www.keremgezergun.com/en/knotvo-site-speed-analyzer';
-const NOTIFY_MAILTO = 'mailto:iletisim@keremgezergun.com?subject=Notify%20me%20about%20Knotvo';
+const NOTIFY_MAILTO = 'mailto:sungurkeremgezergun@gmail.com?subject=Notify%20me%20about%20Knotvo';
 
 export const metadata: Metadata = {
   title: 'Knotvo — Site Speed Analyzer for Mac',

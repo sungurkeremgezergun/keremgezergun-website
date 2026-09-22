@@ -199,10 +199,10 @@ export const page = {
     en: 'On a large migration, you should not be on your own',
   },
   ctaText: {
-    tr: '5.000 URL’lik bir taşımada eşleştirme işin yalnızca bir parçası. Taşıma öncesi kontrol, yönlendirme kurulumu ve sonrasındaki izleme için birlikte çalışabiliriz.',
-    en: 'On a 5,000-URL migration the mapping is one part of the job. I can help with the pre-migration audit, deploying the rules and watching what happens afterwards.',
+    tr: '5.000 URL’lik bir taşımada eşleştirme işin yalnızca bir parçası. Taşıma öncesi kontrol, yönlendirme kurulumu ve sonrasındaki izleme hakkında sorularınız için bana yazabilirsiniz.',
+    en: 'On a 5,000-URL migration the mapping is one part of the job. If you have questions about the pre-migration audit, deploying the rules or what to watch afterwards, write to me.',
   },
-  ctaButton: { tr: 'Teknik SEO danışmanlığı', en: 'Technical SEO consulting' },
+  ctaButton: { tr: 'Benimle iletişime geçin', en: 'Get in touch' },
 } as const;
 
 export const results = {

@@ -11,12 +11,11 @@ const PAGE_URL = 'https://www.keremgezergun.com/en/seo-blog';
 export const metadata: Metadata = {
   title: 'SEO Blog',
   description:
-    'Kerem Gezergün — SEO blog. Guides on technical SEO, GEO, on-page SEO and backlinks.',
-  keywords: ['SEO guide', 'Technical SEO', 'GEO', 'Backlinks', 'On-page SEO'],
+    'Kerem Gezergün — SEO blog. Guides on e-commerce SEO, category architecture, technical SEO and GEO.',
   alternates: englishAlternateMetadata('/blog', '/en/seo-blog'),
   openGraph: {
     title: 'SEO Blog | Kerem Gezergün',
-    description: 'SEO blog — guides on technical SEO, GEO, on-page SEO and backlinks.',
+    description: 'SEO blog — guides on e-commerce SEO, category architecture, technical SEO and GEO.',
     url: PAGE_URL,
     siteName: 'Kerem Gezergün',
     images: [
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'SEO Blog | Kerem Gezergün',
-    description: 'SEO blog — guides on technical SEO, GEO, on-page SEO and backlinks.',
+    description: 'SEO blog — guides on e-commerce SEO, category architecture, technical SEO and GEO.',
     creator: '@keremgezergun',
     site: '@keremgezergun',
     images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
@@ -43,34 +42,6 @@ export const metadata: Metadata = {
 /** Published English articles, newest first, from the shared registry. */
 const published = postsIn('en');
 
-// Mirrors the Turkish /blog line-up one to one so the hreflang pair covers the
-// same four guides.
-const posts = [
-  {
-    category: 'Technical SEO',
-    title: 'The Technical SEO Guide',
-    text: 'A comprehensive guide to site speed, crawlability, indexability, canonical tags, robots.txt, sitemap management and technical SEO audits.',
-    meta: 'Comprehensive guide',
-  },
-  {
-    category: 'GEO',
-    title: 'The GEO Guide',
-    text: 'Generative Engine Optimization — optimizing for AI search engines. Visibility strategies for ChatGPT, Perplexity, Claude and other AI tools.',
-    meta: 'Emerging trend',
-  },
-  {
-    category: 'On-Page SEO',
-    title: 'The On-Page SEO Guide',
-    text: 'Content optimization, meta tags, heading structure (H1–H6), internal linking, image optimization and user-experience-led SEO strategy.',
-    meta: 'Core guide',
-  },
-  {
-    category: 'Off-Page SEO',
-    title: 'The Backlink Guide',
-    text: 'Quality backlink strategy, link building techniques, anchor text optimization, toxic link analysis and off-page SEO tactics.',
-    meta: 'Advanced',
-  },
-];
 
 const breadcrumb = breadcrumbSchema('en', { name: 'SEO Blog', url: PAGE_URL });
 
@@ -78,7 +49,7 @@ const collectionPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'SEO Blog - Kerem Gezergün',
-  description: 'Guides on technical SEO, GEO, on-page SEO and backlinks.',
+  description: 'Guides on e-commerce SEO, category architecture, technical SEO and GEO.',
   url: PAGE_URL,
   inLanguage: 'en',
   author: {
@@ -94,11 +65,6 @@ const collectionPageSchema = {
         position: index + 1,
         name: post.title,
         url: `https://www.keremgezergun.com${post.path}`,
-      })),
-      ...posts.map((post, index) => ({
-        '@type': 'ListItem',
-        position: published.length + index + 1,
-        name: post.title,
       })),
     ],
   },
@@ -156,24 +122,6 @@ export default function EnglishBlogPage() {
                       </ul>
                     </div>
                   </Link>
-                </article>
-              </li>
-            ))}
-            {posts.map((post) => (
-              <li key={post.title}>
-                <article className="blog-card-large">
-                  <div className="blog-image placeholder">
-                    <span className="coming-soon-badge">Coming soon</span>
-                  </div>
-                  <div className="blog-content">
-                    <span className="blog-category">{post.category}</span>
-                    <h3>{post.title}</h3>
-                    <p>{post.text}</p>
-                    <ul className="blog-meta" aria-label="Post details">
-                      <li className="meta-item">{post.meta}</li>
-                      <li className="meta-item">Publishing soon</li>
-                    </ul>
-                  </div>
                 </article>
               </li>
             ))}

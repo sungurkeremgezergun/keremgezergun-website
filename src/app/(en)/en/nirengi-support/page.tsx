@@ -81,9 +81,9 @@ export default function EnglishNirengiSupportPage() {
         </p>
 
         <div className="nirengi-contact-grid">
-          <a href="mailto:iletisim@keremgezergun.com?subject=Nirengi%20Support">
+          <a href="mailto:sungurkeremgezergun@gmail.com?subject=Nirengi%20Support">
             <span>Email</span>
-            <strong>iletisim@keremgezergun.com</strong>
+            <strong>sungurkeremgezergun@gmail.com</strong>
           </a>
           <a href="tel:+905526902782">
             <span>Phone</span>

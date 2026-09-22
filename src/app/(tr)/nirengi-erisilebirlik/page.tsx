@@ -164,7 +164,7 @@ export default function NirengiAccessibilityPage() {
           <h2 id="feedback-title">İş akışınızı engelleyen noktaları bildirin.</h2>
           <p className="nirengi-intro">macOS ve Nirengi sürümünüzü, kullandığınız yardımcı teknolojiyi, ilgili ekran veya raporu ve zorluk oluşturan adımları paylaşın. Gerçek üretim loglarını temizlemeden göndermeyin.</p>
           <div className="nirengi-actions">
-            <a className="btn btn-primary" href="mailto:iletisim@keremgezergun.com?subject=Nirengi%20Eri%C5%9Filebilirlik">Erişilebilirlik geri bildirimi gönder</a>
+            <a className="btn btn-primary" href="mailto:sungurkeremgezergun@gmail.com?subject=Nirengi%20Eri%C5%9Filebilirlik">Erişilebilirlik geri bildirimi gönder</a>
             <a className="btn btn-outline" href="tel:+905526902782">+90 552 690 27 82</a>
           </div>
           <Link className="nirengi-back" href="/nirengi">← Nirengi ürün sayfasına dön</Link>

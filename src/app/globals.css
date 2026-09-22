@@ -985,6 +985,126 @@ section {
     flex: none;
 }
 
+/* Contact page: form on the left, other channels on the right; stacks on
+   narrow screens. The :target paragraphs are the no-JavaScript result. */
+.contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-lead {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.contact-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contact-field label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 1rem;
+}
+
+.contact-field textarea {
+    resize: vertical;
+    min-height: 160px;
+}
+
+.contact-form .btn {
+    align-self: flex-start;
+}
+
+/* Honeypot: off-screen, not display:none, so bots that skip hidden fields
+   still see it. */
+.contact-form-trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.contact-form-status {
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--accent);
+    color: var(--text-primary);
+}
+
+.contact-form-error {
+    border-left-color: #b42318;
+}
+
+.contact-form-target {
+    display: none;
+}
+
+.contact-form-target:target {
+    display: block;
+    margin-bottom: 18px;
+}
+
+.contact-aside h2 {
+    font-size: 1.125rem;
+    margin-bottom: 12px;
+}
+
+.contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-channels a {
+    color: var(--accent-text);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding-block: 5px;
+    display: inline-block;
+}
+
+@media (max-width: 48em) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
 /* ==========================================
    PAGE STYLES (Sub-pages)
    ========================================== */
@@ -1133,6 +1253,23 @@ section {
 
 .blog-card-large .blog-content {
     padding: 28px;
+}
+
+/* Home: three newest posts, same card as the blog index, on the primary ground. */
+.latest-posts {
+    background: var(--bg-primary);
+}
+
+.latest-posts-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.latest-posts .blog-card-large .blog-image {
+    height: 150px;
+}
+
+.latest-posts .blog-card-large h3 {
+    font-size: 1.125rem;
 }
 
 /* Related posts under an article: the blog grid on the secondary ground,
@@ -1800,6 +1937,10 @@ section {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .latest-posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .podcast-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1824,6 +1965,10 @@ section {
     }
 
     .awards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .latest-posts-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1872,6 +2017,37 @@ section {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Two CTA buttons side by side; the outline variant is inverted for the
+   dark ground (its default ink is the page's dark text colour). */
+.cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* The primary button is navy on a navy ground here; gold keeps it visible. */
+.cta-section .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--primary);
+}
+
+.cta-section .btn-primary:hover {
+    background: #d9b85e;
+    border-color: #d9b85e;
+}
+
+.cta-section .btn-outline {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.cta-section .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 /* Active Nav Link */

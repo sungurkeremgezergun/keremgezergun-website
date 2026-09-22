@@ -1588,17 +1588,25 @@ export default function EcommerceSeoGuidePage() {
       {/* CTA Section */}
       <section className="cta-section" aria-labelledby="contact-heading">
         <div className="container">
-          <h2 id="contact-heading">Let&apos;s work together</h2>
-          <p>Get in touch to strengthen your SEO strategy or grow your digital visibility.</p>
-          <a
-            href={contact.whatsapp}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            className="btn btn-primary btn-large"
-          >
-            Message me on WhatsApp
-            <span className="sr-only"> (opens in a new tab)</span>
-          </a>
+          <h2 id="contact-heading">Get in touch</h2>
+          <p>
+            Write to me about training, speaking, a podcast guest spot or a collaboration; I am
+            also happy to answer SEO questions.
+          </p>
+          <div className="cta-actions">
+            <Link href="/en/contact" className="btn btn-primary btn-large">
+              Contact form
+            </Link>
+            <a
+              href={contact.whatsapp}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="btn btn-outline btn-large"
+            >
+              Message me on WhatsApp
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>

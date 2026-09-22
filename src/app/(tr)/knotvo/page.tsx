@@ -14,7 +14,7 @@ import reportsShot from '../../../../public/knotvo/reports.png';
 
 const PAGE_URL = 'https://www.keremgezergun.com/knotvo';
 const NOTIFY_MAILTO =
-  'mailto:iletisim@keremgezergun.com?subject=Knotvo%20%C3%A7%C4%B1k%C4%B1nca%20haber%20ver';
+  'mailto:sungurkeremgezergun@gmail.com?subject=Knotvo%20%C3%A7%C4%B1k%C4%B1nca%20haber%20ver';
 
 export const metadata: Metadata = {
   title: 'Knotvo — Mac için Site Hızı Analiz Aracı',

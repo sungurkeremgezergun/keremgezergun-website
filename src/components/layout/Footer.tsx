@@ -36,14 +36,7 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
             <Link prefetch={false} href={isEnglish ? '/en/knotvo-site-speed-analyzer' : '/knotvo'}>Knotvo</Link>
             <Link prefetch={false} href={isEnglish ? '/en/crawlseer' : '/crawlseer'}>Crawlseer</Link>
             <Link prefetch={false} href={isEnglish ? '/en/redirect-mapping-tool' : '/301-yonlendirme-araci'}>{isEnglish ? 'Redirect Mapping Tool' : '301 Yönlendirme Aracı'}</Link>
-            <a
-              href={contact.whatsapp}
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-            >
-              {isEnglish ? 'Contact' : 'İletişim'}
-              <span className="sr-only"> {isEnglish ? '— message me on WhatsApp (opens in a new tab)' : '— WhatsApp’tan mesaj gönder (yeni sekmede açılır)'}</span>
-            </a>
+            <Link prefetch={false} href={isEnglish ? '/en/contact' : '/iletisim'}>{isEnglish ? 'Contact' : 'İletişim'}</Link>
           </nav>
 
           <div className="footer-column">

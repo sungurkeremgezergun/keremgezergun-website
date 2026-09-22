@@ -43,7 +43,7 @@ export default function NirengiPrivacyPage() {
       <section><h2>6. Destek iletişimi</h2><p>Destek için gönüllü olarak paylaştığınız bilgiler yalnızca talebinizi yanıtlamak ve sorunu çözmek için kullanılır. Gizli bilgileri temizlenmemiş üretim loglarını göndermeyin.</p></section>
       <section><h2>7. Çocuklar</h2><p>Nirengi profesyonel bir teknik araçtır ve çocuklara yönelik değildir. Uygulama çocuklardan bilerek kişisel bilgi toplamaz.</p></section>
       <section><h2>8. Değişiklikler</h2><p>Veri uygulamaları değişirse bu politika ve App Store gizlilik beyanı ilgili sürümden önce veya sürümle birlikte güncellenir.</p></section>
-      <section><h2>9. İletişim</h2><address>Veri sorumlusu ve geliştirici: Sungur Kerem Gezergün<br />E-posta: <a href="mailto:iletisim@keremgezergun.com">iletisim@keremgezergun.com</a><br />Telefon: <a href="tel:+905526902782">+90 552 690 27 82</a></address></section>
+      <section><h2>9. İletişim</h2><address>Veri sorumlusu ve geliştirici: Sungur Kerem Gezergün<br />E-posta: <a href="mailto:sungurkeremgezergun@gmail.com">sungurkeremgezergun@gmail.com</a><br />Telefon: <a href="tel:+905526902782">+90 552 690 27 82</a></address></section>
     </div><Link className="nirengi-back" href="/nirengi">← Nirengi ürün sayfasına dön</Link>
   </article></main>;
 }

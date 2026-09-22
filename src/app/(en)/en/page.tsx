@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import HomeProjects from '@/components/home/HomeProjects';
+import LatestPosts from '@/components/home/LatestPosts';
 import { englishAlternateMetadata } from '@/lib/i18n';
 import { contact, stores } from '@/lib/contact';
 import Experience from '@/components/home/Experience';
@@ -318,7 +320,7 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    title: 'SEO Strategy & Consulting',
+    title: 'SEO Strategy & Roadmap',
     text: 'I build data-led SEO strategies that fit your commercial goals, combining competitor analysis, market research and ruthless prioritization into a sustainable growth plan.',
     icon: (
       <>
@@ -431,15 +433,9 @@ export default function EnglishHomePage() {
                 </li>
               </ul>
               <div className="hero-cta">
-                <a
-                  href={contact.whatsapp}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  className="btn btn-primary btn-large"
-                >
-                  Work with me
-                  <span className="sr-only"> — message me on WhatsApp (opens in a new tab)</span>
-                </a>
+                <Link href="/en/contact" className="btn btn-primary btn-large">
+                  Get in touch
+                </Link>
                 <Link href="/en/#projects" className="btn btn-outline btn-large">
                   Explore projects
                 </Link>
@@ -604,72 +600,7 @@ export default function EnglishHomePage() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="projects-section" aria-labelledby="projects-heading">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-tag">Industry Projects</span>
-            <h2 id="projects-heading">Speaking &amp; project work</h2>
-          </div>
-          <ul className="projects-grid" aria-label="Projects">
-            <li className="project-card featured">
-              <span className="project-badge">Speaker</span>
-              <h3>Üsküdar University</h3>
-              <p>
-                I spoke at Üsküdar University on SEO and digital marketing, and on turning search
-                data into career and business decisions.
-              </p>
-              <ul className="project-tags" aria-label="Tags">
-                <li>Education</li>
-                <li>SEO</li>
-                <li>Speaker</li>
-              </ul>
-            </li>
-            <li className="project-card">
-              <span className="project-badge-secondary">Speaker</span>
-              <h3>Turkish Psychological Association</h3>
-              <p>
-                I joined a Turkish Psychological Association event as a speaker on digital
-                visibility and ethical search strategy.
-              </p>
-              <ul className="project-tags" aria-label="Tags">
-                <li>Association</li>
-                <li>Speaker</li>
-              </ul>
-            </li>
-            <li className="project-card">
-              <span className="project-badge-secondary">Trainer</span>
-              <h3>International Youth Association</h3>
-              <p>
-                I ran a three-week AI Fundamentals &amp; Visibility training at the International
-                Youth Association, covering the basics of artificial intelligence and GEO.
-              </p>
-              <ul className="project-tags" aria-label="Tags">
-                <li>Association</li>
-                <li>AI</li>
-                <li>GEO</li>
-              </ul>
-            </li>
-            <li className="project-card">
-              <span className="project-badge-secondary">Podcast</span>
-              <h3>Sepetteki SEO</h3>
-              <p>
-                A podcast series covering e-commerce SEO and artificial intelligence, co-hosted with
-                Simay Özpilavcı.
-              </p>
-              <ul className="project-tags" aria-label="Tags">
-                <li>Podcast</li>
-                <li>E-commerce SEO</li>
-                <li>AI</li>
-              </ul>
-            </li>
-          </ul>
-          <div className="section-cta">
-            <Link className="btn btn-outline" href="/en/industry-projects">
-              View all industry projects
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HomeProjects language="en" />
 
       {/* Ongoing projects */}
       <section className="ongoing-section" aria-labelledby="ongoing-heading">
@@ -882,22 +813,30 @@ export default function EnglishHomePage() {
         </div>
       </section>
 
+      <LatestPosts language="en" />
+
       {/* CTA */}
       <section id="contact" className="cta-section" aria-labelledby="contact-heading">
         <div className="container">
-          <h2 id="contact-heading">Let&apos;s work together</h2>
+          <h2 id="contact-heading">Get in touch</h2>
           <p>
-            Get in touch to strengthen your SEO strategy or grow your digital visibility.
+            Write to me about training, speaking, a podcast guest spot or a collaboration; I am
+            also happy to answer SEO questions.
           </p>
-          <a
-            href={contact.whatsapp}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            className="btn btn-primary btn-large"
-          >
-            Message me on WhatsApp
-            <span className="sr-only"> (opens in a new tab)</span>
-          </a>
+          <div className="cta-actions">
+            <Link href="/en/contact" className="btn btn-primary btn-large">
+              Contact form
+            </Link>
+            <a
+              href={contact.whatsapp}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="btn btn-outline btn-large"
+            >
+              Message me on WhatsApp
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>

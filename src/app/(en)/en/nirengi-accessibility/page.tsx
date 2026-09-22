@@ -284,7 +284,7 @@ export default function EnglishNirengiAccessibilityPage() {
           <div className="nirengi-actions">
             <a
               className="btn btn-primary"
-              href="mailto:iletisim@keremgezergun.com?subject=Nirengi%20Accessibility"
+              href="mailto:sungurkeremgezergun@gmail.com?subject=Nirengi%20Accessibility"
             >
               Send accessibility feedback
             </a>

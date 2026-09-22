@@ -14,7 +14,7 @@ const addressParts = {
 
 export const contact = {
   name: 'Sungur Kerem Gezergün',
-  email: 'iletisim@keremgezergun.com',
+  email: 'sungurkeremgezergun@gmail.com',
   /** E.164-style display format. Do not switch to the local `0552 …` form. */
   phone: '+90 552 690 27 82',
   phoneHref: 'tel:+905526902782',

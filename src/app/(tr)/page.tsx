@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import HomeProjects from '@/components/home/HomeProjects';
+import LatestPosts from '@/components/home/LatestPosts';
 import { alternateMetadata } from '@/lib/i18n';
 import { contact, stores } from '@/lib/contact';
 import Experience from '@/components/home/Experience';
@@ -354,15 +356,9 @@ export default function HomePage() {
                 </li>
               </ul>
               <div className="hero-cta">
-                <a
-                  href={contact.whatsapp}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  className="btn btn-primary btn-large"
-                >
-                  Benimle Çalışın
-                  <span className="sr-only"> — WhatsApp’tan mesaj gönder (yeni sekmede açılır)</span>
-                </a>
+                <Link href="/iletisim" className="btn btn-primary btn-large">
+                  Benimle İletişime Geçin
+                </Link>
                 <Link href="/#projeler" className="btn btn-outline btn-large">
                   Projeleri İncele
                 </Link>
@@ -418,7 +414,7 @@ export default function HomePage() {
                   <line x1="8" y1="11" x2="14" y2="11" />
                 </svg>
               </div>
-              <h3>SEO Stratejisi &amp; Danışmanlık</h3>
+              <h3>SEO Stratejisi &amp; Yol Haritası</h3>
               <p>
                 Markanızın dijital hedeflerine uygun, veriye dayalı SEO stratejileri
                 oluşturuyorum. Rakip analizi, pazar araştırması ve önceliklendirme ile
@@ -599,67 +595,7 @@ export default function HomePage() {
       </section>
 
       {/* Projects Section */}
-      <section id="projeler" className="projects-section" aria-labelledby="projects-heading">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-tag">Sektörel Projeler</span>
-            <h2 id="projects-heading">Konuşmacı &amp; Proje Çalışmalarım</h2>
-          </div>
-          <ul className="projects-grid" aria-label="Proje listesi">
-            <li className="project-card featured">
-              <span className="project-badge">Konuşmacı</span>
-              <h3>Üsküdar Üniversitesi</h3>
-              <p>
-                Üsküdar Üniversitesi&apos;nde SEO ve dijital pazarlama alanında konuşmacı
-                olarak yer aldım.
-              </p>
-              <ul className="project-tags" aria-label="Etiketler">
-                <li>Eğitim</li>
-                <li>SEO</li>
-                <li>Konuşmacı</li>
-              </ul>
-            </li>
-            <li className="project-card">
-              <span className="project-badge-secondary">Konuşmacı</span>
-              <h3>Türkiye Psikologlar Derneği</h3>
-              <p>
-                Türkiye Psikologlar Derneği etkinliğinde dijital görünürlük ve SEO konularında
-                konuşmacı olarak katıldım.
-              </p>
-              <ul className="project-tags" aria-label="Etiketler">
-                <li>Dernek</li>
-                <li>Konuşmacı</li>
-              </ul>
-            </li>
-            <li className="project-card">
-              <span className="project-badge-secondary">Eğitmen</span>
-              <h3>Uluslararası Genç Derneği</h3>
-              <p>
-                Uluslararası Genç Derneği&apos;nde üç hafta süren Temel Yapay Zeka &amp; Görünürlük
-                Eğitimi verdim; temel yapay zeka ve GEO konularını ele aldık.
-              </p>
-              <ul className="project-tags" aria-label="Etiketler">
-                <li>Dernek</li>
-                <li>Yapay Zeka</li>
-                <li>GEO</li>
-              </ul>
-            </li>
-            <li className="project-card">
-              <span className="project-badge-secondary">Podcast</span>
-              <h3>Sepetteki SEO</h3>
-              <p>
-                E-ticaret SEO ve yapay zeka konularını ele aldığımız podcast serisi. Simay
-                Özpilavcı ile birlikte sunuyorum.
-              </p>
-              <ul className="project-tags" aria-label="Etiketler">
-                <li>Podcast</li>
-                <li>E-ticaret SEO</li>
-                <li>AI</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <HomeProjects language="tr" />
 
       {/* Ongoing Projects Section */}
       <section className="ongoing-section" aria-labelledby="ongoing-heading">
@@ -881,23 +817,30 @@ export default function HomePage() {
         </div>
       </section>
 
+      <LatestPosts language="tr" />
+
       {/* CTA Section */}
       <section id="iletisim" className="cta-section" aria-labelledby="contact-heading">
         <div className="container">
-          <h2 id="contact-heading">Birlikte Çalışalım</h2>
+          <h2 id="contact-heading">İletişime Geçin</h2>
           <p>
-            SEO stratejinizi güçlendirmek veya dijital görünürlüğünüzü artırmak için bizimle
-            iletişime geçin.
+            Eğitim, konuşmacılık, podcast konukluğu veya iş birliği için bana yazın; SEO
+            sorularınızı da yanıtlamaktan memnuniyet duyarım.
           </p>
-          <a
-            href={contact.whatsapp}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            className="btn btn-primary btn-large"
-          >
-            WhatsApp’tan Yazın
-            <span className="sr-only"> (yeni sekmede açılır)</span>
-          </a>
+          <div className="cta-actions">
+            <Link href="/iletisim" className="btn btn-primary btn-large">
+              İletişim Formu
+            </Link>
+            <a
+              href={contact.whatsapp}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="btn btn-outline btn-large"
+            >
+              WhatsApp’tan Yazın
+              <span className="sr-only"> (yeni sekmede açılır)</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>

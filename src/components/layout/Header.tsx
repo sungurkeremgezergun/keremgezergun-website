@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
 import { routePair } from '@/lib/i18n';
-import { contact } from '@/lib/contact';
 
 const MOBILE = '(max-width: 48em)';
 
@@ -239,20 +238,9 @@ export default function Header({ language = 'tr' }: { language?: 'tr' | 'en' }) 
               </li>
 
               <li>
-                <a
-                  href={contact.whatsapp}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  className="btn btn-primary"
-                >
+                <Link prefetch={false} href={isEnglish ? '/en/contact' : '/iletisim'} className="btn btn-primary">
                   {isEnglish ? 'Contact' : 'İletişim'}
-                  <span className="sr-only">
-                    {' '}
-                    {isEnglish
-                      ? '— message me on WhatsApp (opens in a new tab)'
-                      : '— WhatsApp’tan mesaj gönder (yeni sekmede açılır)'}
-                  </span>
-                </a>
+                </Link>
               </li>
             </ul>
           </details>

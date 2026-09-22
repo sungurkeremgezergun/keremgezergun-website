@@ -259,7 +259,7 @@ export default function RedirectMatcherPage({ language }: { language: Language }
           <aside className={styles.cta} aria-labelledby="matcher-cta">
             <h3 id="matcher-cta">{pageCopy.ctaHeading[language]}</h3>
             <p>{pageCopy.ctaText[language]}</p>
-            <Link className="btn btn-primary" href={language === 'en' ? '/en/#services' : '/#hizmetler'}>
+            <Link className="btn btn-primary" href={language === 'en' ? '/en/contact' : '/iletisim'}>
               {pageCopy.ctaButton[language]}
             </Link>
           </aside>

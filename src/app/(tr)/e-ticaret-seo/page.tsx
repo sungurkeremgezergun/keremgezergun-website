@@ -1850,20 +1850,25 @@ export default function EcommerceSeoGuidePage() {
       {/* CTA Section */}
       <section className="cta-section" aria-labelledby="contact-heading">
         <div className="container">
-          <h2 id="contact-heading">Birlikte Çalışalım</h2>
+          <h2 id="contact-heading">İletişime Geçin</h2>
           <p>
-            SEO stratejinizi güçlendirmek veya dijital görünürlüğünüzü artırmak için bizimle
-            iletişime geçin.
+            Eğitim, konuşmacılık, podcast konukluğu veya iş birliği için bana yazın; SEO
+            sorularınızı da yanıtlamaktan memnuniyet duyarım.
           </p>
-          <a
-            href={contact.whatsapp}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            className="btn btn-primary btn-large"
-          >
-            WhatsApp’tan Yazın
-            <span className="sr-only"> (yeni sekmede açılır)</span>
-          </a>
+          <div className="cta-actions">
+            <Link href="/iletisim" className="btn btn-primary btn-large">
+              İletişim Formu
+            </Link>
+            <a
+              href={contact.whatsapp}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="btn btn-outline btn-large"
+            >
+              WhatsApp’tan Yazın
+              <span className="sr-only"> (yeni sekmede açılır)</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>

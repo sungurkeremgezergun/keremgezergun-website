@@ -20,6 +20,9 @@ export const localeRoutes = [
   { tr: '/crawlseer', en: '/en/crawlseer' },
   { tr: '/301-yonlendirme-araci', en: '/en/redirect-mapping-tool' },
   { tr: '/crawlseer/gizlilik', en: '/en/crawlseer/privacy' },
+  { tr: '/e-ticaret-seo', en: '/en/ecommerce-seo' },
+  { tr: '/seo-uyumlu-kategori-agaci', en: '/en/seo-friendly-category-tree' },
+  { tr: '/turkiyenin-en-iyi-seo-uzmanlari', en: '/en/best-seo-experts-in-turkey' },
 ] as const;
 
 export type LocaleRoute = (typeof localeRoutes)[number];

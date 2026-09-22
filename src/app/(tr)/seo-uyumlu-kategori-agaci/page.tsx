@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import RelatedPosts from '@/components/blog/RelatedPosts';
-import { postBySlug } from '@/lib/blog/posts';
+import { postByPath } from '@/lib/blog/posts';
 import { contact } from '@/lib/contact';
+import { alternateMetadata } from '@/lib/i18n';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { BASE_URL, PERSON_ID, WEBSITE_ID, graph, ref } from '@/lib/schema/base';
 import { breadcrumbNode, faqNode, type Faq } from '@/lib/schema/page';
@@ -26,23 +27,16 @@ const WORD_COUNT = 3220;
 const READING_TIME = '16 dk okuma';
 
 const OG_IMAGE = {
-  url: `${BASE_URL}${postBySlug('seo-uyumlu-kategori-agaci').cover}`,
+  url: `${BASE_URL}${postByPath('/seo-uyumlu-kategori-agaci').cover}`,
   width: 1200,
   height: 630,
   alt: 'SEO Uyumlu Kategori Ağacı Nasıl Oluşturulur? — Kerem Gezergün',
 };
 
-/**
- * Turkish-only post: no `alternateMetadata`, because that helper always emits
- * an `en` hreflang and there is no English version of this article.
- */
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: {
-    canonical: PAGE_URL,
-    languages: { tr: PAGE_URL },
-  },
+  alternates: alternateMetadata('/seo-uyumlu-kategori-agaci', '/en/seo-friendly-category-tree'),
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
@@ -1303,7 +1297,7 @@ Saten Elbise Modelleri | Marka`}</pre>
         </div>
       </section>
 
-      <RelatedPosts current="seo-uyumlu-kategori-agaci" />
+      <RelatedPosts current="/seo-uyumlu-kategori-agaci" />
 
       {/* CTA Section */}
       <section className="cta-section" aria-labelledby="contact-heading">

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import RelatedPosts from '@/components/blog/RelatedPosts';
-import { postBySlug } from '@/lib/blog/posts';
+import { postByPath } from '@/lib/blog/posts';
 import { contact } from '@/lib/contact';
+import { alternateMetadata } from '@/lib/i18n';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { BASE_URL, PERSON_ID, WEBSITE_ID, graph, ref } from '@/lib/schema/base';
 import { breadcrumbNode, faqNode, type Faq } from '@/lib/schema/page';
@@ -26,23 +27,16 @@ const WORD_COUNT = 5321;
 const READING_TIME = '27 dk okuma';
 
 const OG_IMAGE = {
-  url: `${BASE_URL}${postBySlug('e-ticaret-seo').cover}`,
+  url: `${BASE_URL}${postByPath('/e-ticaret-seo').cover}`,
   width: 1200,
   height: 630,
   alt: 'E-Ticaret SEO Nedir? Kapsamlı E-Ticaret SEO Rehberi — Kerem Gezergün',
 };
 
-/**
- * Turkish-only post: no `alternateMetadata`, because that helper always emits
- * an `en` hreflang and there is no English version of this article.
- */
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: {
-    canonical: PAGE_URL,
-    languages: { tr: PAGE_URL },
-  },
+  alternates: alternateMetadata('/e-ticaret-seo', '/en/ecommerce-seo'),
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
@@ -1851,7 +1845,7 @@ export default function EcommerceSeoGuidePage() {
         </div>
       </section>
 
-      <RelatedPosts current="e-ticaret-seo" />
+      <RelatedPosts current="/e-ticaret-seo" />
 
       {/* CTA Section */}
       <section className="cta-section" aria-labelledby="contact-heading">

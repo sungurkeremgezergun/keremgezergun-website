@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { postsIn } from '@/lib/blog/posts';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { englishAlternateMetadata } from '@/lib/i18n';
 import { breadcrumbSchema } from '@/lib/schema/page';
@@ -36,6 +39,9 @@ export const metadata: Metadata = {
     images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
   },
 };
+
+/** Published English articles, newest first, from the shared registry. */
+const published = postsIn('en');
 
 // Mirrors the Turkish /blog line-up one to one so the hreflang pair covers the
 // same four guides.
@@ -82,11 +88,19 @@ const collectionPageSchema = {
   },
   mainEntity: {
     '@type': 'ItemList',
-    itemListElement: posts.map((post, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: post.title,
-    })),
+    itemListElement: [
+      ...published.map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: post.title,
+        url: `https://www.keremgezergun.com${post.path}`,
+      })),
+      ...posts.map((post, index) => ({
+        '@type': 'ListItem',
+        position: published.length + index + 1,
+        name: post.title,
+      })),
+    ],
   },
 };
 
@@ -119,6 +133,32 @@ export default function EnglishBlogPage() {
             Blog posts
           </h2>
           <ul className="blog-page-grid" aria-label="SEO guides">
+            {published.map((post) => (
+              <li key={post.path}>
+                <article className="blog-card-large">
+                  <Link href={post.path} style={{ display: 'block', height: '100%' }}>
+                    <div className="blog-image">
+                      <Image
+                        src={post.cover}
+                        alt=""
+                        width={1200}
+                        height={630}
+                        sizes="(max-width: 768px) 100vw, 560px"
+                      />
+                    </div>
+                    <div className="blog-content">
+                      <span className="blog-category">{post.category}</span>
+                      <h3>{post.title}</h3>
+                      <p>{post.description}</p>
+                      <ul className="blog-meta" aria-label="Post details">
+                        <li className="meta-item">Guide</li>
+                        <li className="meta-item">{post.publishedLabel}</li>
+                      </ul>
+                    </div>
+                  </Link>
+                </article>
+              </li>
+            ))}
             {posts.map((post) => (
               <li key={post.title}>
                 <article className="blog-card-large">

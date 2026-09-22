@@ -24,15 +24,14 @@ const settings: Record<string, RouteSettings> = {
   '/crawlseer': { changeFrequency: 'monthly', lastModified: '2026-09-02' },
   '/crawlseer/gizlilik': { changeFrequency: 'yearly', lastModified: '2026-07-29' },
   '/301-yonlendirme-araci': { changeFrequency: 'monthly', lastModified: '2026-09-10' },
+  '/e-ticaret-seo': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
+  '/seo-uyumlu-kategori-agaci': { changeFrequency: 'monthly', lastModified: '2026-09-22' },
+  '/turkiyenin-en-iyi-seo-uzmanlari': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
 };
 
 // Routes with no English counterpart. They are not in `localeRoutes`, so the
 // hreflang set only carries the Turkish URL and x-default.
-const turkishOnly: Record<string, RouteSettings> = {
-  '/seo-uyumlu-kategori-agaci': { changeFrequency: 'monthly', lastModified: '2026-09-22' },
-  '/e-ticaret-seo': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
-  '/turkiyenin-en-iyi-seo-uzmanlari': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
-};
+const turkishOnly: Record<string, RouteSettings> = {};
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const singleLanguage = Object.entries(turkishOnly).map(

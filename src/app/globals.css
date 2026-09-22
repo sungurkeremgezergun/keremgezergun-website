@@ -831,10 +831,12 @@ section {
     max-width: 280px;
 }
 
+/* Links carry 5px of vertical padding so the 22px line meets SC 2.5.8's 24px
+   target; the gap shrinks by the same 10px to keep the row rhythm. */
 .footer-column {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 2px;
 }
 
 /* Rendered as <h2> so the document heading order never jumps h2 -> h4;
@@ -857,6 +859,7 @@ section {
 }
 
 .footer-column a {
+    padding-block: 5px;
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.875rem;
     transition: var(--transition);

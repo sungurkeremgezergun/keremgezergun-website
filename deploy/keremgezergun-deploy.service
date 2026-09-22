@@ -1,0 +1,15 @@
+# /etc/systemd/system/keremgezergun-deploy.service
+# Runs one deploy check; keremgezergun-deploy.timer triggers it.
+[Unit]
+Description=Pull-based deploy for keremgezergun.com
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/var/www/keremgezergun-website
+# nvm-installed Node is not on systemd's PATH. Replace the first entry with
+# the output of `dirname "$(which node)"` on the server.
+Environment=PATH=/root/.nvm/versions/node/v20.19.0/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/var/www/keremgezergun-website/deploy/pull.sh

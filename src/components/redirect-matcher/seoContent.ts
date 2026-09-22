@@ -211,8 +211,8 @@ export const sections: Section[] = [
             en: 'Get the live URL list for the new site. If you are matching against staging, make sure those addresses will not change when it goes live.',
           },
           {
-            tr: 'Bu araçla eşleştirin, 90 üstünü toplu onaylayın, 50–89 arasını tek tek gözden geçirin. Zamanınızı burada harcayın; işin tamamı bu 40 satırdır.',
-            en: 'Match with this tool, bulk-approve everything above 90, and review the 50–89 band one row at a time. Spend your time here; those forty rows are the whole job.',
+            tr: 'Bu araçla eşleştirin, 90 üstünü toplu onaylayın, 50–89 arasını tek tek gözden geçirin. Zamanınızı burada harcayın; gerçek iş bu aralıktaki satırlarda.',
+            en: 'Match with this tool, bulk-approve everything above 90, and review the 50–89 band one row at a time. Spend your time here; the real work is in that band.',
           },
           {
             tr: 'Zincir ve döngü uyarılarını temizleyin. Yönlendirme zinciri her adımda değer sızdırır ve Google zincirin bir noktasında takip etmeyi bırakır.',
@@ -385,7 +385,7 @@ export const sections: Section[] = [
       {
         kind: 'p',
         text: {
-          tr: 'Bu bir gizlilik tercihi olduğu kadar pratik bir tercih: müşteri URL listesi çoğu ajans için gizli bilgidir ve bir web aracına yüklenmesi gerekmez. Yalnızca ayarlarınız (eşik, çıktı biçimi, ağırlıklar) tarayıcınızın yerel deposunda hatırlanır. Verileriniz hatırlanmaz — sayfayı kapattığınızda listeniz de sonuçlarınız da gider. Bu yüzden sonuçlarınızı indirmeden sayfadan ayrılmayın.',
+          tr: 'Bu bir gizlilik tercihi olduğu kadar pratik bir tercih: müşteri URL listesi çoğu ajans için gizli bilgidir ve bir web aracına yüklenmesi gerekmez. Yalnızca tercihleriniz (eşik, çıktı biçimi, ağırlıklar) tarayıcınızda saklanır; URL listeniz saklanmaz — sayfayı kapattığınızda listeniz de sonuçlarınız da gider. Bu yüzden sonuçlarınızı indirmeden sayfadan ayrılmayın.',
           en: 'That is a practical choice as much as a privacy one: a client’s URL list is confidential information at most agencies and does not need to be uploaded to a web tool. Only your settings — threshold, output format, weights — are remembered in your browser’s local storage. Your data is not: closing the page takes your list and your results with it, which is why you should download the output before you leave.',
         },
       },
@@ -406,8 +406,8 @@ export const faqs: Faq[] = [
   {
     q: { tr: 'Dosyam sunucuya yükleniyor mu?', en: 'Is my file uploaded to a server?' },
     a: {
-      tr: 'Hayır. Tüm işlem tarayıcınızda çalışır; URL listeniz cihazınızdan çıkmaz. Eşleştirme sırasında ağ sekmesinde hiçbir istek göremezsiniz.',
-      en: 'No. Everything runs in your browser and your URL list never leaves your device. You will not see any request in the network tab while matching runs.',
+      tr: 'Hayır. Tüm işlem tarayıcınızda çalışır; URL listeniz cihazınızdan çıkmaz. Ayrıntılar rehberdeki “Verileriniz nereye gidiyor” bölümünde.',
+      en: 'No. Everything runs in your browser and your URL list never leaves your device. The details are in the guide, under “Where does your data go?”.',
     },
   },
   {

@@ -168,8 +168,8 @@ export const settings = {
   weightStructure: { tr: 'Yol yapısı', en: 'Path structure' },
   weightShape: { tr: 'Derinlik ve uzunluk', en: 'Depth and length' },
   weightsHint: {
-    tr: 'Dört ağırlığın toplamı 1 olmalı. Varsayılanlar çoğu liste için doğrudur; değiştirmeniz gerekmez.',
-    en: 'The four weights should add up to 1. The defaults are right for most lists; you should not need to change them.',
+    tr: 'Dört ağırlığın toplamı %100 olmalı. Varsayılanlar çoğu liste için doğrudur; değiştirmeniz gerekmez.',
+    en: 'The four weights should add up to 100%. The defaults are right for most lists; you should not need to change them.',
   },
   weightsTotal: { tr: 'Toplam', en: 'Total' },
   reset: { tr: 'Varsayılanlara dön', en: 'Reset to defaults' },

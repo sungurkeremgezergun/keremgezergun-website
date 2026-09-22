@@ -95,9 +95,24 @@ src/
 ## Deploy
 
 `main` dalına push → GitHub Actions **CI** (typecheck + test + lint + build) →
-başarılıysa **Deploy to VPS** workflow'u SSH ile sunucuya bağlanır, `npm ci`
-ve `npm run build` çalıştırıp pm2 üzerinden `keremgezergun-website` sürecini
-yeniden yükler. Bkz. `.github/workflows/{ci,deploy}.yml`.
+başarılıysa **Promote to production** workflow'u `production` dalını `main`'e
+ileri sarar. Sunucu tarafında bir systemd timer 3 dakikada bir
+`deploy/pull.sh` çalıştırır: `origin/production` sha'sı değiştiyse
+`git reset --hard`, `npm ci`, `npm run build` ve `pm2 reload
+keremgezergun-website`. Build başarısız olursa çalışan süreç dokunulmaz.
+GitHub'dan sunucuya SSH açılmaz; sunucu yalnızca dışarı çıkar.
+
+Sunucuda tek seferlik kurulum (ilk `production` push'undan sonra):
+
+```bash
+cd /var/www/keremgezergun-website && git fetch origin production
+cp deploy/keremgezergun-deploy.{service,timer} /etc/systemd/system/
+# service dosyasındaki PATH'i `dirname "$(which node)"` çıktısıyla düzelt
+systemctl daemon-reload && systemctl enable --now keremgezergun-deploy.timer
+journalctl -u keremgezergun-deploy -f   # ilk deploy'u izle
+```
+
+Bkz. `.github/workflows/{ci,deploy}.yml`, `deploy/`.
 
 Yerelde production çalıştırma: `npm run build && npm run start`.
 

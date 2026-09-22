@@ -1,5 +1,9 @@
-name: Deploy to VPS
+name: Promote to production
 
+# The VPS is not reachable from GitHub's runners (every SSH deploy timed out),
+# so deploys are pull-based: when CI passes on main, this job fast-forwards
+# the `production` branch and the server's timer (deploy/pull.sh) picks it up
+# within a few minutes.
 on:
   workflow_run:
     workflows: ["CI"]
@@ -10,27 +14,21 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
-  deploy:
-    name: SSH deploy to VPS
+  promote:
+    name: Fast-forward production
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.2.0
+      - name: Checkout main
+        uses: actions/checkout@v4
         with:
-          host: 104.247.166.4
-          username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script_stop: true
-          command_timeout: 8m
-          script: |
-            set -euo pipefail
-            cd /var/www/keremgezergun-website
-            git fetch origin main
-            git reset --hard origin/main
-            npm ci --no-audit --no-fund
-            npm run build
-            pm2 reload keremgezergun-website 2>/dev/null || pm2 restart all
-            pm2 save
+          ref: main
+          fetch-depth: 0
+
+      - name: Push main to production
+        run: git push origin main:production

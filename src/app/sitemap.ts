@@ -10,18 +10,18 @@ type RouteSettings = {
 };
 
 const settings: Record<string, RouteSettings> = {
-  '/': { changeFrequency: 'monthly', lastModified: '2026-07-26' },
-  '/blog': { changeFrequency: 'weekly', lastModified: '2026-09-14' },
-  '/sektorel-projeler': { changeFrequency: 'monthly', lastModified: '2026-07-26' },
+  '/': { changeFrequency: 'monthly', lastModified: '2026-09-18' },
+  '/blog': { changeFrequency: 'weekly', lastModified: '2026-09-22' },
+  '/sektorel-projeler': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
   '/seo-ogrenme-haritasi': { changeFrequency: 'weekly', lastModified: '2026-07-26' },
-  '/nirengi': { changeFrequency: 'monthly', lastModified: '2026-07-26' },
+  '/nirengi': { changeFrequency: 'monthly', lastModified: '2026-09-02' },
   '/nirengi-erisilebirlik': { changeFrequency: 'yearly', lastModified: '2026-07-26' },
   '/nirengi-iletisim': { changeFrequency: 'yearly', lastModified: '2026-07-26' },
   '/nirengi-gizlilik-politikasi': { changeFrequency: 'yearly', lastModified: '2026-07-24' },
   '/knotvo': { changeFrequency: 'monthly', lastModified: '2026-07-26' },
   '/knotvo-destek': { changeFrequency: 'yearly', lastModified: '2026-07-26' },
   '/knotvo-gizlilik': { changeFrequency: 'yearly', lastModified: '2026-07-20' },
-  '/crawlseer': { changeFrequency: 'monthly', lastModified: '2026-07-29' },
+  '/crawlseer': { changeFrequency: 'monthly', lastModified: '2026-09-02' },
   '/crawlseer/gizlilik': { changeFrequency: 'yearly', lastModified: '2026-07-29' },
   '/301-yonlendirme-araci': { changeFrequency: 'monthly', lastModified: '2026-09-10' },
 };

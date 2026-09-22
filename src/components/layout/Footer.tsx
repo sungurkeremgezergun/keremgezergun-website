@@ -113,7 +113,12 @@ export default function Footer({ language = 'tr' }: { language?: 'tr' | 'en' }) 
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {YEAR} Kerem Gezergün. {isEnglish ? 'All rights reserved.' : 'Tüm hakları saklıdır.'}</p>
+          <p>
+            &copy; {YEAR} Kerem Gezergün. {isEnglish ? 'All rights reserved.' : 'Tüm hakları saklıdır.'}{' '}
+            <Link prefetch={false} href={isEnglish ? '/en/cookie-policy' : '/cerez-politikasi'}>
+              {isEnglish ? 'Cookie policy' : 'Çerez politikası'}
+            </Link>
+          </p>
         </div>
       </div>
     </footer>

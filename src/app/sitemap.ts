@@ -27,6 +27,7 @@ const settings: Record<string, RouteSettings> = {
   '/e-ticaret-seo': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
   '/seo-uyumlu-kategori-agaci': { changeFrequency: 'monthly', lastModified: '2026-09-22' },
   '/turkiyenin-en-iyi-seo-uzmanlari': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
+  '/cerez-politikasi': { changeFrequency: 'yearly', lastModified: '2026-09-22' },
 };
 
 // Routes with no English counterpart. They are not in `localeRoutes`, so the

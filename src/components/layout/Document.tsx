@@ -1,12 +1,10 @@
-import Script from 'next/script';
+import CookieConsent from '@/components/layout/CookieConsent';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { fontVariables } from '@/lib/fonts';
 import type { Language } from '@/lib/i18n';
 import { jsonLdSafe } from '@/lib/jsonLd';
 import { siteGraph } from '@/lib/schema/website';
-
-const GA_ID = 'G-TVTZYGQ64H';
 
 /**
  * The shared HTML shell for both root layouts.
@@ -44,28 +42,13 @@ export default function Document({
         <Footer language={language} />
 
         {/*
-          Google tag (gtag.js).
-
-          This used to be two hand-written <script> tags in <head>, put back
-          into Google's exact pasted order by a postbuild pass over the
-          prerendered HTML. That pass rewrote a head React had already
-          rendered, so hydration failed on every page of the site: React threw
-          away the tree and redrew it, which also duplicated every JSON-LD
-          block in the DOM. next/script injects the tag after hydration
-          instead, so there is nothing for React to disagree with. Google Tag
-          Assistant still finds the tag at runtime.
+          The Google tag lives inside CookieConsent and is only loaded once the
+          visitor has accepted analytics cookies. It used to be two hand-written
+          <script> tags in <head> reordered by a postbuild pass, which broke
+          hydration on every page; a client component that mounts next/script
+          after hydration gives React nothing to disagree with.
         */}
-        <Script
-          id="gtag-loader"
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_ID}');`}
-        </Script>
+        <CookieConsent language={language} />
       </body>
     </html>
   );

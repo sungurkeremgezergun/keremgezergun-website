@@ -53,7 +53,6 @@ src/
 │   ├── (en)/                   # İngilizce root layout + sayfalar
 │   │   ├── layout.tsx          # <html lang="en">, EN metadata
 │   │   ├── not-found.tsx       # EN 404
-│   │   └── en/[[...slug]]/page.tsx
 │   ├── global-not-found.tsx    # Hiçbir route'a uymayan URL'ler (iki dilli)
 │   ├── sitemap.ts              # XML sitemap (hreflang alternates ile)
 │   └── globals.css             # Tüm stiller

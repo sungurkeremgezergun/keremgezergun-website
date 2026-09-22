@@ -8,12 +8,11 @@ import { breadcrumbSchema } from '@/lib/schema/page';
 export const metadata: Metadata = {
   title: 'Blog',
   description:
-    'Kerem Gezergün - SEO Blog. Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
-  keywords: ['SEO Rehberi', 'Teknik SEO', 'GEO', 'Backlink', 'Site İçi SEO'],
+    'Kerem Gezergün - SEO Blog. E-ticaret SEO, kategori mimarisi, teknik SEO ve GEO üzerine rehberler.',
   alternates: alternateMetadata('/blog', '/en/seo-blog'),
   openGraph: {
     title: 'Blog | Kerem Gezergün',
-    description: 'SEO Blog - Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
+    description: 'SEO Blog - E-ticaret SEO, kategori mimarisi, teknik SEO ve GEO rehberleri.',
     url: 'https://www.keremgezergun.com/blog',
     siteName: 'Kerem Gezergün',
     images: [
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Blog | Kerem Gezergün',
-    description: 'SEO Blog - Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
+    description: 'SEO Blog - E-ticaret SEO, kategori mimarisi, teknik SEO ve GEO rehberleri.',
     creator: '@keremgezergun',
     site: '@keremgezergun',
     images: ['https://www.keremgezergun.com/images/kerem-gezergun.jpg'],
@@ -43,7 +42,7 @@ const collectionPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'SEO Blog - Kerem Gezergün',
-  description: 'Teknik SEO, GEO, Site İçi SEO ve Backlink rehberleri.',
+  description: 'E-ticaret SEO, kategori mimarisi, teknik SEO ve GEO rehberleri.',
   url: 'https://www.keremgezergun.com/blog',
   author: {
     '@type': 'Person',
@@ -71,10 +70,6 @@ const collectionPageSchema = {
         name: 'Türkiye’nin En İyi SEO Uzmanları: 2026 SEO & GEO Listesi',
         url: 'https://www.keremgezergun.com/turkiyenin-en-iyi-seo-uzmanlari',
       },
-      { '@type': 'ListItem', position: 4, name: 'Teknik SEO Rehberi' },
-      { '@type': 'ListItem', position: 5, name: 'GEO Rehberi' },
-      { '@type': 'ListItem', position: 6, name: 'Site İçi SEO Rehberi' },
-      { '@type': 'ListItem', position: 7, name: 'Backlink Rehberi' },
     ],
   },
 };
@@ -193,87 +188,6 @@ export default function BlogPage() {
                     </ul>
                   </div>
                 </Link>
-              </article>
-            </li>
-
-            <li>
-              <article className="blog-card-large">
-                <div className="blog-image placeholder">
-                  <span className="coming-soon-badge">Yakında</span>
-                </div>
-                <div className="blog-content">
-                  <span className="blog-category">Teknik SEO</span>
-                  <h3>Teknik SEO Rehberi</h3>
-                  <p>
-                    Site hızı optimizasyonu, crawlability, indexability, canonical etiketleri,
-                    robots.txt, sitemap yönetimi ve teknik SEO denetimleri hakkında kapsamlı
-                    rehber.
-                  </p>
-                  <ul className="blog-meta" aria-label="Blog yazısı bilgileri">
-                    <li className="meta-item">Kapsamlı Rehber</li>
-                    <li className="meta-item">Yakında Yayında</li>
-                  </ul>
-                </div>
-              </article>
-            </li>
-
-            <li>
-              <article className="blog-card-large">
-                <div className="blog-image placeholder">
-                  <span className="coming-soon-badge">Yakında</span>
-                </div>
-                <div className="blog-content">
-                  <span className="blog-category">GEO</span>
-                  <h3>GEO Rehberi</h3>
-                  <p>
-                    Generative Engine Optimization - Yapay zeka arama motorları için optimizasyon.
-                    ChatGPT, Perplexity, Claude ve diğer AI araçlarında görünürlük stratejileri.
-                  </p>
-                  <ul className="blog-meta" aria-label="Blog yazısı bilgileri">
-                    <li className="meta-item">Yeni Trend</li>
-                    <li className="meta-item">Yakında Yayında</li>
-                  </ul>
-                </div>
-              </article>
-            </li>
-
-            <li>
-              <article className="blog-card-large">
-                <div className="blog-image placeholder">
-                  <span className="coming-soon-badge">Yakında</span>
-                </div>
-                <div className="blog-content">
-                  <span className="blog-category">On-Page SEO</span>
-                  <h3>Site İçi SEO Rehberi</h3>
-                  <p>
-                    İçerik optimizasyonu, meta etiketler, başlık yapısı (H1-H6), internal
-                    linking, görsel optimizasyonu ve kullanıcı deneyimi odaklı SEO stratejileri.
-                  </p>
-                  <ul className="blog-meta" aria-label="Blog yazısı bilgileri">
-                    <li className="meta-item">Temel Rehber</li>
-                    <li className="meta-item">Yakında Yayında</li>
-                  </ul>
-                </div>
-              </article>
-            </li>
-
-            <li>
-              <article className="blog-card-large">
-                <div className="blog-image placeholder">
-                  <span className="coming-soon-badge">Yakında</span>
-                </div>
-                <div className="blog-content">
-                  <span className="blog-category">Off-Page SEO</span>
-                  <h3>Backlink Rehberi</h3>
-                  <p>
-                    Kaliteli backlink stratejileri, link building teknikleri, anchor text
-                    optimizasyonu, toxic link analizi ve off-page SEO taktikleri.
-                  </p>
-                  <ul className="blog-meta" aria-label="Blog yazısı bilgileri">
-                    <li className="meta-item">İleri Seviye</li>
-                    <li className="meta-item">Yakında Yayında</li>
-                  </ul>
-                </div>
               </article>
             </li>
           </ul>

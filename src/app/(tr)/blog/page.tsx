@@ -55,19 +55,25 @@ const collectionPageSchema = {
       {
         '@type': 'ListItem',
         position: 1,
+        name: 'SEO Uyumlu Kategori Ağacı Nasıl Oluşturulur?',
+        url: 'https://www.keremgezergun.com/seo-uyumlu-kategori-agaci',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
         name: 'E-Ticaret SEO Nedir? Kapsamlı E-Ticaret SEO Rehberi',
         url: 'https://www.keremgezergun.com/e-ticaret-seo',
       },
       {
         '@type': 'ListItem',
-        position: 2,
+        position: 3,
         name: 'Türkiye’nin En İyi SEO Uzmanları: 2026 SEO & GEO Listesi',
         url: 'https://www.keremgezergun.com/turkiyenin-en-iyi-seo-uzmanlari',
       },
-      { '@type': 'ListItem', position: 3, name: 'Teknik SEO Rehberi' },
-      { '@type': 'ListItem', position: 4, name: 'GEO Rehberi' },
-      { '@type': 'ListItem', position: 5, name: 'Site İçi SEO Rehberi' },
-      { '@type': 'ListItem', position: 6, name: 'Backlink Rehberi' },
+      { '@type': 'ListItem', position: 4, name: 'Teknik SEO Rehberi' },
+      { '@type': 'ListItem', position: 5, name: 'GEO Rehberi' },
+      { '@type': 'ListItem', position: 6, name: 'Site İçi SEO Rehberi' },
+      { '@type': 'ListItem', position: 7, name: 'Backlink Rehberi' },
     ],
   },
 };
@@ -100,6 +106,27 @@ export default function BlogPage() {
             Blog Yazıları
           </h2>
           <ul className="blog-page-grid" aria-label="Blog yazıları listesi">
+            <li>
+              <article className="blog-card-large">
+                <Link href="/seo-uyumlu-kategori-agaci" style={{ display: 'block', height: '100%' }}>
+                  <div className="blog-image placeholder" />
+                  <div className="blog-content">
+                    <span className="blog-category">E-ticaret SEO</span>
+                    <h3>SEO Uyumlu Kategori Ağacı Nasıl Oluşturulur?</h3>
+                    <p>
+                      Semrush, Search Console, Google Ads ve SERP analiziyle hangi e-ticaret
+                      kategorilerinin açılması gerektiğini belirleyin ve SEO uyumlu kategori ağacı
+                      oluşturun.
+                    </p>
+                    <ul className="blog-meta" aria-label="Blog yazısı bilgileri">
+                      <li className="meta-item">Rehber</li>
+                      <li className="meta-item">22 Eylül 2026</li>
+                    </ul>
+                  </div>
+                </Link>
+              </article>
+            </li>
+
             <li>
               <article className="blog-card-large">
                 <Link href="/e-ticaret-seo" style={{ display: 'block', height: '100%' }}>

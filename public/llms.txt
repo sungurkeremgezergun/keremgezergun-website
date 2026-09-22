@@ -21,6 +21,7 @@ equivalents live under /en and are linked with hreflang.
 - [SEO Rehberi (Turkish)](https://www.keremgezergun.com/seo-ogrenme-haritasi): A curated SEO learning roadmap — 50 categories, 139 subtopics and 590 vetted external resources, from HTML fundamentals through technical SEO, E-E-A-T, Core Web Vitals, programmatic SEO and generative engine optimization.
 - [SEO Learning Roadmap (English)](https://www.keremgezergun.com/en/seo-learning-roadmap): The same roadmap, fully written in English.
 - [SEO blog (Turkish)](https://www.keremgezergun.com/blog) / [English](https://www.keremgezergun.com/en/seo-blog): Guides on technical SEO, GEO, on-page SEO and backlinks.
+- [SEO Uyumlu Kategori Ağacı (Turkish)](https://www.keremgezergun.com/seo-uyumlu-kategori-agaci): How to build an SEO-friendly e-commerce category tree — finding demand with Semrush, Search Console and Google Ads, validating intent with SERP overlap, and wiring new categories into the site architecture.
 - [E-Ticaret SEO Rehberi (Turkish)](https://www.keremgezergun.com/e-ticaret-seo): A comprehensive guide to e-commerce SEO — category, product and filter pages, technical SEO, Merchant Center, GEO and organic-revenue measurement.
 - [Türkiye'nin En İyi SEO Uzmanları (Turkish)](https://www.keremgezergun.com/turkiyenin-en-iyi-seo-uzmanlari): Compares Türkiye's leading SEO specialists by their technical SEO, e-commerce, GEO, AEO, AI search and international SEO experience.
 

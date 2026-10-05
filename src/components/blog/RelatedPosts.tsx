@@ -3,52 +3,52 @@ import Link from 'next/link';
 import type { Language } from '@/lib/i18n';
 import { postsIn } from '@/lib/blog/posts';
 
+/** How many posts the block lists. The blog index has the rest. */
+const LIMIT = 3;
+
 const copy = {
-  tag: { tr: 'Blog', en: 'Blog' },
   heading: { tr: 'İlgili Yazılar', en: 'Related Posts' },
-  list: { tr: 'İlgili blog yazıları', en: 'Related blog posts' },
-  meta: { tr: 'Blog yazısı bilgileri', en: 'Post details' },
-  kind: { tr: 'Rehber', en: 'Guide' },
+  all: { tr: 'Tüm yazılar', en: 'All posts' },
+  allHref: { tr: '/blog', en: '/en/seo-blog' },
 };
 
 /**
- * The other published posts in the same language, newest first, under an
+ * The newest other posts in the same language, as a compact list under an
  * article. Every article renders this with its own path, so a new post
  * appears on all of them the moment it is added to `posts`.
  */
 export default function RelatedPosts({ current, language = 'tr' }: { current: string; language?: Language }) {
-  const related = postsIn(language).filter((post) => post.path !== current);
+  const related = postsIn(language)
+    .filter((post) => post.path !== current)
+    .slice(0, LIMIT);
   if (related.length === 0) return null;
 
   return (
     <section className="related-posts" aria-labelledby="related-posts-heading">
       <div className="container">
-        <div className="section-header">
-          <span className="section-tag">{copy.tag[language]}</span>
-          <h2 id="related-posts-heading">{copy.heading[language]}</h2>
-        </div>
-        <ul className="blog-page-grid" aria-label={copy.list[language]}>
-          {related.map((post) => (
-            <li key={post.path}>
-              <article className="blog-card-large">
-                <Link href={post.path} style={{ display: 'block', height: '100%' }}>
-                  <div className="blog-image">
-                    <Image src={post.cover} alt="" width={1200} height={630} sizes="(max-width: 768px) 100vw, 560px" />
-                  </div>
-                  <div className="blog-content">
-                    <span className="blog-category">{post.category}</span>
-                    <h3>{post.title}</h3>
-                    <p>{post.description}</p>
-                    <ul className="blog-meta" aria-label={copy.meta[language]}>
-                      <li className="meta-item">{copy.kind[language]}</li>
-                      <li className="meta-item">{post.publishedLabel}</li>
-                    </ul>
-                  </div>
+        <div className="related-posts-inner">
+          <div className="related-posts-head">
+            <h2 id="related-posts-heading">{copy.heading[language]}</h2>
+            <Link href={copy.allHref[language]} className="related-posts-all">
+              {copy.all[language]} <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <ul className="related-posts-list">
+            {related.map((post) => (
+              <li key={post.path}>
+                <Link href={post.path} className="related-post">
+                  <Image src={post.cover} alt="" width={1200} height={630} sizes="128px" />
+                  <span className="related-post-text">
+                    <span className="related-post-meta">
+                      {post.category} · {post.publishedLabel}
+                    </span>
+                    <span className="related-post-title">{post.title}</span>
+                  </span>
                 </Link>
-              </article>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

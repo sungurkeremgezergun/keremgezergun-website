@@ -55,18 +55,24 @@ const collectionPageSchema = {
       {
         '@type': 'ListItem',
         position: 1,
+        name: 'SEO Uyumlu Kategori Sayfası Nasıl Olur?',
+        url: 'https://www.keremgezergun.com/seo-uyumlu-kategori-sayfasi-nasil-olur',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
         name: 'SEO Uyumlu Kategori Ağacı Nasıl Oluşturulur?',
         url: 'https://www.keremgezergun.com/seo-uyumlu-kategori-agaci',
       },
       {
         '@type': 'ListItem',
-        position: 2,
+        position: 3,
         name: 'E-Ticaret SEO Nedir? Kapsamlı E-Ticaret SEO Rehberi',
         url: 'https://www.keremgezergun.com/e-ticaret-seo',
       },
       {
         '@type': 'ListItem',
-        position: 3,
+        position: 4,
         name: 'Türkiye’nin En İyi SEO Uzmanları: 2026 SEO & GEO Listesi',
         url: 'https://www.keremgezergun.com/turkiyenin-en-iyi-seo-uzmanlari',
       },
@@ -102,6 +108,37 @@ export default function BlogPage() {
             Blog Yazıları
           </h2>
           <ul className="blog-page-grid" aria-label="Blog yazıları listesi">
+            <li>
+              <article className="blog-card-large">
+                <Link
+                  href="/seo-uyumlu-kategori-sayfasi-nasil-olur"
+                  style={{ display: 'block', height: '100%' }}
+                >
+                  <div className="blog-image">
+                    <Image
+                      src="/images/blog/seo-uyumlu-kategori-sayfasi-nasil-olur-og.png"
+                      alt=""
+                      width={1200}
+                      height={630}
+                      sizes="(max-width: 768px) 100vw, 560px"
+                    />
+                  </div>
+                  <div className="blog-content">
+                    <span className="blog-category">E-ticaret SEO</span>
+                    <h3>SEO Uyumlu Kategori Sayfası Nasıl Olur?</h3>
+                    <p>
+                      SEO uyumlu kategori sayfası nasıl hazırlanır? H1, filtreleme, ürün yapısı,
+                      internal linking, crawlability ve UX için doğru kategori mimarisini öğrenin.
+                    </p>
+                    <ul className="blog-meta" aria-label="Blog yazısı bilgileri">
+                      <li className="meta-item">Rehber</li>
+                      <li className="meta-item">5 Ekim 2026</li>
+                    </ul>
+                  </div>
+                </Link>
+              </article>
+            </li>
+
             <li>
               <article className="blog-card-large">
                 <Link href="/seo-uyumlu-kategori-agaci" style={{ display: 'block', height: '100%' }}>

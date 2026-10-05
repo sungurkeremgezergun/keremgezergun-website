@@ -24,6 +24,17 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     language: 'tr',
+    path: '/seo-uyumlu-kategori-sayfasi-nasil-olur',
+    title: 'SEO Uyumlu Kategori Sayfası Nasıl Olur?',
+    description:
+      'SEO uyumlu kategori sayfası nasıl hazırlanır? H1, filtreleme, ürün yapısı, internal linking, crawlability ve UX için doğru kategori mimarisini öğrenin.',
+    category: 'E-ticaret SEO',
+    published: '2026-10-05',
+    publishedLabel: '5 Ekim 2026',
+    cover: '/images/blog/seo-uyumlu-kategori-sayfasi-nasil-olur-og.png',
+  },
+  {
+    language: 'tr',
     path: '/seo-uyumlu-kategori-agaci',
     title: 'SEO Uyumlu Kategori Ağacı Nasıl Oluşturulur?',
     description:

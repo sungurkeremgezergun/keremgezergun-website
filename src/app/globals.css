@@ -3680,6 +3680,25 @@ address {
     border: 0;
 }
 
+/* In-article image. The image links to its full-size file; caption below. */
+.article-figure {
+    margin: 32px 0 8px;
+}
+
+.article-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.article-figure figcaption {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
 /* Grouped TOC: each group is a native <details>, so a 44-entry list opens
    one group at a time and works without JS. The step labels carry their own
    numbers, so the list markers are dropped. */

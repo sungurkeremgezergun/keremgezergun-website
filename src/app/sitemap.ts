@@ -34,6 +34,7 @@ const settings: Record<string, RouteSettings> = {
 // Routes with no English counterpart. They are not in `localeRoutes`, so the
 // hreflang set only carries the Turkish URL and x-default.
 const turkishOnly: Record<string, RouteSettings> = {
+  '/seo-uyumlu-urun-sayfasi-nasil-olur': { changeFrequency: 'monthly', lastModified: '2026-10-05' },
   '/seo-uyumlu-kategori-sayfasi-nasil-olur': { changeFrequency: 'monthly', lastModified: '2026-10-05' },
 };
 

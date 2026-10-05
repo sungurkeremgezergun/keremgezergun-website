@@ -3779,6 +3779,17 @@ address {
     color: var(--text-light);
 }
 
+/* Tall infographics would fill several screens at full column width. */
+.article-figure-portrait {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-figure-portrait figcaption {
+    text-align: center;
+}
+
 /* Grouped TOC: each group is a native <details>, so a 44-entry list opens
    one group at a time and works without JS. The step labels carry their own
    numbers, so the list markers are dropped. */

@@ -24,6 +24,17 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     language: 'tr',
+    path: '/seo-uyumlu-urun-sayfasi-nasil-olur',
+    title: 'SEO Uyumlu Ürün Sayfası Nasıl Olur?',
+    description:
+      'SEO uyumlu ürün sayfası nasıl hazırlanır? Görseller, varyantlar, canonical, structured data, FAQ ve internal linking için doğru ürün sayfası yapısını öğrenin.',
+    category: 'E-ticaret SEO',
+    published: '2026-10-05',
+    publishedLabel: '5 Ekim 2026',
+    cover: '/images/blog/seo-uyumlu-urun-sayfasi-nasil-olur-og.png',
+  },
+  {
+    language: 'tr',
     path: '/seo-uyumlu-kategori-sayfasi-nasil-olur',
     title: 'SEO Uyumlu Kategori Sayfası Nasıl Olur?',
     description:

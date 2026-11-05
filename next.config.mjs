@@ -7,13 +7,13 @@ const scriptSrcDev = process.env.NODE_ENV === 'development' ? " 'unsafe-eval'" :
 
 const ContentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${scriptSrcDev} https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com`,
-  "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
+  `script-src 'self' 'unsafe-inline'${scriptSrcDev} https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://*.clarity.ms`,
+  "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://*.clarity.ms",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "img-src 'self' data: blob: https://www.gstatic.com https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://stats.g.doubleclick.net",
+  "img-src 'self' data: blob: https://www.gstatic.com https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://stats.g.doubleclick.net https://*.clarity.ms https://c.bing.com",
   "font-src 'self' data: https://fonts.gstatic.com",
-  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://cloudflareinsights.com https://static.cloudflareinsights.com",
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://cloudflareinsights.com https://static.cloudflareinsights.com https://*.clarity.ms https://c.bing.com",
   // The redirect matcher runs its comparison in a Web Worker. Turbopack 16.2+
   // serves the worker from a same-origin /_next/static/chunks URL, which
   // default-src already allows; naming worker-src explicitly removes that

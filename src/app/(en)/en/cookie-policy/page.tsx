@@ -12,8 +12,8 @@ const TITLE = 'Cookie Policy';
 const DESCRIPTION =
   'Which cookies keremgezergun.com uses and why, where the data goes, and how to change your preference.';
 
-const UPDATED = '2026-09-22';
-const UPDATED_LABEL = '22 September 2026';
+const UPDATED = '2026-11-05';
+const UPDATED_LABEL = '5 November 2026';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -70,8 +70,9 @@ export default function CookiePolicyPage() {
             <h2>Change your preference</h2>
             <p>
               Analytics cookies are only used if you accept them. You can change or withdraw your
-              choice at any time with the button below; declining also deletes any existing Google
-              Analytics cookies.
+              choice at any time with the button below; declining also deletes the Google Analytics
+              and Clarity cookies held on this site. Cookies on Microsoft domains can be deleted in
+              your browser settings.
             </p>
             <p>
               <CookiePreferencesButton label="Change cookie preference" />
@@ -117,9 +118,85 @@ export default function CookiePolicyPage() {
               </a>
               . The legal basis is your consent (GDPR Art. 6(1)(a); Turkish KVKK Art. 5(1)).
             </p>
+
+            <h2>Non-essential cookies: Microsoft Clarity</h2>
             <p>
-              We use no cookies for advertising, remarketing or profiling; Google Analytics’
-              advertising features are switched off.
+              We use Microsoft Clarity to understand how visitors use the site and to improve its
+              pages. Clarity records clicks, scrolling and mouse movement and builds session
+              recordings and heatmaps from them. It too is only loaded when you choose{' '}
+              <strong>“Accept”</strong> in the cookie bar. If you do not accept, no request is sent
+              to Microsoft and the cookies below are not created.
+            </p>
+            <div className="table-wrapper">
+              <table>
+                <caption className="visually-hidden">Microsoft Clarity cookies</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Cookie</th>
+                    <th scope="col">Purpose</th>
+                    <th scope="col">Duration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>_clck</td>
+                    <td>Holds the Clarity user ID and preferences.</td>
+                    <td>1 year</td>
+                  </tr>
+                  <tr>
+                    <td>_clsk</td>
+                    <td>Joins page views into a single session recording.</td>
+                    <td>1 day</td>
+                  </tr>
+                  <tr>
+                    <td>CLID</td>
+                    <td>Third party: identifies when Clarity first saw this user.</td>
+                    <td>1 year</td>
+                  </tr>
+                  <tr>
+                    <td>MUID</td>
+                    <td>
+                      Third party: identifies browsers visiting Microsoft sites; Microsoft uses it for
+                      advertising, site analytics and operational purposes.
+                    </td>
+                    <td>13 months</td>
+                  </tr>
+                  <tr>
+                    <td>SRM_B</td>
+                    <td>Third party: an identifier set on Microsoft domains.</td>
+                    <td>13 months</td>
+                  </tr>
+                  <tr>
+                    <td>MR</td>
+                    <td>Third party: indicates whether to refresh MUID.</td>
+                    <td>7 days</td>
+                  </tr>
+                  <tr>
+                    <td>SM</td>
+                    <td>Third party: synchronises MUID across Microsoft domains.</td>
+                    <td>Session</td>
+                  </tr>
+                  <tr>
+                    <td>ANONCHK</td>
+                    <td>Third party: indicates whether MUID was transferred to ANID.</td>
+                    <td>Under 1 day</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              The processor is Microsoft Corporation and the data is transferred to Microsoft servers
+              abroad; see the{' '}
+              <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">
+                Microsoft Privacy Statement
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              . The legal basis is your consent (GDPR Art. 6(1)(a); Turkish KVKK Art. 5(1)).
+            </p>
+            <p>
+              This site runs no advertising or remarketing; Google Analytics’ advertising features
+              are switched off and Clarity is not granted ad storage. Even so, the MUID cookie set
+              through Clarity may also be used by Microsoft for advertising, as described above.
             </p>
 
             <h2>Preferences kept in your browser (not cookies)</h2>

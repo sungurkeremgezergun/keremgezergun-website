@@ -45,4 +45,3 @@ jobs:
 
       - name: Audit (high & above)
         run: npm audit --audit-level=high
-        continue-on-error: true

@@ -12,8 +12,8 @@ const TITLE = 'Çerez Politikası';
 const DESCRIPTION =
   'keremgezergun.com hangi çerezleri hangi amaçla kullanır, veriler nereye gider ve tercihinizi nasıl değiştirirsiniz.';
 
-const UPDATED = '2026-09-22';
-const UPDATED_LABEL = '22 Eylül 2026';
+const UPDATED = '2026-11-05';
+const UPDATED_LABEL = '5 Kasım 2026';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -70,8 +70,9 @@ export default function CookiePolicyPage() {
             <h2>Tercihinizi değiştirin</h2>
             <p>
               Analitik çerezler yalnızca siz kabul ederseniz kullanılır. Tercihinizi istediğiniz
-              zaman aşağıdaki düğmeyle değiştirebilir veya geri çekebilirsiniz; reddettiğinizde
-              mevcut Google Analytics çerezleri de silinir.
+              zaman aşağıdaki düğmeyle değiştirebilir veya geri çekebilirsiniz; reddettiğinizde bu
+              sitede tutulan Google Analytics ve Clarity çerezleri de silinir. Microsoft alan
+              adlarındaki çerezleri tarayıcınızın ayarlarından silebilirsiniz.
             </p>
             <p>
               <CookiePreferencesButton label="Çerez tercihini değiştir" />
@@ -119,9 +120,86 @@ export default function CookiePolicyPage() {
               </a>
               . Hukuki dayanak KVKK m. 5/1 uyarınca açık rızanızdır.
             </p>
+
+            <h2>Zorunlu olmayan çerezler: Microsoft Clarity</h2>
             <p>
-              Reklam, yeniden pazarlama veya profilleme amaçlı hiçbir çerez kullanmıyoruz; Google
-              Analytics’in reklam özellikleri kapalıdır.
+              Ziyaretçilerin siteyi nasıl kullandığını anlamak ve sayfaları iyileştirmek için
+              Microsoft Clarity kullanıyoruz. Clarity tıklama, kaydırma ve fare hareketlerini kaydeder
+              ve bunlardan oturum kayıtları ile ısı haritaları oluşturur. Bu araç da yalnızca çerez
+              uyarısında <strong>“Kabul et”</strong> dediğinizde yüklenir. Kabul etmezseniz
+              Microsoft’a hiçbir istek gönderilmez ve aşağıdaki çerezler oluşturulmaz.
+            </p>
+            <div className="table-wrapper">
+              <table>
+                <caption className="visually-hidden">Microsoft Clarity çerezleri</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Çerez</th>
+                    <th scope="col">Amaç</th>
+                    <th scope="col">Süre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>_clck</td>
+                    <td>Clarity kullanıcı kimliğini ve tercihlerini tutar.</td>
+                    <td>1 yıl</td>
+                  </tr>
+                  <tr>
+                    <td>_clsk</td>
+                    <td>Sayfa görüntülemelerini tek bir oturum kaydında birleştirir.</td>
+                    <td>1 gün</td>
+                  </tr>
+                  <tr>
+                    <td>CLID</td>
+                    <td>Üçüncü taraf: Clarity’nin bu kullanıcıyı ilk gördüğü zamanı tanımlar.</td>
+                    <td>1 yıl</td>
+                  </tr>
+                  <tr>
+                    <td>MUID</td>
+                    <td>
+                      Üçüncü taraf: Microsoft sitelerini ziyaret eden tarayıcıları tanımlar; Microsoft
+                      bunu reklam, site analitiği ve operasyonel amaçlarla kullanır.
+                    </td>
+                    <td>13 ay</td>
+                  </tr>
+                  <tr>
+                    <td>SRM_B</td>
+                    <td>Üçüncü taraf: Microsoft alan adlarında bırakılan bir tanımlayıcıdır.</td>
+                    <td>13 ay</td>
+                  </tr>
+                  <tr>
+                    <td>MR</td>
+                    <td>Üçüncü taraf: MUID’in yenilenip yenilenmeyeceğini belirtir.</td>
+                    <td>7 gün</td>
+                  </tr>
+                  <tr>
+                    <td>SM</td>
+                    <td>Üçüncü taraf: MUID’i Microsoft alan adları arasında eşitler.</td>
+                    <td>Oturum</td>
+                  </tr>
+                  <tr>
+                    <td>ANONCHK</td>
+                    <td>Üçüncü taraf: MUID’in ANID’e aktarılıp aktarılmadığını gösterir.</td>
+                    <td>1 günden kısa</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Verileri işleyen taraf Microsoft Corporation’dır ve veriler yurt dışındaki Microsoft
+              sunucularına aktarılır; ayrıntılar için{' '}
+              <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">
+                Microsoft Gizlilik Bildirimi
+                <span className="sr-only"> (yeni sekmede açılır)</span>
+              </a>
+              . Hukuki dayanak KVKK m. 5/1 uyarınca açık rızanızdır.
+            </p>
+            <p>
+              Bu site reklam veya yeniden pazarlama yapmaz; Google Analytics’in reklam özellikleri
+              kapalıdır ve Clarity’ye reklam depolama izni verilmez. Yine de Clarity’nin bıraktığı
+              MUID çerezi yukarıda belirtildiği gibi Microsoft tarafından reklam amacıyla da
+              kullanılabilir.
             </p>
 
             <h2>Tarayıcınızda tutulan tercihler (çerez değildir)</h2>

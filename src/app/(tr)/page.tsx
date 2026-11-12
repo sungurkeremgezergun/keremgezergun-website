@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import HomeProjects from '@/components/home/HomeProjects';
 import LatestPosts from '@/components/home/LatestPosts';
@@ -8,6 +7,10 @@ import { contact, stores } from '@/lib/contact';
 import Experience from '@/components/home/Experience';
 import HomeSchema from '@/components/home/HomeSchema';
 import { tools } from '@/lib/experience';
+import LoopVideo from '@/components/ui/LoopVideo';
+
+const AWARD_POST = '/mena-search-awards-2026-emerging-talent-award';
+const AWARD_MEDIA = '/images/mena-2026';
 
 export const metadata: Metadata = {
   description:
@@ -327,11 +330,11 @@ export default function HomePage() {
               <div className="hero-badges">
                 <div className="hero-badge">
                   <span className="badge-icon" aria-hidden="true">&#127942;</span>
-                  <span>Best Low Budget Campaign (SEO) Finalisti</span>
+                  <span>MENA Search Awards Emerging Talent Kazananı</span>
                 </div>
                 <div className="hero-badge">
                   <span className="badge-icon" aria-hidden="true">&#127942;</span>
-                  <span>Emerging Talent Award Finalisti</span>
+                  <span>Best Low Budget Campaign (SEO) Finalisti</span>
                 </div>
               </div>
               <h1>
@@ -366,13 +369,13 @@ export default function HomePage() {
             </div>
             <figure className="hero-image">
               <div className="image-wrapper">
-                <Image
-                  src="/images/kerem-gezergun.jpg"
-                  alt="Kerem Gezergün - E-Ticaret SEO Danışmanı, profesyonel portre fotoğrafı"
-                  fill
-                  sizes="(max-width: 768px) 250px, (max-width: 1024px) 300px, 400px"
-                  priority
-                  fetchPriority="high"
+                <LoopVideo
+                  src={`${AWARD_MEDIA}/hero_dongu_800x960.mp4`}
+                  poster={`${AWARD_MEDIA}/hero_dongu_poster_800x960.jpg`}
+                  still={`${AWARD_MEDIA}/hero_1200x1440.jpg`}
+                  label="MENA Search Awards 2026 Emerging Talent Award kazananı: Sungur Kerem Gezergün"
+                  pauseLabel="Animasyonu durdur"
+                  playLabel="Animasyonu oynat"
                 />
                 <div className="image-decoration" aria-hidden="true"></div>
               </div>
@@ -566,12 +569,15 @@ export default function HomePage() {
                   <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                 </svg>
               </div>
-              <h3>Best Low Budget Campaign (SEO)</h3>
+              <h3>Emerging Talent Award</h3>
               <p>
-                Ekibim ile birlikte <strong>&ldquo;Best Low Budget Campaign (SEO)&rdquo;</strong>{' '}
-                kategorisinde finale kaldık.
+                <a href="https://menasearchawards.com/" target="_blank" rel="noopener noreferrer">
+                  MENA Search Awards
+                </a>{' '}
+                <strong>&ldquo;Emerging Talent&rdquo;</strong> kategorisinde birinci oldum.{' '}
+                <Link href={AWARD_POST}>Jürinin değerlendirmesini okuyun</Link>.
               </p>
-              <span className="award-year">Finalist</span>
+              <span className="award-year">Kazanan</span>
             </li>
             <li className="award-card">
               <div className="award-icon" aria-hidden="true">
@@ -580,13 +586,10 @@ export default function HomePage() {
                   <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                 </svg>
               </div>
-              <h3>Emerging Talent Award</h3>
+              <h3>Best Low Budget Campaign (SEO)</h3>
               <p>
-                <a href="https://menasearchawards.com/" target="_blank" rel="noopener noreferrer">
-                  MENA Search Awards
-                </a>{' '}
-                <strong>&ldquo;Emerging Talent&rdquo;</strong> kategorisinde finalist oldum. Final
-                sonuçları henüz açıklanmadı.
+                Ekibim ile birlikte <strong>&ldquo;Best Low Budget Campaign (SEO)&rdquo;</strong>{' '}
+                kategorisinde finale kaldık.
               </p>
               <span className="award-year">Finalist</span>
             </li>

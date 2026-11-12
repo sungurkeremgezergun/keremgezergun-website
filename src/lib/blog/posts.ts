@@ -24,6 +24,17 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     language: 'tr',
+    path: '/mena-search-awards-2026-emerging-talent-award',
+    title: 'MENA Search Awards 2026’da Emerging Talent Award’ı Kazandım',
+    description:
+      'MENA Search Awards 2026’da Emerging Talent Award’ı kazandım. Jürinin değerlendirmesini, ödülün arkasındaki çalışmaları ve geliştirdiğim ücretsiz SEO araçlarını bu yazıda anlattım.',
+    category: 'Ödüller',
+    published: '2026-11-12',
+    publishedLabel: '12 Kasım 2026',
+    cover: '/images/mena-2026/og_1200x630.jpg',
+  },
+  {
+    language: 'tr',
     path: '/seo-uyumlu-urun-sayfasi-nasil-olur',
     title: 'SEO Uyumlu Ürün Sayfası Nasıl Olur?',
     description:

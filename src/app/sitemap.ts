@@ -10,8 +10,8 @@ type RouteSettings = {
 };
 
 const settings: Record<string, RouteSettings> = {
-  '/': { changeFrequency: 'monthly', lastModified: '2026-09-18' },
-  '/blog': { changeFrequency: 'weekly', lastModified: '2026-10-05' },
+  '/': { changeFrequency: 'monthly', lastModified: '2026-11-12' },
+  '/blog': { changeFrequency: 'weekly', lastModified: '2026-11-12' },
   '/sektorel-projeler': { changeFrequency: 'monthly', lastModified: '2026-09-14' },
   '/seo-ogrenme-haritasi': { changeFrequency: 'weekly', lastModified: '2026-07-26' },
   '/nirengi': { changeFrequency: 'monthly', lastModified: '2026-09-02' },
@@ -34,6 +34,7 @@ const settings: Record<string, RouteSettings> = {
 // Routes with no English counterpart. They are not in `localeRoutes`, so the
 // hreflang set only carries the Turkish URL and x-default.
 const turkishOnly: Record<string, RouteSettings> = {
+  '/mena-search-awards-2026-emerging-talent-award': { changeFrequency: 'yearly', lastModified: '2026-11-12' },
   '/seo-uyumlu-urun-sayfasi-nasil-olur': { changeFrequency: 'monthly', lastModified: '2026-10-05' },
   '/seo-uyumlu-kategori-sayfasi-nasil-olur': { changeFrequency: 'monthly', lastModified: '2026-10-05' },
 };

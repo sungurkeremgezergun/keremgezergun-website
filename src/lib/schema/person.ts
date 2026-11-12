@@ -66,8 +66,8 @@ const person = {
     sameAs: 'https://www.ahievran.edu.tr',
   },
   award: [
+    'MENA Search Awards Emerging Talent - Winner',
     'Best Low Budget Campaign (SEO) - Finalist',
-    'MENA Search Awards Emerging Talent - Finalist',
   ],
   sameAs: [
     'https://www.linkedin.com/in/sungur-kerem-gezergun/',
@@ -95,7 +95,7 @@ const personByLanguage = {
     imageCaption: 'Kerem Gezergün - E-Ticaret SEO Danışmanı',
     jobTitle: 'SEO Specialist',
     description:
-      'Hepsiburada’da SEO Specialist. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim. Best Low Budget Campaign (SEO) Finalisti.',
+      'Hepsiburada’da SEO Specialist. 30+ e-ticaret markasının organik gelirlerini ölçeklendirdim. MENA Search Awards Emerging Talent kazananı.',
     knowsAbout: [
       'SEO',
       'E-ticaret SEO',
@@ -114,7 +114,7 @@ const personByLanguage = {
     imageCaption: 'Kerem Gezergün - E-commerce SEO Consultant',
     jobTitle: 'SEO Specialist',
     description:
-      'SEO Specialist at Hepsiburada, with experience scaling organic revenue for more than 30 e-commerce brands. Best Low Budget Campaign (SEO) finalist.',
+      'SEO Specialist at Hepsiburada, with experience scaling organic revenue for more than 30 e-commerce brands. MENA Search Awards Emerging Talent winner.',
     knowsAbout: [
       'SEO',
       'E-commerce SEO',

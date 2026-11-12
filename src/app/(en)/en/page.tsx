@@ -403,13 +403,13 @@ export default function EnglishHomePage() {
                   <span className="badge-icon" aria-hidden="true">
                     &#127942;
                   </span>
-                  <span>Best Low Budget Campaign (SEO) Finalist</span>
+                  <span>MENA Search Awards Emerging Talent Winner</span>
                 </div>
                 <div className="hero-badge">
                   <span className="badge-icon" aria-hidden="true">
                     &#127942;
                   </span>
-                  <span>Emerging Talent Award Finalist</span>
+                  <span>Best Low Budget Campaign (SEO) Finalist</span>
                 </div>
               </div>
               <h1>
@@ -570,12 +570,15 @@ export default function EnglishHomePage() {
                   <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                 </svg>
               </div>
-              <h3>Best Low Budget Campaign (SEO)</h3>
+              <h3>Emerging Talent Award</h3>
               <p>
-                My team and I reached the final in the{' '}
-                <strong>&ldquo;Best Low Budget Campaign (SEO)&rdquo;</strong> category.
+                I won the{' '}
+                <a href="https://menasearchawards.com/" target="_blank" rel="noopener noreferrer">
+                  MENA Search Awards
+                </a>{' '}
+                <strong>&ldquo;Emerging Talent&rdquo;</strong> category.
               </p>
-              <span className="award-year">Finalist</span>
+              <span className="award-year">Winner</span>
             </li>
             <li className="award-card">
               <div className="award-icon" aria-hidden="true">
@@ -584,14 +587,10 @@ export default function EnglishHomePage() {
                   <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                 </svg>
               </div>
-              <h3>Emerging Talent Award</h3>
+              <h3>Best Low Budget Campaign (SEO)</h3>
               <p>
-                I am a finalist in the{' '}
-                <a href="https://menasearchawards.com/" target="_blank" rel="noopener noreferrer">
-                  MENA Search Awards
-                </a>{' '}
-                <strong>&ldquo;Emerging Talent&rdquo;</strong> category. The final results have not
-                been announced yet.
+                My team and I reached the final in the{' '}
+                <strong>&ldquo;Best Low Budget Campaign (SEO)&rdquo;</strong> category.
               </p>
               <span className="award-year">Finalist</span>
             </li>

@@ -327,11 +327,11 @@ export default function HomePage() {
               <div className="hero-badges">
                 <div className="hero-badge">
                   <span className="badge-icon" aria-hidden="true">&#127942;</span>
-                  <span>Best Low Budget Campaign (SEO) Finalisti</span>
+                  <span>MENA Search Awards Emerging Talent Kazananı</span>
                 </div>
                 <div className="hero-badge">
                   <span className="badge-icon" aria-hidden="true">&#127942;</span>
-                  <span>Emerging Talent Award Finalisti</span>
+                  <span>Best Low Budget Campaign (SEO) Finalisti</span>
                 </div>
               </div>
               <h1>
@@ -566,12 +566,14 @@ export default function HomePage() {
                   <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                 </svg>
               </div>
-              <h3>Best Low Budget Campaign (SEO)</h3>
+              <h3>Emerging Talent Award</h3>
               <p>
-                Ekibim ile birlikte <strong>&ldquo;Best Low Budget Campaign (SEO)&rdquo;</strong>{' '}
-                kategorisinde finale kaldık.
+                <a href="https://menasearchawards.com/" target="_blank" rel="noopener noreferrer">
+                  MENA Search Awards
+                </a>{' '}
+                <strong>&ldquo;Emerging Talent&rdquo;</strong> kategorisinde birinci oldum.
               </p>
-              <span className="award-year">Finalist</span>
+              <span className="award-year">Kazanan</span>
             </li>
             <li className="award-card">
               <div className="award-icon" aria-hidden="true">
@@ -580,13 +582,10 @@ export default function HomePage() {
                   <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                 </svg>
               </div>
-              <h3>Emerging Talent Award</h3>
+              <h3>Best Low Budget Campaign (SEO)</h3>
               <p>
-                <a href="https://menasearchawards.com/" target="_blank" rel="noopener noreferrer">
-                  MENA Search Awards
-                </a>{' '}
-                <strong>&ldquo;Emerging Talent&rdquo;</strong> kategorisinde finalist oldum. Final
-                sonuçları henüz açıklanmadı.
+                Ekibim ile birlikte <strong>&ldquo;Best Low Budget Campaign (SEO)&rdquo;</strong>{' '}
+                kategorisinde finale kaldık.
               </p>
               <span className="award-year">Finalist</span>
             </li>

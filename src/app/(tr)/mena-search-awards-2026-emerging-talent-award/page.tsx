@@ -16,10 +16,10 @@ const MEDIA = '/images/mena-2026';
 const HEADLINE = 'MENA Search Awards 2026’da Emerging Talent Award’ı Kazandım';
 
 /** Root layout appends " | Kerem Gezergün", so the title stays short here. */
-const TITLE = 'MENA Search Awards 2026 Emerging Talent Award';
+const TITLE = 'SEO Emerging Talent Award 2026 Kazananı';
 
 const DESCRIPTION =
-  'MENA Search Awards 2026’da Emerging Talent Award’ı kazandım. Jürinin değerlendirmesini, ödülün arkasındaki çalışmaları ve geliştirdiğim ücretsiz SEO araçlarını bu yazıda anlattım.';
+  'MENA Search Awards 2026’da SEO Emerging Talent Award’ı kazandım. Jürinin değerlendirmesini, ödülün arkasındaki çalışmaları ve ücretsiz SEO araçlarımı anlattım.';
 
 const PUBLISHED = '2026-11-12';
 const PUBLISHED_LABEL = '12 Kasım 2026';
@@ -54,7 +54,8 @@ const ANSWER_IMAGE = {
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PAGE_URL },
+  // Turkish only: hreflang carries just this URL and x-default, matching the sitemap.
+  alternates: { canonical: PAGE_URL, languages: { tr: PAGE_URL, 'x-default': PAGE_URL } },
   openGraph: {
     title: HEADLINE,
     description: DESCRIPTION,

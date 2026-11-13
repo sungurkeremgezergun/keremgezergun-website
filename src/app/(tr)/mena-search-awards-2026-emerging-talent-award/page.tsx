@@ -54,7 +54,8 @@ const ANSWER_IMAGE = {
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PAGE_URL },
+  // Turkish only: hreflang carries just this URL and x-default, matching the sitemap.
+  alternates: { canonical: PAGE_URL, languages: { tr: PAGE_URL, 'x-default': PAGE_URL } },
   openGraph: {
     title: HEADLINE,
     description: DESCRIPTION,
